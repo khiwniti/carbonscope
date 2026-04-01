@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 /**
  * Tool Groups Types and Utilities
  * 
@@ -95,7 +96,7 @@ export function hasGranularControl(toolName: string, toolsData?: Record<string, 
   
   // Only count visible methods for granular control (visible=true or visible=undefined counts as visible)
   const visibleMethods = group.methods.filter(m => m.visible !== false);
-  console.log(`[hasGranularControl] ${toolName}: ${group.methods.length} total methods, ${visibleMethods.length} visible`, group.methods.map(m => ({ name: m.name, visible: m.visible })));
+  logger.log(`[hasGranularControl] ${toolName}: ${group.methods.length} total methods, ${visibleMethods.length} visible`, group.methods.map(m => ({ name: m.name, visible: m.visible })));
   return visibleMethods.length > 1;
 }
 

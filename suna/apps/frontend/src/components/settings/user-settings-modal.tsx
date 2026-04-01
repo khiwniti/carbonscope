@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
@@ -892,7 +893,7 @@ function BillingTab({ returnUrl, onOpenPlanModal, isActive }: { returnUrl: strin
     const nonExpiringCredits = accountState?.credits.extra ?? 0;
     const totalCredits = accountState?.credits.total ?? 0;
     
-    console.log('[BillingTab] Credit breakdown:', { 
+    logger.log('[BillingTab] Credit breakdown:', { 
         accountState: accountState?.credits,
         dailyCreditsInfo, 
         dailyCredits, 
@@ -906,7 +907,7 @@ function BillingTab({ returnUrl, onOpenPlanModal, isActive }: { returnUrl: strin
     useEffect(() => {
         // Only refetch if tab just became active (not on every render)
         if (isActive && !prevIsActiveRef.current && session && !authLoading) {
-            console.log('🔄 Billing tab activated, refetching billing info...');
+            logger.log('🔄 Billing tab activated, refetching billing info...');
             // Use centralized invalidation which includes deduplication
             invalidateAccountState(queryClient, true);
         }
@@ -963,7 +964,7 @@ function BillingTab({ returnUrl, onOpenPlanModal, isActive }: { returnUrl: strin
     };
 
     const handleManageSubscription = () => {
-        console.log('[BillingTab] Creating portal session with return_url:', returnUrl);
+        logger.log('[BillingTab] Creating portal session with return_url:', returnUrl);
         createPortalSessionMutation.mutate({ return_url: returnUrl });
     };
 

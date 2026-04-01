@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { ToolViewProps } from '../types';
 import { GenericToolView } from '../GenericToolView';
 import { BrowserToolView } from '../BrowserToolView';
@@ -360,7 +361,7 @@ export function ToolView({ toolCall, toolResult, ...props }: ToolViewProps) {
     
     // Only emit if there's a canvas_path and tool completed successfully
     if (canvasPath && toolResult?.success) {
-      console.log('[CANVAS_LIVE_DEBUG] ToolView emitting canvas refresh for:', {
+      logger.log('[CANVAS_LIVE_DEBUG] ToolView emitting canvas refresh for:', {
         toolName: name,
         canvasPath,
         toolCallId,
@@ -426,7 +427,7 @@ export function ToolView({ toolCall, toolResult, ...props }: ToolViewProps) {
 
   // Defensive check - ensure toolCall is defined
   if (!toolCall || !toolCall.function_name) {
-    console.warn('ToolView: toolCall is undefined or missing function_name. Tool views should use structured props.');
+    logger.warn('ToolView: toolCall is undefined or missing function_name. Tool views should use structured props.');
     // Fallback to GenericToolView with error handling
     return (
       <div className="h-full w-full max-h-full max-w-full overflow-hidden min-w-0 min-h-0" style={{ contain: 'layout style' }}>
@@ -439,7 +440,7 @@ export function ToolView({ toolCall, toolResult, ...props }: ToolViewProps) {
   let modifiedToolResult = toolResult;
   if (isPresentationSlide && filePath && presentationName && slideNumber && !isAlreadyPresentationTool && toolResult) {
     const viewerContent = createPresentationViewerToolContent(presentationName, filePath, slideNumber);
-    console.log('[ToolViewRegistry] Detected presentation slide in file operation:', {
+    logger.log('[ToolViewRegistry] Detected presentation slide in file operation:', {
       toolName: name,
       filePath,
       presentationName,

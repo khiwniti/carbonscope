@@ -1,99 +1,99 @@
 'use client';
 
 /**
- * HTML Sanitization Utilities using DOMPurify (browser-only).
+ * HTML Sanitization Utilities using DOMPurify.
+ * Browser-only — returns safe fallback on server (SSR).
  * Import only in 'use client' components.
- * Returns input unchanged when window is not available (SSR/build).
  */
 
-import type { Config } from 'dompurify';
+import type DOMPurifyType from 'dompurify';
 
-function getDOMPurify() {
+type DOMPurifyConfig = DOMPurifyType.Config;
+
+function getPurify(): typeof DOMPurifyType | null {
   if (typeof window === 'undefined') return null;
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const DOMPurify = require('dompurify');
-  return DOMPurify.default ?? DOMPurify;
+  const mod = require('dompurify');
+  return mod.default ?? mod;
 }
 
+const DEFAULT_ALLOWED_TAGS = [
+  'p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'ul', 'ol', 'li', 'a', 'code', 'pre', 'blockquote', 'img', 'div', 'span',
+  'table', 'thead', 'tbody', 'tr', 'th', 'td',
+];
+
+const DEFAULT_ALLOWED_ATTR = ['href', 'title', 'target', 'rel', 'src', 'alt', 'class', 'id'];
+
 /**
- * Sanitize general HTML content.
- * Removes all scripts, event handlers, and dangerous attributes.
- * Returns empty string on server (no user-controlled content reaches SSR).
+ * Sanitize HTML content to prevent XSS attacks.
+ * Use this instead of dangerouslySetInnerHTML with raw strings.
  */
-export function sanitizeHTML(dirty: string): string {
-  const purify = getDOMPurify();
+export function sanitizeHtml(html: string, options?: DOMPurifyConfig): string {
+  const purify = getPurify();
   if (!purify) return '';
-
-  return purify.sanitize(dirty, {
-    ALLOWED_TAGS: [
-      'p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-      'ul', 'ol', 'li', 'a', 'img', 'blockquote', 'code', 'pre',
-      'table', 'thead', 'tbody', 'tr', 'th', 'td', 'div', 'span',
-    ],
-    ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id'],
-    ALLOW_DATA_ATTR: false,
-    ALLOW_UNKNOWN_PROTOCOLS: false,
-    SAFE_FOR_TEMPLATES: true,
-  });
+  return purify.sanitize(html, {
+    ALLOWED_TAGS: DEFAULT_ALLOWED_TAGS,
+    ALLOWED_ATTR: DEFAULT_ALLOWED_ATTR,
+    ...options,
+  }) as string;
 }
 
 /**
- * Sanitize tutorial embed code (iframes only).
- * SECURITY CRITICAL: Enforces strict iframe-only rendering with trusted domains.
+ * Get sanitized HTML object for dangerouslySetInnerHTML.
+ * @example <div dangerouslySetInnerHTML={getSafeHtml(userContent)} />
+ */
+export function getSafeHtml(html: string, options?: DOMPurifyConfig) {
+  return { __html: sanitizeHtml(html, options) };
+}
+
+/**
+ * Sanitize tutorial embed code — iframes only, restricted to trusted domains.
+ * SECURITY CRITICAL: Enforces strict iframe-only rendering.
  */
 export function sanitizeTutorialEmbed(dirty: string): string {
-  const purify = getDOMPurify();
+  const purify = getPurify();
   if (!purify) return '';
 
   const trustedDomains = [
-    'youtube.com',
-    'youtu.be',
-    'vimeo.com',
-    'player.vimeo.com',
-    'loom.com',
-    'figma.com',
-    'miro.com',
-    'mural.co',
+    'youtube.com', 'youtu.be',
+    'vimeo.com', 'player.vimeo.com',
+    'loom.com', 'figma.com', 'miro.com', 'mural.co',
+    'demo.arcade.software',
   ];
 
   const sanitized = purify.sanitize(dirty, {
-    ALLOWED_TAGS: ['iframe'],
+    ALLOWED_TAGS: ['div', 'iframe'],
     ALLOWED_ATTR: [
       'src', 'width', 'height', 'frameborder', 'allowfullscreen',
       'allow', 'title', 'loading', 'class', 'style',
+      'webkitallowfullscreen', 'mozallowfullscreen',
     ],
     ALLOW_DATA_ATTR: false,
     ALLOW_UNKNOWN_PROTOCOLS: false,
-    SAFE_FOR_TEMPLATES: true,
-  });
+  }) as string;
 
-  if (!sanitized.includes('<iframe')) return '';
-
-  const srcMatch = sanitized.match(/src="([^"]+)"/);
-  if (!srcMatch) return '';
-
-  const src = srcMatch[1];
-  if (!src.startsWith('https://')) return '';
-
-  try {
-    const url = new URL(src);
-    const hostname = url.hostname.toLowerCase();
-    const isTrusted = trustedDomains.some(
-      domain => hostname === domain || hostname.endsWith(`.${domain}`)
-    );
-    if (!isTrusted) return '';
-  } catch {
-    return '';
+  // Validate all iframe src domains
+  const srcMatches = [...sanitized.matchAll(/src="([^"]+)"/g)];
+  for (const match of srcMatches) {
+    const src = match[1];
+    if (!src.startsWith('https://')) return '';
+    try {
+      const url = new URL(src);
+      const hostname = url.hostname.toLowerCase();
+      const isTrusted = trustedDomains.some(
+        d => hostname === d || hostname.endsWith(`.${d}`)
+      );
+      if (!isTrusted) return '';
+    } catch {
+      return '';
+    }
   }
 
   return sanitized;
 }
 
 /**
- * Sanitize HTML with a custom DOMPurify configuration.
+ * Sanitize general HTML content — alias kept for backwards compat.
  */
-export function sanitizeWithConfig(dirty: string, config: Config): string {
-  const purify = getDOMPurify();
-  if (!purify) return '';
-  return purify.sanitize(dirty, config) as string;
-}
+export const sanitizeHTML = sanitizeHtml;

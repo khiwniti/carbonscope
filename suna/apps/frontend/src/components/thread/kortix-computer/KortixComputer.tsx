@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { Project } from '@/lib/api/threads';
 import { getUserFriendlyToolName, HIDE_BROWSER_TAB } from '@/components/thread/utils';
@@ -155,7 +156,7 @@ export const BIMCarbonComputer = memo(function BIMCarbonComputer({
     const sandboxChanged = prevSandboxIdRef.current !== null && prevSandboxIdRef.current !== sandboxId && sandboxId !== null;
     
     if (projectChanged || sandboxChanged) {
-      console.log('[BIMCarbonComputer] Project or sandbox changed, resetting local state', { projectId, sandboxId });
+      logger.log('[BIMCarbonComputer] Project or sandbox changed, resetting local state', { projectId, sandboxId });
       // Reset local component state
       setInternalIndex(0);
       setNavigationMode('live');

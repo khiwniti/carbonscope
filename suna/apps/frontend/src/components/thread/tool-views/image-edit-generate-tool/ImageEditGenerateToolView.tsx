@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useRef } from 'react';
+import { logger } from '@/lib/logger';
 import { AlertTriangle, Play, Pause, Wand2, CheckCircle, Download, Video as VideoIcon, Image as ImageIcon } from 'lucide-react';
 import { ToolViewProps } from '../types';
 import { extractImageEditGenerateData } from './_utils';
@@ -199,23 +200,23 @@ function VideoRendererFull({ filePath, sandboxId }: { filePath: string; sandboxI
   // Create and manage blob URL
   React.useEffect(() => {
     if (videoBlob instanceof Blob) {
-      console.log('[VideoRendererFull] Creating blob URL for video:', {
+      logger.log('[VideoRendererFull] Creating blob URL for video:', {
         filePath,
         blobSize: videoBlob.size,
         blobType: videoBlob.type,
       });
       const newUrl = URL.createObjectURL(videoBlob);
-      console.log('[VideoRendererFull] Created blob URL:', newUrl);
+      logger.log('[VideoRendererFull] Created blob URL:', newUrl);
       setVideoUrl(newUrl);
 
       // Cleanup function to revoke URL when blob changes or component unmounts
       return () => {
-        console.log('[VideoRendererFull] Revoking blob URL:', newUrl);
+        logger.log('[VideoRendererFull] Revoking blob URL:', newUrl);
         URL.revokeObjectURL(newUrl);
         setVideoUrl(null);
       };
     } else {
-      console.log('[VideoRendererFull] No blob available:', { videoBlob, isLoading, fetchError });
+      logger.log('[VideoRendererFull] No blob available:', { videoBlob, isLoading, fetchError });
       setVideoUrl(null);
     }
   }, [videoBlob, filePath, isLoading, fetchError]);

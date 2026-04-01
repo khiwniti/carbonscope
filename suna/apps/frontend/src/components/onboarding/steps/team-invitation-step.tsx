@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -36,7 +37,7 @@ export const TeamInvitationStep = () => {
   const sendInvites = () => {
     const validEmails = inviteEmails.filter(email => email.trim() && email.includes('@'));
     updateUserContext({ invitedTeammates: validEmails });
-    console.log('Sending invites to:', validEmails);
+    logger.log('Sending invites to:', validEmails);
     setInvitesSent(true);
 
     // Simulate sending invites

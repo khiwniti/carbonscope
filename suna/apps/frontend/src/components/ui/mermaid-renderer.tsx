@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { cn } from '@/lib/utils';
@@ -21,14 +22,14 @@ const cleanupMermaidErrors = () => {
     if (textContent.includes('Syntax error in text') || 
         textContent.includes('mermaid version 11.12.0') ||
         textContent.trim() === 'Syntax error in text') {
-      console.log('🧹 Global cleanup of Mermaid error element:', textContent);
+      logger.log('🧹 Global cleanup of Mermaid error element:', textContent);
       el.remove();
       cleaned++;
     }
   });
   
   if (cleaned > 0) {
-    console.log(`🧹 Cleaned up ${cleaned} Mermaid error elements`);
+    logger.log(`🧹 Cleaned up ${cleaned} Mermaid error elements`);
   }
 };
 
@@ -349,7 +350,7 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
       // Check cache first
       const cachedResult = mermaidCache.get(chartHash);
       if (cachedResult) {
-        console.log('🎯 Using cached Mermaid diagram for hash:', chartHash);
+        logger.log('🎯 Using cached Mermaid diagram for hash:', chartHash);
         if (mounted) {
           setRenderedContent(cachedResult);
           setIsLoading(false);
@@ -363,7 +364,7 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
           setError(null);
         }
 
-        console.log('🎯 Starting Mermaid rendering for chart:', chart.substring(0, 50) + '...');
+        logger.log('🎯 Starting Mermaid rendering for chart:', chart.substring(0, 50) + '...');
 
         // Basic syntax validation before attempting to render
         const trimmedChart = chart.trim();
@@ -406,13 +407,13 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
             }
           });
           mermaidInstance = mermaid;
-          console.log('✅ Mermaid initialized and cached');
+          logger.log('✅ Mermaid initialized and cached');
         }
 
         // Create a unique ID for this chart
         const chartId = `mermaid-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-        console.log('🎯 Rendering chart with ID:', chartId);
+        logger.log('🎯 Rendering chart with ID:', chartId);
 
         // Wrap Mermaid render in additional error handling to catch parsing errors
         let result;
@@ -441,7 +442,7 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
 
         if (!mounted) return;
 
-        console.log('✅ Chart rendered successfully, SVG length:', result.svg.length);
+        logger.log('✅ Chart rendered successfully, SVG length:', result.svg.length);
 
         // Cache the result
         mermaidCache.set(chartHash, result.svg);
@@ -464,7 +465,7 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
           // Check if it's an unsupported diagram type
           if (errorMessage.includes('UnknownDiagramError') || errorMessage.includes('No diagram type detected')) {
             // For unsupported diagrams, show as code block instead of large error
-            console.log('🔄 Unsupported Mermaid diagram type, falling back to code block');
+            logger.log('🔄 Unsupported Mermaid diagram type, falling back to code block');
             setError('unsupported_diagram_type');
           } else {
             setError(errorMessage);
@@ -473,7 +474,7 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
       } finally {
         if (mounted) {
           setIsLoading(false);
-          console.log('🏁 Mermaid rendering completed');
+          logger.log('🏁 Mermaid rendering completed');
         }
       }
     };

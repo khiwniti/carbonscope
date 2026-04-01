@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
@@ -30,7 +31,7 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   const availableLangs = Object.keys(langsTyped).filter(
     (key) => typeof langsTyped[key] === 'function'
   );
-  console.log('[CodeEditor] Available languages:', availableLangs);
+  logger.log('[CodeEditor] Available languages:', availableLangs);
 }
 
 // Helper function to safely get language extension
@@ -44,7 +45,7 @@ const getLangExtension = (langKey: string): any => {
       }
       // Extension function exists but returned null/undefined
       if (process.env.NODE_ENV === 'development') {
-        console.warn(`[CodeEditor] Language extension "${langKey}" function returned null/undefined`);
+        logger.warn(`[CodeEditor] Language extension "${langKey}" function returned null/undefined`);
       }
       return null;
     }
@@ -54,7 +55,7 @@ const getLangExtension = (langKey: string): any => {
       const availableLangs = Object.keys(langsTyped)
         .filter(k => typeof langsTyped[k] === 'function')
         .sort();
-      console.warn(
+      logger.warn(
         `[CodeEditor] Language "${langKey}" not found.`,
         `Looking for similar: ${availableLangs.filter(l => 
           l.includes(langKey.toLowerCase()) || langKey.toLowerCase().includes(l)
@@ -395,7 +396,7 @@ export function CodeEditor({
       const langFn = languageMap[language];
       if (!langFn || typeof langFn !== 'function') {
         if (process.env.NODE_ENV === 'development') {
-          console.warn(`[CodeEditor] No language function found for "${language}"`);
+          logger.warn(`[CodeEditor] No language function found for "${language}"`);
         }
         return [];
       }
@@ -407,7 +408,7 @@ export function CodeEditor({
       }
 
       if (process.env.NODE_ENV === 'development') {
-        console.warn(`[CodeEditor] Language extension for "${language}" returned null/undefined`);
+        logger.warn(`[CodeEditor] Language extension for "${language}" returned null/undefined`);
       }
       return [];
     } catch (error) {

@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 function parseEnvBoolean(value: string | undefined, defaultValue: boolean): boolean {
   if (value == null) return defaultValue;
   const normalized = value.trim().toLowerCase();
@@ -21,6 +22,6 @@ export const featureFlags = {
 
 // Helpful during development/debugging; kept out of production logs.
 if (process.env.NODE_ENV !== 'production') {
-  console.log('[featureFlags]', featureFlags);
+  logger.log('[featureFlags]', featureFlags);
 }
 

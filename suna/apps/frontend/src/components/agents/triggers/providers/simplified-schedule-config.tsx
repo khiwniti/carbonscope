@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
@@ -398,7 +399,7 @@ export const SimplifiedScheduleConfig: React.FC<SimplifiedScheduleConfigProps> =
 
   const handleRecurringScheduleChange = () => {
     const cronExpression = generateCronFromRecurring();
-    console.log('Generated cron expression:', cronExpression, {
+    logger.log('Generated cron expression:', cronExpression, {
       scheduleType,
       selectedHour,
       selectedMinute,

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/components/AuthProvider';
 import { listSandboxFiles, type FileInfo } from '@/lib/api/sandbox';
@@ -279,7 +280,7 @@ export function useDirectoryQuery(
   // Debug: log query key changes
   useEffect(() => {
     if (sandboxId && normalizedPath) {
-      console.log('[useDirectoryQuery] Query key:', {
+      logger.log('[useDirectoryQuery] Query key:', {
         sandboxId,
         directoryPath,
         normalizedPath,
@@ -296,9 +297,9 @@ export function useDirectoryQuery(
         throw new Error('Missing required parameters');
       }
       // Ensure we're fetching the correct path
-      console.log('[useDirectoryQuery] Fetching files for path:', normalizedPath);
+      logger.log('[useDirectoryQuery] Fetching files for path:', normalizedPath);
       const result = await listSandboxFiles(sandboxId, normalizedPath);
-      console.log('[useDirectoryQuery] Fetched files:', result.length, 'files');
+      logger.log('[useDirectoryQuery] Fetched files:', result.length, 'files');
       return result;
     },
     enabled: Boolean(sandboxId && normalizedPath && (options.enabled !== false)),
@@ -344,7 +345,7 @@ export function useFilePreloader() {
     filePaths: string[]
   ): Promise<void> => {
     if (!session?.access_token) {
-      console.warn('Cannot preload files: No authentication token available');
+      logger.warn('Cannot preload files: No authentication token available');
       return;
     }
     

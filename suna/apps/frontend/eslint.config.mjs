@@ -28,6 +28,7 @@ const eslintConfig = [
       'security/detect-eval-with-expression': 'error',
       'security/detect-possible-timing-attacks': 'warn',
       'security/detect-pseudoRandomBytes': 'error',
+      'no-console': ['error', { allow: ['error'] }],
     },
   },
 ];

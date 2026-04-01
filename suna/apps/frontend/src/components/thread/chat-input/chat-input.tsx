@@ -571,6 +571,7 @@ const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
         <TooltipTrigger asChild>
           <button
             onClick={() => onModeChange('adaptive')}
+            aria-label="Switch to Adaptive mode"
             className={cn(
               "p-1.5 rounded-md transition-all duration-200 cursor-pointer",
               sunaAgentModes === 'adaptive'
@@ -593,6 +594,7 @@ const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
         <TooltipTrigger asChild>
           <button
             onClick={() => onModeChange('autonomous')}
+            aria-label="Switch to Autonomous mode"
             className={cn(
               "p-1.5 rounded-md transition-all duration-200 cursor-pointer",
               sunaAgentModes === 'autonomous'
@@ -615,6 +617,7 @@ const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
         <TooltipTrigger asChild>
           <button
             onClick={() => onModeChange('chat')}
+            aria-label="Switch to Chat mode"
             className={cn(
               "p-1.5 rounded-md transition-all duration-200 cursor-pointer",
               sunaAgentModes === 'chat'

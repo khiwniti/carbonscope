@@ -1,4 +1,5 @@
 import { createServerClient } from '@supabase/ssr';
+import { logger } from '@/lib/logger';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { locales, defaultLocale, type Locale } from '@/i18n/config';
@@ -151,7 +152,7 @@ export async function middleware(request: NextRequest) {
         callbackUrl.searchParams.set(key, value);
       });
       
-      console.log('🔄 Redirecting Supabase verification from root to /auth/callback');
+      logger.log('🔄 Redirecting Supabase verification from root to /auth/callback');
       return NextResponse.redirect(callbackUrl);
     }
   }

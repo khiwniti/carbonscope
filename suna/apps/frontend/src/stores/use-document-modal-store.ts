@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import { create } from 'zustand';
 
 interface DocumentModalState {
@@ -8,7 +9,7 @@ interface DocumentModalState {
 export const useDocumentModalStore = create<DocumentModalState>((set) => ({
   isOpen: false,
   setIsOpen: (isOpen) => {
-    console.log('Document modal store - setting isOpen to:', isOpen);
+    logger.log('Document modal store - setting isOpen to:', isOpen);
     set({ isOpen });
   },
 })); 

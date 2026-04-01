@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { SpreadsheetComponent } from '@syncfusion/ej2-react-spreadsheet';
@@ -110,14 +111,14 @@ export function SpreadsheetViewer({
   
   const resolvedFilePath = (() => {
     if (!filePath) {
-      console.warn('[SpreadsheetViewer] No filePath provided, only fileName:', fileName);
+      logger.warn('[SpreadsheetViewer] No filePath provided, only fileName:', fileName);
       return null;
     }
     
     let path = filePath;
     
     if (path.startsWith('blob:')) {
-      console.log('[SpreadsheetViewer] Using blob URL:', path);
+      logger.log('[SpreadsheetViewer] Using blob URL:', path);
       return path;
     }
     
@@ -129,7 +130,7 @@ export function SpreadsheetViewer({
       }
     }
     
-    console.log('[SpreadsheetViewer] Resolved path:', {
+    logger.log('[SpreadsheetViewer] Resolved path:', {
       original: filePath,
       resolved: path,
       fileName,
@@ -188,7 +189,7 @@ export function SpreadsheetViewer({
       return;
     }
 
-    console.log('[SpreadsheetViewer] Downloading:', {
+    logger.log('[SpreadsheetViewer] Downloading:', {
       sandboxId: resolvedSandboxId,
       filePath: resolvedFilePath,
       fileName

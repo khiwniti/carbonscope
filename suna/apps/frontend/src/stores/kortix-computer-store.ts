@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { logger } from '@/lib/logger';
 import { devtools } from 'zustand/middleware';
 import { HIDE_BROWSER_TAB } from '@/components/thread/utils';
 
@@ -145,7 +146,7 @@ export const useBIMCarbonComputerStore = create<BIMCarbonComputerState>()(
         
         // If sandbox changed, clear all file-related state
         if (currentSandboxId !== sandboxId) {
-          console.log('[BIMCarbonComputerStore] Sandbox context changed:', currentSandboxId, '->', sandboxId);
+          logger.log('[BIMCarbonComputerStore] Sandbox context changed:', currentSandboxId, '->', sandboxId);
           set({
             currentSandboxId: sandboxId,
             // Reset all file state when sandbox changes
@@ -156,7 +157,7 @@ export const useBIMCarbonComputerStore = create<BIMCarbonComputerState>()(
       },
       
       clearFileState: () => {
-        console.log('[BIMCarbonComputerStore] Clearing file state');
+        logger.log('[BIMCarbonComputerStore] Clearing file state');
         set({
           ...initialFileState,
         });
@@ -389,7 +390,7 @@ export const useBIMCarbonComputerStore = create<BIMCarbonComputerState>()(
       },
       
       reset: () => {
-        console.log('[BIMCarbonComputerStore] Full reset');
+        logger.log('[BIMCarbonComputerStore] Full reset');
         set(initialState);
       },
     }),

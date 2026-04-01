@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { logger } from '@/lib/logger';
 import { persist } from 'zustand/middleware';
 
 interface ModelStore {
@@ -11,7 +12,7 @@ export const useModelStore = create<ModelStore>()(
     (set) => ({
       selectedModel: '', // Will be set by the hook based on API data
       setSelectedModel: (model: string) => {
-        console.log('🔧 ModelStore: Setting selected model to:', model);
+        logger.log('🔧 ModelStore: Setting selected model to:', model);
         set({ selectedModel: model });
       },
     }),

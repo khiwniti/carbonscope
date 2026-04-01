@@ -1,3 +1,4 @@
+import { getSafeHtml } from '@/lib/sanitize';
 import React, { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -225,17 +226,17 @@ export const PixelArtEditor: React.FC<PixelArtEditorProps> = ({
             <div
               className="w-12 h-12 border rounded"
               style={{ backgroundColor: '#3b82f6', color: 'white' }}
-              dangerouslySetInnerHTML={{ __html: generateSVG() }}
+              dangerouslySetInnerHTML={getSafeHtml(generateSVG())}
             />
             <div
               className="w-12 h-12 border rounded"
               style={{ backgroundColor: '#ef4444', color: 'white' }}
-              dangerouslySetInnerHTML={{ __html: generateSVG() }}
+              dangerouslySetInnerHTML={getSafeHtml(generateSVG())}
             />
             <div
               className="w-12 h-12 border rounded"
               style={{ backgroundColor: '#10b981', color: 'white' }}
-              dangerouslySetInnerHTML={{ __html: generateSVG() }}
+              dangerouslySetInnerHTML={getSafeHtml(generateSVG())}
             />
           </div>
         </div>

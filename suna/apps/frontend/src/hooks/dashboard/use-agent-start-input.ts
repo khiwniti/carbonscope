@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -269,7 +270,7 @@ export function useAgentStartInput(options: UseAgentStartInputOptions = {}): Use
       }
     }
 
-    console.log(`${logPrefix} Starting agent with:`, {
+    logger.log(`${logPrefix} Starting agent with:`, {
       prompt: message.substring(0, 100),
       promptLength: message.length,
       model_name: options?.model_name,

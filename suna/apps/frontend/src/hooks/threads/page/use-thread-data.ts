@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { logger } from '@/lib/logger';
 import { toast } from '@/lib/toast';
 import { Project } from '@/lib/api/threads';
 import { useThreadQuery } from '@/hooks/threads/use-threads';
@@ -105,7 +106,7 @@ export function useThreadData(
         const storedAgentRunThread = sessionStorage.getItem('optimistic_agent_run_thread');
         
         if (storedAgentRunId && storedAgentRunThread === threadId) {
-          console.log('[useThreadData] Using pre-stored agent_run_id:', storedAgentRunId);
+          logger.log('[useThreadData] Using pre-stored agent_run_id:', storedAgentRunId);
           foundRunningAgentRef.current = true;
           lastDetectedRunIdRef.current = storedAgentRunId;
           hasInitializedFromPreconnect.current = true;
@@ -125,7 +126,7 @@ export function useThreadData(
         const preconnectAgentRunId = preconnectService.getAgentRunIdForThread(threadId);
         
         if (preconnectAgentRunId) {
-          console.log('[useThreadData] Found agent_run_id from StreamPreconnect:', preconnectAgentRunId);
+          logger.log('[useThreadData] Found agent_run_id from StreamPreconnect:', preconnectAgentRunId);
           foundRunningAgentRef.current = true;
           lastDetectedRunIdRef.current = preconnectAgentRunId;
           hasInitializedFromPreconnect.current = true;
@@ -175,7 +176,7 @@ export function useThreadData(
         const storedAgentRunThread = sessionStorage.getItem('optimistic_agent_run_thread');
         
         if (storedAgentRunId && storedAgentRunThread === threadId) {
-          console.log('[useThreadData] Found agent_run_id in sessionStorage during retry:', storedAgentRunId);
+          logger.log('[useThreadData] Found agent_run_id in sessionStorage during retry:', storedAgentRunId);
           foundRunningAgentRef.current = true;
           lastDetectedRunIdRef.current = storedAgentRunId;
           setAgentRunId(storedAgentRunId);
@@ -190,7 +191,7 @@ export function useThreadData(
       if (!foundRunningAgentRef.current && !agentRunId) {
         retryCountRef.current += 1;
         if (process.env.NODE_ENV !== 'production') {
-          console.log('[useThreadData] Retry polling for agent runs, attempt:', retryCountRef.current);
+          logger.log('[useThreadData] Retry polling for agent runs, attempt:', retryCountRef.current);
         }
         agentRunsQuery.refetch();
       }
@@ -202,7 +203,7 @@ export function useThreadData(
   useEffect(() => {
     if (isShared || !agentRunsQuery.data) return;
     if (process.env.NODE_ENV !== 'production' && waitingForAgent && agentRunsQuery.data.length > 0) {
-      console.log('[useThreadData] Agent runs data:', agentRunsQuery.data.map(r => ({ id: r.id, status: r.status })));
+      logger.log('[useThreadData] Agent runs data:', agentRunsQuery.data.map(r => ({ id: r.id, status: r.status })));
     }
     
     const runningRuns = agentRunsQuery.data.filter(r => r.status === 'running');
@@ -211,7 +212,7 @@ export function useThreadData(
       const latestRunning = runningRuns[0];
       
       if (lastDetectedRunIdRef.current !== latestRunning.id) {
-        console.log('[useThreadData] Detected running agent:', latestRunning.id);
+        logger.log('[useThreadData] Detected running agent:', latestRunning.id);
         lastDetectedRunIdRef.current = latestRunning.id;
         foundRunningAgentRef.current = true;
         retryCountRef.current = 0;

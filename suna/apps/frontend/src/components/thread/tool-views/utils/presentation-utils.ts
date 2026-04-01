@@ -1,4 +1,5 @@
 import { backendApi } from "@/lib/api-client";
+import { logger } from '@/lib/logger';
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "@/lib/toast";
 
@@ -109,7 +110,7 @@ export async function downloadPresentation(
 ): Promise<void> {
   try {
     const endpoint = `${sandboxUrl}/presentation/convert-to-${format}`;
-    console.log(`[downloadPresentation] Requesting download:`, {
+    logger.log(`[downloadPresentation] Requesting download:`, {
       endpoint,
       format,
       presentationPath,
@@ -128,7 +129,7 @@ export async function downloadPresentation(
       })
     });
     
-    console.log(`[downloadPresentation] Response status:`, {
+    logger.log(`[downloadPresentation] Response status:`, {
       status: response.status,
       statusText: response.statusText,
       ok: response.ok,
@@ -176,7 +177,7 @@ export async function downloadPresentation(
     
     // Check if response is actually a PDF/PPTX blob
     const contentType = response.headers.get('content-type');
-    console.log(`[downloadPresentation] Response content type:`, contentType);
+    logger.log(`[downloadPresentation] Response content type:`, contentType);
     
     if (!contentType || (!contentType.includes('pdf') && !contentType.includes('presentation'))) {
       // If not a binary file, might be an error JSON response
@@ -196,7 +197,7 @@ export async function downloadPresentation(
     }
     
     const blob = await response.blob();
-    console.log(`[downloadPresentation] Blob created:`, {
+    logger.log(`[downloadPresentation] Blob created:`, {
       size: blob.size,
       type: blob.type
     });
@@ -214,7 +215,7 @@ export async function downloadPresentation(
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
     
-    console.log(`[downloadPresentation] Download completed successfully`);
+    logger.log(`[downloadPresentation] Download completed successfully`);
     toast.success(`Downloaded ${presentationName} as ${format.toUpperCase()}`, {
       duration: 8000,
     });

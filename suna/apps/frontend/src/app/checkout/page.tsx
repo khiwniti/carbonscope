@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -18,7 +19,7 @@ function CheckoutContent() {
   useEffect(() => {
     const checkStripe = () => {
       if (typeof window !== 'undefined' && typeof window.Stripe !== 'undefined') {
-        console.log('✅ Stripe already loaded on window!');
+        logger.log('✅ Stripe already loaded on window!');
         setStripeLoaded(true);
         return true;
       }
@@ -51,7 +52,7 @@ function CheckoutContent() {
   }, []);
 
   useEffect(() => {
-    console.log('🔍 Effect running - clientSecret:', clientSecret ? 'YES' : 'NO', 'stripeLoaded:', stripeLoaded);
+    logger.log('🔍 Effect running - clientSecret:', clientSecret ? 'YES' : 'NO', 'stripeLoaded:', stripeLoaded);
     
     if (!clientSecret) {
       console.error('❌ No client secret provided');
@@ -61,11 +62,11 @@ function CheckoutContent() {
     }
 
     if (!stripeLoaded) {
-      console.log('⏳ Waiting for Stripe to load...');
+      logger.log('⏳ Waiting for Stripe to load...');
       return; // Wait for Stripe to load
     }
 
-    console.log('✅ Both client secret and Stripe are ready - initializing...');
+    logger.log('✅ Both client secret and Stripe are ready - initializing...');
 
     // Initialize Stripe checkout
     const initCheckout = async () => {
@@ -73,7 +74,7 @@ function CheckoutContent() {
         const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || 
                          "pk_test_51R5BVvG6l1KZGqIrmU0aQRSS8Bgdp2ciuw0YyGhABeK7HgH2GxHvNy8d1inB2dU33lda2uj9JR4Ij46aFVbW8oge008y1RWpDB";
         
-        console.log('🔄 Initializing Stripe checkout...');
+        logger.log('🔄 Initializing Stripe checkout...');
         // Stripe key and client secret intentionally not logged for security
 
         if (typeof window.Stripe === 'undefined') {
@@ -81,31 +82,31 @@ function CheckoutContent() {
         }
 
         const stripe = window.Stripe(stripeKey);
-        console.log('✅ Stripe instance created');
+        logger.log('✅ Stripe instance created');
         
         // Initialize embedded checkout
-        console.log('🚀 Calling initEmbeddedCheckout...');
+        logger.log('🚀 Calling initEmbeddedCheckout...');
         const checkout = await stripe.initEmbeddedCheckout({
           clientSecret: clientSecret,
         });
-        console.log('✅ Embedded checkout created');
+        logger.log('✅ Embedded checkout created');
 
         // Stop loading FIRST so the container renders
-        console.log('📍 Rendering checkout container...');
+        logger.log('📍 Rendering checkout container...');
         setIsLoading(false);
         
         // Wait for DOM to update, then mount
         setTimeout(() => {
           const container = document.getElementById('checkout-container');
-          console.log('🔍 Container exists?', container ? 'YES' : 'NO');
+          logger.log('🔍 Container exists?', container ? 'YES' : 'NO');
           
           if (!container) {
             throw new Error('Checkout container not found in DOM');
           }
           
-          console.log('📍 Mounting to #checkout-container...');
+          logger.log('📍 Mounting to #checkout-container...');
           checkout.mount('#checkout-container');
-          console.log('✅ Checkout mounted successfully!');
+          logger.log('✅ Checkout mounted successfully!');
         }, 100);
       } catch (err: any) {
         console.error('❌ Checkout error:', err);
@@ -123,7 +124,7 @@ function CheckoutContent() {
       <Script 
         src="https://js.stripe.com/v3/" 
         onLoad={() => {
-          console.log('✅ Stripe.js loaded!');
+          logger.log('✅ Stripe.js loaded!');
           setStripeLoaded(true);
         }}
         onError={(e) => {
@@ -132,7 +133,7 @@ function CheckoutContent() {
           setIsLoading(false);
         }}
         onReady={() => {
-          console.log('✅ Stripe.js ready!');
+          logger.log('✅ Stripe.js ready!');
           setStripeLoaded(true);
         }}
       />

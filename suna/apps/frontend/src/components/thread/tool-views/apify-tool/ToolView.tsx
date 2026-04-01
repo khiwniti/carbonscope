@@ -34,7 +34,7 @@ import {
   extractApifyRunResultsData,
   extractApifyApprovalData,
 } from './_utils';
-import { sanitizeHTML } from '@/lib/sanitize';
+import { getSafeHtml } from '@/lib/sanitize';
 import { ApifyApprovalCard } from './ApifyApprovalCard';
 
 // View type configurations
@@ -575,7 +575,7 @@ export function ApifyToolView({
                       </h4>
                       <div 
                         className="text-sm text-zinc-600 dark:text-zinc-400 whitespace-pre-wrap"
-                        dangerouslySetInnerHTML={{ __html: sanitizeHTML(detailsData.description) }}
+                        dangerouslySetInnerHTML={getSafeHtml(detailsData.description)}
                       />
                     </div>
                   )}
@@ -690,7 +690,7 @@ export function ApifyToolView({
                                     {prop.description && (
                                       <div 
                                         className="text-xs text-zinc-600 dark:text-zinc-400 mb-2"
-                                        dangerouslySetInnerHTML={{ __html: sanitizeHTML(prop.description) }}
+                                        dangerouslySetInnerHTML={getSafeHtml(prop.description)}
                                       />
                                     )}
                                     {prop.default !== undefined && (

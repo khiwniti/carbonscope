@@ -6,6 +6,7 @@ import {
   transformerNotationWordHighlight,
 } from '@shikijs/transformers';
 import type { HTMLAttributes } from 'react';
+import { getSafeHtml } from '@/lib/sanitize';
 import {
   type BundledLanguage,
   type CodeOptionsMultipleThemes,
@@ -56,7 +57,7 @@ export const CodeBlockContent = async ({
   return (
     <div
       // biome-ignore lint/security/noDangerouslySetInnerHtml: "Kinda how Shiki works"
-      dangerouslySetInnerHTML={{ __html: html }}
+      dangerouslySetInnerHTML={getSafeHtml(html)}
       {...props}
     />
   );

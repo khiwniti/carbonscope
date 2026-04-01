@@ -1,4 +1,5 @@
 "use client"
+import { logger } from '@/lib/logger';
 
 import { EditorContent, useEditor, type Editor as TiptapEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -151,7 +152,7 @@ export const Editor = ({
       indexeddbProvider.current = idbProvider;
       
       idbProvider.on('synced', () => {
-        console.log('Content synced with IndexedDB');
+        logger.log('Content synced with IndexedDB');
         setIsSynced(true);
         if (onSaveStateChange) {
           onSaveStateChange('saved');

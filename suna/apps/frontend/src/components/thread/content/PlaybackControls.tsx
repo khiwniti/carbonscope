@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
+import { logger } from '@/lib/logger';
 import { Button } from '@/components/ui/button';
 import {
   Play,
@@ -418,7 +419,7 @@ export const PlaybackControls = ({
             let cleanup: (() => void) | undefined;
             await new Promise<void>((resolve) => {
               cleanup = streamText(textToStream, () => {
-                console.log('Stream completed for message', msgIndex);
+                logger.log('Stream completed for message', msgIndex);
                 resolve();
               });
             });

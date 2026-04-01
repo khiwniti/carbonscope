@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { logger } from '@/lib/logger';
 import Image from 'next/image';
 import {
   Globe,
@@ -198,7 +199,7 @@ export function BrowserToolView({
 
   // Log extracted data for debugging
   React.useEffect(() => {
-    console.log('[BrowserToolView] Extracted data:', {
+    logger.log('[BrowserToolView] Extracted data:', {
       screenshotUrl: computedValues.screenshotUrlFinal,
       browserStateMessageId: computedValues.browserStateMessageId,
       hasResult: !!computedValues.result,
@@ -210,7 +211,7 @@ export function BrowserToolView({
   // Reset loading state when screenshot URL changes
   React.useEffect(() => {
     if (computedValues.screenshotUrlFinal) {
-      console.log('[BrowserToolView] Screenshot URL:', computedValues.screenshotUrlFinal);
+      logger.log('[BrowserToolView] Screenshot URL:', computedValues.screenshotUrlFinal);
       setIsImageLoading(true);
       setImageError(false);
     }
@@ -218,7 +219,7 @@ export function BrowserToolView({
 
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('BrowserToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('BrowserToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

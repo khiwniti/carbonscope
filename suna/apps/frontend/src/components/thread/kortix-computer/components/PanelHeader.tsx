@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { memo, useState, useEffect } from 'react';
 import { Minimize2, Wifi, BatteryLow, BatteryMedium, BatteryFull, BatteryCharging, FolderOpen, Activity, Loader2, AlertTriangle } from 'lucide-react';
@@ -35,7 +36,7 @@ function useBatteryStatus() {
           battery.addEventListener('chargingchange', () => updateBatteryInfo(battery));
         }
       } catch (e) {
-        console.log('Battery API not available');
+        logger.log('Battery API not available');
       }
     };
 

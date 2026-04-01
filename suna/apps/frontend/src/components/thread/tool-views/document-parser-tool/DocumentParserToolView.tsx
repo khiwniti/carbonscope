@@ -1,5 +1,5 @@
 import React from 'react';
-import { sanitizeHTML } from '@/lib/sanitize';
+import { getSafeHtml } from '@/lib/sanitize';
 import {
   FileText,
   CheckCircle,
@@ -233,7 +233,7 @@ export function DocumentParserToolView({
                               {table.html ? (
                                 <div 
                                   className="text-sm overflow-x-auto"
-                                  dangerouslySetInnerHTML={{ __html: sanitizeHTML(table.html) }}
+                                  dangerouslySetInnerHTML={getSafeHtml(table.html)}
                                 />
                               ) : (
                                 <pre className="text-sm whitespace-pre-wrap font-mono">

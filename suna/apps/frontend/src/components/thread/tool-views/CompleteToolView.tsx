@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import {
   CheckCircle2,
   CheckCircle,
@@ -65,7 +66,7 @@ export function CompleteToolView({
 
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('CompleteToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('CompleteToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 
@@ -299,7 +300,7 @@ export function CompleteToolView({
                 followUpPrompts={follow_up_prompts && follow_up_prompts.length > 0 ? follow_up_prompts : undefined}
                 onFollowUpClick={(prompt) => {
                   // TODO: Handle follow-up click - could trigger a new message
-                  console.log('Follow-up clicked:', prompt);
+                  logger.log('Follow-up clicked:', prompt);
                 }}
               />
             )}

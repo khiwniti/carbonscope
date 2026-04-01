@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import {
   ExternalLink,
   Code,
@@ -696,7 +697,7 @@ export function FileOperationToolView({
 
   // Log for debugging file operations (only when it's a presentation slide)
   if (isPresentationSlide) {
-    console.log('[FileOperationToolView] Presentation slide detected:', {
+    logger.log('[FileOperationToolView] Presentation slide detected:', {
       operation,
       processedFilePath,
       presentationName,

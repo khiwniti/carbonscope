@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useCallback, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
@@ -390,7 +391,7 @@ export function MarkdownToolbar({
       const blob = await contentResponse.blob();
       const blobUrl = URL.createObjectURL(blob);
       
-      console.log('Image uploaded and blob URL created:', blobUrl);
+      logger.log('Image uploaded and blob URL created:', blobUrl);
       return blobUrl;
     } catch (error) {
       console.error('Image upload error:', error);

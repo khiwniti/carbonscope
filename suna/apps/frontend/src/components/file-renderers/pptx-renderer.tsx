@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
@@ -47,7 +48,7 @@ export function PptxRenderer({
     // Priority 1: Build URL from sandbox_url + filePath
     if (project?.sandbox?.sandbox_url && filePath) {
       const url = constructHtmlPreviewUrl(project.sandbox.sandbox_url, filePath);
-      console.log('[PptxRenderer] Public URL:', url);
+      logger.log('[PptxRenderer] Public URL:', url);
       return url || null;
     }
     

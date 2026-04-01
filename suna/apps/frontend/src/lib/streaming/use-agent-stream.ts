@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useCallback, useRef, useEffect, useState, useMemo } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -598,10 +599,10 @@ export function useAgentStream(
     const adopted = preconnectService.adopt(runId);
     
     if (adopted) {
-      console.log(`[useAgentStream] Adopting pre-connected stream for ${runId}`);
+      logger.log(`[useAgentStream] Adopting pre-connected stream for ${runId}`);
       connectionRef.current = adopted.stream.connection;
       if (adopted.bufferedMessages.length > 0) {
-        console.log(`[useAgentStream] Processing ${adopted.bufferedMessages.length} buffered messages`);
+        logger.log(`[useAgentStream] Processing ${adopted.bufferedMessages.length} buffered messages`);
         setStatus('streaming');
         callbacksRef.current.onStatusChange?.('streaming');
         
@@ -645,7 +646,7 @@ export function useAgentStream(
     }
     
     // No pre-connected stream, create a new connection
-    console.log(`[useAgentStream] Creating new stream connection for ${runId}`);
+    logger.log(`[useAgentStream] Creating new stream connection for ${runId}`);
     
     const connection = new StreamConnection({
       apiUrl: API_URL,

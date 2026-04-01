@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
@@ -25,7 +26,7 @@ export function useVapiCallRealtime(callId?: string, threadId?: string) {
     const supabase = createClient();
     const channelName = callId ? `vapi-call-${callId}` : `vapi-calls-thread-${threadId}`;
 
-    console.log(`[Vapi Realtime] Setting up subscription for ${channelName}`);
+    logger.log(`[Vapi Realtime] Setting up subscription for ${channelName}`);
     
     const channel = supabase
       .channel(channelName)
@@ -38,7 +39,7 @@ export function useVapiCallRealtime(callId?: string, threadId?: string) {
           filter: callId ? `call_id=eq.${callId}` : threadId ? `thread_id=eq.${threadId}` : undefined,
         },
         (payload) => {
-          console.log('[Vapi Realtime] Call update received:', {
+          logger.log('[Vapi Realtime] Call update received:', {
             eventType: payload.eventType,
             callId: (payload.new as VapiCall)?.call_id,
             status: (payload.new as VapiCall)?.status,
@@ -50,7 +51,7 @@ export function useVapiCallRealtime(callId?: string, threadId?: string) {
 
           if (payload.eventType === 'UPDATE' && newData) {
             if (newData.status !== oldData?.status) {
-              console.log(`[Vapi Realtime] Status changed: ${oldData?.status} → ${newData.status}`);
+              logger.log(`[Vapi Realtime] Status changed: ${oldData?.status} → ${newData.status}`);
             }
 
             if (newData.transcript) {
@@ -58,17 +59,17 @@ export function useVapiCallRealtime(callId?: string, threadId?: string) {
               const newTranscriptLength = Array.isArray(newData.transcript) ? newData.transcript.length : 0;
               
               if (newTranscriptLength !== oldTranscriptLength) {
-                console.log(`[Vapi Realtime] Transcript updated: ${oldTranscriptLength} → ${newTranscriptLength} messages`);
+                logger.log(`[Vapi Realtime] Transcript updated: ${oldTranscriptLength} → ${newTranscriptLength} messages`);
               }
             }
           }
 
           if (payload.eventType === 'INSERT' && newData) {
-            console.log('[Vapi Realtime] New call created:', newData.call_id);
+            logger.log('[Vapi Realtime] New call created:', newData.call_id);
           }
 
           if (newData) {
-            console.log('[Vapi Realtime] Invalidating and refetching queries for call:', newData.call_id);
+            logger.log('[Vapi Realtime] Invalidating and refetching queries for call:', newData.call_id);
             queryClient.invalidateQueries({
               queryKey: ['vapi-call', newData.call_id],
               exact: true
@@ -98,10 +99,10 @@ export function useVapiCallRealtime(callId?: string, threadId?: string) {
       )
       .subscribe();
 
-    console.log(`[Vapi Realtime] Subscribed to ${channelName}`);
+    logger.log(`[Vapi Realtime] Subscribed to ${channelName}`);
 
     return () => {
-      console.log(`[Vapi Realtime] Unsubscribed from ${channelName}`);
+      logger.log(`[Vapi Realtime] Unsubscribed from ${channelName}`);
       supabase.removeChannel(channel);
     };
   }, [callId, threadId, queryClient]);

@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React from 'react';
 import { useOnboarding } from '@/hooks/onboarding';
@@ -19,7 +20,7 @@ export function OnboardingProvider({ children }: OnboardingProviderProps) {
   //   const trialStarted = searchParams?.get('trial') === 'started';
   //   const subscriptionSuccess = searchParams?.get('subscription') === 'success';
     
-  //   console.log('🚀 Onboarding Provider - Checking trigger conditions:', {
+  //   logger.log('🚀 Onboarding Provider - Checking trigger conditions:', {
   //     trialStarted,
   //     subscriptionSuccess,
   //     subscription: subscription,
@@ -27,9 +28,9 @@ export function OnboardingProvider({ children }: OnboardingProviderProps) {
   //   });
     
   //   if ((trialStarted || subscriptionSuccess) && shouldTriggerOnboarding(subscription)) {
-  //     console.log('✅ Triggering post-subscription onboarding');
+  //     logger.log('✅ Triggering post-subscription onboarding');
   //     if (triggerPostSubscriptionOnboarding()) {
-  //       console.log('🎯 Starting onboarding with default steps');
+  //       logger.log('🎯 Starting onboarding with default steps');
   //       startOnboarding(onboardingSteps);
   //     }
   //   }
