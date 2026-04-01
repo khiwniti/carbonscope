@@ -113,7 +113,7 @@ dependencies = [
   "langchain-anthropic>=0.2.0",  # LangChain integration for Anthropic Claude models
   "fastembed>=0.3.0",  # Fast embedding generation for RAG systems
   "qdrant-client>=1.11.0",  # Vector database client for semantic search
-  "ontopy>=0.4.0",  # Ontology manipulation and reasoning for BIM knowledge graphs
+  "ontopy>=0.1.0",  # Ontology manipulation and reasoning for BIM knowledge graphs
   "owlready2>=0.46",  # OWL 2 ontology-oriented programming for construction ontologies
   "graphrag-sdk>=0.4.0",  # Graph-based RAG for complex relationship extraction
 ]

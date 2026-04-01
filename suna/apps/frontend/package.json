@@ -154,6 +154,7 @@
     "date-fns": "^3.6.0",
     "diff": "^7.0.0",
     "docx-preview": "^0.3.7",
+    "dompurify": "^3.3.3",
     "extract-colors": "^4.2.0",
     "file-saver": "^2.0.5",
     "flags": "^4.0.2",
@@ -230,6 +231,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@next/eslint-plugin-next": "^16.2.1",
+    "@playwright/test": "^1.59.0",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/canvas-confetti": "^1.9.0",
     "@types/color": "^4.2.0",

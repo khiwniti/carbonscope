@@ -1,20 +1,34 @@
+'use client';
+
 /**
- * HTML Sanitization Utilities using DOMPurify
- * Prevents XSS attacks by sanitizing user-controlled HTML content
+ * HTML Sanitization Utilities using DOMPurify (browser-only).
+ * Import only in 'use client' components.
+ * Returns input unchanged when window is not available (SSR/build).
  */
 
-import DOMPurify, { type Config } from 'isomorphic-dompurify';
+import type { Config } from 'dompurify';
+
+function getDOMPurify() {
+  if (typeof window === 'undefined') return null;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const DOMPurify = require('dompurify');
+  return DOMPurify.default ?? DOMPurify;
+}
 
 /**
- * Sanitize general HTML content
- * Removes all scripts, event handlers, and dangerous attributes
+ * Sanitize general HTML content.
+ * Removes all scripts, event handlers, and dangerous attributes.
+ * Returns empty string on server (no user-controlled content reaches SSR).
  */
 export function sanitizeHTML(dirty: string): string {
-  return DOMPurify.sanitize(dirty, {
+  const purify = getDOMPurify();
+  if (!purify) return '';
+
+  return purify.sanitize(dirty, {
     ALLOWED_TAGS: [
       'p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
       'ul', 'ol', 'li', 'a', 'img', 'blockquote', 'code', 'pre',
-      'table', 'thead', 'tbody', 'tr', 'th', 'td', 'div', 'span'
+      'table', 'thead', 'tbody', 'tr', 'th', 'td', 'div', 'span',
     ],
     ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id'],
     ALLOW_DATA_ATTR: false,
@@ -24,11 +38,13 @@ export function sanitizeHTML(dirty: string): string {
 }
 
 /**
- * Sanitize tutorial embed code (iframes only)
- * SECURITY CRITICAL: Enforces strict iframe-only rendering with trusted domains
+ * Sanitize tutorial embed code (iframes only).
+ * SECURITY CRITICAL: Enforces strict iframe-only rendering with trusted domains.
  */
 export function sanitizeTutorialEmbed(dirty: string): string {
-  // Trusted domains for iframe embeds
+  const purify = getDOMPurify();
+  if (!purify) return '';
+
   const trustedDomains = [
     'youtube.com',
     'youtu.be',
@@ -40,51 +56,33 @@ export function sanitizeTutorialEmbed(dirty: string): string {
     'mural.co',
   ];
 
-  // First sanitization pass - allow iframes with src attribute
-  const sanitized = DOMPurify.sanitize(dirty, {
+  const sanitized = purify.sanitize(dirty, {
     ALLOWED_TAGS: ['iframe'],
     ALLOWED_ATTR: [
       'src', 'width', 'height', 'frameborder', 'allowfullscreen',
-      'allow', 'title', 'loading', 'class', 'style'
+      'allow', 'title', 'loading', 'class', 'style',
     ],
     ALLOW_DATA_ATTR: false,
     ALLOW_UNKNOWN_PROTOCOLS: false,
     SAFE_FOR_TEMPLATES: true,
   });
 
-  // No iframe found after sanitization
-  if (!sanitized.includes('<iframe')) {
-    return '';
-  }
+  if (!sanitized.includes('<iframe')) return '';
 
-  // Extract src attribute and validate domain
   const srcMatch = sanitized.match(/src="([^"]+)"/);
-  if (!srcMatch) {
-    // No src attribute - return empty
-    return '';
-  }
+  if (!srcMatch) return '';
 
   const src = srcMatch[1];
+  if (!src.startsWith('https://')) return '';
 
-  // Block non-https protocols
-  if (!src.startsWith('https://')) {
-    return '';
-  }
-
-  // Validate domain is in trusted list
   try {
     const url = new URL(src);
     const hostname = url.hostname.toLowerCase();
-
-    const isTrusted = trustedDomains.some(domain =>
-      hostname === domain || hostname.endsWith(`.${domain}`)
+    const isTrusted = trustedDomains.some(
+      domain => hostname === domain || hostname.endsWith(`.${domain}`)
     );
-
-    if (!isTrusted) {
-      return '';
-    }
+    if (!isTrusted) return '';
   } catch {
-    // Invalid URL
     return '';
   }
 
@@ -92,46 +90,10 @@ export function sanitizeTutorialEmbed(dirty: string): string {
 }
 
 /**
- * Sanitize JSON structured data for schema.org
- * Future-proofs against dynamic content in JSON-LD
+ * Sanitize HTML with a custom DOMPurify configuration.
  */
-export function sanitizeJSON(jsonData: Record<string, any>): string {
-  const cloned = JSON.parse(JSON.stringify(jsonData));
-
-  function sanitizeValue(obj: any): any {
-    if (typeof obj === 'string') {
-      return DOMPurify.sanitize(obj, {
-        ALLOWED_TAGS: [],
-        ALLOWED_ATTR: [],
-        KEEP_CONTENT: true,
-      });
-    }
-
-    if (Array.isArray(obj)) {
-      return obj.map(sanitizeValue);
-    }
-
-    if (obj && typeof obj === 'object') {
-      const sanitized: Record<string, any> = {};
-      for (const key in obj) {
-        sanitized[key] = sanitizeValue(obj[key]);
-      }
-      return sanitized;
-    }
-
-    return obj;
-  }
-
-  const sanitized = sanitizeValue(cloned);
-  return JSON.stringify(sanitized);
-}
-
-/**
- * Sanitize HTML with custom configuration
- */
-export function sanitizeWithConfig(
-  dirty: string,
-  config: Config
-): string {
-  return DOMPurify.sanitize(dirty, config) as string;
+export function sanitizeWithConfig(dirty: string, config: Config): string {
+  const purify = getDOMPurify();
+  if (!purify) return '';
+  return purify.sanitize(dirty, config) as string;
 }
