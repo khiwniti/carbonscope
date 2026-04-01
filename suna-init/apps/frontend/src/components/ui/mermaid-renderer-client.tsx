@@ -320,24 +320,22 @@ export const MermaidRendererClient: React.FC<MermaidRendererClientProps> = React
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          .mermaid-container svg {
-            max-width: 100% !important;
-            height: auto !important;
-            display: block !important;
-            margin: 0 auto !important;
-          }
-          .mermaid-container .node {
-            fill: hsl(var(--card)) !important;
-            stroke: hsl(var(--foreground)) !important;
-          }
-          .mermaid-container text {
-            fill: hsl(var(--foreground)) !important;
-            font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif !important;
-          }
-        `
-      }} />
+      <style dangerouslySetInnerHTML={getSafeHtml(`
+        .mermaid-container svg {
+          max-width: 100% !important;
+          height: auto !important;
+          display: block !important;
+          margin: 0 auto !important;
+        }
+        .mermaid-container .node {
+          fill: hsl(var(--card)) !important;
+          stroke: hsl(var(--foreground)) !important;
+        }
+        .mermaid-container text {
+          fill: hsl(var(--foreground)) !important;
+          font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif !important;
+        }
+      `)} />
       <div
         className={cn(
           'mermaid-container my-4 rounded-2xl border overflow-auto bg-background relative group cursor-pointer',

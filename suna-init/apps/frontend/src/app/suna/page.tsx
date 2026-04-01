@@ -59,47 +59,43 @@ export default function SunaPage() {
       {/* Structured Data for SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'Kortix',
-            alternateName: ['Suna', 'Kortix Suna', 'Suna AI'],
-            url: 'https://www.kortix.com',
-            logo: 'https://www.kortix.com/favicon.png',
-            sameAs: [
-              'https://github.com/kortix-ai',
-              'https://x.com/kortix',
-              'https://linkedin.com/company/kortix',
-            ],
-            description:
-              'Kortix (formerly known as Suna) is an open source generalist AI worker that helps you accomplish real-world tasks through natural conversation.',
-          }),
-        }}
+        dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Kortix',
+          alternateName: ['Suna', 'Kortix Suna', 'Suna AI'],
+          url: 'https://www.kortix.com',
+          logo: 'https://www.kortix.com/favicon.png',
+          sameAs: [
+            'https://github.com/kortix-ai',
+            'https://x.com/kortix',
+            'https://linkedin.com/company/kortix',
+          ],
+          description:
+            'Kortix (formerly known as Suna) is an open source generalist AI worker that helps you accomplish real-world tasks through natural conversation.',
+        }))}
       />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: 'https://www.kortix.com',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Suna is now Kortix',
-                item: 'https://www.kortix.com/suna',
-              },
-            ],
-          }),
-        }}
+        dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://www.kortix.com',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Suna is now Kortix',
+              item: 'https://www.kortix.com/suna',
+            },
+          ],
+        }))}
       />
 
       <main className="w-full relative overflow-hidden bg-background">
