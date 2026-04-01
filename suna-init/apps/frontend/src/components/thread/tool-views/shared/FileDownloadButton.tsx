@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { Download, FileType, FileText, FileCode } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

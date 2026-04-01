@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 
 interface AuthMessage {
   type: 'github-auth-success' | 'github-auth-error';

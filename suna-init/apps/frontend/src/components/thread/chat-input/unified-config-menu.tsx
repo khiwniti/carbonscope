@@ -19,7 +19,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Search, Check, ChevronDown, Plus, Plug, Brain, LibraryBig, Zap, Sparkles, ChevronLeft } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useAgents } from '@/hooks/agents/use-agents';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
@@ -117,7 +117,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
 
     const placeholderSunaAgent = useMemo(() => ({
         agent_id: undefined,
-        name: 'Kortix',
+        name: 'CarbonScope',
         metadata: { is_suna_default: true }
     }), []);
 
@@ -185,7 +185,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
 
     const renderAgentIcon = useCallback((agent: any, size: number = 32) => {
         if (!agent && (isLoading || sunaAgent)) {
-            return <AgentAvatar isSunaDefault={true} agentName="Kortix" size={size} className="flex-shrink-0 !border-0" />;
+            return <AgentAvatar isSunaDefault={true} agentName="CarbonScope" size={size} className="flex-shrink-0 !border-0" />;
         }
         return <AgentAvatar agent={agent} agentId={agent?.agent_id} size={size} className="flex-shrink-0 !border-0" />;
     }, [isLoading, sunaAgent]);
@@ -379,8 +379,8 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
         ) : null
     ), [onAgentSelect, selectedAgentId, displayAgent?.agent_id, handleQuickAction]);
 
-    // Check if current agent is Kortix (used in multiple places)
-    const isKortixAgent = !displayAgent?.name || displayAgent?.name === 'Kortix';
+    // Check if current agent is CarbonScope (used in multiple places)
+    const isCarbonScopeAgent = !displayAgent?.name || displayAgent?.name === 'CarbonScope';
 
     // Mobile Sheet Content
     const MobileSheetContent = useCallback(() => {
@@ -444,7 +444,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                 onClick={() => setMobileSection('agents')}
                                 className="w-full flex items-center gap-3 p-3 rounded-2xl border border-border bg-card hover:bg-muted/50 active:bg-muted/70 transition-colors"
                             >
-                                {isKortixAgent ? (
+                                {isCarbonScopeAgent ? (
                                     <div className="flex items-center justify-center w-10 h-10 bg-card border-[1.5px] border-border flex-shrink-0" style={{ borderRadius: '10.4px' }}>
                                         {renderAgentIcon(null, 40)}
                                     </div>
@@ -454,7 +454,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                     </div>
                                 )}
                                 <span className="flex-1 truncate text-base font-medium text-left min-w-0">
-                                    {isKortixAgent ? 'Kortix' : displayAgent?.name}
+                                    {isCarbonScopeAgent ? 'CarbonScope' : displayAgent?.name}
                                 </span>
                                 <ChevronDown className="h-5 w-5 text-muted-foreground rotate-[-90deg] flex-shrink-0" />
                             </button>
@@ -470,7 +470,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                 )}
             </div>
         );
-    }, [mobileSection, searchQuery, onAgentSelect, displayAgent, isLoading, placeholderSunaAgent, renderAgentIcon, selectedAgentId, AgentsList, CreateWorkerButton, WorkerSettingsButtons, isKortixAgent]);
+    }, [mobileSection, searchQuery, onAgentSelect, displayAgent, isLoading, placeholderSunaAgent, renderAgentIcon, selectedAgentId, AgentsList, CreateWorkerButton, WorkerSettingsButtons, isCarbonScopeAgent]);
 
     // Trigger button
     const TriggerButton = (
@@ -485,7 +485,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                 <div className="flex items-center gap-2 min-w-0 max-w-[180px]">
                     {renderAgentIcon(isLoading && !displayAgent ? placeholderSunaAgent : displayAgent, 24)}
                     <span className="truncate text-sm font-medium">
-                        {isKortixAgent ? 'Kortix' : displayAgent?.name}
+                        {isCarbonScopeAgent ? 'CarbonScope' : displayAgent?.name}
                     </span>
                     <ChevronDown size={12} className="opacity-60 flex-shrink-0" />
                 </div>
@@ -551,13 +551,13 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                         <span className="text-xs font-medium text-muted-foreground">Worker</span>
                                     </div>
                                     <div className="px-2 pb-2">
-                                        <SpotlightCard className={cn("transition-colors cursor-pointer bg-transparent", isKortixAgent ? "p-2" : "")}>
+                                        <SpotlightCard className={cn("transition-colors cursor-pointer bg-transparent", isCarbonScopeAgent ? "p-2" : "")}>
                                             <DropdownMenuSub>
                                                 <DropdownMenuSubTrigger className="flex items-center gap-3 text-sm cursor-pointer px-1 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent w-full">
                                                     <div className="flex items-center gap-3">
                                                         {renderAgentIcon(isLoading && !displayAgent ? placeholderSunaAgent : displayAgent)}
                                                         <span className="flex-1 truncate font-medium text-left">
-                                                            {isKortixAgent ? 'Kortix' : displayAgent?.name}
+                                                            {isCarbonScopeAgent ? 'CarbonScope' : displayAgent?.name}
                                                         </span>
                                                     </div>
                                                 </DropdownMenuSubTrigger>
@@ -648,7 +648,7 @@ const GuestMenu: React.FC<UnifiedConfigMenuProps> = memo(function GuestMenu() {
                             <div className="flex-shrink-0">
                                 <CarbonScopeLogoSimple size={20} />
                             </div>
-                            <span className="truncate text-sm font-medium">Kortix</span>
+                            <span className="truncate text-sm font-medium">CarbonScope</span>
                             <ChevronDown size={12} className="opacity-60 flex-shrink-0" />
                         </div>
                     </Button>

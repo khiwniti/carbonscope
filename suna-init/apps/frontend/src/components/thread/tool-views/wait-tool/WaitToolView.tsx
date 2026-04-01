@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Clock, CheckCircle, AlertTriangle, Timer } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { ToolViewProps } from '../types';
 import { formatTimestamp, getToolTitle } from '../utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

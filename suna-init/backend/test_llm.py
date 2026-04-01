@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Test script for LLM configuration.
-Tests kortix/basic and kortix/power models with the configured MAIN_LLM provider.
+Tests CarbonScope/basic and CarbonScope/power models with the configured MAIN_LLM provider.
 """
 
 import asyncio
@@ -87,14 +87,14 @@ async def main():
     print("Model Registry Info")
     print("-" * 60)
     
-    print("\n[kortix/basic]")
-    basic_model = print_model_info("kortix/basic")
+    print("\n[CarbonScope/basic]")
+    basic_model = print_model_info("CarbonScope/basic")
     
-    print("\n[kortix/power]")
-    power_model = print_model_info("kortix/power")
+    print("\n[CarbonScope/power]")
+    power_model = print_model_info("CarbonScope/power")
     
-    print("\n[kortix/grok-4-1-fast]")
-    grok_model = print_model_info("kortix/grok-4-1-fast")
+    print("\n[CarbonScope/grok-4-1-fast]")
+    grok_model = print_model_info("CarbonScope/grok-4-1-fast")
     
     # Test actual LLM calls
     print()
@@ -102,19 +102,19 @@ async def main():
     print("LLM Call Tests")
     print("-" * 60)
     
-    print("\n[Testing kortix/basic]")
-    basic_ok = await test_llm_call("kortix/basic")
+    print("\n[Testing CarbonScope/basic]")
+    basic_ok = await test_llm_call("CarbonScope/basic")
     
-    print("\n[Testing kortix/power]")
-    power_ok = await test_llm_call("kortix/power")
+    print("\n[Testing CarbonScope/power]")
+    power_ok = await test_llm_call("CarbonScope/power")
     
     # Summary
     print()
     print("=" * 60)
     print("Summary")
     print("=" * 60)
-    print(f"  kortix/basic:  {'✓ PASS' if basic_ok else '❌ FAIL'}")
-    print(f"  kortix/power:  {'✓ PASS' if power_ok else '❌ FAIL'}")
+    print(f"  CarbonScope/basic:  {'✓ PASS' if basic_ok else '❌ FAIL'}")
+    print(f"  CarbonScope/power:  {'✓ PASS' if power_ok else '❌ FAIL'}")
     print()
     
     if basic_ok and power_ok:

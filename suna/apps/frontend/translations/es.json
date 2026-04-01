@@ -1256,5 +1256,35 @@
       "manageButton": "Administrar Memorias",
       "dismissButton": "Entendido"
     }
+  },
+  "carbon": {
+    "title": "Carbon Analysis",
+    "subtitle": "Upload a Thai BOQ Excel file to calculate embodied carbon",
+    "uploadTitle": "Upload BOQ File",
+    "uploadDescription": "Accepts Thai BOQ Excel files (.xlsx, .xls) up to 50 MB",
+    "dragDrop": "Drag & drop your BOQ file",
+    "browsFiles": "browse files",
+    "dropHere": "Drop file here",
+    "analysing": "Analysing BOQ…",
+    "parsingMaterials": "Parsing materials and matching to TGO database",
+    "formatGuide": "Expected BOQ format:",
+    "formatColumns": "Columns: รายการ (Description) · หน่วย (Unit) · จำนวน (Quantity)",
+    "recentAnalyses": "Recent Analyses",
+    "noAnalyses": "Upload your first BOQ file to see carbon analysis results here.",
+    "totalCarbon": "Total Carbon",
+    "materialsParsed": "Materials Parsed",
+    "matchRate": "Match Rate",
+    "carbonPending": "Carbon calculation pending",
+    "carbonPendingDesc": "Full carbon calculation requires GraphDB with TGO emission factors. Material matching is complete.",
+    "materialBreakdown": "Material Breakdown",
+    "carbonByCategory": "Carbon by Category",
+    "items": "items",
+    "back": "Back",
+    "exportPdf": "Export PDF",
+    "matched": "Matched",
+    "review": "Review",
+    "rejected": "Rejected",
+    "unmatched": "Unmatched",
+    "pending": "pending"
   }
 }

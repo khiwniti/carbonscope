@@ -5,7 +5,7 @@ BACKEND_DIR := backend
 FRONTEND_DIR := apps/frontend
 
 help:
-	@echo "Kortix Suna - Available commands:"
+	@echo "CarbonScope Suna - Available commands:"
 	@echo ""
 	@echo "Installation:"
 	@echo "  install           Install all dependencies (backend + frontend)"

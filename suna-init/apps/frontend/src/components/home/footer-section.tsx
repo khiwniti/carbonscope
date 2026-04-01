@@ -73,7 +73,7 @@ export function FooterSection() {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <a
-                  href="https://github.com/kortix-ai/suna"
+                  href="https://github.com/CarbonScope-ai/suna"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -93,7 +93,7 @@ export function FooterSection() {
                   </svg>
                 </a>
                 <a
-                  href="https://x.com/kortix"
+                  href="https://x.com/CarbonScope"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter)"
@@ -113,7 +113,7 @@ export function FooterSection() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/kortix/"
+                  href="https://www.linkedin.com/company/CarbonScope/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"

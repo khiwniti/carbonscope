@@ -516,11 +516,11 @@ export function SidebarLeft({
               <p className="text-xs text-muted-foreground mb-4">
                 Request custom AI Workers implementation
               </p>
-              <KortixProcessModal>
+              <CarbonScopeProcessModal>
                 <Button size="sm" className="w-full text-xs h-8">
                   Learn More
                 </Button>
-              </KortixProcessModal>
+              </CarbonScopeProcessModal>
             </div>
           </div>
         )

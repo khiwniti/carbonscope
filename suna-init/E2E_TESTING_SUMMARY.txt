@@ -28,7 +28,7 @@ DELIVERABLES CREATED:
    │   ├── 03-pricing.png
    │   └── ... (all public routes)
    ├── auth/ (5 screenshots)
-   │   ├── 19-auth-main.png ← Shows "Kortix" issue
+   │   ├── 19-auth-main.png ← Shows "CarbonScope" issue
    │   ├── 20-auth-password.png
    │   └── ...
    ├── dashboard/ (16 screenshots)
@@ -57,7 +57,7 @@ KEY FINDINGS:
 • Zero JavaScript errors during all navigation
 
 🔴 CRITICAL ISSUE (1):
-• Auth page heading: "Sign in or create your Kortix account"
+• Auth page heading: "Sign in or create your CarbonScope account"
   Should be: "Sign in or create your CarbonScope account"
   Location: /auth page
   Screenshot: e2e-screenshots/auth/19-auth-main.png
@@ -106,8 +106,8 @@ IMMEDIATE ACTIONS:
 
 1. FIX CRITICAL BRANDING (5 minutes):
    cd apps/frontend
-   rg -i "kortix" src/app/auth/ --files-with-matches
-   # Edit file(s) to replace "Kortix" with "CarbonScope"
+   rg -i "CarbonScope" src/app/auth/ --files-with-matches
+   # Edit file(s) to replace "CarbonScope" with "CarbonScope"
 
 2. INVESTIGATE TIMEOUTS (1-2 hours):
    • /berlin - check for heavy images, slow API calls
@@ -146,7 +146,7 @@ READINESS ASSESSMENT:
 NEXT STEPS:
 
 SHORT-TERM (this week):
-1. Fix "Kortix" branding on auth page
+1. Fix "CarbonScope" branding on auth page
 2. Test authenticated flows (requires login)
 3. Fix performance issues on 3 slow routes
 4. Add error boundaries

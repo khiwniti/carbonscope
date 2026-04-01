@@ -1,5 +1,5 @@
 import { Cloud, CloudOff, Check, AlertCircle, RefreshCw } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { AlertCircle, Clock, PlugZap, Lock, Zap } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { SimplifiedScheduleConfig } from './providers/simplified-schedule-config';
 import { TriggerProvider, ScheduleTriggerConfig } from './types';
 

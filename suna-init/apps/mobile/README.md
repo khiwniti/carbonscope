@@ -1,1 +1,1 @@
-# Kortix Mobile App
+# CarbonScope Mobile App

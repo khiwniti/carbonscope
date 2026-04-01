@@ -7,7 +7,7 @@ import {
   Trash2,
   Frown,
 } from "lucide-react";
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { ThreadIcon } from "./thread-icon";
 import { toast } from "@/lib/toast";
 import { usePathname, useRouter } from "next/navigation";

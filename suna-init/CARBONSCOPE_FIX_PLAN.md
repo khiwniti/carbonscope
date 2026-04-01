@@ -4,10 +4,10 @@
 Complete alignment of ALL frontend components with design_system.jsx specification, replacing semantic tokens with direct CarbonScope styling.
 
 ## Critical Findings from Audit
-1. KortixLoader uses hardcoded colors (#ffffff, #000000) instead of CarbonScope tokens
+1. CarbonScopeLoader uses hardcoded colors (#ffffff, #000000) instead of CarbonScope tokens
 2. Hero section uses Tailwind semantic tokens instead of direct CarbonScope styling
-3. Kortix branding still present (kortix-brandmark-bg.svg, KortixLogo)
-4. SVG plan icons use old Kortix color (#121215)
+3. CarbonScope branding still present (CarbonScope-brandmark-bg.svg, CarbonScopeLogo)
+4. SVG plan icons use old CarbonScope color (#121215)
 5. 547 component files need verification for CarbonScope compliance
 6. Missing CarbonScope-specific animations (cs-pulse, cs-glow, cs-fadeUp)
 
@@ -25,16 +25,16 @@ From provided HTML example - components should use:
 **File**: `/apps/frontend/src/components/ui/carbonscope-loader.tsx`
 
 **Spec**:
-- Replace KortixLoader with CarbonScope-themed loader
+- Replace CarbonScopeLoader with CarbonScope-themed loader
 - Use emerald green spinner: `var(--cs-green-400)` or `#34D399`
 - Use CarbonScope glow effect: `box-shadow: 0 0 16px rgba(52, 211, 153, 0.15)`
 - Support dark theme (default) with optional light variant
 - Match design_system.jsx styling patterns
-- Export as CarbonScopeLoader, keep KortixLoader as deprecated alias for backwards compatibility
+- Export as CarbonScopeLoader, keep CarbonScopeLoader as deprecated alias for backwards compatibility
 
 **Files to Modify**:
 - Create: `src/components/ui/carbonscope-loader.tsx`
-- Update: All files importing KortixLoader to use CarbonScopeLoader
+- Update: All files importing CarbonScopeLoader to use CarbonScopeLoader
 
 ---
 
@@ -63,18 +63,18 @@ Replace Tailwind semantic classes with direct CarbonScope styling matching user'
 
 ---
 
-### Task #3: Replace Kortix Branding with CarbonScope/Suna
+### Task #3: Replace CarbonScope Branding with CarbonScope/Suna
 **Priority**: CRITICAL
 **Files**:
 - `/apps/frontend/src/components/home/hero-section.tsx` (line 89)
 - `/apps/frontend/src/components/home/navbar.tsx` (line 12)
-- `/apps/frontend/public/kortix-brandmark-bg.svg`
+- `/apps/frontend/public/CarbonScope-brandmark-bg.svg`
 
 **Spec**:
-- Remove all references to `kortix-brandmark-bg.svg`
-- Replace `KortixLogo` component with `SunaLogo` or `CarbonScopeLogo`
+- Remove all references to `CarbonScope-brandmark-bg.svg`
+- Replace `CarbonScopeLogo` component with `SunaLogo` or `CarbonScopeLogo`
 - Update background to use CarbonScope design patterns (carbon grid, molecular patterns)
-- Ensure all branding reflects Suna/CarbonScope identity, not Kortix
+- Ensure all branding reflects Suna/CarbonScope identity, not CarbonScope
 
 ---
 
@@ -83,7 +83,7 @@ Replace Tailwind semantic classes with direct CarbonScope styling matching user'
 **Files**: All files in `/apps/frontend/public/plan-icons/`
 
 **Spec**:
-- Replace `fill="#121215"` (old Kortix black) with CarbonScope text colors
+- Replace `fill="#121215"` (old CarbonScope black) with CarbonScope text colors
 - Use `fill="#E2E8F0"` (cs-text-primary) for main text
 - Use `fill="#94A3B8"` (cs-text-secondary) for subtle elements
 - Update background colors from `#E0E0E0` to CarbonScope equivalents
@@ -174,7 +174,7 @@ Replace Tailwind semantic classes with direct CarbonScope styling matching user'
 **Priority**: LOW (Final Validation)
 
 **Spec**:
-- Run comprehensive grep for old Kortix colors: `#121215`, `#F6F6F6`, `#DCDDDE`
+- Run comprehensive grep for old CarbonScope colors: `#121215`, `#F6F6F6`, `#DCDDDE`
 - Search for non-CarbonScope rgba values
 - Verify all components use CarbonScope fonts (Instrument Serif, Plus Jakarta Sans, IBM Plex Mono)
 - Check for remaining `Roobert` font references
@@ -182,7 +182,7 @@ Replace Tailwind semantic classes with direct CarbonScope styling matching user'
 - Create final compliance report
 
 **Success Criteria**:
-- Zero Kortix brand references
+- Zero CarbonScope brand references
 - Zero non-CarbonScope colors
 - All components use CSS custom properties or design_system.jsx tokens
 - Visual consistency across all pages and components
@@ -194,7 +194,7 @@ Replace Tailwind semantic classes with direct CarbonScope styling matching user'
 ## Execution Order
 
 1. **Task #1** - CarbonScopeLoader (high impact, widely used)
-2. **Task #3** - Remove Kortix branding (critical for brand identity)
+2. **Task #3** - Remove CarbonScope branding (critical for brand identity)
 3. **Task #2** - Hero section (most visible page, sets pattern for others)
 4. **Task #4** - SVG plan icons (quick win, clear spec)
 5. **Task #5** - High-priority components (systematic fixes)
@@ -206,7 +206,7 @@ Replace Tailwind semantic classes with direct CarbonScope styling matching user'
 ## Success Metrics
 
 - ✅ All 547 component files audited and compliant
-- ✅ Zero Kortix brand references remain
+- ✅ Zero CarbonScope brand references remain
 - ✅ All components use CarbonScope design tokens exclusively
 - ✅ Visual consistency matches design_system.jsx specification
 - ✅ User's HTML example pattern applied throughout

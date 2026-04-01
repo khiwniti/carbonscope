@@ -15,7 +15,7 @@ interface Slide {
   content?: string[];
   bulletPoints?: string[];
   accent?: string;
-  diagram?: 'agent-loop' | 'kortix-stack' | 'task-types' | 'token-flow' | 'messages-array' | 'sandbox-arch' | 'tools-overview';
+  diagram?: 'agent-loop' | 'CarbonScope-stack' | 'task-types' | 'token-flow' | 'messages-array' | 'sandbox-arch' | 'tools-overview';
   leftColumn?: { title: string; points: string[] };
   rightColumn?: { title: string; points: string[] };
   codeSnippet?: string;
@@ -34,13 +34,13 @@ const slides: Slide[] = [
     id: 2,
     type: 'speaker',
     title: 'Marko Kraemer & Domenico Gagliardi',
-    subtitle: 'CEO & COO at Kortix',
+    subtitle: 'CEO & COO at CarbonScope',
   },
   {
     id: 3,
     type: 'title',
     title: 'Demo',
-    subtitle: 'Let\'s see Kortix in action',
+    subtitle: 'Let\'s see CarbonScope in action',
   },
 
   // Part 2: What Are Workers?
@@ -516,8 +516,8 @@ const InteractiveDemo = () => {
   );
 };
 
-// Kortix Stack Diagram
-const KortixStackDiagram = () => {
+// CarbonScope Stack Diagram
+const CarbonScopeStackDiagram = () => {
   const layers = [
     { label: 'User Interface', color: '#9DC2FF', width: '100%' },
     { label: 'Worker Orchestration', color: '#82DD95', width: '90%' },
@@ -741,7 +741,7 @@ const SlideContent = ({ slide }: { slide: Slide }) => {
             transition={{ delay: 0.2, type: 'spring' }}
           >
             <Image
-              src="/kortix-symbol.svg"
+              src="/CarbonScope-symbol.svg"
               alt="Suna"
               width={80}
               height={80}
@@ -834,7 +834,7 @@ const SlideContent = ({ slide }: { slide: Slide }) => {
             transition={{ delay: 0.3 }}
           >
             {slide.diagram === 'agent-loop' && <AgentLoopDiagram />}
-            {slide.diagram === 'kortix-stack' && <KortixStackDiagram />}
+            {slide.diagram === 'CarbonScope-stack' && <CarbonScopeStackDiagram />}
             {slide.diagram === 'task-types' && <TaskTypesDiagram />}
             {slide.diagram === 'token-flow' && <TokenFlowDiagram />}
             {slide.diagram === 'messages-array' && <MessagesArrayDiagram />}

@@ -11,7 +11,7 @@ import {
   Calendar,
   Shield
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { toast } from '@/lib/toast';
 import { useReactivateSubscription } from '@/hooks/billing';
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../ui/alert-dialog';

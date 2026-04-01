@@ -4,7 +4,7 @@ import { memo, useState, useRef, useEffect, useCallback, KeyboardEvent } from 'r
 import { useQueryClient } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
 import { backendApi } from '@/lib/api-client';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { fileQueryKeys } from '@/hooks/files/use-file-queries';
 
 interface TerminalLine {
@@ -19,12 +19,12 @@ interface TerminalProps {
   className?: string;
 }
 
-const TERMINAL_HISTORY_KEY = 'kortix-terminal-history';
+const TERMINAL_HISTORY_KEY = 'CarbonScope-terminal-history';
 
 export const Terminal = memo(function Terminal({ sandboxId, className }: TerminalProps) {
   const queryClient = useQueryClient();
   const [lines, setLines] = useState<TerminalLine[]>([
-    { id: '0', type: 'output', content: 'Welcome to Kortix Terminal' },
+    { id: '0', type: 'output', content: 'Welcome to CarbonScope Terminal' },
     { id: '1', type: 'output', content: 'Type commands below and press Enter to execute.' },
     { id: '2', type: 'output', content: '' },
   ]);

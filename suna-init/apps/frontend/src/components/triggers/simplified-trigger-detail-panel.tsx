@@ -23,7 +23,7 @@ import {
   Globe,
   ArrowRight
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import Link from 'next/link';
 import { TriggerWithAgent } from '@/hooks/triggers/use-all-triggers';
 import { useDeleteTrigger, useToggleTrigger, useUpdateTrigger } from '@/hooks/triggers';

@@ -97,14 +97,14 @@
 
 ### 🔴 CRITICAL: Incomplete Rebranding
 
-**Issue #1: "Kortix" Reference in Auth Page**
+**Issue #1: "CarbonScope" Reference in Auth Page**
 
 **Severity:** CRITICAL (user-facing)  
 **Location:** `/auth` page  
 **Screenshot:** `e2e-screenshots/auth/19-auth-main.png`
 
 **Description:**  
-Auth page heading displays: "Sign in or create your **Kortix** account"  
+Auth page heading displays: "Sign in or create your **CarbonScope** account"  
 Should be: "Sign in or create your **CarbonScope** account"
 
 **Impact:**  
@@ -114,7 +114,7 @@ Should be: "Sign in or create your **CarbonScope** account"
 
 **Element Details:**
 ```html
-<heading level=1>Sign in or create your Kortix account</heading>
+<heading level=1>Sign in or create your CarbonScope account</heading>
 ```
 
 **Recommendation:** Immediate fix required before launch
@@ -125,7 +125,7 @@ Should be: "Sign in or create your **CarbonScope** account"
 
 **Fix Command:**
 ```bash
-rg -i "kortix" apps/frontend/src/app/auth/ --files-with-matches
+rg -i "CarbonScope" apps/frontend/src/app/auth/ --files-with-matches
 ```
 
 ---
@@ -346,7 +346,7 @@ Dynamic route with invalid ID causes timeout
 - Privacy policy links functional ✅
 - Mode preview panel on right side ✅
 - Magic link button (emerald, proper disabled state) ✅
-- ❌ "Kortix" branding present (should be "CarbonScope")
+- ❌ "CarbonScope" branding present (should be "CarbonScope")
 
 **Screenshot:** `e2e-screenshots/auth/19-auth-main.png`
 
@@ -454,10 +454,10 @@ Once authenticated, should test:
 
 ### Immediate (Before Launch)
 
-1. **🔴 FIX CRITICAL:** Replace "Kortix" with "CarbonScope" on auth page
+1. **🔴 FIX CRITICAL:** Replace "CarbonScope" with "CarbonScope" on auth page
    ```bash
-   rg -i "kortix" apps/frontend/src/app/auth/ --files-with-matches
-   sed -i 's/Kortix/CarbonScope/g' apps/frontend/src/app/auth/page.tsx
+   rg -i "CarbonScope" apps/frontend/src/app/auth/ --files-with-matches
+   sed -i 's/CarbonScope/CarbonScope/g' apps/frontend/src/app/auth/page.tsx
    ```
 
 2. **🟡 Investigate Timeouts:** Fix performance on 3 slow routes
@@ -519,7 +519,7 @@ Once authenticated, should test:
 - `e2e-screenshots/responsive/desktop-homepage.png` - Full desktop view
 
 **Issues Documented:**
-- `e2e-screenshots/auth/19-auth-main.png` - Shows "Kortix" branding issue
+- `e2e-screenshots/auth/19-auth-main.png` - Shows "CarbonScope" branding issue
 - `e2e-screenshots/public/10-berlin.png` - Timeout on load
 - `e2e-screenshots/dashboard/30-credits-explained.png` - Timeout issue
 

@@ -25,7 +25,7 @@ function normalizeWorkspacePath(path: string): string {
   return `/workspace/${path.replace(/^\//, '')}`;
 }
 
-interface KortixComputerState {
+interface CarbonScopeComputerState {
   // Main view state
   activeView: ViewType;
   
@@ -73,7 +73,7 @@ interface KortixComputerState {
   // Navigate to a specific tool call (clicking tool in ThreadContent)
   navigateToToolCall: (toolIndex: number) => void;
   
-  // Clear pending tool nav after KortixComputer processes it
+  // Clear pending tool nav after CarbonScopeComputer processes it
   clearPendingToolNav: () => void;
   
   // Panel control
@@ -108,7 +108,7 @@ const initialState = {
   unsavedFileState: {} as Record<string, boolean>,
 };
 
-export const useKortixComputerStore = create<KortixComputerState>((set, get) => ({
+export const useCarbonScopeComputerStore = create<CarbonScopeComputerState>((set, get) => ({
   ...initialState,
   
   setActiveView: (view: ViewType) => {
@@ -302,44 +302,44 @@ export const useKortixComputerStore = create<KortixComputerState>((set, get) => 
 }));
 
 // Selector hooks for common use cases
-export const useKortixComputerActiveView = () => 
-  useKortixComputerStore((state) => state.activeView);
+export const useCarbonScopeComputerActiveView = () => 
+  useCarbonScopeComputerStore((state) => state.activeView);
 
-export const useKortixComputerIsOpen = () =>
-  useKortixComputerStore((state) => state.isOpen);
+export const useCarbonScopeComputerIsOpen = () =>
+  useCarbonScopeComputerStore((state) => state.isOpen);
 
 // Individual selectors for files state (stable, primitive values)
-export const useKortixComputerFilesSubView = () =>
-  useKortixComputerStore((state) => state.filesSubView);
+export const useCarbonScopeComputerFilesSubView = () =>
+  useCarbonScopeComputerStore((state) => state.filesSubView);
 
-export const useKortixComputerCurrentPath = () =>
-  useKortixComputerStore((state) => state.currentPath);
+export const useCarbonScopeComputerCurrentPath = () =>
+  useCarbonScopeComputerStore((state) => state.currentPath);
 
-export const useKortixComputerSelectedFilePath = () =>
-  useKortixComputerStore((state) => state.selectedFilePath);
+export const useCarbonScopeComputerSelectedFilePath = () =>
+  useCarbonScopeComputerStore((state) => state.selectedFilePath);
 
-export const useKortixComputerFilePathList = () =>
-  useKortixComputerStore((state) => state.filePathList);
+export const useCarbonScopeComputerFilePathList = () =>
+  useCarbonScopeComputerStore((state) => state.filePathList);
 
-export const useKortixComputerCurrentFileIndex = () =>
-  useKortixComputerStore((state) => state.currentFileIndex);
+export const useCarbonScopeComputerCurrentFileIndex = () =>
+  useCarbonScopeComputerStore((state) => state.currentFileIndex);
 
 // Individual selectors for pending tool navigation (stable primitives)
-export const useKortixComputerPendingToolNavIndex = () =>
-  useKortixComputerStore((state) => state.pendingToolNavIndex);
+export const useCarbonScopeComputerPendingToolNavIndex = () =>
+  useCarbonScopeComputerStore((state) => state.pendingToolNavIndex);
 
-export const useKortixComputerClearPendingToolNav = () =>
-  useKortixComputerStore((state) => state.clearPendingToolNav);
+export const useCarbonScopeComputerClearPendingToolNav = () =>
+  useCarbonScopeComputerStore((state) => state.clearPendingToolNav);
 
 // Version history selectors
-export const useKortixComputerSelectedVersion = () =>
-  useKortixComputerStore((state) => state.selectedVersion);
+export const useCarbonScopeComputerSelectedVersion = () =>
+  useCarbonScopeComputerStore((state) => state.selectedVersion);
 
-export const useKortixComputerSelectedVersionDate = () =>
-  useKortixComputerStore((state) => state.selectedVersionDate);
+export const useCarbonScopeComputerSelectedVersionDate = () =>
+  useCarbonScopeComputerStore((state) => state.selectedVersionDate);
 
-export const useKortixComputerVersionActions = () =>
-  useKortixComputerStore((state) => ({
+export const useCarbonScopeComputerVersionActions = () =>
+  useCarbonScopeComputerStore((state) => ({
     setSelectedVersion: state.setSelectedVersion,
     clearSelectedVersion: state.clearSelectedVersion,
   }));

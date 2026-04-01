@@ -16,7 +16,7 @@
 - Created auth hooks and middleware
 
 ### 2. ✅ Code Quality Improvements (100% Complete)
-- Fixed "Kortix" → "CarbonScope" branding across all files
+- Fixed "CarbonScope" → "CarbonScope" branding across all files
 - Added icon hover animations (7 CSS animation classes)
 - Created 3 error boundaries (root, dashboard, auth)
 - Added loading states for slow routes

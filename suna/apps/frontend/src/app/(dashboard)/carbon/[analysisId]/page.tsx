@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CarbonAdvisorChat } from '@/components/carbon/CarbonAdvisorChat';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { backendApi } from '@/lib/api-client';
@@ -257,6 +258,57 @@ export default function AnalysisResultsPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Category breakdown */}
+      {Object.keys(data.breakdown_by_category).length > 0 && (
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Leaf className="h-4 w-4 text-emerald-600" />
+              Carbon by Category
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              {Object.entries(data.breakdown_by_category)
+                .sort(([, a], [, b]) => b - a)
+                .map(([cat, carbon]) => {
+                  const pct = data.total_carbon_kgco2e
+                    ? (carbon / data.total_carbon_kgco2e) * 100
+                    : 0;
+                  return (
+                    <div key={cat} className="flex items-center gap-3">
+                      <span className="w-24 shrink-0 text-xs text-muted-foreground capitalize">{cat}</span>
+                      <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-emerald-500"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <span className="w-28 shrink-0 text-right text-xs tabular-nums">
+                        {carbon.toLocaleString(undefined, { maximumFractionDigits: 0 })} kgCO₂e
+                      </span>
+                    </div>
+                  );
+                })}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Carbon Advisor Chat */}
+      <CarbonAdvisorChat
+        analysisId={data.analysis_id}
+        totalCarbon={data.total_carbon_kgco2e}
+        materialsCount={data.materials.length}
+        matchRate={matchRate}
+        topMaterials={
+          Object.entries(data.breakdown_by_category)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 3)
+            .map(([name, carbon]) => ({ name, carbon }))
+        }
+      />
     </div>
   );
 }

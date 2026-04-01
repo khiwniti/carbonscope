@@ -79,7 +79,7 @@ export function MobileAppBanner({ threadId }: MobileAppBannerProps) {
 
   const handleOpenInApp = () => {
     // Use custom URL scheme to open the app
-    const appUrl = `kortix://share/${threadId}`;
+    const appUrl = `CarbonScope://share/${threadId}`;
 
     // Try to open the app
     window.location.href = appUrl;
@@ -87,9 +87,9 @@ export function MobileAppBanner({ threadId }: MobileAppBannerProps) {
     // Fallback: If app doesn't open within 2 seconds, show app store
     setTimeout(() => {
       if (platform === 'ios') {
-        window.location.href = 'https://apps.apple.com/app/kortix/id6739583417';
+        window.location.href = 'https://apps.apple.com/app/CarbonScope/id6739583417';
       } else if (platform === 'android') {
-        window.location.href = 'https://play.google.com/store/apps/details?id=com.kortix.app';
+        window.location.href = 'https://play.google.com/store/apps/details?id=com.CarbonScope.app';
       }
     }, 2000);
   };
@@ -114,7 +114,7 @@ export function MobileAppBanner({ threadId }: MobileAppBannerProps) {
           {/* Content */}
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-foreground text-sm leading-tight">
-              Kortix
+              CarbonScope
             </h3>
             <p className="text-xs text-muted-foreground leading-tight">
               Open this content in app

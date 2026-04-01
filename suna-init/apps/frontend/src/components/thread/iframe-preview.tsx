@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { cn } from '@/lib/utils';
 
 interface IframePreviewProps {

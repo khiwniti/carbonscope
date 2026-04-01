@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Settings, Clock } from "lucide-react";
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { toast } from "@/lib/toast";
 import {
   useSystemStatus,

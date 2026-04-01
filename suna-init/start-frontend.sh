@@ -19,7 +19,7 @@ case "$1" in
         fi
         
         # Start in background
-        nohup pnpm --filter Kortix dev > "$LOG_FILE" 2>&1 &
+        nohup pnpm --filter CarbonScope dev > "$LOG_FILE" 2>&1 &
         
         echo "⏳ Waiting for server to start..."
         sleep 8

@@ -7,7 +7,7 @@
 
 ## 🎯 Overview
 
-Complete Azure deployment solution for **CarbonScope** (formerly Kortix) with **NextAuth.js authentication** (no Supabase dependency).
+Complete Azure deployment solution for **CarbonScope** (formerly CarbonScope) with **NextAuth.js authentication** (no Supabase dependency).
 
 ---
 

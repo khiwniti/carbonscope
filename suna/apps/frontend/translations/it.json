@@ -994,38 +994,128 @@
       "adventure": "Avventura"
     },
     "templates": {
-      "minimalist": { "name": "Minimalista", "description": "Design pulito e semplice" },
-      "minimalist_2": { "name": "Minimalista 2", "description": "Stile minimalista alternativo" },
-      "black_and_white_clean": { "name": "Bianco e nero", "description": "Monocromatico classico" },
-      "colorful": { "name": "Colorato", "description": "Vibrante ed energico" },
-      "startup": { "name": "Startup", "description": "Dinamico e innovativo" },
-      "elevator_pitch": { "name": "Elevator Pitch", "description": "Rapido e impattante" },
-      "portfolio": { "name": "Portfolio", "description": "Mostra il tuo lavoro" },
-      "textbook": { "name": "Manuale", "description": "Educativo e strutturato" },
-      "architect": { "name": "Architetto", "description": "Professionale e preciso" },
-      "hipster": { "name": "Hipster", "description": "Moderno e trendy" },
-      "green": { "name": "Verde", "description": "Design ispirato alla natura" },
-      "premium_black": { "name": "Premium Nero", "description": "Tema scuro di lusso" },
-      "premium_green": { "name": "Premium Verde", "description": "Verde sofisticato" },
-      "professor_gray": { "name": "Professore Grigio", "description": "Accademico e erudito" },
-      "gamer_gray": { "name": "Gamer Grigio", "description": "Design ispirato ai giochi" },
-      "competitor_analysis_blue": { "name": "Analisi Blu", "description": "Focalizzato sull'analisi aziendale" },
-      "numbers_clean": { "name": "Numeri Puliti", "description": "Visualizzazione dati pulita" },
-      "numbers_colorful": { "name": "Numeri Colorati", "description": "Presentazione dati vibrante" },
-      "prd": { "name": "PRD", "description": "Documento dei requisiti del prodotto" },
-      "technical": { "name": "Tecnico", "description": "Documentazione tecnica" },
-      "proposal": { "name": "Proposta", "description": "Proposta commerciale" },
-      "report": { "name": "Report", "description": "Formato report dettagliato" },
-      "guide": { "name": "Guida", "description": "Guida passo-passo" },
-      "wiki": { "name": "Wiki", "description": "Articolo della knowledge base" },
-      "policy": { "name": "Politica", "description": "Documento politico" },
-      "meeting-notes": { "name": "Note di riunione", "description": "Verbale di riunione" }
+      "minimalist": {
+        "name": "Minimalista",
+        "description": "Design pulito e semplice"
+      },
+      "minimalist_2": {
+        "name": "Minimalista 2",
+        "description": "Stile minimalista alternativo"
+      },
+      "black_and_white_clean": {
+        "name": "Bianco e nero",
+        "description": "Monocromatico classico"
+      },
+      "colorful": {
+        "name": "Colorato",
+        "description": "Vibrante ed energico"
+      },
+      "startup": {
+        "name": "Startup",
+        "description": "Dinamico e innovativo"
+      },
+      "elevator_pitch": {
+        "name": "Elevator Pitch",
+        "description": "Rapido e impattante"
+      },
+      "portfolio": {
+        "name": "Portfolio",
+        "description": "Mostra il tuo lavoro"
+      },
+      "textbook": {
+        "name": "Manuale",
+        "description": "Educativo e strutturato"
+      },
+      "architect": {
+        "name": "Architetto",
+        "description": "Professionale e preciso"
+      },
+      "hipster": {
+        "name": "Hipster",
+        "description": "Moderno e trendy"
+      },
+      "green": {
+        "name": "Verde",
+        "description": "Design ispirato alla natura"
+      },
+      "premium_black": {
+        "name": "Premium Nero",
+        "description": "Tema scuro di lusso"
+      },
+      "premium_green": {
+        "name": "Premium Verde",
+        "description": "Verde sofisticato"
+      },
+      "professor_gray": {
+        "name": "Professore Grigio",
+        "description": "Accademico e erudito"
+      },
+      "gamer_gray": {
+        "name": "Gamer Grigio",
+        "description": "Design ispirato ai giochi"
+      },
+      "competitor_analysis_blue": {
+        "name": "Analisi Blu",
+        "description": "Focalizzato sull'analisi aziendale"
+      },
+      "numbers_clean": {
+        "name": "Numeri Puliti",
+        "description": "Visualizzazione dati pulita"
+      },
+      "numbers_colorful": {
+        "name": "Numeri Colorati",
+        "description": "Presentazione dati vibrante"
+      },
+      "prd": {
+        "name": "PRD",
+        "description": "Documento dei requisiti del prodotto"
+      },
+      "technical": {
+        "name": "Tecnico",
+        "description": "Documentazione tecnica"
+      },
+      "proposal": {
+        "name": "Proposta",
+        "description": "Proposta commerciale"
+      },
+      "report": {
+        "name": "Report",
+        "description": "Formato report dettagliato"
+      },
+      "guide": {
+        "name": "Guida",
+        "description": "Guida passo-passo"
+      },
+      "wiki": {
+        "name": "Wiki",
+        "description": "Articolo della knowledge base"
+      },
+      "policy": {
+        "name": "Politica",
+        "description": "Documento politico"
+      },
+      "meeting-notes": {
+        "name": "Note di riunione",
+        "description": "Verbale di riunione"
+      }
     },
     "outputFormats": {
-      "spreadsheet": { "name": "Foglio di calcolo", "description": "Tabella con formule" },
-      "dashboard": { "name": "Dashboard", "description": "Grafici interattivi" },
-      "report": { "name": "Report", "description": "Analisi con visualizzazioni" },
-      "slides": { "name": "Presentazioni", "description": "Formato presentazione" }
+      "spreadsheet": {
+        "name": "Foglio di calcolo",
+        "description": "Tabella con formule"
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "description": "Grafici interattivi"
+      },
+      "report": {
+        "name": "Report",
+        "description": "Analisi con visualizzazioni"
+      },
+      "slides": {
+        "name": "Presentazioni",
+        "description": "Formato presentazione"
+      }
     },
     "charts": {
       "bar": "Barra",
@@ -1169,6 +1259,35 @@
       "manageButton": "Gestisci Memorie",
       "dismissButton": "Capito"
     }
+  },
+  "carbon": {
+    "title": "Carbon Analysis",
+    "subtitle": "Upload a Thai BOQ Excel file to calculate embodied carbon",
+    "uploadTitle": "Upload BOQ File",
+    "uploadDescription": "Accepts Thai BOQ Excel files (.xlsx, .xls) up to 50 MB",
+    "dragDrop": "Drag & drop your BOQ file",
+    "browsFiles": "browse files",
+    "dropHere": "Drop file here",
+    "analysing": "Analysing BOQ…",
+    "parsingMaterials": "Parsing materials and matching to TGO database",
+    "formatGuide": "Expected BOQ format:",
+    "formatColumns": "Columns: รายการ (Description) · หน่วย (Unit) · จำนวน (Quantity)",
+    "recentAnalyses": "Recent Analyses",
+    "noAnalyses": "Upload your first BOQ file to see carbon analysis results here.",
+    "totalCarbon": "Total Carbon",
+    "materialsParsed": "Materials Parsed",
+    "matchRate": "Match Rate",
+    "carbonPending": "Carbon calculation pending",
+    "carbonPendingDesc": "Full carbon calculation requires GraphDB with TGO emission factors. Material matching is complete.",
+    "materialBreakdown": "Material Breakdown",
+    "carbonByCategory": "Carbon by Category",
+    "items": "items",
+    "back": "Back",
+    "exportPdf": "Export PDF",
+    "matched": "Matched",
+    "review": "Review",
+    "rejected": "Rejected",
+    "unmatched": "Unmatched",
+    "pending": "pending"
   }
 }
-

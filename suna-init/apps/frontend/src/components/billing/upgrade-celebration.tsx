@@ -98,7 +98,7 @@ export function UpgradeCelebration({ isOpen, onClose, planName, isLoading = fals
               damping: 20
             }}
           >
-            {/* Kortix Logo */}
+            {/* CarbonScope Logo */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}

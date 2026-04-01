@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { AlertTriangle, ExternalLink, Square, Zap, X } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

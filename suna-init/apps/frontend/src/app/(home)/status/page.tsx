@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { AlertTriangle, CheckCircle, Clock, Wrench, Activity, Shield, Database, Globe, Zap } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 import { useTechnicalIssueQuery } from '@/hooks/edge-flags';
 import { AnimatedBg } from '@/components/ui/animated-bg';
@@ -101,7 +101,7 @@ function StatusPageContent() {
                 System Status
               </h1>
               <p className="text-sm text-muted-foreground max-w-md">
-                Real-time status of all Kortix services
+                Real-time status of all CarbonScope services
               </p>
             </div>
             <div className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm border ${
@@ -181,7 +181,7 @@ function StatusPageContent() {
                   Service Status
                 </CardTitle>
                 <CardDescription className="text-sm">
-                  Current operational status of all Kortix services
+                  Current operational status of all CarbonScope services
                 </CardDescription>
               </CardHeader>
               <CardContent>

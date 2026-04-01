@@ -4,7 +4,7 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useFileData } from '@/hooks/use-file-data';
 
 interface CanvasElement {

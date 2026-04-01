@@ -7,9 +7,9 @@ const lightsail = new LightsailInstance("suna-dev", {
   availabilityZone: "us-west-2a",
   blueprintId: "ubuntu_24_04",
   bundleId: "large_3_0",
-  keyPairName: "kortix-lightsail",
+  keyPairName: "CarbonScope-lightsail",
   tunnelId: "3a533a53-67d0-487c-b716-261c863270ee",
-  apiEndpoint: "dev-api.kortix.com",
+  apiEndpoint: "dev-api.CarbonScope.com",
   tags: COMMON_TAGS,
 });
 
@@ -21,4 +21,4 @@ export const privateIpAddress = lightsail.privateIpAddress;
 export const tunnelId = "3a533a53-67d0-487c-b716-261c863270ee";
 export const tunnelCname = `${tunnelId}.cfargotunnel.com`;
 
-export const apiEndpoint = "dev-api.kortix.com";
+export const apiEndpoint = "dev-api.CarbonScope.com";

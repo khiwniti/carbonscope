@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Cpu, HardDrive, MemoryStick, MapPin, AlertTriangle, Loader2 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 import { cn } from '@/lib/utils';
 import type { SandboxState, SandboxStatus, SandboxDetails } from '@/hooks/files/use-sandbox-details';
@@ -152,7 +152,7 @@ export const SandboxInfoCard = memo(function SandboxInfoCard({
             <CarbonScopeLogoSimple size={32} />
           </div>
           <div className="flex flex-col items-center justify-center">
-            <h3 className="text-foreground font-semibold text-lg text-center">Kortix Computer</h3>
+            <h3 className="text-foreground font-semibold text-lg text-center">CarbonScope Computer</h3>
             <div className="flex items-center justify-center gap-2 mt-0.5">
               <StatusIndicator status={status} />
               <span className={cn("text-xs font-medium", getStatusColor(status))}>

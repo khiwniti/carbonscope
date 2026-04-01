@@ -17,7 +17,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Clock, Calendar, ChevronDown, Activity, Zap, AlertCircle } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { Badge } from '@/components/ui/badge';
 import { useAgentUpcomingRuns, type UpcomingRun } from '@/hooks/agents/use-agent-upcoming-runs';
 import { formatDistanceToNow, parseISO } from 'date-fns';

@@ -3,7 +3,7 @@ import { PresentationSlideCard } from './PresentationSlideCard';
 import { constructHtmlPreviewUrl } from '@/lib/utils/url';
 import { Project } from '@/lib/api/threads';
 import { RefreshCw, Presentation } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { usePresentationViewerStore } from '@/stores/presentation-viewer-store';
 import { Button } from '@/components/ui/button';
 

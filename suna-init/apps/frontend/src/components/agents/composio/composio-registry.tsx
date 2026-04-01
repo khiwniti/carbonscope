@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
 import { Search, Zap, X, Settings, ChevronDown, ChevronUp, Server, Lock } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useComposioCategories, useComposioToolkitsInfinite } from '@/hooks/composio/use-composio';
 import { useComposioProfiles } from '@/hooks/composio/use-composio-profiles';
 import { useAgent } from '@/hooks/agents/use-agents';

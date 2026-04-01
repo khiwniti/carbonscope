@@ -992,22 +992,22 @@
   animation: stream-word-pop 200ms ease-out forwards;
 }
 
-.kortix-markdown [data-streamdown-animating="true"] > * {
+.CarbonScope-markdown [data-streamdown-animating="true"] > * {
   animation: stream-fade-in 200ms ease-out forwards;
 }
 
-.kortix-markdown [data-streamdown-animating="true"] p,
-.kortix-markdown [data-streamdown-animating="true"] li,
-.kortix-markdown [data-streamdown-animating="true"] h1,
-.kortix-markdown [data-streamdown-animating="true"] h2,
-.kortix-markdown [data-streamdown-animating="true"] h3,
-.kortix-markdown [data-streamdown-animating="true"] h4,
-.kortix-markdown [data-streamdown-animating="true"] h5,
-.kortix-markdown [data-streamdown-animating="true"] h6 {
+.CarbonScope-markdown [data-streamdown-animating="true"] p,
+.CarbonScope-markdown [data-streamdown-animating="true"] li,
+.CarbonScope-markdown [data-streamdown-animating="true"] h1,
+.CarbonScope-markdown [data-streamdown-animating="true"] h2,
+.CarbonScope-markdown [data-streamdown-animating="true"] h3,
+.CarbonScope-markdown [data-streamdown-animating="true"] h4,
+.CarbonScope-markdown [data-streamdown-animating="true"] h5,
+.CarbonScope-markdown [data-streamdown-animating="true"] h6 {
   animation: stream-word-pop 180ms ease-out forwards;
 }
 
-.kortix-markdown [data-streamdown-animating="true"] code {
+.CarbonScope-markdown [data-streamdown-animating="true"] code {
   animation: stream-char-reveal 150ms ease-out forwards;
 }
 
@@ -1030,17 +1030,17 @@
 }
 
 
-.kortix-markdown.streaming-active {
+.CarbonScope-markdown.streaming-active {
   position: relative;
 }
 
-.kortix-markdown.streaming-active p:last-child,
-.kortix-markdown.streaming-active li:last-child,
-.kortix-markdown.streaming-active div:last-child {
+.CarbonScope-markdown.streaming-active p:last-child,
+.CarbonScope-markdown.streaming-active li:last-child,
+.CarbonScope-markdown.streaming-active div:last-child {
   display: inline;
 }
 
-.kortix-markdown[data-streaming="true"] > *:last-child {
+.CarbonScope-markdown[data-streaming="true"] > *:last-child {
   animation: stream-fade-in 180ms ease-out;
 }
 
@@ -1070,7 +1070,7 @@
   }
 }
 
-.kortix-markdown[data-streaming="true"] > *:last-child {
+.CarbonScope-markdown[data-streaming="true"] > *:last-child {
   animation: blur-fade-in 0.3s ease-out forwards;
 }
 
@@ -1111,7 +1111,7 @@
   display: inline;
 }
 
-/* Pulse heartbeat animation for reasoning section Kortix icon */
+/* Pulse heartbeat animation for reasoning section CarbonScope icon */
 @keyframes pulse-heartbeat {
   0%, 100% {
     transform: scale(1);

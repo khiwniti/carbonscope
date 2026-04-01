@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Search, Save, AlertCircle, Filter, X, ChevronDown } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { backendApi } from '@/lib/api-client';
 import { useComposioTools } from '@/hooks/composio/use-composio';
 import { cn } from '@/lib/utils';

@@ -992,38 +992,128 @@
       "adventure": "Abenteuer"
     },
     "templates": {
-      "minimalist": { "name": "Minimalistisch", "description": "Sauberes und einfaches Design" },
-      "minimalist_2": { "name": "Minimalistisch 2", "description": "Alternativer minimalistischer Stil" },
-      "black_and_white_clean": { "name": "Schwarz & Weiß", "description": "Klassisches Monochrom" },
-      "colorful": { "name": "Bunt", "description": "Lebendig und energisch" },
-      "startup": { "name": "Startup", "description": "Dynamisch und innovativ" },
-      "elevator_pitch": { "name": "Elevator Pitch", "description": "Schnell und wirkungsvoll" },
-      "portfolio": { "name": "Portfolio", "description": "Zeige deine Arbeit" },
-      "textbook": { "name": "Lehrbuch", "description": "Bildend und strukturiert" },
-      "architect": { "name": "Architekt", "description": "Professionell und präzise" },
-      "hipster": { "name": "Hipster", "description": "Modern und trendy" },
-      "green": { "name": "Grün", "description": "Naturinspiriertes Design" },
-      "premium_black": { "name": "Premium Schwarz", "description": "Luxuriöses dunkles Theme" },
-      "premium_green": { "name": "Premium Grün", "description": "Raffiniertes Grün" },
-      "professor_gray": { "name": "Professor Grau", "description": "Akademisch und gelehrt" },
-      "gamer_gray": { "name": "Gamer Grau", "description": "Gaming-inspiriertes Design" },
-      "competitor_analysis_blue": { "name": "Analyse Blau", "description": "Fokus auf Geschäftsanalyse" },
-      "numbers_clean": { "name": "Zahlen Sauber", "description": "Saubere Datenvisualisierung" },
-      "numbers_colorful": { "name": "Zahlen Bunt", "description": "Lebendige Datenpräsentation" },
-      "prd": { "name": "PRD", "description": "Produktanforderungsdokument" },
-      "technical": { "name": "Technisch", "description": "Technische Dokumentation" },
-      "proposal": { "name": "Vorschlag", "description": "Geschäftsvorschlag" },
-      "report": { "name": "Bericht", "description": "Detailliertes Berichtsformat" },
-      "guide": { "name": "Anleitung", "description": "Schritt-für-Schritt-Anleitung" },
-      "wiki": { "name": "Wiki", "description": "Wissensbasis-Artikel" },
-      "policy": { "name": "Richtlinie", "description": "Richtliniendokument" },
-      "meeting-notes": { "name": "Besprechungsnotizen", "description": "Besprechungsprotokoll" }
+      "minimalist": {
+        "name": "Minimalistisch",
+        "description": "Sauberes und einfaches Design"
+      },
+      "minimalist_2": {
+        "name": "Minimalistisch 2",
+        "description": "Alternativer minimalistischer Stil"
+      },
+      "black_and_white_clean": {
+        "name": "Schwarz & Weiß",
+        "description": "Klassisches Monochrom"
+      },
+      "colorful": {
+        "name": "Bunt",
+        "description": "Lebendig und energisch"
+      },
+      "startup": {
+        "name": "Startup",
+        "description": "Dynamisch und innovativ"
+      },
+      "elevator_pitch": {
+        "name": "Elevator Pitch",
+        "description": "Schnell und wirkungsvoll"
+      },
+      "portfolio": {
+        "name": "Portfolio",
+        "description": "Zeige deine Arbeit"
+      },
+      "textbook": {
+        "name": "Lehrbuch",
+        "description": "Bildend und strukturiert"
+      },
+      "architect": {
+        "name": "Architekt",
+        "description": "Professionell und präzise"
+      },
+      "hipster": {
+        "name": "Hipster",
+        "description": "Modern und trendy"
+      },
+      "green": {
+        "name": "Grün",
+        "description": "Naturinspiriertes Design"
+      },
+      "premium_black": {
+        "name": "Premium Schwarz",
+        "description": "Luxuriöses dunkles Theme"
+      },
+      "premium_green": {
+        "name": "Premium Grün",
+        "description": "Raffiniertes Grün"
+      },
+      "professor_gray": {
+        "name": "Professor Grau",
+        "description": "Akademisch und gelehrt"
+      },
+      "gamer_gray": {
+        "name": "Gamer Grau",
+        "description": "Gaming-inspiriertes Design"
+      },
+      "competitor_analysis_blue": {
+        "name": "Analyse Blau",
+        "description": "Fokus auf Geschäftsanalyse"
+      },
+      "numbers_clean": {
+        "name": "Zahlen Sauber",
+        "description": "Saubere Datenvisualisierung"
+      },
+      "numbers_colorful": {
+        "name": "Zahlen Bunt",
+        "description": "Lebendige Datenpräsentation"
+      },
+      "prd": {
+        "name": "PRD",
+        "description": "Produktanforderungsdokument"
+      },
+      "technical": {
+        "name": "Technisch",
+        "description": "Technische Dokumentation"
+      },
+      "proposal": {
+        "name": "Vorschlag",
+        "description": "Geschäftsvorschlag"
+      },
+      "report": {
+        "name": "Bericht",
+        "description": "Detailliertes Berichtsformat"
+      },
+      "guide": {
+        "name": "Anleitung",
+        "description": "Schritt-für-Schritt-Anleitung"
+      },
+      "wiki": {
+        "name": "Wiki",
+        "description": "Wissensbasis-Artikel"
+      },
+      "policy": {
+        "name": "Richtlinie",
+        "description": "Richtliniendokument"
+      },
+      "meeting-notes": {
+        "name": "Besprechungsnotizen",
+        "description": "Besprechungsprotokoll"
+      }
     },
     "outputFormats": {
-      "spreadsheet": { "name": "Tabelle", "description": "Tabelle mit Formeln" },
-      "dashboard": { "name": "Dashboard", "description": "Interaktive Diagramme" },
-      "report": { "name": "Bericht", "description": "Analyse mit Visualisierungen" },
-      "slides": { "name": "Folien", "description": "Präsentationsformat" }
+      "spreadsheet": {
+        "name": "Tabelle",
+        "description": "Tabelle mit Formeln"
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "description": "Interaktive Diagramme"
+      },
+      "report": {
+        "name": "Bericht",
+        "description": "Analyse mit Visualisierungen"
+      },
+      "slides": {
+        "name": "Folien",
+        "description": "Präsentationsformat"
+      }
     },
     "charts": {
       "bar": "Balken",
@@ -1167,5 +1257,35 @@
       "manageButton": "Erinnerungen verwalten",
       "dismissButton": "Verstanden"
     }
+  },
+  "carbon": {
+    "title": "Carbon Analysis",
+    "subtitle": "Upload a Thai BOQ Excel file to calculate embodied carbon",
+    "uploadTitle": "Upload BOQ File",
+    "uploadDescription": "Accepts Thai BOQ Excel files (.xlsx, .xls) up to 50 MB",
+    "dragDrop": "Drag & drop your BOQ file",
+    "browsFiles": "browse files",
+    "dropHere": "Drop file here",
+    "analysing": "Analysing BOQ…",
+    "parsingMaterials": "Parsing materials and matching to TGO database",
+    "formatGuide": "Expected BOQ format:",
+    "formatColumns": "Columns: รายการ (Description) · หน่วย (Unit) · จำนวน (Quantity)",
+    "recentAnalyses": "Recent Analyses",
+    "noAnalyses": "Upload your first BOQ file to see carbon analysis results here.",
+    "totalCarbon": "Total Carbon",
+    "materialsParsed": "Materials Parsed",
+    "matchRate": "Match Rate",
+    "carbonPending": "Carbon calculation pending",
+    "carbonPendingDesc": "Full carbon calculation requires GraphDB with TGO emission factors. Material matching is complete.",
+    "materialBreakdown": "Material Breakdown",
+    "carbonByCategory": "Carbon by Category",
+    "items": "items",
+    "back": "Back",
+    "exportPdf": "Export PDF",
+    "matched": "Matched",
+    "review": "Review",
+    "rejected": "Rejected",
+    "unmatched": "Unmatched",
+    "pending": "pending"
   }
 }

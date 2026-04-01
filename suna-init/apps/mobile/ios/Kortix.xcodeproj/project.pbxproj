@@ -11,25 +11,25 @@
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		54AB024F734CC9EF197D0ED1 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2048905C1A14D9BE5CBA3CD /* ExpoModulesProvider.swift */; };
 		87FEB8848C8DF4FC7F95FECD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE652B2EF642638587ACAF /* PrivacyInfo.xcprivacy */; };
-		B88F8062C79F190C7085E516 /* Pods_Kortix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4200FA8FB49CFD1421AE62D9 /* Pods_Kortix.framework */; };
+		B88F8062C79F190C7085E516 /* Pods_CarbonScope.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4200FA8FB49CFD1421AE62D9 /* Pods_CarbonScope.framework */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		13B07F961A680F5B00A75B9A /* Kortix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kortix.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Kortix/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Kortix/Info.plist; sourceTree = "<group>"; };
-		164230638401B47C1563023F /* Pods-Kortix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kortix.release.xcconfig"; path = "Target Support Files/Pods-Kortix/Pods-Kortix.release.xcconfig"; sourceTree = "<group>"; };
-		1BBE652B2EF642638587ACAF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Kortix/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		4200FA8FB49CFD1421AE62D9 /* Pods_Kortix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kortix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		72DA5D64A1F8554B63F94118 /* Pods-Kortix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kortix.debug.xcconfig"; path = "Target Support Files/Pods-Kortix/Pods-Kortix.debug.xcconfig"; sourceTree = "<group>"; };
-		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Kortix/SplashScreen.storyboard; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* CarbonScope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarbonScope.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CarbonScope/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CarbonScope/Info.plist; sourceTree = "<group>"; };
+		164230638401B47C1563023F /* Pods-CarbonScope.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonScope.release.xcconfig"; path = "Target Support Files/Pods-CarbonScope/Pods-CarbonScope.release.xcconfig"; sourceTree = "<group>"; };
+		1BBE652B2EF642638587ACAF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = CarbonScope/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		4200FA8FB49CFD1421AE62D9 /* Pods_CarbonScope.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarbonScope.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72DA5D64A1F8554B63F94118 /* Pods-CarbonScope.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarbonScope.debug.xcconfig"; path = "Target Support Files/Pods-CarbonScope/Pods-CarbonScope.debug.xcconfig"; sourceTree = "<group>"; };
+		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = CarbonScope/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C2048905C1A14D9BE5CBA3CD /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Kortix/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		C2048905C1A14D9BE5CBA3CD /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CarbonScope/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Kortix/AppDelegate.swift; sourceTree = "<group>"; };
-		F11748442D0722820044C1D9 /* Kortix-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Kortix-Bridging-Header.h"; path = "Kortix/Kortix-Bridging-Header.h"; sourceTree = "<group>"; };
+		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CarbonScope/AppDelegate.swift; sourceTree = "<group>"; };
+		F11748442D0722820044C1D9 /* CarbonScope-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CarbonScope-Bridging-Header.h"; path = "CarbonScope/CarbonScope-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,48 +37,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B88F8062C79F190C7085E516 /* Pods_Kortix.framework in Frameworks */,
+				B88F8062C79F190C7085E516 /* Pods_CarbonScope.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* Kortix */ = {
+		13B07FAE1A68108700A75B9A /* CarbonScope */ = {
 			isa = PBXGroup;
 			children = (
 				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
-				F11748442D0722820044C1D9 /* Kortix-Bridging-Header.h */,
+				F11748442D0722820044C1D9 /* CarbonScope-Bridging-Header.h */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
 				1BBE652B2EF642638587ACAF /* PrivacyInfo.xcprivacy */,
 			);
-			name = Kortix;
+			name = CarbonScope;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				4200FA8FB49CFD1421AE62D9 /* Pods_Kortix.framework */,
+				4200FA8FB49CFD1421AE62D9 /* Pods_CarbonScope.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		58ED49DB6FF506A2E5A8A9AB /* Kortix */ = {
+		58ED49DB6FF506A2E5A8A9AB /* CarbonScope */ = {
 			isa = PBXGroup;
 			children = (
 				C2048905C1A14D9BE5CBA3CD /* ExpoModulesProvider.swift */,
 			);
-			name = Kortix;
+			name = CarbonScope;
 			sourceTree = "<group>";
 		};
 		708438E337E55807E70F99BF /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				58ED49DB6FF506A2E5A8A9AB /* Kortix */,
+				58ED49DB6FF506A2E5A8A9AB /* CarbonScope */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
@@ -93,7 +93,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* Kortix */,
+				13B07FAE1A68108700A75B9A /* CarbonScope */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
@@ -108,7 +108,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Kortix.app */,
+				13B07F961A680F5B00A75B9A /* CarbonScope.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,14 +119,14 @@
 				BB2F792C24A3F905000567C9 /* Expo.plist */,
 			);
 			name = Supporting;
-			path = Kortix/Supporting;
+			path = CarbonScope/Supporting;
 			sourceTree = "<group>";
 		};
 		F463EC426C891CFCBBA743C4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				72DA5D64A1F8554B63F94118 /* Pods-Kortix.debug.xcconfig */,
-				164230638401B47C1563023F /* Pods-Kortix.release.xcconfig */,
+				72DA5D64A1F8554B63F94118 /* Pods-CarbonScope.debug.xcconfig */,
+				164230638401B47C1563023F /* Pods-CarbonScope.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -134,9 +134,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* Kortix */ = {
+		13B07F861A680F5B00A75B9A /* CarbonScope */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Kortix" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CarbonScope" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
 				089512DB69883FB90856BA9B /* [Expo] Configure project */,
@@ -151,9 +151,9 @@
 			);
 			dependencies = (
 			);
-			name = Kortix;
-			productName = Kortix;
-			productReference = 13B07F961A680F5B00A75B9A /* Kortix.app */;
+			name = CarbonScope;
+			productName = CarbonScope;
+			productReference = 13B07F961A680F5B00A75B9A /* CarbonScope.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Kortix" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CarbonScope" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -184,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Kortix */,
+				13B07F861A680F5B00A75B9A /* CarbonScope */,
 			);
 		};
 /* End PBXProject section */
@@ -232,18 +232,18 @@
 			inputPaths = (
 				"$(SRCROOT)/.xcode.env",
 				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/Kortix/Kortix.entitlements",
-				"$(SRCROOT)/Pods/Target Support Files/Pods-Kortix/expo-configure-project.sh",
+				"$(SRCROOT)/CarbonScope/CarbonScope.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-CarbonScope/expo-configure-project.sh",
 			);
 			name = "[Expo] Configure project";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Pods/Target Support Files/Pods-Kortix/ExpoModulesProvider.swift",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-CarbonScope/ExpoModulesProvider.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Kortix/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CarbonScope/expo-configure-project.sh\"\n";
 		};
 		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -260,7 +260,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kortix-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CarbonScope-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -273,7 +273,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kortix/Pods-Kortix-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CarbonScope/Pods-CarbonScope-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
@@ -286,7 +286,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kortix/Pods-Kortix-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarbonScope/Pods-CarbonScope-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
@@ -295,7 +295,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kortix/Pods-Kortix-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CarbonScope/Pods-CarbonScope-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXApplication/ExpoApplication_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
@@ -380,7 +380,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kortix/Pods-Kortix-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CarbonScope/Pods-CarbonScope-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -400,11 +400,11 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72DA5D64A1F8554B63F94118 /* Pods-Kortix.debug.xcconfig */;
+			baseConfigurationReference = 72DA5D64A1F8554B63F94118 /* Pods-CarbonScope.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Kortix/Kortix.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CarbonScope/CarbonScope.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -414,7 +414,7 @@
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = Kortix/Info.plist;
+				INFOPLIST_FILE = CarbonScope/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -428,9 +428,9 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kortix.app;
-				PRODUCT_NAME = Kortix;
-				SWIFT_OBJC_BRIDGING_HEADER = "Kortix/Kortix-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CarbonScope.app;
+				PRODUCT_NAME = CarbonScope;
+				SWIFT_OBJC_BRIDGING_HEADER = "CarbonScope/CarbonScope-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,16 +440,16 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 164230638401B47C1563023F /* Pods-Kortix.release.xcconfig */;
+			baseConfigurationReference = 164230638401B47C1563023F /* Pods-CarbonScope.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Kortix/Kortix.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CarbonScope/CarbonScope.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T8G9J33433;
-				INFOPLIST_FILE = Kortix/Info.plist;
+				INFOPLIST_FILE = CarbonScope/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -463,9 +463,9 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kortix.app;
-				PRODUCT_NAME = Kortix;
-				SWIFT_OBJC_BRIDGING_HEADER = "Kortix/Kortix-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CarbonScope.app;
+				PRODUCT_NAME = CarbonScope;
+				SWIFT_OBJC_BRIDGING_HEADER = "CarbonScope/CarbonScope-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -619,7 +619,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Kortix" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CarbonScope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -628,7 +628,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Kortix" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "CarbonScope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

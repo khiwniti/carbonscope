@@ -1,7 +1,7 @@
 # CarbonScope Design System Migration Plan
 
 ## Overview
-Complete theme migration from Kortix brand to CarbonScope design system across all suna-init applications. Client has approved the CarbonScope design (dark engineering theme with emerald green accents, EN 15978 lifecycle-aligned).
+Complete theme migration from CarbonScope brand to CarbonScope design system across all suna-init applications. Client has approved the CarbonScope design (dark engineering theme with emerald green accents, EN 15978 lifecycle-aligned).
 
 ## Goal
 Every single line of style across frontend, mobile, and backend templates must align with the CarbonScope design system tokens and components.
@@ -60,7 +60,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 
 **Context**:
 - Frontend uses Next.js 15 with Tailwind CSS v4
-- Current theme: Kortix brand (light gray and black)
+- Current theme: CarbonScope brand (light gray and black)
 - Target: CarbonScope dark theme
 - Partially completed: globals.css updated with CarbonScope CSS variables and animations
 
@@ -75,7 +75,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 **Files to modify**:
 - All files in `/apps/frontend/src/components/`
 - `/apps/frontend/tailwind.config.ts` (if exists) or create Tailwind v4 config
-- Update any inline styles or Tailwind classes using old Kortix colors
+- Update any inline styles or Tailwind classes using old CarbonScope colors
 
 **Key color mappings**:
 - Old primary (`#121215` black) → New primary (`#10B981` emerald green)
@@ -86,7 +86,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 
 **Success criteria**:
 - All components render with CarbonScope colors
-- No Kortix brand colors remain
+- No CarbonScope brand colors remain
 - Dark mode works correctly
 - Typography uses CarbonScope fonts
 
@@ -129,7 +129,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 
 **Context**:
 - Mobile uses Expo/React Native with NativeWind (Tailwind for React Native)
-- Current theme: Kortix brand in Tailwind config
+- Current theme: CarbonScope brand in Tailwind config
 - Partially completed: global.css updated with CarbonScope HSL values
 - Target: CarbonScope dark theme adapted for mobile
 
@@ -143,7 +143,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 **Files to modify**:
 - `/apps/mobile/tailwind.config.js` - Update color definitions
 - All component files in `/apps/mobile/components/`
-- Any inline styles using old Kortix colors
+- Any inline styles using old CarbonScope colors
 
 **React Native considerations**:
 - Some CSS properties may need React Native equivalents
@@ -154,7 +154,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 - All mobile components use CarbonScope colors
 - Typography updated to CarbonScope fonts
 - Dark mode works on mobile
-- No Kortix colors remain
+- No CarbonScope colors remain
 
 ---
 
@@ -163,15 +163,15 @@ Every single line of style across frontend, mobile, and backend templates must a
 **Objective**: Verify that every single line of style aligns with client-approved CarbonScope design system.
 
 **Scope**:
-- Search entire codebase for old Kortix color values
+- Search entire codebase for old CarbonScope color values
 - Verify all components use design system tokens
 - Check for hardcoded colors that should use tokens
 - Validate typography consistency
 - Test visual appearance across all apps
 
 **Search patterns to verify**:
-- `#121215` (old Kortix black) - should be replaced
-- `#F6F6F6` (old Kortix white) - should be replaced
+- `#121215` (old CarbonScope black) - should be replaced
+- `#F6F6F6` (old CarbonScope white) - should be replaced
 - `#DCDDDE` (old borders) - should be replaced
 - `Roobert` font family - should be replaced
 - Any `hsl(218 12% 7%)` or similar old HSL values
@@ -182,7 +182,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 - [ ] Mobile: All components use CarbonScope colors
 - [ ] Mobile: All typography uses CarbonScope fonts
 - [ ] Backend HTML: All templates use CarbonScope styling
-- [ ] No old Kortix brand colors anywhere
+- [ ] No old CarbonScope brand colors anywhere
 - [ ] Dark mode works consistently across all apps
 - [ ] Emerald green accent (#10B981, #059669, #34D399) used appropriately
 - [ ] EN 15978 lifecycle colors present in relevant components
@@ -193,7 +193,7 @@ Every single line of style across frontend, mobile, and backend templates must a
 - Visual testing in browser and mobile
 
 **Success criteria**:
-- Zero instances of old Kortix colors
+- Zero instances of old CarbonScope colors
 - All components use CarbonScope design tokens
 - Visual consistency across frontend, mobile, and templates
 - Client approval criteria met
@@ -309,7 +309,7 @@ Recommended execution order:
 ## Success Metrics
 
 The migration is complete when:
-1. ✅ Zero Kortix brand colors remain in codebase
+1. ✅ Zero CarbonScope brand colors remain in codebase
 2. ✅ All applications use CarbonScope design tokens
 3. ✅ Typography uses Instrument Serif, Plus Jakarta Sans, IBM Plex Mono
 4. ✅ Dark engineering theme with emerald green accents applied everywhere

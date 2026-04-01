@@ -1,10 +1,10 @@
 import React from 'react';
 import { Maximize2 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { getToolIcon, getUserFriendlyToolName, extractPrimaryParam } from '@/components/thread/utils';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ToolCallInput } from '@/components/thread/kortix-computer';
+import { ToolCallInput } from '@/components/thread/CarbonScope-computer';
 import { motion } from 'framer-motion';
 
 export type { ToolCallInput };
@@ -80,7 +80,7 @@ export const FloatingToolPreview: React.FC<FloatingToolPreviewProps> = ({
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
       <motion.div
-        layoutId="kortix-computer-window"
+        layoutId="CarbonScope-computer-window"
         className="bg-card border border-border rounded-3xl p-2 w-full cursor-pointer group"
         onClick={onExpand}
         whileHover={{ scale: 1.01 }}
@@ -142,7 +142,7 @@ export const FloatingToolPreview: React.FC<FloatingToolPreviewProps> = ({
                     : "text-red-500"
               )}>
                 {isStreaming
-                  ? `${agentName || 'Kortix'} is working...`
+                  ? `${agentName || 'CarbonScope'} is working...`
                   : isSuccess
                     ? "Success"
                     : "Failed"

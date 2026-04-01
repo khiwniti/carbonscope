@@ -9,7 +9,7 @@ import {
   Copy,
   Check,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { ToolViewProps } from '../types';
 import { getToolTitle } from '../utils';
 import { extractWebScrapeData } from './_utils';
@@ -200,7 +200,7 @@ export function WebScrapeToolView({
                       )}
                     </span>
 
-                    {/* Kortix loading animation */}
+                    {/* CarbonScope loading animation */}
                     <CarbonScopeLoader customSize={16} />
                   </motion.div>
                 );

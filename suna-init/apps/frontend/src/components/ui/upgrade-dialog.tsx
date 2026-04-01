@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 
 export type DialogTheme = 'warning' | 'destructive' | 'primary' | 'info';
 export type DialogSize = 'sm' | 'md' | 'lg' | 'xl';

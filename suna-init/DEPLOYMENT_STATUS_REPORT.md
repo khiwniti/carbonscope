@@ -47,15 +47,15 @@ const explicitUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 NEXT_PUBLIC_API_URL=https://carbonscope-backend...
 ```
 
-**Result:** Configuration reads `undefined`, falls back to old Kortix URLs
+**Result:** Configuration reads `undefined`, falls back to old CarbonScope URLs
 
 ### Issue 3: Hardcoded Legacy URLs
 
 **File:** `next.config.ts` - Line 17
 ```typescript
-// WRONG - Old Kortix infrastructure
+// WRONG - Old CarbonScope infrastructure
 if (vercelEnv === 'production') {
-  return 'https://api.kortix.com/v1';
+  return 'https://api.CarbonScope.com/v1';
 }
 ```
 
@@ -80,10 +80,10 @@ const getBackendUrl = (): string => {
   }
 
   if (vercelEnv === 'production') {
-    return 'https://api.kortix.com/v1';  // ❌ Old URL
+    return 'https://api.CarbonScope.com/v1';  // ❌ Old URL
   }
 
-  return 'https://staging-api.kortix.com/v1';  // ❌ Old URL
+  return 'https://staging-api.CarbonScope.com/v1';  // ❌ Old URL
 };
 ```
 
@@ -105,7 +105,7 @@ const getBackendUrl = (): string => {
 - ✅ Simplified logic (removed Vercel-specific branching)
 - ✅ Checks both `NEXT_PUBLIC_BACKEND_URL` and `NEXT_PUBLIC_API_URL`
 - ✅ Defaults to Azure Container Apps backend
-- ✅ Removed outdated Kortix URLs
+- ✅ Removed outdated CarbonScope URLs
 
 ### 2. Updated `.env.production`
 

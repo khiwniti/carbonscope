@@ -5,7 +5,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useFileContentQuery } from '@/hooks/files/use-file-queries';
 import { cn } from '@/lib/utils';
 

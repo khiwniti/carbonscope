@@ -10,7 +10,7 @@ import * as XLSX from 'xlsx';
 import { cn } from '@/lib/utils';
 import { getFilename, getFileIcon } from '@/lib/utils/file-utils';
 import { useFileContentQuery } from '@/hooks/files/use-file-queries';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 
 // Constants for thumbnail preview
 const MAX_ROWS = 5;

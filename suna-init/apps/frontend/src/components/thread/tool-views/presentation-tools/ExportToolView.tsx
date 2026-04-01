@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Presentation, FileText, Download } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { ToolViewProps } from '../types';
 import { formatTimestamp } from '../utils';
 import { downloadPresentation, DownloadFormat } from '../utils/presentation-utils';

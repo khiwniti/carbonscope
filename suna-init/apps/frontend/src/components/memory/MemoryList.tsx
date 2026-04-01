@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { AlertCircle, Brain, Search } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { MemoryCard } from './MemoryCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

@@ -1,4 +1,4 @@
-# Kortix Frontend
+# CarbonScope Frontend
 
 ## Quick Setup
 

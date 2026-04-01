@@ -3,7 +3,7 @@
 import React, { forwardRef, useEffect, memo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Paperclip } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { toast } from '@/lib/toast';
 import { createClient } from '@/lib/supabase/client';
 import { useQueryClient } from '@tanstack/react-query';

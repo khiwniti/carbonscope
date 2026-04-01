@@ -552,7 +552,7 @@ export function MarkdownEditor({
           )}
           <style dangerouslySetInnerHTML={getSafeHtml(`
             /* ═══════════════════════════════════════════════════════════════
-               KORTIX TIPTAP EDITOR STYLES
+               CarbonScope TIPTAP EDITOR STYLES
                Matches UnifiedMarkdown for consistent rendering
                ═══════════════════════════════════════════════════════════════ */
             

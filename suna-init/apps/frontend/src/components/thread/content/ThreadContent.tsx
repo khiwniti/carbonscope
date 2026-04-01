@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, memo, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useTranslations } from "next-intl";
 import {
   UnifiedMessage,
@@ -70,12 +70,12 @@ interface AgentInfo {
   avatar: React.ReactNode;
 }
 
-// Reusable agent header - shows Kortix logo for Kortix, avatar+name for others
+// Reusable agent header - shows CarbonScope logo for CarbonScope, avatar+name for others
 const AgentHeader = memo(function AgentHeader({ agentInfo }: { agentInfo: AgentInfo }) {
-  if (agentInfo.name === "Kortix") {
+  if (agentInfo.name === "CarbonScope") {
     return (
       <img
-        src="/kortix-logomark-white.svg"
+        src="/CarbonScope-logomark-white.svg"
         alt="Suna"
         className="dark:invert-0 invert flex-shrink-0"
         style={{ height: '12px', width: 'auto' }}
@@ -1213,7 +1213,7 @@ const AssistantGroupRow = memo(function AssistantGroupRow({
   return (
     <div key={group.key} ref={isLastGroup ? latestMessageRef : null}>
       <div className="flex flex-col gap-2">
-        {/* Reasoning section with integrated Kortix icon */}
+        {/* Reasoning section with integrated CarbonScope icon */}
         {reasoningSection}
         {/* Show AgentHeader only when reasoning section is NOT displayed */}
         {!reasoningSection && (
@@ -1297,7 +1297,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = memo(
     sandboxId,
     project,
     isPreviewMode = false,
-    agentName = "Kortix",
+    agentName = "CarbonScope",
     agentAvatar = <CarbonScopeLogoSimple size={14} />,
     emptyStateComponent,
     threadMetadata,
@@ -1350,7 +1350,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = memo(
       if (recentAssistantWithAgent?.agents?.name) {
         const rawName = recentAssistantWithAgent.agents.name;
         const name =
-          typeof rawName === "string" ? rawName : String(rawName || "Kortix");
+          typeof rawName === "string" ? rawName : String(rawName || "CarbonScope");
         return {
           name,
           avatar: (
@@ -1360,9 +1360,9 @@ export const ThreadContent: React.FC<ThreadContentProps> = memo(
           ),
         };
       }
-      const fallbackName = typeof agentName === "string" ? agentName : "Kortix";
+      const fallbackName = typeof agentName === "string" ? agentName : "CarbonScope";
       return {
-        name: fallbackName || "Kortix",
+        name: fallbackName || "CarbonScope",
         avatar: agentAvatar,
       };
     }, [threadMetadata, displayMessages, agentName, agentAvatar]);
@@ -1818,7 +1818,7 @@ export const ThreadContent: React.FC<ThreadContentProps> = memo(
                       {/* Match ReasoningSection header layout for smooth transition */}
                       <div className="flex items-center gap-3">
                         <img
-                          src="/kortix-logomark-white.svg"
+                          src="/CarbonScope-logomark-white.svg"
                           alt="Suna"
                           className="dark:invert-0 invert flex-shrink-0 animate-pulse"
                           style={{ height: '14px', width: 'auto' }}

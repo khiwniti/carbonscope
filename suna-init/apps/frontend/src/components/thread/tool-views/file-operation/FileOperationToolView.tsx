@@ -12,7 +12,7 @@ import {
   Minus,
   Plus,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import {
   formatTimestamp,
   getToolTitle,
@@ -74,7 +74,7 @@ import { toast } from '@/lib/toast';
 import { PresentationSlideCard } from '../presentation-tools/PresentationSlideCard';
 import { PresentationSlideSkeleton } from '../presentation-tools/PresentationSlideSkeleton';
 import { usePresentationViewerStore } from '@/stores/presentation-viewer-store';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
 import { useSmoothStream } from '@/lib/streaming';
 
 const UnifiedDiffView: React.FC<{ lineDiff: LineDiff[]; fileName?: string }> = ({ lineDiff, fileName }) => (
@@ -221,8 +221,8 @@ export function FileOperationToolView({
   // Presentation viewer store for opening fullscreen presentation
   const { openPresentation } = usePresentationViewerStore();
   
-  // Kortix Computer store for opening files in Files Manager
-  const { openFileInComputer } = useKortixComputerStore();
+  // CarbonScope Computer store for opening files in Files Manager
+  const { openFileInComputer } = useCarbonScopeComputerStore();
 
   // Extract from structured metadata
   const name = toolCall.function_name.replace(/_/g, '-').toLowerCase();

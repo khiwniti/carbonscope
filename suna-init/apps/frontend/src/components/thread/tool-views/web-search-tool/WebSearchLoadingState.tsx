@@ -24,7 +24,7 @@ import {
   type LucideIcon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 
 interface QueryStyle {
   icon: LucideIcon;
@@ -335,7 +335,7 @@ export function WebSearchLoadingState({
                     {query}
                   </span>
 
-                  {/* Kortix loading animation */}
+                  {/* CarbonScope loading animation */}
                   <CarbonScopeLoader customSize={16} />
                 </motion.div>
               );

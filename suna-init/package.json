@@ -2,9 +2,9 @@
   "name": "agentpress",
   "private": true,
   "scripts": {
-    "dev:frontend": "pnpm --filter Kortix dev",
-    "dev:mobile": "pnpm --filter kortix dev",
-    "build:frontend": "pnpm --filter Kortix build"
+    "dev:frontend": "pnpm --filter CarbonScope dev",
+    "dev:mobile": "pnpm --filter CarbonScope dev",
+    "build:frontend": "pnpm --filter CarbonScope build"
   },
   "dependencies": {
     "@babel/types": "^7.28.6"

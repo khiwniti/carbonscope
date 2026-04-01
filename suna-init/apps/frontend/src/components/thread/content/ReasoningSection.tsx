@@ -80,11 +80,11 @@ export function ReasoningSection({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15, ease: "easeOut" }}
     >
-      {/* Header row: Full Kortix logo + Toggle button */}
+      {/* Header row: Full CarbonScope logo + Toggle button */}
       <div className="flex items-center gap-3">
-        {/* Full Kortix logo (logomark with text) - pulses when reasoning is active */}
+        {/* Full CarbonScope logo (logomark with text) - pulses when reasoning is active */}
         <img
-          src="/kortix-logomark-white.svg"
+          src="/CarbonScope-logomark-white.svg"
           alt="Suna"
           className={cn(
             "flex-shrink-0 dark:invert-0 invert",

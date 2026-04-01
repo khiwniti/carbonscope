@@ -19,7 +19,7 @@ import { clearUserLocalStorage } from '@/lib/utils/clear-local-storage';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { LogOut, Shield } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useMutation } from '@tanstack/react-query';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 

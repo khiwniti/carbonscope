@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, ArrowLeft, Info, Zap, ChevronRight, Plus, Sparkles, CheckCircle2, Link2, Activity } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useComposioAppsWithTriggers, useComposioAppTriggers, useCreateComposioEventTrigger, ComposioTriggerType } from '@/hooks/composio/use-composio-triggers';
 import { useUpdateTrigger } from '@/hooks/triggers';
 import { useComposioProfiles } from '@/hooks/composio/use-composio-profiles';
@@ -318,7 +318,7 @@ export const EventBasedTriggerDialog: React.FC<EventBasedTriggerDialogProps> = (
     const [name, setName] = useState('');
     const [prompt, setPrompt] = useState('');
     const [profileId, setProfileId] = useState('');
-    const [model, setModel] = useState('kortix/basic');
+    const [model, setModel] = useState('CarbonScope/basic');
     const [executionType] = useState<'agent'>('agent');
     const [showComposioConnector, setShowComposioConnector] = useState(false);
 
@@ -365,7 +365,7 @@ export const EventBasedTriggerDialog: React.FC<EventBasedTriggerDialogProps> = (
             setName('');
             setPrompt('');
             setProfileId('');
-            setModel('kortix/basic');
+            setModel('CarbonScope/basic');
             setShowComposioConnector(false);
         }
     }, [open, isEditMode]);
@@ -395,7 +395,7 @@ export const EventBasedTriggerDialog: React.FC<EventBasedTriggerDialogProps> = (
             setName(existingTrigger.name || '');
             setPrompt(triggerConfig.agent_prompt || '');
             setProfileId(triggerConfig.profile_id || '');
-            setModel(triggerConfig.model || 'kortix/basic');
+            setModel(triggerConfig.model || 'CarbonScope/basic');
 
             const { agent_prompt, profile_id, provider_id, trigger_slug, qualified_name, model: _, ...triggerSpecificConfig } = triggerConfig;
             setConfig(triggerSpecificConfig);

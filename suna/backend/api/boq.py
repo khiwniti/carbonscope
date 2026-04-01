@@ -153,22 +153,66 @@ async def upload_boq(
         matches = []
         stats = {"total": len(parse_result.materials), "matched": 0, "match_rate": 0.0}
 
-    # Build material results
+    # Build material results with TGO carbon calculation (fallback lookup)
+    from boq.tgo_lookup import calculate_material_carbon
+    from decimal import Decimal as D
+
     material_results = []
+    total_carbon = D("0")
+    breakdown: dict[str, float] = {}
+
     for i, mat in enumerate(parse_result.materials):
         match = matches[i] if i < len(matches) else None
+
+        # Try TGO fallback calculation
+        calc = calculate_material_carbon(mat.description_th, mat.quantity, mat.unit)
+        if calc is None and mat.description_en:
+            calc = calculate_material_carbon(mat.description_en, mat.quantity, mat.unit)
+
+        carbon_val = None
+        ef_val = None
+        tgo_name = None
+        confidence = 0.0
+        classification = "unmatched"
+
+        if calc:
+            carbon_val = calc["carbon_kgco2e"]
+            ef_val = calc["emission_factor"]
+            tgo_name = calc["matched_material_en"]
+            confidence = 0.85
+            classification = "auto_match"
+            total_carbon += D(str(carbon_val))
+            # Aggregate by material category (first word of name)
+            cat = calc["material_id"].split("_")[0].capitalize()
+            breakdown[cat] = breakdown.get(cat, 0.0) + carbon_val
+        elif match and match.tgo_match:
+            tgo_name = match.tgo_match.get("name")
+            ef_val = match.tgo_match.get("emission_factor")
+            confidence = match.confidence
+            classification = match.classification
+
         material_results.append(MaterialResult(
             line_number=mat.line_number,
             description_th=mat.description_th,
             description_en=mat.description_en,
             quantity=float(mat.quantity),
             unit=mat.unit,
-            tgo_material=match.tgo_match.get("name") if match and match.tgo_match else None,
-            emission_factor=match.tgo_match.get("emission_factor") if match and match.tgo_match else None,
-            carbon_kgco2e=None,  # full calculation queued
-            confidence=match.confidence if match else 0.0,
-            classification=match.classification if match else "unmatched",
+            tgo_material=tgo_name,
+            emission_factor=ef_val,
+            carbon_kgco2e=carbon_val,
+            confidence=confidence,
+            classification=classification,
         ))
+
+    matched_count = sum(1 for m in material_results if m.classification == "auto_match")
+    stats = {
+        "total": len(material_results),
+        "matched": matched_count,
+        "match_rate": round(matched_count / len(material_results) * 100, 1) if material_results else 0.0,
+        "data_source": "TGO_FALLBACK",
+    }
+
+    total_carbon_val = float(total_carbon) if total_carbon > 0 else None
 
     _analysis_store[analysis_id] = {
         "analysis_id": analysis_id,
@@ -179,8 +223,8 @@ async def upload_boq(
         "language": language,
         "materials": [m.model_dump() for m in material_results],
         "match_statistics": stats,
-        "breakdown_by_category": {},
-        "total_carbon_kgco2e": None,
+        "breakdown_by_category": breakdown,
+        "total_carbon_kgco2e": total_carbon_val,
         "created_at": now,
         "completed_at": now,
         "parse_metadata": parse_result.metadata,
@@ -194,7 +238,7 @@ async def upload_boq(
         status="completed",
         materials_count=len(parse_result.materials),
         success_rate=parse_result.metadata.get("success_rate", 0.0),
-        message=f"Parsed {len(parse_result.materials)} materials successfully.",
+        message=f"Parsed {len(parse_result.materials)} materials. Carbon: {total_carbon_val:.0f} kgCO₂e" if total_carbon_val else f"Parsed {len(parse_result.materials)} materials.",
     )
 
 

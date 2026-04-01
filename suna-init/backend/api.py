@@ -405,16 +405,16 @@ async def log_requests_middleware(request: Request, call_next):
 
 # Define allowed origins based on environment
 allowed_origins = [
-    "https://www.kortix.com",
-    "https://kortix.com",
-    "https://dev.kortix.com",
-    "https://staging.kortix.com",
-    "https://prod-test.kortix.com",
+    "https://www.CarbonScope.com",
+    "https://CarbonScope.com",
+    "https://dev.CarbonScope.com",
+    "https://staging.CarbonScope.com",
+    "https://prod-test.CarbonScope.com",
     "https://carbonscope.ensimu.space",
 ]
-# Allow all *.kortix.com subdomains and Vercel preview deployments
+# Allow all *.CarbonScope.com subdomains and Vercel preview deployments
 allow_origin_regex = (
-    r"https://([a-z0-9-]+\.)?kortix\.com|https://.*-kortixai\.vercel\.app"
+    r"https://([a-z0-9-]+\.)?CarbonScope\.com|https://.*-CarbonScopeai\.vercel\.app"
 )
 
 # Add local origins for development
@@ -424,7 +424,7 @@ if config.ENV_MODE == EnvMode.LOCAL:
 
 # Add staging-specific origins
 if config.ENV_MODE == EnvMode.STAGING:
-    allowed_origins.append("https://staging.kortix.com")
+    allowed_origins.append("https://staging.CarbonScope.com")
     allowed_origins.append("http://localhost:3000")
 
 app.add_middleware(

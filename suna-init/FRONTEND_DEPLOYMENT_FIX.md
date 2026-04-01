@@ -10,7 +10,7 @@
 
 ### A. Update next.config.ts Backend URL
 
-Replace the old Kortix URLs with the Azure backend:
+Replace the old CarbonScope URLs with the Azure backend:
 
 ```typescript
 // apps/frontend/next.config.ts
@@ -284,7 +284,7 @@ az staticwebapp appsettings set \
 ### Root Cause
 1. Pi agent created Azure Static Web App but never executed deployment
 2. Configuration had environment variable name mismatch
-3. Old Kortix URLs in next.config.ts instead of Azure backend
+3. Old CarbonScope URLs in next.config.ts instead of Azure backend
 
 ### Solution
 1. Fix `next.config.ts` to use Azure backend URL

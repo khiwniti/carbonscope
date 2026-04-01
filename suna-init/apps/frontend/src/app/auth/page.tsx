@@ -11,7 +11,7 @@ import { useState, useEffect, Suspense, lazy, useRef } from 'react';
 import { signUp, verifyOtp } from './actions';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Mail, MailCheck, Clock, ExternalLink } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useAuth } from '@/components/AuthProvider';
 import { useAuthMethodTracking } from '@/stores/auth-tracking';
 import { toast } from '@/lib/toast';
@@ -692,7 +692,7 @@ function LoginContent() {
                     privacyPolicy: (chunks) => {
                       return (
                         <a
-                          href="https://www.kortix.com/legal?tab=privacy"
+                          href="https://www.CarbonScope.com/legal?tab=privacy"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:underline underline-offset-2 text-primary"
@@ -705,7 +705,7 @@ function LoginContent() {
                     termsOfService: (chunks) => {
                       return (
                         <a
-                          href="https://www.kortix.com/legal?tab=terms"
+                          href="https://www.CarbonScope.com/legal?tab=terms"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:underline underline-offset-2 text-primary"

@@ -45,8 +45,8 @@ const PresenceDebug = lazy(() =>
   import('@/components/debug/presence-debug').then(mod => ({ default: mod.PresenceDebug }))
 );
 
-const KortixAppBanners = lazy(() => 
-  import('@/components/announcements/kortix-app-banners').then(mod => ({ default: mod.KortixAppBanners }))
+const CarbonScopeAppBanners = lazy(() => 
+  import('@/components/announcements/CarbonScope-app-banners').then(mod => ({ default: mod.CarbonScopeAppBanners }))
 );
 
 const TutorialsBanner = lazy(() => 
@@ -255,9 +255,9 @@ export default function DashboardLayoutContent({
         <Suspense fallback={null}>
           <PresentationViewerWrapper />
         </Suspense>
-        {/* Kortix App announcement banners */}
+        {/* CarbonScope App announcement banners */}
         <Suspense fallback={null}>
-          <KortixAppBanners disableMobileAdvertising={featureFlags.disableMobileAdvertising} />
+          <CarbonScopeAppBanners disableMobileAdvertising={featureFlags.disableMobileAdvertising} />
         </Suspense>
         {/* Tutorials banner for new users */}
         <Suspense fallback={null}>

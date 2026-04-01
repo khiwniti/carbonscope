@@ -1,9 +1,9 @@
-# Kortix Robots.txt
+# CarbonScope Robots.txt
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://kortix.com/sitemap.xml
+Sitemap: https://CarbonScope.com/sitemap.xml
 
 # Disallow sensitive routes
 Disallow: /api/

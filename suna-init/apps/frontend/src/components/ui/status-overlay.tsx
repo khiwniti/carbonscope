@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckCircle, AlertCircle } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useDeleteOperation } from '@/stores/delete-operation-store';
 
 export function StatusOverlay() {

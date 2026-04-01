@@ -1,5 +1,5 @@
-name: kortix-infra-dev
-description: Kortix DEV environment - Lightsail + Cloudflare Tunnel
+name: CarbonScope-infra-dev
+description: CarbonScope DEV environment - Lightsail + Cloudflare Tunnel
 runtime:
   name: nodejs
   options:

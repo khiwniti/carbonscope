@@ -19,7 +19,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { X, Image as ImageIcon, Presentation, BarChart3, FileText, Search, Palette, Video, Code2, Sparkles, Brain as BrainIcon, MessageSquare, CornerDownLeft, Plug, Lock } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { VoiceRecorder } from './voice-recorder';
 import { useTheme } from 'next-themes';
 import { useTranslations } from 'next-intl';
@@ -549,7 +549,7 @@ function ModeButton({
   );
 }
 
-// Kortix agent modes switcher - isolated from typing state
+// CarbonScope agent modes switcher - isolated from typing state
 interface SunaAgentModeSwitcherProps {
   enabled: boolean;
   isSunaAgent: boolean;
@@ -873,7 +873,7 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
     const [agentConfigDialog, setAgentConfigDialog] = useState<{ open: boolean; tab: 'instructions' | 'knowledge' | 'triggers' | 'tools' | 'integrations' }>({ open: false, tab: 'instructions' });
     const [mounted, setMounted] = useState(false);
     const [animatedPlaceholder, setAnimatedPlaceholder] = useState('');
-    const [isModeDismissing, setIsModeDismissing] = useState(false);    // Kortix Agent Modes feature flag
+    const [isModeDismissing, setIsModeDismissing] = useState(false);    // CarbonScope Agent Modes feature flag
     const ENABLE_SUNA_AGENT_MODES = false;
     const [sunaAgentModes, setSunaAgentModes] = useState<'adaptive' | 'autonomous' | 'chat'>('adaptive');
 
@@ -1009,12 +1009,12 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
     const { data: agentsResponse, isLoading: isLoadingAgents } = useAgents({}, { enabled: isLoggedIn });
     const agents = Array.isArray(agentsResponse?.agents) ? agentsResponse.agents : [];
 
-    // Check if selected agent is Kortix based on agent data
-    // While loading, default to Kortix (assume Kortix is the default agent)
+    // Check if selected agent is CarbonScope based on agent data
+    // While loading, default to CarbonScope (assume CarbonScope is the default agent)
     const selectedAgent = agents.find(agent => agent.agent_id === selectedAgentId);
     const sunaAgent = agents.find(agent => agent.metadata?.is_suna_default === true);
     const isSunaAgent = isLoadingAgents 
-        ? true // Show Kortix modes while loading
+        ? true // Show CarbonScope modes while loading
         : (selectedAgent?.metadata?.is_suna_default || (!selectedAgentId && sunaAgent !== undefined) || false);
 
     const { initializeFromAgents } = useAgentSelection();

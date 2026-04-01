@@ -15,7 +15,7 @@ import {
   History,
   Plus
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { formatDistanceToNow } from 'date-fns';
 import { useAgentVersions, useActivateAgentVersion } from '@/hooks/agents/use-agent-versions';
 import { Agent } from '@/hooks/agents/utils';

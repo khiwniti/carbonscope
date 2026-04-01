@@ -163,14 +163,14 @@ export function CarbonScopeLoader({
           borderTopColor: spinnerColor,
           borderRadius: '50%',
           animation: autoPlay && loop 
-            ? `kortix-spin ${animationDuration}s linear infinite` 
+            ? `CarbonScope-spin ${animationDuration}s linear infinite` 
             : autoPlay 
-              ? `kortix-spin ${animationDuration}s linear` 
+              ? `CarbonScope-spin ${animationDuration}s linear` 
               : 'none',
         }}
       />
       <style jsx>{`
-        @keyframes kortix-spin {
+        @keyframes CarbonScope-spin {
           to {
             transform: rotate(360deg);
           }

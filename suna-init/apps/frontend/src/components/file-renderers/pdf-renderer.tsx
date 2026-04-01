@@ -9,7 +9,7 @@ import {
   ChevronRight,
   AlertTriangle,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 
 // Import styles for annotations and text layer
 import 'react-pdf/dist/Page/AnnotationLayer.css';

@@ -41,11 +41,11 @@
 
 **File:** `apps/frontend/src/app/auth/page.tsx` (estimated)  
 **Location:** Auth page heading  
-**Issue:** Page still references "Kortix" instead of "CarbonScope"
+**Issue:** Page still references "CarbonScope" instead of "CarbonScope"
 
 **Current:**
 ```
-Sign in or create your Kortix account
+Sign in or create your CarbonScope account
 ```
 
 **Expected:**
@@ -144,7 +144,7 @@ app/
 - Mode preview panel on right side
 - Magic link button (emerald, properly disabled state)
 
-⚠️ **Issue:** "Kortix" branding present (should be "CarbonScope")
+⚠️ **Issue:** "CarbonScope" branding present (should be "CarbonScope")
 
 🎨 **Design Score:** 8/10 (deducted for branding inconsistency)
 
@@ -318,7 +318,7 @@ const weekProjection = weeklyProjections.find(w => w.week === week);
 
 ### Immediate (Before Launch)
 
-1. **Fix Kortix → CarbonScope rebrand** in auth page
+1. **Fix CarbonScope → CarbonScope rebrand** in auth page
 2. **Add error boundaries** at app/dashboard/auth levels
 3. **Remove/wrap console statements** for production
 4. **Test magic link email flow** (requires backend)
@@ -434,9 +434,9 @@ Key remaining work:
 
 ---
 
-### 3. Kortix Branding (Identified - Not Fixed)
+### 3. CarbonScope Branding (Identified - Not Fixed)
 
-**Problem:** Auth modal still says "Sign in or create your Kortix account"  
+**Problem:** Auth modal still says "Sign in or create your CarbonScope account"  
 **Location:** `apps/frontend/src/app/auth/page.tsx` (estimated)  
 **Status:** ⚠️ Requires additional rebranding pass  
 **Priority:** HIGH (user-facing)
@@ -453,10 +453,10 @@ Key remaining work:
 - **Regressions:** 0
 - **Overall Quality:** 85/100
 
-**Recommendation:** Fix remaining Kortix reference, then deploy to staging for user acceptance testing.
+**Recommendation:** Fix remaining CarbonScope reference, then deploy to staging for user acceptance testing.
 
 ---
 
 **Report Generated:** March 28, 2026 14:15 UTC  
 **Testing Agent:** AI E2E Browser Testing  
-**Next Steps:** Complete rebranding verification (`rg -i "kortix"`)
+**Next Steps:** Complete rebranding verification (`rg -i "CarbonScope"`)

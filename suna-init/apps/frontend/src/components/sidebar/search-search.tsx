@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useState, useEffect, useMemo, ReactNode } from 'react';
 import { Search, X, FileText, Loader2 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { useRouter, usePathname } from 'next/navigation';
 import { format } from 'date-fns';
 

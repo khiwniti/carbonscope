@@ -6,7 +6,7 @@ import { toast } from '@/lib/toast';
 import { Icons } from './home/icons';
 // Using proper GitHub brand icon from Icons component
 import { useAuthMethodTracking } from '@/stores/auth-tracking';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 

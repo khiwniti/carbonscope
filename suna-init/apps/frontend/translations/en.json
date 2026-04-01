@@ -435,7 +435,7 @@
     "rateThisResult": "Rate this result",
     "feedbackHelpsImprove": "Your feedback helps us improve",
     "additionalFeedbackOptional": "Additional feedback (optional)",
-    "helpKortixImprove": "Help CarbonScope improve with the feedback",
+    "helpCarbonScopeImprove": "Help CarbonScope improve with the feedback",
     "submit": "Submit",
     "submitting": "Submitting...",
     "feedbackSubmittedSuccess": "Feedback submitted successfully",
@@ -461,7 +461,7 @@
     "title": "CarbonScope: Your Autonomous AI Worker",
     "subtitle": "Built for complex tasks, designed for everything. The ultimate AI assistant that handles it all—from simple requests to mega-complex projects.",
     "tryItOut": "Try it out",
-    "kortixComputer": "CarbonScope Computer",
+    "CarbonScopeComputer": "CarbonScope Computer",
     "running": "Running",
     "workers": {
       "images": {

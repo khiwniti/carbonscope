@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CreditCard, Zap, Shield, ArrowRight, CheckCircle, LogOut } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import { toast } from '@/lib/toast';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, Suspense, lazy } from 'react';
@@ -127,7 +127,7 @@ export default function ActivateTrialPage() {
           <div>
             <CardTitle className="text-2xl font-medium flex items-center justify-center gap-2">
               <CarbonScopeLogoSimple />
-              <span>Welcome to Kortix</span>
+              <span>Welcome to CarbonScope</span>
             </CardTitle>
             <CardDescription className="mt-2">
               Start your journey with a 7-day free trial

@@ -37,7 +37,7 @@ cd /teamspace/studios/this_studio/comprehensive-suna-bim-agent/suna-init
 
 ```bash
 cd /teamspace/studios/this_studio/comprehensive-suna-bim-agent/suna-init
-nohup pnpm --filter Kortix dev > /tmp/carbonscope-frontend.log 2>&1 &
+nohup pnpm --filter CarbonScope dev > /tmp/carbonscope-frontend.log 2>&1 &
 ```
 
 ### Check Status
@@ -203,7 +203,7 @@ After=network.target
 Type=simple
 User=your-username
 WorkingDirectory=/teamspace/studios/this_studio/comprehensive-suna-bim-agent/suna-init
-ExecStart=/usr/bin/pnpm --filter Kortix dev
+ExecStart=/usr/bin/pnpm --filter CarbonScope dev
 Restart=always
 RestartSec=10
 
@@ -226,7 +226,7 @@ npm install -g pm2
 
 # Start with pm2
 cd /teamspace/studios/this_studio/comprehensive-suna-bim-agent/suna-init
-pm2 start "pnpm --filter Kortix dev" --name carbonscope
+pm2 start "pnpm --filter CarbonScope dev" --name carbonscope
 
 # Save pm2 config
 pm2 save
@@ -292,7 +292,7 @@ If server uses too much memory:
 
 ```bash
 # Set Node.js memory limit
-NODE_OPTIONS="--max-old-space-size=2048" pnpm --filter Kortix dev
+NODE_OPTIONS="--max-old-space-size=2048" pnpm --filter CarbonScope dev
 ```
 
 ---

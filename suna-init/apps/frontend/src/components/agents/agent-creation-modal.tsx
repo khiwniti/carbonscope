@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Globe, Wrench, MessageSquare, ChevronLeft } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useCreateNewAgent } from '@/hooks/agents/use-agents';
-import { useKortixTeamTemplates } from '@/hooks/secure-mcp/use-secure-mcp';
+import { useCarbonScopeTeamTemplates } from '@/hooks/secure-mcp/use-secure-mcp';
 import { AgentCountLimitError } from '@/lib/api/errors';
 import { toast } from '@/lib/toast';
 import type { BaseAgentData } from '@/components/ui/unified-agent-card';
@@ -58,7 +58,7 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
 
   const createNewAgentMutation = useCreateNewAgent();
   // Only fetch templates when modal is open to avoid unnecessary API calls
-  const { data: templates } = useKortixTeamTemplates({ enabled: open });
+  const { data: templates } = useCarbonScopeTeamTemplates({ enabled: open });
 
   const handleExploreTemplates = () => {
     onOpenChange(false);
@@ -75,7 +75,7 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
       system_prompt: template.system_prompt,
       tags: template.tags || [],
       download_count: template.download_count || 0,
-      is_kortix_team: template.is_kortix_team || false,
+      is_CarbonScope_team: template.is_CarbonScope_team || false,
       creator_name: template.creator_name,
       created_at: template.created_at,
       icon_name: template.icon_name,
@@ -105,7 +105,7 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
     icon_background: template.icon_background,
     creator_id: template.creator_id,
     creator_name: template.creator_name,
-    is_kortix_team: template.is_kortix_team || false,
+    is_CarbonScope_team: template.is_CarbonScope_team || false,
     download_count: template.download_count || 0,
     marketplace_published_at: template.marketplace_published_at,
     mcp_requirements: template.mcp_requirements || [],

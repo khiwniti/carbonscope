@@ -12,7 +12,7 @@ export interface BreadcrumbSegment {
   isLast: boolean;
 }
 
-interface KortixComputerHeaderProps {
+interface CarbonScopeComputerHeaderProps {
   /** Icon to display in the header */
   icon: LucideIcon;
   /** Click handler for the icon button */
@@ -36,12 +36,12 @@ interface KortixComputerHeaderProps {
 }
 
 /**
- * Shared header component for all Kortix Computer views (Files, File Viewer, Browser).
+ * Shared header component for all CarbonScope Computer views (Files, File Viewer, Browser).
  * Ensures consistent styling and prevents layout jumps when switching tabs.
  * 
  * ALL styling is controlled here - consumers only pass data props.
  */
-export function KortixComputerHeader({
+export function CarbonScopeComputerHeader({
   icon: IconComponent,
   onIconClick,
   iconTitle,
@@ -50,7 +50,7 @@ export function KortixComputerHeader({
   breadcrumbs,
   onBreadcrumbClick,
   actions,
-}: KortixComputerHeaderProps) {
+}: CarbonScopeComputerHeaderProps) {
   const handleIconPress = () => {
     if (onIconClick) {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

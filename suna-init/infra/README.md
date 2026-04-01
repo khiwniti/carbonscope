@@ -8,14 +8,14 @@ Pulumi Infrastructure-as-Code for Suna
                     ┌─────────────────────────────────────────────────────────┐
                     │                    CLOUDFLARE                            │
                     │                                                          │
-                    │   api.kortix.com ──► Worker (api-kortix-router)          │
+                    │   api.CarbonScope.com ──► Worker (api-CarbonScope-router)          │
                     │                          │                               │
                     │         ┌────────────────┴────────────────┐              │
                     │         ▼                                 ▼              │
                     │   ACTIVE_BACKEND=lightsail          (future: ecs)        │
                     │         │                                 │              │
                     │         ▼                                 ▼              │
-                    │   api-lightsail.kortix.com         api-ecs.kortix.com    │
+                    │   api-lightsail.CarbonScope.com         api-ecs.CarbonScope.com    │
                     │   (Tunnel)                         (Direct to ALB)       │
                     └─────────┬─────────────────────────────────┬──────────────┘
                               │                                 │

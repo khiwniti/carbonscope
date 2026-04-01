@@ -25,7 +25,7 @@ import {
   Eye,
   ExternalLink,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
+import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -58,11 +58,11 @@ import { useDownloadRestriction } from '@/hooks/billing';
 import JSZip from 'jszip';
 import { normalizeFilenameToNFC } from '@agentpress/shared';
 import { cn } from '@/lib/utils';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
 import { usePresentationViewerStore } from '@/stores/presentation-viewer-store';
 import { Badge } from '@/components/ui/badge';
 import { VersionBanner } from './VersionBanner';
-import { KortixComputerHeader } from './KortixComputerHeader';
+import { CarbonScopeComputerHeader } from './CarbonScopeComputerHeader';
 import { useFileData } from '@/hooks/use-file-data';
 import { PresentationSlidePreview } from '../tool-views/presentation-tools/PresentationSlidePreview';
 import { PresentationSlideSkeleton } from '../tool-views/presentation-tools/PresentationSlideSkeleton';
@@ -638,7 +638,7 @@ interface FileBrowserViewProps {
   project?: Project;
   projectId?: string;
   /** 
-   * 'default' - Side panel view in Kortix Computer (shows all files)
+   * 'default' - Side panel view in CarbonScope Computer (shows all files)
    * 'library' - Full page library view with larger cards and different layout
    * 'inline-library' - Side panel view with library filtering (main outputs only) and thumbnails
    */
@@ -662,7 +662,7 @@ export function FileBrowserView({
   const shouldFilterFiles = isLibraryView || isInlineLibrary;
   const { session } = useAuth();
   
-  // Kortix Computer Store
+  // CarbonScope Computer Store
   const { 
     currentPath, 
     navigateToPath,
@@ -671,7 +671,7 @@ export function FileBrowserView({
     selectedVersionDate,
     setSelectedVersion,
     clearSelectedVersion,
-  } = useKortixComputerStore();
+  } = useCarbonScopeComputerStore();
 
   // Presentation viewer store (for library view - opens fullscreen presentation)
   const openPresentation = usePresentationViewerStore((state) => state.openPresentation);
@@ -828,7 +828,7 @@ export function FileBrowserView({
             const presentationName = file.path.split('/').pop() || 'presentation';
             openPresentation(presentationName, project.sandbox.sandbox_url, 1);
           } else {
-            // In side panel view, use kortix computer store
+            // In side panel view, use CarbonScope computer store
             openFile(file.path);
           }
         } else {
@@ -836,7 +836,7 @@ export function FileBrowserView({
           navigateToPath(file.path);
         }
       } else {
-        // Open file using kortix computer store
+        // Open file using CarbonScope computer store
         // FileViewerView will detect selectedVersion from store
         openFile(file.path);
       }
@@ -1978,7 +1978,7 @@ export function FileBrowserView({
   return (
     <div className="h-full flex flex-col overflow-hidden">
       {/* Header with Breadcrumb Navigation */}
-      <KortixComputerHeader
+      <CarbonScopeComputerHeader
         icon={Home}
         onIconClick={navigateHome}
         iconTitle="Home"

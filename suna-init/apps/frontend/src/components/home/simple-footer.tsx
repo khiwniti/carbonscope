@@ -9,7 +9,7 @@ import { useGitHubStars } from '@/hooks/utils';
 
 export function SimpleFooter() {
   const currentYear = new Date().getFullYear();
-  const { formattedStars, loading: starsLoading } = useGitHubStars('kortix-ai', 'suna');
+  const { formattedStars, loading: starsLoading } = useGitHubStars('CarbonScope-ai', 'suna');
 
   return (
     <footer className="w-full bg-background/50 backdrop-blur-sm">
@@ -30,7 +30,7 @@ export function SimpleFooter() {
             {/* Social links */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://github.com/kortix-ai/suna"
+                href="https://github.com/CarbonScope-ai/suna"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -69,7 +69,7 @@ export function SimpleFooter() {
                 </svg>
               </a>
               <a
-                href="https://x.com/kortix"
+                href="https://x.com/CarbonScope"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
@@ -87,7 +87,7 @@ export function SimpleFooter() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/kortix/"
+                href="https://www.linkedin.com/company/CarbonScope/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
