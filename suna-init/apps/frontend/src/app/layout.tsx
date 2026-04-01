@@ -9,7 +9,6 @@ import { plusJakarta } from './fonts/plus-jakarta';
 import { ibmPlexMono } from './fonts/ibm-plex-mono';
 import { Suspense, lazy } from 'react';
 import { featureFlags } from '@/lib/feature-flags';
-import { getSafeHtml } from '@/lib/sanitize';
 
 // Lazy load non-critical analytics and global components
 const Analytics = lazy(() => import('@vercel/analytics/react').then(mod => ({ default: mod.Analytics })));
@@ -113,7 +112,7 @@ export default function RootLayout({
         
         {/* Container Load - Initialize dataLayer with page context BEFORE GTM loads */}
         <script
-          dangerouslySetInnerHTML={getSafeHtml(`
+          dangerouslySetInnerHTML={{ __html: `
               (function() {
                 window.dataLayer = window.dataLayer || [];
                 var pathname = window.location.pathname;
@@ -154,7 +153,7 @@ export default function RootLayout({
 
                 window.dataLayer.push(context);
               })();
-            `)}
+            ` }}
         />
         
         {/* Static SEO meta tags - rendered in initial HTML */}
@@ -183,7 +182,7 @@ export default function RootLayout({
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: siteMetadata.name,
@@ -202,12 +201,12 @@ export default function RootLayout({
                 contactType: 'Customer Support',
                 url: siteMetadata.url,
               },
-            }))}
+            }) }}
         />
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'SoftwareApplication',
               name: siteMetadata.title,
@@ -225,7 +224,7 @@ export default function RootLayout({
                 ratingValue: '4.8',
                 ratingCount: '1000',
               },
-            }))}
+            }) }}
         />
       </head>
 

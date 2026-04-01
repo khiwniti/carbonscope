@@ -6,7 +6,6 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { CarbonScopeLoader } from '@/components/ui/kortix-loader';
-import { getSafeHtml } from '@/lib/sanitize';
 
 // Global cache for rendered Mermaid diagrams
 const mermaidCache = new Map<string, string>();
@@ -320,7 +319,7 @@ export const MermaidRendererClient: React.FC<MermaidRendererClientProps> = React
 
   return (
     <>
-      <style dangerouslySetInnerHTML={getSafeHtml(`
+      <style dangerouslySetInnerHTML={{ __html: `
         .mermaid-container svg {
           max-width: 100% !important;
           height: auto !important;
@@ -335,7 +334,7 @@ export const MermaidRendererClient: React.FC<MermaidRendererClientProps> = React
           fill: hsl(var(--foreground)) !important;
           font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif !important;
         }
-      `)} />
+      ` }} />
       <div
         className={cn(
           'mermaid-container my-4 rounded-2xl border overflow-auto bg-background relative group cursor-pointer',
@@ -345,7 +344,7 @@ export const MermaidRendererClient: React.FC<MermaidRendererClientProps> = React
         style={{ minHeight: '200px', width: '100%' }}
         onClick={enableFullscreen ? handleFullscreenOpen : undefined}
       >
-        <div ref={containerRef} dangerouslySetInnerHTML={getSafeHtml(renderedContent)} />
+        <div ref={containerRef} dangerouslySetInnerHTML={{ __html: renderedContent }} />
         {enableFullscreen && (
           <div className="absolute inset-0 bg-black/0 hover:bg-black/5 transition-colors rounded-2xl flex items-center justify-center opacity-0 hover:opacity-100 pointer-events-none">
             <Button

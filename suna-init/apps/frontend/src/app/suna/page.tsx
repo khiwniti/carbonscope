@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Github } from 'lucide-react';
 import Image from 'next/image';
-import { getSafeHtml } from '@/lib/sanitize';
 
 export const metadata: Metadata = {
   title: 'Suna is now Kortix | Kortix Suna - Open Source AI Worker',
@@ -59,7 +58,7 @@ export default function SunaPage() {
       {/* Structured Data for SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Organization',
           name: 'Kortix',
@@ -73,12 +72,12 @@ export default function SunaPage() {
           ],
           description:
             'Kortix (formerly known as Suna) is an open source generalist AI worker that helps you accomplish real-world tasks through natural conversation.',
-        }))}
+        }) }}
       />
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
@@ -95,7 +94,7 @@ export default function SunaPage() {
               item: 'https://www.kortix.com/suna',
             },
           ],
-        }))}
+        }) }}
       />
 
       <main className="w-full relative overflow-hidden bg-background">
