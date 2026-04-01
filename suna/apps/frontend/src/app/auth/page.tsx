@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { validateEmail, validateOtp } from '@/lib/validations/auth';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -133,6 +134,13 @@ function LoginContent() {
     markEmailAsUsed();
 
     const email = formData.get('email') as string;
+
+    const emailError = validateEmail(email);
+    if (emailError) {
+      toast.error(emailError);
+      return {};
+    }
+
     setRegistrationEmail(email);
 
     const finalReturnUrl = returnUrl || '/dashboard';
@@ -227,8 +235,15 @@ function LoginContent() {
   // Handle OTP verification
   const handleVerifyOtp = async (prevState: any, formData: FormData) => {
     const email = expiredEmailState || formData.get('email') as string;
-    if (!email) {
-      toast.error(t('pleaseEnterValidEmail'));
+    const emailError = validateEmail(email || '');
+    if (emailError) {
+      toast.error(emailError);
+      return {};
+    }
+
+    const otpError = validateOtp(otpCode);
+    if (otpError) {
+      toast.error(otpError);
       return {};
     }
 

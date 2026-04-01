@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
+import { resetPasswordSchema } from '@/lib/validations/auth';
+import { toast } from '@/lib/toast';
 import { useState, useEffect, Suspense } from 'react';
 import { AlertCircle, ArrowLeft, CheckCircle } from 'lucide-react';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
@@ -31,6 +33,16 @@ function ResetPasswordContent() {
   const handleResetPassword = async (prevState: any, formData: FormData) => {
     if (!code) {
       return { message: 'Invalid reset code' };
+    }
+
+    const password = formData.get('password') as string;
+    const confirmPassword = formData.get('confirmPassword') as string;
+
+    const validation = resetPasswordSchema.safeParse({ password, confirmPassword });
+    if (!validation.success) {
+      const message = validation.error.errors[0]?.message ?? 'Invalid input';
+      toast.error(message);
+      return { message };
     }
 
     const result = await resetPassword(prevState, formData);
