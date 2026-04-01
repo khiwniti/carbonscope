@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { getSafeHtml } from '@/lib/sanitize';
 
 // Tutorial data structure - easy to add more tutorials
 interface Tutorial {
@@ -190,7 +191,7 @@ function TutorialCard({ tutorial, index }: { tutorial: Tutorial; index: number }
             onMouseLeave={() => setIsActive(false)}
           >
             <div 
-              dangerouslySetInnerHTML={{ __html: tutorial.embedCode }}
+              dangerouslySetInnerHTML={getSafeHtml(tutorial.embedCode )}
               className={cn(
                 "transition-opacity",
                 !isActive && "pointer-events-none"

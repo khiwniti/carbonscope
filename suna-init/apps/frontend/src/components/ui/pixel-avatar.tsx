@@ -1,4 +1,5 @@
 import React from 'react';
+import { getSafeHtml } from '@/lib/sanitize';
 
 export const PIXEL_ART_DESIGNS = {
   robot: `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -235,7 +236,7 @@ export const PixelAvatar: React.FC<PixelAvatarProps> = ({
     <div 
       className={`inline-block ${className}`} 
       style={{ width: size, height: size }}
-      dangerouslySetInnerHTML={{ __html: pixelArt }}
+      dangerouslySetInnerHTML={getSafeHtml(pixelArt )}
     />
   );
 };

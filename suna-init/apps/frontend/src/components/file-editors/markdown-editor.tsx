@@ -38,6 +38,7 @@ import { gfm } from 'turndown-plugin-gfm';
 import { cn } from '@/lib/utils';
 import { MarkdownToolbar } from './markdown-toolbar';
 import { UnifiedMarkdown } from '@/components/markdown';
+import { getSafeHtml } from '@/lib/sanitize';
 
 // Configure marked for GFM
 marked.setOptions({
@@ -549,7 +550,7 @@ export function MarkdownEditor({
               </FloatingMenu>
             </>
           )}
-          <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={getSafeHtml(`
             /* ═══════════════════════════════════════════════════════════════
                KORTIX TIPTAP EDITOR STYLES
                Matches UnifiedMarkdown for consistent rendering
@@ -780,7 +781,7 @@ export function MarkdownEditor({
               overflow-x: auto;
               margin: 1.5rem 0;
             }
-          ` }} />
+          `)} />
           <div className="tiptap-editor pt-6">
             <EditorContent
               editor={editor}

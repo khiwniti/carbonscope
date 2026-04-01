@@ -9,6 +9,7 @@ import type { Project } from '@/lib/api/threads';
 import { useQueryClient } from '@tanstack/react-query';
 import { threadKeys } from '@/hooks/threads/keys';
 import { backendApi } from '@/lib/api-client';
+import { getSafeHtml } from '@/lib/sanitize';
 
 /**
  * Optimistically extract a string field from partial/streaming JSON.
@@ -952,7 +953,7 @@ export const ShowToolStream: React.FC<ShowToolStreamProps> = ({
                                             return (
                                                 <span>
                                                     {prefix}
-                                                    <span dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                                    <span dangerouslySetInnerHTML={getSafeHtml(htmlContent )} />
                                                 </span>
                                             );
                                         }
@@ -965,7 +966,7 @@ export const ShowToolStream: React.FC<ShowToolStreamProps> = ({
                                             return (
                                                 <span>
                                                     {prefix}
-                                                    <span dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                                    <span dangerouslySetInnerHTML={getSafeHtml(htmlContent )} />
                                                 </span>
                                             );
                                         }
@@ -974,14 +975,14 @@ export const ShowToolStream: React.FC<ShowToolStreamProps> = ({
                                     if (STREAMABLE_TOOLS.SPREADSHEET_TOOLS.has(toolName || '')) {
                                         // For spreadsheet tools, show with table emoji prefix
                                         if (htmlContent !== contentToDisplay) {
-                                            return <span dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+                                            return <span dangerouslySetInnerHTML={getSafeHtml(htmlContent)} />;
                                         }
                                         return contentToDisplay;
                                     }
                                     if (STREAMABLE_TOOLS.OTHER_STREAMABLE.has(toolName || '')) {
                                         // For other tools, render HTML if available
                                         if (htmlContent !== contentToDisplay) {
-                                            return <span dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+                                            return <span dangerouslySetInnerHTML={getSafeHtml(htmlContent)} />;
                                         }
                                         return contentToDisplay;
                                     }

@@ -9,6 +9,7 @@ import { plusJakarta } from './fonts/plus-jakarta';
 import { ibmPlexMono } from './fonts/ibm-plex-mono';
 import { Suspense, lazy } from 'react';
 import { featureFlags } from '@/lib/feature-flags';
+import { getSafeHtml } from '@/lib/sanitize';
 
 // Lazy load non-critical analytics and global components
 const Analytics = lazy(() => import('@vercel/analytics/react').then(mod => ({ default: mod.Analytics })));

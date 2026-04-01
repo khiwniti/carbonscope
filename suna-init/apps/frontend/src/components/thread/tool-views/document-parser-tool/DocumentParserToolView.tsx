@@ -23,6 +23,7 @@ import { Separator } from "@/components/ui/separator";
 import { LoadingState } from '../shared/LoadingState';
 import { extractDocumentParserData } from './_utils';
 import { cn } from '@/lib/utils';
+import { getSafeHtml } from '@/lib/sanitize';
 
 export function DocumentParserToolView({
   toolCall,
@@ -232,7 +233,7 @@ export function DocumentParserToolView({
                               {table.html ? (
                                 <div 
                                   className="text-sm overflow-x-auto"
-                                  dangerouslySetInnerHTML={{ __html: table.html }}
+                                  dangerouslySetInnerHTML={getSafeHtml(table.html )}
                                 />
                               ) : (
                                 <pre className="text-sm whitespace-pre-wrap font-mono">

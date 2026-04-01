@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { codeToHtml } from 'shiki';
 import { useTheme } from 'next-themes';
 import { MermaidRenderer } from './mermaid-renderer';
+import { getSafeHtml } from '@/lib/sanitize';
 
 export type CodeBlockProps = {
   children?: React.ReactNode;
@@ -88,7 +89,7 @@ function CodeBlockCode({
   return highlightedHtml ? (
     <div
       className={classNames}
-      dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+      dangerouslySetInnerHTML={getSafeHtml(highlightedHtml )}
       {...props}
     />
   ) : (

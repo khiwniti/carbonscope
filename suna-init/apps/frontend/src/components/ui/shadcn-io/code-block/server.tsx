@@ -7,6 +7,7 @@ import {
 } from '@shikijs/transformers';
 import type { HTMLAttributes } from 'react';
 import {
+import { getSafeHtml } from '@/lib/sanitize';
   type BundledLanguage,
   type CodeOptionsMultipleThemes,
   codeToHtml,
@@ -56,7 +57,7 @@ export const CodeBlockContent = async ({
   return (
     <div
       // biome-ignore lint/security/noDangerouslySetInnerHtml: "Kinda how Shiki works"
-      dangerouslySetInnerHTML={{ __html: html }}
+      dangerouslySetInnerHTML={getSafeHtml(html )}
       {...props}
     />
   );

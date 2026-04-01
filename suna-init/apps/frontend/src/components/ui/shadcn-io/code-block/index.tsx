@@ -95,6 +95,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
+import { getSafeHtml } from '@/lib/sanitize';
 
 export type BundledLanguage = string;
 
@@ -612,7 +613,7 @@ export const CodeBlockContent = ({
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: highlightedCode }}
+      dangerouslySetInnerHTML={getSafeHtml(highlightedCode )}
       {...props}
     />
   );

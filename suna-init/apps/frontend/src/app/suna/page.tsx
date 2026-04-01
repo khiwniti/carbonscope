@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Github } from 'lucide-react';
 import Image from 'next/image';
+import { getSafeHtml } from '@/lib/sanitize';
 
 export const metadata: Metadata = {
   title: 'Suna is now Kortix | Kortix Suna - Open Source AI Worker',
