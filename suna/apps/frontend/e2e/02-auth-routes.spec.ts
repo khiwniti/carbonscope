@@ -55,6 +55,7 @@ test.describe('Protected Route Redirects', () => {
     '/triggers',
     '/projects',
     '/knowledge',
+    '/carbon',
   ];
 
   for (const route of protectedRoutes) {

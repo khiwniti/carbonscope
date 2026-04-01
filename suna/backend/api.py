@@ -49,6 +49,7 @@ from core.services import transcription as transcription_api
 import sys
 from core.triggers import api as triggers_api
 from core.carbon import api as carbon_api
+from api.boq import router as boq_router
 from core.services import api_keys_api
 from core.notifications import api as notifications_api
 from core.services.orphan_cleanup import cleanup_orphaned_agent_runs
@@ -513,6 +514,7 @@ from core.memory.api import router as memory_router
 api_router.include_router(referrals_router)
 api_router.include_router(memory_router)
 api_router.include_router(carbon_api.router)
+api_router.include_router(boq_router)
 
 from core.test_harness.api import router as test_harness_router, e2e_router
 

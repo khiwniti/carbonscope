@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Library, Menu, Plus, Zap, MessageCircle, PanelLeftOpen, PanelLeftClose, Search, Users, FolderOpen } from 'lucide-react';
+import { Library, Menu, Plus, Zap, MessageCircle, PanelLeftOpen, PanelLeftClose, Search, Users, FolderOpen, Leaf } from 'lucide-react';
 
 import { NavAgents } from '@/components/sidebar/nav-agents';
 import { NavWorkers } from '@/components/sidebar/nav-workers';
@@ -360,6 +360,24 @@ export function SidebarLeft({
                 }}
               >
                 <FolderOpen className="h-4 w-4" />
+              </Link>
+            </Button>
+
+            {/* Carbon Analysis button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-10 w-10 p-0"
+              asChild
+            >
+              <Link
+                href="/carbon"
+                onClick={() => {
+                  if (isMobile) setOpenMobile(false);
+                }}
+                aria-label="Carbon Analysis"
+              >
+                <Leaf className="h-4 w-4 text-emerald-600" />
               </Link>
             </Button>
           </div>

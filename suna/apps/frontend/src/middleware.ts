@@ -64,6 +64,9 @@ const PROTECTED_ROUTES = [
   '/agents',
   '/projects',
   '/settings',
+  '/carbon',
+  '/files',
+  '/knowledge',
 ];
 
 // App store links for mobile redirect
