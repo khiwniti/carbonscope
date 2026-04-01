@@ -74,8 +74,7 @@ function CheckoutContent() {
                          "pk_test_51R5BVvG6l1KZGqIrmU0aQRSS8Bgdp2ciuw0YyGhABeK7HgH2GxHvNy8d1inB2dU33lda2uj9JR4Ij46aFVbW8oge008y1RWpDB";
         
         console.log('🔄 Initializing Stripe checkout...');
-        console.log('🔑 Stripe key:', stripeKey?.substring(0, 20) + '...');
-        console.log('🎫 Client secret:', clientSecret.substring(0, 20) + '...');
+        // Stripe key and client secret intentionally not logged for security
 
         if (typeof window.Stripe === 'undefined') {
           throw new Error('Stripe not loaded on window');

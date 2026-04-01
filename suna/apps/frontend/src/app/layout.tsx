@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@/components/home/theme-provider';
+import { sanitizeJSON } from '@/lib/sanitize';
 import { siteMetadata } from '@/lib/site-metadata';
 import type { Metadata, Viewport } from 'next';
 import '@/styles/carbonscope/globals.css';
@@ -191,7 +191,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: sanitizeJSON({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: siteMetadata.name,
@@ -217,7 +217,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: sanitizeJSON({
               '@context': 'https://schema.org',
               '@type': 'SoftwareApplication',
               name: siteMetadata.title,

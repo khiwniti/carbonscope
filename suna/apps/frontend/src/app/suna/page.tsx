@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Github } from 'lucide-react';
 import Image from 'next/image';
+import { sanitizeJSON } from '@/lib/sanitize';
 
 export const metadata: Metadata = {
   title: 'Suna is now BIM Carbon | BIM Carbon Suna - Open Source AI Worker',
@@ -59,7 +60,7 @@ export default function SunaPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: sanitizeJSON({
             '@context': 'https://schema.org',
             '@type': 'Organization',
             name: 'BIM Carbon',
@@ -80,7 +81,7 @@ export default function SunaPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: sanitizeJSON({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [

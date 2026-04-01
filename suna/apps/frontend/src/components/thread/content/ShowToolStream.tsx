@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { sanitizeHTML } from '@/lib/sanitize';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { getToolIcon, getUserFriendlyToolName, extractPrimaryParam } from '@/components/thread/utils';
 import { AppIcon } from '../tool-views/shared/AppIcon';
@@ -952,7 +953,7 @@ export const ShowToolStream: React.FC<ShowToolStreamProps> = ({
                                             return (
                                                 <span>
                                                     {prefix}
-                                                    <span dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                                    <span dangerouslySetInnerHTML={{ __html: sanitizeHTML(htmlContent) }} />
                                                 </span>
                                             );
                                         }
@@ -965,7 +966,7 @@ export const ShowToolStream: React.FC<ShowToolStreamProps> = ({
                                             return (
                                                 <span>
                                                     {prefix}
-                                                    <span dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                                    <span dangerouslySetInnerHTML={{ __html: sanitizeHTML(htmlContent) }} />
                                                 </span>
                                             );
                                         }
@@ -974,14 +975,14 @@ export const ShowToolStream: React.FC<ShowToolStreamProps> = ({
                                     if (STREAMABLE_TOOLS.SPREADSHEET_TOOLS.has(toolName || '')) {
                                         // For spreadsheet tools, show with table emoji prefix
                                         if (htmlContent !== contentToDisplay) {
-                                            return <span dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+                                            return <span dangerouslySetInnerHTML={{ __html: sanitizeHTML(htmlContent) }} />;
                                         }
                                         return contentToDisplay;
                                     }
                                     if (STREAMABLE_TOOLS.OTHER_STREAMABLE.has(toolName || '')) {
                                         // For other tools, render HTML if available
                                         if (htmlContent !== contentToDisplay) {
-                                            return <span dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+                                            return <span dangerouslySetInnerHTML={{ __html: sanitizeHTML(htmlContent) }} />;
                                         }
                                         return contentToDisplay;
                                     }

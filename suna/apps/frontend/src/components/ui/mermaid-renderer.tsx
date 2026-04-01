@@ -609,7 +609,10 @@ export const MermaidRenderer: React.FC<MermaidRendererProps> = React.memo(({
       >
         <div
           ref={containerRef}
-          dangerouslySetInnerHTML={{ __html: renderedContent }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(renderedContent, {
+              ALLOWED_TAGS: ['svg', 'g', 'path', 'text', 'rect', 'circle', 'line', 'polygon', 'polyline', 'ellipse', 'marker', 'defs', 'tspan', 'textPath', 'foreignObject', 'use', 'div'],
+              ALLOWED_ATTR: ['d', 'fill', 'stroke', 'stroke-width', 'x', 'y', 'width', 'height', 'cx', 'cy', 'r', 'rx', 'ry', 'transform', 'viewBox', 'class', 'id', 'style', 'points', 'x1', 'y1', 'x2', 'y2', 'dx', 'dy', 'text-anchor', 'dominant-baseline', 'font-size', 'font-family', 'xmlns', 'xmlns:xlink', 'version', 'role', 'aria-label'],
+            }) }}
         />
         {enableFullscreen && (
           <div className="absolute inset-0 bg-black/0 hover:bg-black/5 transition-colors rounded-2xl flex items-center justify-center opacity-0 hover:opacity-100 pointer-events-none">

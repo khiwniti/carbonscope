@@ -4,6 +4,13 @@ import type { NextRequest } from 'next/server';
 import { locales, defaultLocale, type Locale } from '@/i18n/config';
 import { detectBestLocaleFromHeaders } from '@/lib/utils/geo-detection-server';
 
+// Allowed origins for CSRF protection
+const ALLOWED_ORIGINS = [
+  process.env.NEXT_PUBLIC_APP_URL,
+  'http://localhost:3000',
+  'http://localhost:3001',
+].filter(Boolean) as string[];
+
 // Marketing pages that support locale routing for SEO (/de, /it, etc.)
 const MARKETING_ROUTES = [
   '/',
@@ -102,6 +109,26 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith('/api/')
   ) {
     return NextResponse.next();
+  }
+
+  // CSRF protection: validate Origin/Referer for state-changing requests
+  if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method)) {
+    const origin = request.headers.get('origin');
+    const referer = request.headers.get('referer');
+    const host = request.headers.get('host');
+
+    const requestOrigin = origin || (referer ? new URL(referer).origin : null);
+
+    if (requestOrigin && host) {
+      const hostOrigin = `${request.nextUrl.protocol}//${host}`;
+      const isAllowed =
+        requestOrigin === hostOrigin ||
+        ALLOWED_ORIGINS.some(allowed => requestOrigin === allowed);
+
+      if (!isAllowed) {
+        return NextResponse.json({ error: 'CSRF validation failed' }, { status: 403 });
+      }
+    }
   }
 
   // Handle Supabase verification redirects at root level
