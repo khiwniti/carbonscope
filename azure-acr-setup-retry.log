@@ -1,0 +1,637 @@
+[0;34m========================================[0m
+[0;34m  Azure Container Registry Deployment[0m
+[0;34m  BKS cBIM AI Platform[0m
+[0;34m========================================[0m
+
+[1;33m[i][0m Checking Azure login status...
+[0;32m[✓][0m Using subscription: bc674096-2ecd-4e59-b62d-6885d439297d
+[1;33m[i][0m Creating resource group: suna-bim-rg...
+[0;32m[✓][0m Resource group ready
+[1;33m[i][0m Creating Azure Container Registry: sunabimacr...
+[1;33m[i][0m ACR already exists
+[1;33m[i][0m Retrieving ACR credentials...
+[0;32m[✓][0m ACR Login Server: sunabimacr.azurecr.io
+[1;33m[i][0m Logging into ACR...
+Login Succeeded
+[0;32m[✓][0m Logged into ACR successfully
+[1;33m[i][0m Building backend image...
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.production
+#1 transferring dockerfile: 1.92kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 0.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 1.34kB done
+#3 DONE 0.0s
+
+#4 [base 1/4] FROM docker.io/library/python:3.11-slim@sha256:9358444059ed78e2975ada2c189f1c1a3144a5dab6f35bff8c981afb38946634
+#4 DONE 0.0s
+
+#5 [runtime 2/6] RUN apt-get update && apt-get install -y     libpq5     curl     && rm -rf /var/lib/apt/lists/*
+#5 CACHED
+
+#6 [runtime 3/6] WORKDIR /app
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 270.39kB 0.5s done
+#7 DONE 0.5s
+
+#8 [base 2/4] RUN apt-get update && apt-get install -y     build-essential     curl     git     libpq-dev     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [base 3/4] RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+#9 CACHED
+
+#10 [base 4/4] WORKDIR /app
+#10 CACHED
+
+#11 [dependencies 1/2] COPY pyproject.toml uv.lock ./
+#11 CACHED
+
+#12 [dependencies 2/2] RUN uv sync --frozen --no-dev
+#12 0.502 Using CPython 3.11.15 interpreter at: /usr/local/bin/python3
+#12 0.504 Creating virtual environment at: .venv
+#12 0.682 Downloading rapidfuzz (3.0MiB)
+#12 0.683 Downloading kiwisolver (1.4MiB)
+#12 0.699 Downloading pycryptodomex (2.2MiB)
+#12 0.699 Downloading openai (1.1MiB)
+#12 0.715 Downloading twisted (3.1MiB)
+#12 0.715 Downloading pygments (1.2MiB)
+#12 0.716 Downloading matplotlib (8.3MiB)
+#12 0.716 Downloading brotli (1.4MiB)
+#12 0.716 Downloading sympy (6.0MiB)
+#12 0.717 Downloading scipy (33.7MiB)
+#12 0.717 Downloading pillow (6.3MiB)
+#12 0.717 Downloading cryptography (4.3MiB)
+#12 0.718 Downloading grpcio (5.6MiB)
+#12 0.718 Downloading zstandard (5.3MiB)
+#12 0.719 Downloading stripe (1.6MiB)
+#12 0.719 Downloading tiktoken (1.1MiB)
+#12 0.719 Downloading tokenizers (3.2MiB)
+#12 0.720 Downloading hf-xet (3.0MiB)
+#12 0.722 Downloading vtracer (1.7MiB)
+#12 0.722 Downloading pyphen (2.0MiB)
+#12 0.722 Downloading lxml (5.0MiB)
+#12 0.722 Downloading fonttools (4.8MiB)
+#12 0.722 Downloading botocore (13.5MiB)
+#12 0.722 Downloading phonenumbers (2.5MiB)
+#12 0.722 Downloading aiohttp (1.6MiB)
+#12 0.722 Downloading psycopg-binary (4.9MiB)
+#12 0.723 Downloading setuptools (1.2MiB)
+#12 0.723 Downloading google-api-python-client (13.5MiB)
+#12 0.723 Downloading ecoinvent-interface (36.8MiB)
+#12 0.724 Downloading pandas (11.8MiB)
+#12 0.724 Downloading reportlab (1.9MiB)
+#12 0.724 Downloading onnxruntime (16.4MiB)
+#12 0.725 Downloading impit (6.0MiB)
+#12 0.726 Downloading obstore (3.6MiB)
+#12 0.727 Downloading pydantic-core (1.9MiB)
+#12 0.728 Downloading numpy (16.2MiB)
+#12 0.728 Downloading python-ripgrep (1.8MiB)
+#12 0.728 Downloading sqlalchemy (3.2MiB)
+#12 0.728 Downloading bw2io (18.5MiB)
+#12 0.729 Downloading pyarrow (45.5MiB)
+#12 0.729 Downloading litellm (10.9MiB)
+#12 2.010  Downloaded tiktoken
+#12 2.459  Downloaded kiwisolver
+#12 2.479  Downloaded brotli
+#12 2.714  Downloaded pygments
+#12 2.889  Downloaded aiohttp
+#12 2.957  Downloaded python-ripgrep
+#12 2.971  Downloaded vtracer
+#12 3.124  Downloaded reportlab
+#12 3.197  Downloaded pydantic-core
+#12 3.401  Downloaded pyphen
+#12 3.848  Downloaded setuptools
+#12 3.899  Downloaded pycryptodomex
+#12 4.188  Downloaded stripe
+#12 4.511  Downloaded hf-xet
+#12 4.514  Downloaded tokenizers
+#12 4.535  Downloaded rapidfuzz
+#12 4.659  Downloaded sqlalchemy
+#12 4.903  Downloaded obstore
+#12 4.973  Downloaded phonenumbers
+#12 5.960  Downloaded cryptography
+#12 6.187  Downloaded twisted
+#12 6.203  Downloaded psycopg-binary
+#12 6.245  Downloaded fonttools
+#12 6.449  Downloaded zstandard
+#12 6.460    Building unicodecsv==0.14.1
+#12 6.460    Building ratelimit==2.2.1
+#12 6.471    Building brightway2==2.4.6
+#12 6.488    Building docopt==0.6.2
+#12 6.495    Building bw2analyzer==0.10
+#12 6.504    Building pysher==1.0.8
+#12 6.520  Downloaded lxml
+#12 6.543    Building vncdotool==1.2.0
+#12 6.555    Building bw2calc==1.8.2
+#12 6.707    Building bw2data==3.6.6
+#12 6.724  Downloaded grpcio
+#12 6.799  Downloaded openai
+#12 6.874  Downloaded impit
+#12 6.928    Building svglib==1.5.1
+#12 7.006  Downloaded pillow
+#12 7.242    Building future==0.18.3
+#12 8.397  Downloaded sympy
+#12 8.687  Downloaded matplotlib
+#12 13.60       Built docopt==0.6.2
+#12 13.68       Built brightway2==2.4.6
+#12 13.85       Built ratelimit==2.2.1
+#12 13.93  Downloaded google-api-python-client
+#12 14.64       Built unicodecsv==0.14.1
+#12 14.66       Built pysher==1.0.8
+#12 14.98       Built bw2analyzer==0.10
+#12 15.26       Built vncdotool==1.2.0
+#12 15.94  Downloaded numpy
+#12 16.05       Built svglib==1.5.1
+#12 16.15       Built bw2calc==1.8.2
+#12 16.52       Built bw2data==3.6.6
+#12 16.62  Downloaded bw2io
+#12 16.75  Downloaded botocore
+#12 16.75       Built future==0.18.3
+#12 16.96  Downloaded litellm
+#12 17.35  Downloaded ecoinvent-interface
+#12 17.49  Downloaded onnxruntime
+#12 17.52    Building owlready2==0.50
+#12 17.95  Downloaded scipy
+#12 17.99  Downloaded pandas
+#12 18.36  Downloaded pyarrow
+#12 37.45       Built owlready2==0.50
+#12 37.53 Prepared 327 packages in 36.97s
+#12 38.80 Installed 327 packages in 1.26s
+#12 38.80  + aiofiles==24.1.0
+#12 38.80  + aiohappyeyeballs==2.6.1
+#12 38.80  + aiohttp==3.12.0
+#12 38.80  + aiohttp-retry==2.9.1
+#12 38.80  + aiosignal==1.4.0
+#12 38.80  + altair==4.2.2
+#12 38.80  + annotated-types==0.7.0
+#12 38.80  + anthropic==0.86.0
+#12 38.80  + anyio==4.10.0
+#12 38.80  + apify-client==2.3.0
+#12 38.80  + apify-shared==2.1.0
+#12 38.80  + appdirs==1.4.4
+#12 38.80  + apscheduler==3.11.0
+#12 38.80  + asteval==1.0.8
+#12 38.80  + astunparse==1.6.3
+#12 38.80  + asyncio==3.4.3
+#12 38.80  + asyncio-atexit==1.0.1
+#12 38.80  + attrs==25.3.0
+#12 38.80  + autoevals==0.0.130
+#12 38.80  + automat==25.4.16
+#12 38.80  + backoff==2.2.1
+#12 38.80  + backports-zstd==1.3.0
+#12 38.80  + bcrypt==5.0.0
+#12 38.80  + beautifulsoup4==4.13.5
+#12 38.80  + blinker==1.9.0
+#12 38.80  + boto3==1.40.75
+#12 38.80  + botocore==1.40.75
+#12 38.80  + braintrust==0.3.15
+#12 38.80  + brightway2==2.4.6
+#12 38.80  + brotli==1.2.0
+#12 38.80  + bw-migrations==0.2
+#12 38.80  + bw2analyzer==0.10
+#12 38.80  + bw2calc==1.8.2
+#12 38.80  + bw2data==3.6.6
+#12 38.80  + bw2io==0.8.12
+#12 38.80  + bw2parameters==1.1.0
+#12 38.80  + cachetools==5.5.2
+#12 38.80  + certifi==2025.11.12
+#12 38.80  + cffi==1.17.1
+#12 38.80  + chardet==5.2.0
+#12 38.80  + charset-normalizer==3.4.3
+#12 38.80  + chevron==0.14.0
+#12 38.80  + chunkr-ai==0.3.7
+#12 38.80  + click==8.1.7
+#12 38.80  + colorama==0.4.6
+#12 38.80  + composio==0.8.9
+#12 38.80  + composio-client==1.6.0
+#12 38.80  + constantly==23.10.4
+#12 38.80  + contourpy==1.3.3
+#12 38.80  + coverage==7.10.6
+#12 38.80  + croniter==6.0.0
+#12 38.80  + cryptography==45.0.7
+#12 38.80  + cssselect2==0.8.0
+#12 38.80  + cssutils==2.11.1
+#12 38.80  + cycler==0.12.1
+#12 38.80  + datasets==4.4.2
+#12 38.80  + daytona==0.115.0
+#12 38.80  + daytona-api-client==0.115.0
+#12 38.80  + daytona-api-client-async==0.115.0
+#12 38.80  + daytona-sdk==0.115.0
+#12 38.80  + daytona-toolbox-api-client==0.115.0
+#12 38.80  + daytona-toolbox-api-client-async==0.115.0
+#12 38.80  + deprecated==1.2.18
+#12 38.80  + deprecation==2.1.0
+#12 38.80  + dill==0.4.0
+#12 38.80  + distro==1.9.0
+#12 38.80  + dnspython==2.7.0
+#12 38.80  + docopt==0.6.2
+#12 38.80  + docstring-parser==0.17.0
+#12 38.80  + e2b==1.11.1
+#12 38.80  + e2b-code-interpreter==1.2.0
+#12 38.80  + ecoinvent-interface==3.1
+#12 38.80  + eight==1.0.1
+#12 38.80  + email-validator==2.0.0
+#12 38.80  + entrypoints==0.4
+#12 38.80  + environs==14.5.0
+#12 38.80  + et-xmlfile==2.0.0
+#12 38.80  + exceptiongroup==1.3.1
+#12 38.80  + execnet==2.1.1
+#12 38.80  + falkordb==1.2.0
+#12 38.80  + fastapi==0.115.12
+#12 38.80  + fastapi-sso==0.18.0
+#12 38.80  + fastembed==0.7.4
+#12 38.80  + fasteners==0.20
+#12 38.80  + fastuuid==0.13.5
+#12 38.80  + filelock==3.19.1
+#12 38.80  + fix-busted-json==0.0.18
+#12 38.80  + flask==3.1.3
+#12 38.80  + flatbuffers==25.12.19
+#12 38.80  + flexcache==0.3
+#12 38.80  + flexparser==0.4
+#12 38.80  + fonttools==4.61.1
+#12 38.80  + freestyle==0.0.17
+#12 38.80  + frozenlist==1.7.0
+#12 38.80  + fsspec==2025.9.0
+#12 38.80  + future==0.18.3
+#12 38.80  + gitdb==4.0.12
+#12 38.80  + gitpython==3.1.45
+#12 38.80  + google-analytics-data==0.19.0
+#12 38.80  + google-api-core==2.25.1
+#12 38.80  + google-api-python-client==2.181.0
+#12 38.80  + google-auth==2.40.3
+#12 38.80  + google-auth-httplib2==0.2.0
+#12 38.80  + google-auth-oauthlib==1.2.2
+#12 38.80  + googleapis-common-protos==1.70.0
+#12 38.80  + gotrue==2.12.3
+#12 38.80  + graphrag-sdk==0.8.2
+#12 38.80  + greenlet==3.3.0
+#12 38.80  + grpcio==1.67.1
+#12 38.80  + grpcio-status==1.67.1
+#12 38.80  + gunicorn==23.0.0
+#12 38.80  + h11==0.16.0
+#12 38.80  + h2==4.3.0
+#12 38.80  + hf-xet==1.1.9
+#12 38.80  + hpack==4.1.0
+#12 38.80  + httpcore==1.0.9
+#12 38.80  + httplib2==0.30.0
+#12 38.80  + httpx==0.28.1
+#12 38.80  + httpx-sse==0.4.1
+#12 38.80  + huggingface-hub==0.34.4
+#12 38.80  + hyperframe==6.1.0
+#12 38.80  + hyperlink==21.0.0
+#12 38.80  + idna==3.10
+#12 38.80  + impit==0.9.3
+#12 38.80  + importlib-metadata==8.7.0
+#12 38.81  + incremental==24.7.2
+#12 38.81  + inflate64==1.0.4
+#12 38.81  + iniconfig==2.1.0
+#12 38.81  + invoke==2.2.1
+#12 38.81  + itsdangerous==2.2.0
+#12 38.81  + jinja2==3.1.6
+#12 38.81  + jiter==0.10.0
+#12 38.81  + jmespath==1.0.1
+#12 38.81  + jsonpatch==1.33
+#12 38.81  + jsonpointer==3.1.1
+#12 38.81  + jsonschema==4.25.1
+#12 38.81  + jsonschema-specifications==2025.4.1
+#12 38.81  + kiwisolver==1.5.0
+#12 38.81  + langchain-anthropic==1.4.0
+#12 38.81  + langchain-core==1.2.22
+#12 38.81  + langchain-openai==1.1.12
+#12 38.81  + langfuse==2.60.5
+#12 38.81  + langgraph==1.1.3
+#12 38.81  + langgraph-checkpoint==4.0.1
+#12 38.81  + langgraph-prebuilt==1.0.8
+#12 38.81  + langgraph-sdk==0.3.12
+#12 38.81  + langsmith==0.7.22
+#12 38.81  + litellm==1.80.11
+#12 38.81  + loguru==0.7.3
+#12 38.81  + lxml==6.0.1
+#12 38.81  + mailtrap==2.0.1
+#12 38.81  + markdown-it-py==4.0.0
+#12 38.81  + markupsafe==3.0.2
+#12 38.81  + marshmallow==3.26.1
+#12 38.81  + matplotlib==3.10.8
+#12 38.81  + mcp==1.9.4
+#12 38.81  + mdurl==0.1.2
+#12 38.81  + mmh3==5.2.1
+#12 38.81  + more-itertools==10.8.0
+#12 38.81  + mpmath==1.3.0
+#12 38.81  + mrio-common-metadata==0.2.1
+#12 38.81  + multidict==6.6.4
+#12 38.81  + multipart==1.3.0
+#12 38.81  + multiprocess==0.70.18
+#12 38.81  + multivolumefile==0.2.3
+#12 38.81  + nest-asyncio==1.6.0
+#12 38.81  + nodeenv==1.9.1
+#12 38.81  + novu-py==3.11.0
+#12 38.81  + numpy==2.3.2
+#12 38.81  + oauthlib==3.3.1
+#12 38.81  + obstore==0.7.3
+#12 38.81  + onnxruntime==1.24.4
+#12 38.81  + openai==2.30.0
+#12 38.81  + openpyxl==3.1.2
+#12 38.81  + orjson==3.11.7
+#12 38.81  + ormsgpack==1.12.2
+#12 38.81  + owlready2==0.50
+#12 38.81  + packaging==24.1
+#12 38.81  + pandas==2.3.2
+#12 38.81  + paramiko==4.0.0
+#12 38.81  + peewee==4.0.3
+#12 38.81  + phonenumbers==8.13.50
+#12 38.81  + pillow==11.3.0
+#12 38.81  + pint==0.25.3
+#12 38.81  + platformdirs==4.9.4
+#12 38.81  + pluggy==1.6.0
+#12 38.81  + polyleven==0.9.0
+#12 38.81  + portalocker==3.2.0
+#12 38.81  + postgrest==1.1.1
+#12 38.81  + prisma==0.15.0
+#12 38.81  + prometheus-client==0.21.1
+#12 38.81  + prompt-toolkit==3.0.36
+#12 38.81  + propcache==0.3.2
+#12 38.81  + proto-plus==1.26.1
+#12 38.81  + protobuf==5.29.5
+#12 38.81  + psutil==7.1.3
+#12 38.81  + psycopg==3.3.2
+#12 38.81  + psycopg-binary==3.3.2
+#12 38.81  + py-rust-stemmers==0.1.5
+#12 38.81  + py7zr==1.1.0
+#12 38.81  + pyarrow==22.0.0
+#12 38.81  + pyasn1==0.6.1
+#12 38.81  + pyasn1-modules==0.4.2
+#12 38.81  + pybcj==1.0.7
+#12 38.81  + pycparser==2.22
+#12 38.81  + pycryptodomex==3.23.0
+#12 38.81  + pydantic==2.11.7
+#12 38.81  + pydantic-core==2.33.2
+#12 38.81  + pydantic-settings==2.10.1
+#12 38.81  + pydyf==0.12.1
+#12 38.81  + pyecospold==4.0.1
+#12 38.81  + pygments==2.19.2
+#12 38.81  + pyjwt==2.10.1
+#12 38.81  + pynacl==1.5.0
+#12 38.81  + pyparsing==3.2.3
+#12 38.81  + pypdf==5.9.0
+#12 38.81  + pypdf2==3.0.1
+#12 38.81  + pyphen==0.17.2
+#12 38.81  + pyppmd==1.3.1
+#12 38.81  + pyprind==2.11.3
+#12 38.81  + pysher==1.0.8
+#12 38.81  + pytesseract==0.3.13
+#12 38.81  + pytest==8.3.4
+#12 38.81  + pytest-asyncio==0.24.0
+#12 38.81  + pytest-cov==6.0.0
+#12 38.81  + pytest-env==1.1.5
+#12 38.81  + pytest-mock==3.14.0
+#12 38.81  + pytest-randomly==3.12.0
+#12 38.81  + pytest-rerunfailures==10.2
+#12 38.81  + pytest-timeout==2.3.1
+#12 38.81  + pytest-xdist==3.3.0
+#12 38.81  + python-dateutil==2.9.0.post0
+#12 38.81  + python-docx==1.1.0
+#12 38.81  + python-dotenv==1.0.1
+#12 38.81  + python-multipart==0.0.20
+#12 38.81  + python-pptx==1.0.2
+#12 38.81  + python-ripgrep==0.0.6
+#12 38.81  + python-slugify==8.0.4
+#12 38.81  + pytz==2025.2
+#12 38.81  + pyxlsb==1.0.10
+#12 38.81  + pyyaml==6.0.1
+#12 38.81  + qdrant-client==1.17.1
+#12 38.81  + questionary==2.0.1
+#12 38.81  + rapidfuzz==3.14.3
+#12 38.81  + ratelimit==2.2.1
+#12 38.81  + rdflib==7.6.0
+#12 38.81  + realitydefender==0.1.10
+#12 38.81  + realtime==2.6.0
+#12 38.81  + redis==5.2.1
+#12 38.81  + referencing==0.36.2
+#12 38.81  + regex==2025.9.1
+#12 38.81  + replicate==1.0.7
+#12 38.81  + reportlab==4.4.4
+#12 38.81  + requests==2.32.3
+#12 38.81  + requests-oauthlib==2.0.0
+#12 38.81  + requests-toolbelt==1.0.0
+#12 38.81  + rich==13.9.4
+#12 38.81  + rpds-py==0.27.1
+#12 38.81  + rsa==4.9.1
+#12 38.81  + s3transfer==0.14.0
+#12 38.81  + scipy==1.17.1
+#12 38.81  + setuptools==75.3.0
+#12 38.81  + six==1.17.0
+#12 38.81  + smmap==5.0.2
+#12 38.81  + sniffio==1.3.1
+#12 38.81  + soupsieve==2.8
+#12 38.81  + sparqlwrapper==2.0.0
+#12 38.81  + sqlalchemy==2.0.45
+#12 38.81  + sse-starlette==3.0.2
+#12 38.81  + sseclient-py==1.8.0
+#12 38.81  + starlette==0.46.2
+#12 38.81  + stats-arrays==1.0
+#12 38.81  + storage3==0.12.0
+#12 38.81  + strenum==0.4.15
+#12 38.81  + stripe==11.6.0
+#12 38.81  + structlog==25.4.0
+#12 38.81  + supabase==2.17.0
+#12 38.81  + supafunc==0.10.1
+#12 38.81  + svglib==1.5.1
+#12 38.81  + sympy==1.14.0
+#12 38.81  + tabulate==0.10.0
+#12 38.81  + tavily-python==0.5.4
+#12 38.81  + tenacity==9.1.4
+#12 38.81  + text-unidecode==1.3
+#12 38.81  + texttable==1.7.0
+#12 38.81  + tiktoken==0.11.0
+#12 38.81  + tinycss2==1.5.1
+#12 38.81  + tinyhtml5==2.0.0
+#12 38.81  + tokenizers==0.22.0
+#12 38.81  + toml==0.10.2
+#12 38.81  + tomlkit==0.13.3
+#12 38.81  + toolz==1.0.0
+#12 38.81  + tqdm==4.67.1
+#12 38.81  + twisted==25.5.0
+#12 38.81  + typing-extensions==4.15.0
+#12 38.81  + typing-inspection==0.4.1
+#12 38.81  + tzdata==2025.2
+#12 38.81  + tzlocal==5.3.1
+#12 38.81  + unicodecsv==0.14.1
+#12 38.81  + unidecode==1.4.0
+#12 38.81  + upstash-redis==1.3.0
+#12 38.81  + uritemplate==4.2.0
+#12 38.81  + urllib3==2.5.0
+#12 38.81  + uuid-utils==0.14.1
+#12 38.81  + uvicorn==0.27.1
+#12 38.81  + validators==0.35.0
+#12 38.81  + vncdotool==1.2.0
+#12 38.81  + voluptuous==0.16.0
+#12 38.81  + vtracer==0.6.11
+#12 38.81  + watchtower==3.4.0
+#12 38.81  + wcwidth==0.2.13
+#12 38.81  + weasyprint==67.0
+#12 38.81  + webencodings==0.5.1
+#12 38.81  + websocket-client==1.8.0
+#12 38.81  + websockets==15.0.1
+#12 38.81  + werkzeug==3.1.7
+#12 38.81  + wheel==0.46.3
+#12 38.81  + whoosh==2.7.4
+#12 38.81  + wrapt==1.17.3
+#12 38.81  + xlrd==2.0.2
+#12 38.81  + xlsxwriter==3.2.5
+#12 38.81  + xxhash==3.6.0
+#12 38.81  + yarl==1.20.1
+#12 38.81  + zipp==3.23.0
+#12 38.81  + zope-interface==7.2
+#12 38.81  + zopfli==0.4.0
+#12 38.81  + zstandard==0.25.0
+#12 DONE 39.8s
+
+#13 [runtime 4/6] COPY --from=dependencies /app/.venv /app/.venv
+#13 DONE 16.8s
+
+#14 [runtime 5/6] COPY . .
+#14 DONE 3.4s
+
+#15 [runtime 6/6] RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+#15 DONE 33.5s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 14.5s done
+#16 writing image sha256:43dcb3248400f392ab8fe43413013ec410c46200305e0baca756a2087b680c9e done
+#16 naming to sunabimacr.azurecr.io/suna-backend:latest done
+#16 naming to sunabimacr.azurecr.io/suna-backend:20260329-113834 done
+#16 DONE 14.5s
+[0;32m[✓][0m Backend image built
+[1;33m[i][0m Pushing backend image to ACR...
+The push refers to repository [sunabimacr.azurecr.io/suna-backend]
+344273150108: Preparing
+46e2234cfbb6: Preparing
+a9c53ef680be: Preparing
+44e67c48d5da: Preparing
+330cca9432e3: Preparing
+8347a0657a00: Preparing
+34b037810a00: Preparing
+188695d9eb1d: Preparing
+188c9b34dfbe: Preparing
+8347a0657a00: Waiting
+34b037810a00: Waiting
+188695d9eb1d: Waiting
+188c9b34dfbe: Waiting
+44e67c48d5da: Pushed
+330cca9432e3: Pushed
+8347a0657a00: Pushed
+188695d9eb1d: Pushed
+34b037810a00: Pushed
+188c9b34dfbe: Pushed
+46e2234cfbb6: Pushed
+a9c53ef680be: Pushed
+344273150108: Pushed
+latest: digest: sha256:55b0c96f0c89cec45c4b3b62cb23e4c26cbcb7e9187115544d0902e91214a3a7 size: 2215
+The push refers to repository [sunabimacr.azurecr.io/suna-backend]
+tag does not exist: sunabimacr.azurecr.io/suna-backend:20260329-114214
+[0;32m[✓][0m Backend image pushed
+[1;33m[i][0m Building frontend image...
+[1;33m[i][0m Adding standalone output to next.config.ts...
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.production
+#1 transferring dockerfile: 1.66kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 0.7s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 163B done
+#3 DONE 0.0s
+
+#4 [deps 1/6] FROM docker.io/library/node:20-alpine@sha256:f598378b5240225e6beab68fa9f356db1fb8efe55173e6d4d8153113bb8f333c
+#4 resolve docker.io/library/node:20-alpine@sha256:f598378b5240225e6beab68fa9f356db1fb8efe55173e6d4d8153113bb8f333c done
+#4 sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153 0B / 3.86MB 0.1s
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 0B / 43.23MB 0.1s
+#4 sha256:62e0e1181d88da8ed0e2fda221e9446ad0f09a004a375193ad7a38e31ec4eab4 0B / 1.26MB 0.1s
+#4 sha256:f598378b5240225e6beab68fa9f356db1fb8efe55173e6d4d8153113bb8f333c 7.67kB / 7.67kB done
+#4 sha256:42d1d5b07c84257b55d409f4e6e3be3b55d42867afce975a5648a3f231bf7e81 1.72kB / 1.72kB done
+#4 sha256:ccfb9f0dc7ac7e788325fd0b8eb985ed6a16db60914c61245ddee06acb16e029 6.52kB / 6.52kB done
+#4 sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153 3.86MB / 3.86MB 0.3s
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 3.15MB / 43.23MB 0.3s
+#4 sha256:62e0e1181d88da8ed0e2fda221e9446ad0f09a004a375193ad7a38e31ec4eab4 1.26MB / 1.26MB 0.3s done
+#4 sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153 3.86MB / 3.86MB 0.3s done
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 8.39MB / 43.23MB 0.4s
+#4 extracting sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153
+#4 sha256:c7734204880fafbd6297ce1844e07c137d82ee814ac8b5fa6ac1a3659101d503 0B / 446B 0.4s
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 15.30MB / 43.23MB 0.5s
+#4 sha256:c7734204880fafbd6297ce1844e07c137d82ee814ac8b5fa6ac1a3659101d503 446B / 446B 0.4s done
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 25.17MB / 43.23MB 0.6s
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 35.65MB / 43.23MB 0.7s
+#4 extracting sha256:589002ba0eaed121a1dbf42f6648f29e5be55d5c8a6ee0f8eaa0285cc21ac153 0.4s done
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 43.23MB / 43.23MB 0.8s
+#4 sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 43.23MB / 43.23MB 0.9s done
+#4 extracting sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46
+#4 ...
+
+#5 [internal] load build context
+#5 transferring context: 46.97MB 1.1s done
+#5 DONE 1.1s
+
+#4 [deps 1/6] FROM docker.io/library/node:20-alpine@sha256:f598378b5240225e6beab68fa9f356db1fb8efe55173e6d4d8153113bb8f333c
+#4 extracting sha256:d7f6aca05b78f475975eeac3898b7ef0a618937174c469650e05e81cbf8c5f46 1.7s done
+#4 extracting sha256:62e0e1181d88da8ed0e2fda221e9446ad0f09a004a375193ad7a38e31ec4eab4
+#4 extracting sha256:62e0e1181d88da8ed0e2fda221e9446ad0f09a004a375193ad7a38e31ec4eab4 0.0s done
+#4 extracting sha256:c7734204880fafbd6297ce1844e07c137d82ee814ac8b5fa6ac1a3659101d503 done
+#4 DONE 2.9s
+
+#6 [deps 2/6] RUN apk add --no-cache libc6-compat
+#6 ...
+
+#7 [builder 2/5] WORKDIR /app
+#7 DONE 0.6s
+
+#8 [runner 3/6] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+#8 DONE 0.2s
+
+#6 [deps 2/6] RUN apk add --no-cache libc6-compat
+#6 1.215 (1/3) Installing musl-obstack (1.2.3-r2)
+#6 1.229 (2/3) Installing libucontext (1.3.3-r0)
+#6 1.241 (3/3) Installing gcompat (1.1.0-r4)
+#6 1.258 OK: 11.0 MiB in 21 packages
+#6 DONE 1.3s
+
+#9 [deps 3/6] WORKDIR /app
+#9 DONE 0.0s
+
+#10 [deps 4/6] RUN corepack enable && corepack prepare pnpm@latest --activate
+#10 0.803 Preparing pnpm@latest for immediate activation...
+#10 DONE 2.4s
+
+#11 [deps 5/6] COPY package.json pnpm-lock.yaml ./
+#11 DONE 0.0s
+
+#12 [deps 6/6] RUN pnpm install --frozen-lockfile --prefer-offline
+#12 1.138  ERR_PNPM_LOCKFILE_CONFIG_MISMATCH  Cannot proceed with the frozen installation. The current "overrides" configuration doesn't match the value found in the lockfile
+#12 1.138 
+#12 1.138 Update your lockfile using "pnpm install --no-frozen-lockfile"
+#12 ERROR: process "/bin/sh -c pnpm install --frozen-lockfile --prefer-offline" did not complete successfully: exit code: 1
+------
+ > [deps 6/6] RUN pnpm install --frozen-lockfile --prefer-offline:
+1.138  ERR_PNPM_LOCKFILE_CONFIG_MISMATCH  Cannot proceed with the frozen installation. The current "overrides" configuration doesn't match the value found in the lockfile
+1.138 
+1.138 Update your lockfile using "pnpm install --no-frozen-lockfile"
+------
+Dockerfile.production:17
+--------------------
+  15 |     
+  16 |     # Install dependencies with frozen lockfile
+  17 | >>> RUN pnpm install --frozen-lockfile --prefer-offline
+  18 |     
+  19 |     # Stage 2: Builder
+--------------------
+ERROR: failed to solve: process "/bin/sh -c pnpm install --frozen-lockfile --prefer-offline" did not complete successfully: exit code: 1

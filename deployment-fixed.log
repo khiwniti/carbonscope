@@ -1,0 +1,78 @@
+🚀 Deploying SUNA via Azure CLI
+================================
+
+1️⃣  Checking VM status...
+⚠️  Starting VM...
+✅ VM is running
+
+2️⃣  Deploying all services...
+Enable succeeded: 
+[stdout]
+=== Installing Docker ===
+=== Creating directories ===
+=== Creating docker-compose.production.yml ===
+=== Creating environment files ===
+=== Logging into ACR ===
+Login Succeeded
+=== Pulling images ===
+
+[stderr]
+     ]  14.93MB/140.7MB
+ bf2fbb61b7a9 Downloading [=>                                                 ]  10.71MB/289.7MB
+ 794ebd49c5d4 Downloading [===========================================>       ]  26.46MB/30.37MB
+ 63d23e9cf3a3 Extracting [=>                                                 ]  196.6kB/8.537MB
+ 66e333606772 Downloading [======>                                            ]  18.66MB/140.7MB
+ bf2fbb61b7a9 Downloading [==>                                                ]  14.47MB/289.7MB
+ 794ebd49c5d4 Downloading [=================================================> ]  29.88MB/30.37MB
+ e14f845a52ff Extracting [==================================================>]  197.9kB/197.9kB
+ 66e333606772 Downloading [=======>                                           ]  21.85MB/140.7MB
+ bf2fbb61b7a9 Downloading [===>                                               ]   18.2MB/289.7MB
+ 63d23e9cf3a3 Extracting [==>                                                ]  491.5kB/8.537MB
+ 794ebd49c5d4 Verifying Checksum 
+ 794ebd49c5d4 Download complete 
+ 66e333606772 Downloading [=========>                                         ]  27.18MB/140.7MB
+ bf2fbb61b7a9 Downloading [====>                                              ]  23.53MB/289.7MB
+ 63d23e9cf3a3 Extracting [====>                                              ]  786.4kB/8.537MB
+ bf2fbb61b7a9 Downloading [=====>                                             ]  31.01MB/289.7MB
+ 63d23e9cf3a3 Extracting [========>                                          ]  1.376MB/8.537MB
+ 66e333606772 Downloading [===========>                                       ]  31.43MB/140.7MB
+ bf2fbb61b7a9 Downloading [======>                                            ]  36.87MB/289.7MB
+ 66e333606772 Downloading [=============>                                     ]  37.81MB/140.7MB
+ 63d23e9cf3a3 Extracting [===========>                                       ]  1.966MB/8.537MB
+ 66e333606772 Downloading [==============>                                    ]  40.48MB/140.7MB
+ 63d23e9cf3a3 Extracting [============>                                      ]  2.163MB/8.537MB
+ bf2fbb61b7a9 Downloading [=======>                                           ]  40.61MB/289.7MB
+ 66e333606772 Downloading [==============>                                    ]  41.55MB/140.7MB
+ 63d23e9cf3a3 Extracting [=============>                                     ]  2.261MB/8.537MB
+ 66e333606772 Downloading [================>                                  ]  45.81MB/140.7MB
+ 63d23e9cf3a3 Extracting [============================>                      ]  4.915MB/8.537MB
+ bf2fbb61b7a9 Downloading [=======>                                           ]  42.23MB/289.7MB
+ 66e333606772 Downloading [================>                                  ]  47.41MB/140.7MB
+ bf2fbb61b7a9 Downloading [========>                                          ]  47.56MB/289.7MB
+ 63d23e9cf3a3 Extracting [=======================================>           ]  6.783MB/8.537MB
+ 66e333606772 Downloading [=================>                                 ]  50.61MB/140.7MB
+ bf2fbb61b7a9 Downloading [=========>                                         ]  52.36MB/289.7MB
+ 66e333606772 Downloading [===================>                               ]  53.83MB/140.7MB
+ 63d23e9cf3a3 Extracting [=================================================> ]  8.454MB/8.537MB
+ bf2fbb61b7a9 Downloading [=========>                                         ]  57.15MB/289.7MB
+ 66e333606772 Downloading [====================>                              ]  58.07MB/140.7MB
+ bf2fbb61b7a9 Downloading [==========>                                        ]  63.54MB/289.7MB
+ 66e333606772 Downloading [======================>                            ]  62.34MB/140.7MB
+ frontend Error manifest for carbonbimbc6740962ecd.azurecr.io/frontend:latest not found: manifest unknown: manifest tagged by "latest" is not found
+ backend  Interrupted
+Error response from daemon: manifest for carbonbimbc6740962ecd.azurecr.io/frontend:latest not found: manifest unknown: manifest tagged by "latest" is not found
+
+
+✅ Deployment Complete!
+
+🌐 Services running at:
+   Frontend: http://20.55.21.69:3000
+   Backend:  http://20.55.21.69:8000
+   GraphDB:  http://20.55.21.69:7200
+
+📝 Next Steps:
+
+See UPDATE_ENV_VARIABLES.sh for updating credentials
+See INITIALIZE_GRAPHDB.sh for database setup
+See SETUP_HTTPS.sh for Cloudflare configuration
+

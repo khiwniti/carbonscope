@@ -1,0 +1,89 @@
+name: Build and Deploy to Azure ACR
+
+on:
+  push:
+    branches: [main, production]
+    paths:
+      - 'suna-init/backend/**'
+      - 'suna-init/apps/frontend/**'
+      - '.github/workflows/azure-acr-deploy.yml'
+  workflow_dispatch:
+
+env:
+  AZURE_RESOURCE_GROUP: suna-bim-rg
+  ACR_NAME: sunabimacr
+  BACKEND_IMAGE: suna-backend
+  FRONTEND_IMAGE: suna-frontend
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.ACR_NAME }}.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Set image tag
+        id: vars
+        run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
+      - name: Build and push backend
+        working-directory: ./suna-init/backend
+        env:
+          TAG: ${{ steps.vars.outputs.IMAGE_TAG }}
+        run: |
+          docker build \
+            -f Dockerfile.production \
+            -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:${TAG} \
+            -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest \
+            .
+          docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:${TAG}
+          docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:latest
+
+      - name: Build and push frontend
+        working-directory: ./suna-init/apps/frontend
+        env:
+          TAG: ${{ steps.vars.outputs.IMAGE_TAG }}
+        run: |
+          docker build \
+            -f Dockerfile.production \
+            -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:${TAG} \
+            -t ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest \
+            .
+          docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:${TAG}
+          docker push ${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:latest
+
+      - name: Update App Service (if deployed)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          # Restart backend app
+          az webapp restart \
+            --name suna-backend-app \
+            --resource-group ${{ env.AZURE_RESOURCE_GROUP }} || true
+
+          # Restart frontend app
+          az webapp restart \
+            --name suna-frontend-app \
+            --resource-group ${{ env.AZURE_RESOURCE_GROUP }} || true
+
+      - name: Deployment summary
+        env:
+          TAG: ${{ steps.vars.outputs.IMAGE_TAG }}
+        run: |
+          echo "### Deployment Complete! 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Images pushed:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Backend: \`${{ env.ACR_NAME }}.azurecr.io/${{ env.BACKEND_IMAGE }}:${TAG}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- Frontend: \`${{ env.ACR_NAME }}.azurecr.io/${{ env.FRONTEND_IMAGE }}:${TAG}\`" >> $GITHUB_STEP_SUMMARY

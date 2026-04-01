@@ -1,0 +1,42 @@
+[0;34m========================================[0m
+[0;34m  Custom Domain Configuration[0m
+[0;34m========================================[0m
+
+[0;34mDomain:[0m carbonscope.ensimu.space
+[0;34mApp Service:[0m suna-frontend-app
+
+[1;33m[1/5][0m Getting domain verification information...
+[0;32m[✓][0m Verification information retrieved
+
+[1;33m========================================[0m
+[1;33m  DNS Configuration Required[0m
+[1;33m========================================[0m
+
+Add the following records in Cloudflare DNS:
+
+[0;34m1. CNAME Record:[0m
+   Type: CNAME
+   Name: carbonscope
+   Target: suna-frontend-app.azurewebsites.net
+   Proxy: 🟠 DNS only (disable proxy initially)
+
+[0;34m2. TXT Record for verification:[0m
+   Type: TXT
+   Name: asuid.carbonscope
+   Content: (check Azure portal for verification code)
+
+
+[1;33m[2/5][0m Checking DNS propagation...
+[1;33m[i][0m Waiting for DNS records to propagate (this may take 5-60 minutes)...
+
+[1;33m[i][0m Still waiting... (10/60 attempts)
+[1;33m[i][0m Still waiting... (20/60 attempts)
+[1;33m[i][0m Still waiting... (30/60 attempts)
+[1;33m[i][0m Still waiting... (40/60 attempts)
+[1;33m[i][0m Still waiting... (50/60 attempts)
+[1;33m[i][0m Still waiting... (60/60 attempts)
+[1;33m[!][0m DNS not fully propagated yet. You can:
+   1. Wait longer and retry this script
+   2. Continue manually once DNS propagates
+   3. Check DNS: dig carbonscope.ensimu.space CNAME
+

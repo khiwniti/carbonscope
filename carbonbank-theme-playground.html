@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarbonBank Design System - ธนาคารต้นไม้</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #111827;
+      color: #1f2937;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      grid-template-rows: 1fr auto;
+      height: 100vh;
+      gap: 0;
+    }
+
+    .controls {
+      background: #1f2937;
+      border-right: 1px solid #374151;
+      padding: 24px;
+      overflow-y: auto;
+      grid-row: 1 / -1;
+    }
+
+    .controls::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .controls::-webkit-scrollbar-track {
+      background: #111827;
+    }
+
+    .controls::-webkit-scrollbar-thumb {
+      background: #10b981;
+      border-radius: 3px;
+    }
+
+    .preview-container {
+      background: #F8F9FA;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    .prompt-output {
+      background: #1f2937;
+      border-top: 1px solid #374151;
+      padding: 24px;
+      grid-column: 2;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #f9fafb;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #10b981;
+      margin-bottom: 12px;
+    }
+
+    .control-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #d1d5db;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #374151;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      cursor: pointer;
+      border: none;
+    }
+
+    input[type="color"] {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #374151;
+      border-radius: 8px;
+      background: #111827;
+      cursor: pointer;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px 12px;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      color: #f9fafb;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .value-display {
+      display: inline-block;
+      font-size: 11px;
+      color: #10b981;
+      font-family: 'SF Mono', Monaco, monospace;
+      margin-left: 8px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .presets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .preset-btn {
+      padding: 10px;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 8px;
+      color: #d1d5db;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .preset-btn:hover {
+      background: #374151;
+      border-color: #10b981;
+    }
+
+    .preset-btn.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: #10b981;
+      color: #10b981;
+    }
+
+    /* Preview Styles */
+    .preview-grid {
+      display: grid;
+      gap: 24px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .preview-section {
+      background: transparent;
+    }
+
+    .preview-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1f2937;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .project-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .project-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .greeting {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f2937;
+      line-height: 1.2;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      position: relative;
+      padding: 10px;
+      background: white;
+      border-radius: 50%;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon-btn:hover {
+      color: #10b981;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-center;
+      color: white;
+      font-weight: 700;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .avatar:active {
+      transform: scale(0.95);
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-mid) 50%, var(--hero-end) 100%);
+      border-radius: var(--radius-hero);
+      padding: 28px;
+      color: white;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(6, 78, 59, 0.2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-card:active {
+      transform: scale(0.98);
+    }
+
+    .hero-glossy {
+      position: absolute;
+      top: -96px;
+      right: -96px;
+      width: 256px;
+      height: 256px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      filter: blur(48px);
+      pointer-events: none;
+    }
+
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGgyMHYyMEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMCAwdjIwTTAgMTBoMjAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #a7f3d0;
+      margin-bottom: 6px;
+    }
+
+    .hero-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-value {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    .trend-badge {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .trend-icon {
+      width: 16px;
+      height: 16px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-center;
+      color: #065f46;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .trend-text {
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.2s ease;
+    }
+
+    .stat-card:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(167, 243, 208, 0.8);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .stat-unit {
+      font-size: 12px;
+      font-weight: 500;
+      color: #a7f3d0;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .quick-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .action-btn {
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(229, 231, 235, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .quick-action:hover .action-btn {
+      background: var(--action-hover-bg);
+    }
+
+    .quick-action:active .action-btn {
+      transform: scale(0.9);
+    }
+
+    .action-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      transition: color 0.2s ease;
+    }
+
+    .quick-action:hover .action-label {
+      color: #1f2937;
+    }
+
+    /* Chart Section */
+    .chart-section {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e5e7eb;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .chart-filter {
+      font-size: 12px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      padding: 6px 12px;
+      border-radius: 20px;
+      color: #6b7280;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .chart-placeholder {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Prompt Output */
+    .prompt-text {
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #d1d5db;
+      margin-bottom: 16px;
+      padding: 16px;
+      background: #111827;
+      border-radius: 8px;
+      border: 1px solid #374151;
+    }
+
+    .copy-btn {
+      padding: 10px 20px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: 'Sarabun', sans-serif;
+    }
+
+    .copy-btn:hover {
+      background: #059669;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+
+    .copy-feedback {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 12px;
+      color: #4ade80;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .copy-feedback.show {
+      opacity: 1;
+    }
+
+    /* Animation Classes */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-slide-up {
+      animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Color theme variables */
+    :root {
+      --hero-start: #064e3b;
+      --hero-mid: #065f46;
+      --hero-end: #047857;
+      --radius-hero: 32px;
+      --action-hover-bg: #f0fdf4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="controls">
+      <h1>🌳 CarbonBank Theme</h1>
+      <p class="subtitle">ธนาคารต้นไม้ - Tree Bank Design System</p>
+
+      <div class="presets">
+        <button class="preset-btn active" onclick="applyPreset('carbonbank')">🌲 CarbonBank</button>
+        <button class="preset-btn" onclick="applyPreset('forest-dark')">🌿 Forest Dark</button>
+        <button class="preset-btn" onclick="applyPreset('emerald')">💚 Emerald</button>
+        <button class="preset-btn" onclick="applyPreset('jade')">🟢 Jade</button>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Hero Card Gradient</div>
+
+        <div class="control-group">
+          <label>Gradient Start
+            <span class="value-display" id="heroStartDisplay">#064e3b</span>
+          </label>
+          <input type="color" id="heroStart" value="#064e3b" oninput="updateState('heroStart', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Gradient Middle
+            <span class="value-display" id="heroMidDisplay">#065f46</span>
+          </label>
+          <input type="color" id="heroMid" value="#065f46" oninput="updateState('heroMid', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Gradient End
+            <span class="value-display" id="heroEndDisplay">#047857</span>
+          </label>
+          <input type="color" id="heroEnd" value="#047857" oninput="updateState('heroEnd', this.value)">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Layout & Spacing</div>
+
+        <div class="control-group">
+          <label>Hero Radius
+            <span class="value-display" id="radiusDisplay">32px</span>
+          </label>
+          <input type="range" id="radius" min="12" max="48" value="32" oninput="updateState('radius', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Card Padding
+            <span class="value-display" id="paddingDisplay">28px</span>
+          </label>
+          <input type="range" id="padding" min="16" max="48" value="28" oninput="updateState('padding', this.value)">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Typography</div>
+
+        <div class="control-group">
+          <label>Font Weight</label>
+          <select id="fontWeight" onchange="updateState('fontWeight', this.value)">
+            <option value="500">Medium (500)</option>
+            <option value="600">Semi-Bold (600)</option>
+            <option value="700" selected>Bold (700)</option>
+            <option value="800">Extra Bold (800)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Quick Actions</div>
+
+        <div class="control-group">
+          <label>Hover Background
+            <span class="value-display" id="actionHoverDisplay">#f0fdf4</span>
+          </label>
+          <input type="color" id="actionHover" value="#f0fdf4" oninput="updateState('actionHover', this.value)">
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-container">
+      <div class="preview-grid" id="preview">
+        <!-- Header -->
+        <div class="header">
+          <div class="header-left">
+            <div class="project-badge opacity-0 animate-slide-up" style="animation-delay: 0.1s">
+              <span class="pulse-dot"></span>
+              <span class="project-name">Ban Tha Li Project</span>
+            </div>
+            <h1 class="greeting opacity-0 animate-slide-up" style="animation-delay: 0.2s">สวัสดี, คุณสมชาย</h1>
+          </div>
+          <div class="header-right opacity-0 animate-slide-up" style="animation-delay: 0.3s">
+            <button class="icon-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="notification-dot"></span>
+            </button>
+            <div class="avatar">ส</div>
+          </div>
+        </div>
+
+        <!-- Hero Card -->
+        <div class="preview-section opacity-0 animate-slide-up" style="animation-delay: 0.4s">
+          <div class="hero-card">
+            <div class="hero-glossy"></div>
+            <div class="hero-texture"></div>
+            <div class="hero-content">
+              <div class="hero-header">
+                <div>
+                  <div class="hero-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span class="hero-label">Total Valuation</span>
+                  </div>
+                  <div class="hero-value">฿8,541.00</div>
+                </div>
+                <div class="trend-badge">
+                  <div class="trend-icon">↑</div>
+                  <span class="trend-text">+12.5%</span>
+                </div>
+              </div>
+              <div class="hero-stats">
+                <div class="stat-card">
+                  <div class="stat-label">Carbon Credit</div>
+                  <div class="stat-value">
+                    <span>2,847</span>
+                    <span class="stat-unit">kg</span>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Active Trees</div>
+                  <div class="stat-value">
+                    <span>189</span>
+                    <span class="stat-unit">Trees</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="preview-section opacity-0 animate-slide-up" style="animation-delay: 0.5s">
+          <div class="quick-actions">
+            <div class="quick-action">
+              <div class="action-btn" style="color: #6366f1;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <path d="M9 15l2 2 4-4"></path>
+                </svg>
+              </div>
+              <span class="action-label">โฉนด</span>
+            </div>
+            <div class="quick-action">
+              <div class="action-btn" style="color: #10b981;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                  <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                  <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                </svg>
+              </div>
+              <span class="action-label">กระเป๋า</span>
+            </div>
+            <div class="quick-action">
+              <div class="action-btn" style="color: #3b82f6;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+                  <path d="M18 14h-8"></path>
+                  <path d="M15 18h-5"></path>
+                  <path d="M10 6h8v4h-8V6Z"></path>
+                </svg>
+              </div>
+              <span class="action-label">ข่าวสาร</span>
+            </div>
+            <div class="quick-action">
+              <div class="action-btn" style="color: #f97316;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                  <path d="M4 22h16"></path>
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+              </div>
+              <span class="action-label">อันดับ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="preview-section opacity-0 animate-slide-up" style="animation-delay: 0.6s">
+          <div class="chart-section">
+            <div class="chart-header">
+              <h3 class="chart-title">สถิติการเติบโต</h3>
+              <button class="chart-filter">รายปี ▾</button>
+            </div>
+            <div class="chart-placeholder">
+              📈 Area Chart (Recharts)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-output">
+      <div class="prompt-text" id="promptText">
+        Create a CarbonBank-style design system with light background (#F8F9FA), deep forest green hero gradient (#064e3b → #065f46 → #047857), white cards with subtle shadows, and colorful quick action buttons. Use Sarabun Thai font, 32px rounded hero card, staggered slide-up animations (100ms delays), and mobile-first PWA patterns. Perfect for environmental/sustainability apps with tree planting, carbon credits, and gamification features.
+      </div>
+      <button class="copy-btn" onclick="copyPrompt()">คัดลอกคำสั่ง Design</button>
+      <span class="copy-feedback" id="copyFeedback">✓ คัดลอกแล้ว!</span>
+    </div>
+  </div>
+
+  <script>
+    const PRESETS = {
+      carbonbank: {
+        heroStart: '#064e3b',
+        heroMid: '#065f46',
+        heroEnd: '#047857',
+        radius: 32,
+        padding: 28,
+        fontWeight: 700,
+        actionHover: '#f0fdf4'
+      },
+      'forest-dark': {
+        heroStart: '#022c22',
+        heroMid: '#064e3b',
+        heroEnd: '#065f46',
+        radius: 28,
+        padding: 24,
+        fontWeight: 700,
+        actionHover: '#ecfdf5'
+      },
+      emerald: {
+        heroStart: '#065f46',
+        heroMid: '#059669',
+        heroEnd: '#10b981',
+        radius: 36,
+        padding: 32,
+        fontWeight: 800,
+        actionHover: '#d1fae5'
+      },
+      jade: {
+        heroStart: '#047857',
+        heroMid: '#10b981',
+        heroEnd: '#34d399',
+        radius: 40,
+        padding: 36,
+        fontWeight: 700,
+        actionHover: '#a7f3d0'
+      }
+    };
+
+    let state = { ...PRESETS.carbonbank };
+    let currentPreset = 'carbonbank';
+
+    function applyPreset(presetName) {
+      currentPreset = presetName;
+      state = { ...PRESETS[presetName] };
+
+      document.getElementById('heroStart').value = state.heroStart;
+      document.getElementById('heroMid').value = state.heroMid;
+      document.getElementById('heroEnd').value = state.heroEnd;
+      document.getElementById('radius').value = state.radius;
+      document.getElementById('padding').value = state.padding;
+      document.getElementById('fontWeight').value = state.fontWeight;
+      document.getElementById('actionHover').value = state.actionHover;
+
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      updateAll();
+    }
+
+    function updateState(key, value) {
+      state[key] = value;
+      updateAll();
+    }
+
+    function updateAll() {
+      updateDisplays();
+      renderPreview();
+      updatePrompt();
+    }
+
+    function updateDisplays() {
+      document.getElementById('heroStartDisplay').textContent = state.heroStart;
+      document.getElementById('heroMidDisplay').textContent = state.heroMid;
+      document.getElementById('heroEndDisplay').textContent = state.heroEnd;
+      document.getElementById('radiusDisplay').textContent = state.radius + 'px';
+      document.getElementById('paddingDisplay').textContent = state.padding + 'px';
+      document.getElementById('actionHoverDisplay').textContent = state.actionHover;
+    }
+
+    function renderPreview() {
+      const root = document.documentElement;
+
+      root.style.setProperty('--hero-start', state.heroStart);
+      root.style.setProperty('--hero-mid', state.heroMid);
+      root.style.setProperty('--hero-end', state.heroEnd);
+      root.style.setProperty('--radius-hero', state.radius + 'px');
+      root.style.setProperty('--action-hover-bg', state.actionHover);
+
+      const heroCard = document.querySelector('.hero-card');
+      if (heroCard) {
+        heroCard.style.padding = state.padding + 'px';
+      }
+
+      document.body.style.fontWeight = state.fontWeight;
+    }
+
+    function updatePrompt() {
+      const parts = [];
+
+      const presetDescriptions = {
+        carbonbank: 'authentic CarbonBank theme with light background (#F8F9FA) and forest green hero',
+        'forest-dark': 'dark forest variation with deeper greens',
+        emerald: 'bright emerald theme with vibrant greens',
+        jade: 'light jade theme with fresh green tones'
+      };
+
+      parts.push(presetDescriptions[currentPreset]);
+      parts.push(`hero gradient ${state.heroStart} → ${state.heroMid} → ${state.heroEnd}`);
+      parts.push(`${state.radius}px rounded hero card`);
+      parts.push(`${state.padding}px padding`);
+
+      const weightLabels = { 500: 'medium', 600: 'semi-bold', 700: 'bold', 800: 'extra bold' };
+      parts.push(`${weightLabels[state.fontWeight]} Sarabun Thai font`);
+
+      const prompt = `Create a ${parts.join(', ')} design system. Include white cards with subtle shadows, colorful quick action buttons (indigo, emerald, blue, orange), staggered slide-up animations (100ms delays), glossy hero effect with texture overlay, stat cards with backdrop blur, and mobile-first PWA patterns. Perfect for tree banking, carbon credit tracking, and environmental sustainability apps with Thai language support.`;
+
+      document.getElementById('promptText').textContent = prompt;
+    }
+
+    function copyPrompt() {
+      const promptText = document.getElementById('promptText').textContent;
+      navigator.clipboard.writeText(promptText).then(() => {
+        const feedback = document.getElementById('copyFeedback');
+        feedback.classList.add('show');
+        setTimeout(() => {
+          feedback.classList.remove('show');
+        }, 2000);
+      });
+    }
+
+    // Initialize
+    updateAll();
+  </script>
+</body>
+</html>

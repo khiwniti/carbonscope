@@ -1,0 +1,578 @@
+{
+  "marketplace": {
+    "version": "2.0.0",
+    "lastUpdated": "2026-04-01",
+    "description": "Hierarchical Claude Code ecosystem marketplace",
+    "levels": [
+      "plugins",
+      "skills",
+      "tools"
+    ]
+  },
+  "plugins": {
+    "ai-agent-saas-expert": {
+      "type": "plugin",
+      "name": "AI Agent SaaS Expert",
+      "version": "0.2.0",
+      "description": "Professional AI agent team for AI chat SaaS applications",
+      "author": "khiwniti",
+      "license": "MIT",
+      "category": "web-development",
+      "tags": [
+        "ai",
+        "saas",
+        "nextjs",
+        "llm",
+        "sandbox"
+      ],
+      "repository": "https://github.com/khiwniti/claude-plugin",
+      "installUrl": "https://github.com/khiwniti/claude-plugin.git",
+      "agents": 10,
+      "skills": 11,
+      "tools": 3,
+      "bundledSkills": [
+        "ai-agent-saas-patterns",
+        "database-architecture",
+        "deployment-strategies",
+        "llm-integration-patterns",
+        "nextjs-app-router-guide",
+        "production-checklist",
+        "sandbox-integration-guide",
+        "security-checklist",
+        "agent-chat-ui-patterns",
+        "agent-state-management",
+        "agent-streaming-ux"
+      ],
+      "bundledTools": [
+        "validate-plugin",
+        "find-skill",
+        "version-bump"
+      ],
+      "dependencies": {
+        "requiredSkills": [],
+        "optionalSkills": [],
+        "requiredTools": [],
+        "system": [
+          "bash",
+          "git",
+          "python3"
+        ]
+      }
+    }
+  },
+  "skills": {
+    "bundled": {
+      "ai-agent-saas-patterns": {
+        "id": "ai-agent-saas-patterns",
+        "type": "skill",
+        "name": "AI Agent SaaS Patterns",
+        "version": "0.1.0",
+        "category": "architecture",
+        "tags": [
+          "ai",
+          "saas",
+          "monorepo",
+          "nextjs"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "medium",
+        "dependencies": []
+      },
+      "database-architecture": {
+        "id": "database-architecture",
+        "type": "skill",
+        "name": "Database Architecture",
+        "version": "0.1.0",
+        "category": "database",
+        "tags": [
+          "postgresql",
+          "neo4j",
+          "redis",
+          "prisma"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "high",
+        "dependencies": []
+      },
+      "deployment-strategies": {
+        "id": "deployment-strategies",
+        "type": "skill",
+        "name": "Deployment Strategies",
+        "version": "0.1.0",
+        "category": "devops",
+        "tags": [
+          "vercel",
+          "docker",
+          "railway",
+          "ci-cd"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "medium",
+        "dependencies": []
+      },
+      "llm-integration-patterns": {
+        "id": "llm-integration-patterns",
+        "type": "skill",
+        "name": "LLM Integration Patterns",
+        "version": "0.1.0",
+        "category": "ai",
+        "tags": [
+          "llm",
+          "ai-sdk",
+          "anthropic",
+          "openai",
+          "streaming"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "high",
+        "dependencies": []
+      },
+      "nextjs-app-router-guide": {
+        "id": "nextjs-app-router-guide",
+        "type": "skill",
+        "name": "Next.js App Router Guide",
+        "version": "0.1.0",
+        "category": "framework",
+        "tags": [
+          "nextjs",
+          "react",
+          "app-router",
+          "routing"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "medium",
+        "dependencies": []
+      },
+      "production-checklist": {
+        "id": "production-checklist",
+        "type": "skill",
+        "name": "Production Checklist",
+        "version": "0.1.0",
+        "category": "quality",
+        "tags": [
+          "production",
+          "checklist",
+          "security",
+          "performance"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "low",
+        "dependencies": []
+      },
+      "sandbox-integration-guide": {
+        "id": "sandbox-integration-guide",
+        "type": "skill",
+        "name": "Sandbox Integration Guide",
+        "version": "0.1.0",
+        "category": "infrastructure",
+        "tags": [
+          "sandbox",
+          "daytona",
+          "e2b",
+          "docker"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "high",
+        "dependencies": []
+      },
+      "security-checklist": {
+        "id": "security-checklist",
+        "type": "skill",
+        "name": "Security Checklist",
+        "version": "0.1.0",
+        "category": "security",
+        "tags": [
+          "security",
+          "auth",
+          "api-security",
+          "gdpr"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "medium",
+        "dependencies": []
+      },
+      "agent-chat-ui-patterns": {
+        "id": "agent-chat-ui-patterns",
+        "type": "skill",
+        "name": "Agent Chat UI Patterns",
+        "version": "0.2.0",
+        "category": "frontend",
+        "tags": [
+          "react",
+          "chat-ui",
+          "streaming",
+          "tool-call",
+          "file-upload"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "high",
+        "dependencies": []
+      },
+      "agent-state-management": {
+        "id": "agent-state-management",
+        "type": "skill",
+        "name": "Agent State Management",
+        "version": "0.2.0",
+        "category": "frontend",
+        "tags": [
+          "zustand",
+          "tanstack-query",
+          "optimistic-updates",
+          "hooks"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "high",
+        "dependencies": []
+      },
+      "agent-streaming-ux": {
+        "id": "agent-streaming-ux",
+        "type": "skill",
+        "name": "Agent Streaming UX",
+        "version": "0.2.0",
+        "category": "frontend",
+        "tags": [
+          "sse",
+          "websocket",
+          "streaming",
+          "reconnection",
+          "real-time"
+        ],
+        "bundledIn": [
+          "ai-agent-saas-expert"
+        ],
+        "canInstallStandalone": true,
+        "extractable": true,
+        "complexity": "high",
+        "dependencies": []
+      }
+    },
+    "standalone": {}
+  },
+  "tools": {
+    "validate-plugin": {
+      "id": "validate-plugin",
+      "type": "tool",
+      "name": "Plugin Validator",
+      "version": "1.0.0",
+      "category": "validation",
+      "description": "Validates Claude Code plugin structure and content",
+      "executable": "scripts/validate-plugin.sh",
+      "bundledIn": [
+        "ai-agent-saas-expert"
+      ],
+      "canInstallStandalone": true,
+      "dependencies": {
+        "system": [
+          "bash",
+          "python3"
+        ]
+      },
+      "tags": [
+        "validation",
+        "quality",
+        "automation"
+      ]
+    },
+    "find-skill": {
+      "id": "find-skill",
+      "type": "tool",
+      "name": "Skill Finder",
+      "version": "1.0.0",
+      "category": "discovery",
+      "description": "Search and discover skills by name, tag, or category",
+      "executable": "scripts/find-skill.sh",
+      "bundledIn": [
+        "ai-agent-saas-expert"
+      ],
+      "canInstallStandalone": true,
+      "dependencies": {
+        "system": [
+          "bash"
+        ]
+      },
+      "tags": [
+        "discovery",
+        "search",
+        "skills"
+      ]
+    },
+    "version-bump": {
+      "id": "version-bump",
+      "type": "tool",
+      "name": "Version Bumper",
+      "version": "1.0.0",
+      "category": "automation",
+      "description": "Automate semantic versioning for plugins and skills",
+      "executable": "scripts/version-bump.sh",
+      "bundledIn": [
+        "ai-agent-saas-expert"
+      ],
+      "canInstallStandalone": true,
+      "dependencies": {
+        "system": [
+          "bash",
+          "git"
+        ]
+      },
+      "tags": [
+        "versioning",
+        "automation",
+        "git"
+      ]
+    }
+  },
+  "categories": {
+    "plugins": {
+      "web-development": {
+        "description": "Web application development plugins",
+        "plugins": [
+          "ai-agent-saas-expert"
+        ]
+      },
+      "devops": {
+        "description": "DevOps and infrastructure plugins",
+        "plugins": []
+      },
+      "security": {
+        "description": "Security audit and compliance plugins",
+        "plugins": []
+      },
+      "ai": {
+        "description": "AI and machine learning plugins",
+        "plugins": []
+      }
+    },
+    "skills": {
+      "architecture": {
+        "description": "System design and architecture patterns",
+        "skills": [
+          "ai-agent-saas-patterns"
+        ]
+      },
+      "database": {
+        "description": "Database design and optimization",
+        "skills": [
+          "database-architecture"
+        ]
+      },
+      "devops": {
+        "description": "Deployment and infrastructure",
+        "skills": [
+          "deployment-strategies"
+        ]
+      },
+      "ai": {
+        "description": "AI and LLM integration",
+        "skills": [
+          "llm-integration-patterns"
+        ]
+      },
+      "framework": {
+        "description": "Framework-specific patterns",
+        "skills": [
+          "nextjs-app-router-guide"
+        ]
+      },
+      "quality": {
+        "description": "Quality assurance and checklists",
+        "skills": [
+          "production-checklist"
+        ]
+      },
+      "infrastructure": {
+        "description": "Infrastructure and containers",
+        "skills": [
+          "sandbox-integration-guide"
+        ]
+      },
+      "security": {
+        "description": "Security and compliance",
+        "skills": [
+          "security-checklist"
+        ]
+      },
+      "frontend": {
+        "description": "Frontend agent UI, state management, and streaming UX",
+        "skills": [
+          "agent-chat-ui-patterns",
+          "agent-state-management",
+          "agent-streaming-ux"
+        ]
+      }
+    },
+    "tools": {
+      "validation": {
+        "description": "Quality validation tools",
+        "tools": [
+          "validate-plugin"
+        ]
+      },
+      "discovery": {
+        "description": "Search and discovery tools",
+        "tools": [
+          "find-skill"
+        ]
+      },
+      "automation": {
+        "description": "Workflow automation tools",
+        "tools": [
+          "version-bump"
+        ]
+      }
+    }
+  },
+  "tags": {
+    "ai": {
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "skills": [
+        "ai-agent-saas-patterns",
+        "llm-integration-patterns"
+      ],
+      "tools": []
+    },
+    "security": {
+      "plugins": [],
+      "skills": [
+        "security-checklist",
+        "production-checklist"
+      ],
+      "tools": []
+    },
+    "nextjs": {
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "skills": [
+        "ai-agent-saas-patterns",
+        "nextjs-app-router-guide"
+      ],
+      "tools": []
+    },
+    "docker": {
+      "plugins": [],
+      "skills": [
+        "deployment-strategies",
+        "sandbox-integration-guide"
+      ],
+      "tools": []
+    },
+    "validation": {
+      "plugins": [],
+      "skills": [
+        "production-checklist"
+      ],
+      "tools": [
+        "validate-plugin"
+      ]
+    },
+    "automation": {
+      "plugins": [],
+      "skills": [],
+      "tools": [
+        "version-bump"
+      ]
+    },
+    "frontend": {
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "skills": [
+        "agent-chat-ui-patterns",
+        "agent-state-management",
+        "agent-streaming-ux"
+      ],
+      "tools": []
+    },
+    "streaming": {
+      "plugins": [],
+      "skills": [
+        "agent-streaming-ux",
+        "agent-chat-ui-patterns"
+      ],
+      "tools": []
+    },
+    "react": {
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "skills": [
+        "agent-chat-ui-patterns",
+        "agent-state-management"
+      ],
+      "tools": []
+    },
+    "zustand": {
+      "plugins": [],
+      "skills": [
+        "agent-state-management"
+      ],
+      "tools": []
+    },
+    "sse": {
+      "plugins": [],
+      "skills": [
+        "agent-streaming-ux"
+      ],
+      "tools": []
+    }
+  },
+  "compatibility": {
+    "ai-agent-saas-expert@0.1.0": {
+      "claudeCode": ">=1.0.0",
+      "node": ">=18.0.0",
+      "git": ">=2.0.0"
+    }
+  },
+  "stats": {
+    "totalPlugins": 1,
+    "totalSkills": 11,
+    "totalTools": 3,
+    "categories": {
+      "plugins": 4,
+      "skills": 9,
+      "tools": 3
+    }
+  }
+}

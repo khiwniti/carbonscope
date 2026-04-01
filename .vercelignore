@@ -1,0 +1,49 @@
+# Ignore everything except frontend
+/*
+!/suna/
+/suna/*
+!/suna/apps/
+/suna/apps/*
+!/suna/apps/frontend/
+
+# Ignore backend
+suna/backend/
+backend/
+
+# Ignore test files
+**/__tests__/
+**/__pycache__/
+**/*.pyc
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+e2e-screenshots/
+e2e-test-results/
+.coverage
+.pytest_cache/
+.ruff_cache/
+
+# Ignore documentation
+docs/
+*.md
+!suna/apps/frontend/README.md
+
+# Ignore planning
+.planning/
+.worktree/
+.worktrees/
+
+# Ignore large files
+*.zip
+CarbonBank_extracted/
+brightway2/
+
+# Ignore CI/CD
+.github/
+.gitlab-ci.yml
+
+# Ignore local config
+.env.local
+.env*.local
+*.log

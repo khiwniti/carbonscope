@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cBIM AI — Logo + Wordmark Integrations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Anybody:wght@100;200;300;400;500;600;700;800;900&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --emerald-50: #ECFDF5;
+      --emerald-400: #34D399;
+      --emerald-500: #10B981;
+      --emerald-600: #059669;
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --cyan-400: #22D3EE;
+      --cyan-500: #06B6D4;
+      --blue-400: #60A5FA;
+      --blue-500: #3B82F6;
+      --purple-400: #C084FC;
+      --purple-500: #A855F7;
+      --orange-400: #FB923C;
+      --orange-500: #F97316;
+      --dark-900: #0B1120;
+      --dark-800: #1F2937;
+      --dark-700: #374151;
+      --gray-400: #9CA3AF;
+      --gray-200: #E5E7EB;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark-900);
+      color: var(--gray-200);
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      padding: 4rem 2rem 2rem;
+      background: linear-gradient(135deg, #0B1120 0%, #1a2332 100%);
+      border-bottom: 1px solid rgba(52, 211, 153, 0.1);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--emerald-400) 0%, var(--teal-400) 50%, var(--cyan-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--gray-400);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .concepts-grid {
+      display: grid;
+      gap: 3rem;
+      padding: 3rem 2rem;
+    }
+
+    .concept {
+      background: var(--dark-800);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .concept:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .concept-header {
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.05) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .concept-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .concept-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--emerald-400), var(--teal-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .concept-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+    }
+
+    .concept-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      border-radius: 12px;
+      color: var(--emerald-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .concept-body {
+      padding: 2.5rem;
+    }
+
+    .showcase {
+      background: linear-gradient(135deg, rgba(11, 17, 32, 0.8) 0%, rgba(31, 41, 55, 0.4) 100%);
+      border-radius: 16px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .showcase::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    .variations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .variation-card {
+      background: rgba(11, 17, 32, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      transition: all 0.3s;
+    }
+
+    .variation-card:hover {
+      border-color: rgba(52, 211, 153, 0.3);
+      background: rgba(11, 17, 32, 0.8);
+    }
+
+    .variation-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+    }
+
+    .typography-note {
+      background: rgba(52, 211, 153, 0.05);
+      border-left: 3px solid var(--emerald-400);
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      margin-top: 1.5rem;
+    }
+
+    .typography-note h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      color: var(--emerald-400);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .typography-note p {
+      color: var(--gray-400);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .logo-animated {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="container">
+      <h1>Logo + Wordmark Systems</h1>
+      <p class="tagline">Five Integrated Text-Symbol Solutions</p>
+    </div>
+  </div>
+
+  <div class="concepts-grid container">
+    <!-- Concept 1: Flowing Text Mesh -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">01</span>
+          <h2 class="concept-title">Flowing Text Mesh</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Gradient Typography</span>
+          <span class="tag">Organic Integration</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase1"></div>
+        <div class="typography-note">
+          <h4>Typography System</h4>
+          <p><strong>Font:</strong> Syne ExtraBold • <strong>Treatment:</strong> Multi-stop gradient matching symbol • <strong>Integration:</strong> Text flows through organic shape, creating unified mark-wordmark system</p>
+        </div>
+        <div class="variations" id="variations1"></div>
+      </div>
+    </div>
+
+    <!-- Concept 2: Crystalline Monogram -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">02</span>
+          <h2 class="concept-title">Crystalline Monogram</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Faceted Letterforms</span>
+          <span class="tag">Geometric Text</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase2"></div>
+        <div class="typography-note">
+          <h4>Typography System</h4>
+          <p><strong>Font:</strong> Orbitron Bold • <strong>Treatment:</strong> Angular, geometric letterforms echo crystal facets • <strong>Integration:</strong> "C" monogram embedded in crystalline structure</p>
+        </div>
+        <div class="variations" id="variations2"></div>
+      </div>
+    </div>
+
+    <!-- Concept 3: Orbital Type System -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">03</span>
+          <h2 class="concept-title">Orbital Type System</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Circular Layout</span>
+          <span class="tag">Kinetic Typography</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase3"></div>
+        <div class="typography-note">
+          <h4>Typography System</h4>
+          <p><strong>Font:</strong> Chakra Petch Bold • <strong>Treatment:</strong> Text orbits around center or sits within rings • <strong>Integration:</strong> Circular text path follows orbital motion</p>
+        </div>
+        <div class="variations" id="variations3"></div>
+      </div>
+    </div>
+
+    <!-- Concept 4: Brutalist Logotype -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">04</span>
+          <h2 class="concept-title">Brutalist Logotype</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Bold Typography</span>
+          <span class="tag">Architectural Text</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase4"></div>
+        <div class="typography-note">
+          <h4>Typography System</h4>
+          <p><strong>Font:</strong> Anybody ExtraBold Condensed • <strong>Treatment:</strong> Ultra-bold, compressed letterforms • <strong>Integration:</strong> Text becomes architectural element, integrated into geometric planes</p>
+        </div>
+        <div class="variations" id="variations4"></div>
+      </div>
+    </div>
+
+    <!-- Concept 5: Fluid Wordmark -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">05</span>
+          <h2 class="concept-title">Fluid Wordmark</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Wave Typography</span>
+          <span class="tag">Organic Flow</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase5"></div>
+        <div class="typography-note">
+          <h4>Typography System</h4>
+          <p><strong>Font:</strong> Syne Medium • <strong>Treatment:</strong> Soft, rounded letterforms with gradient • <strong>Integration:</strong> Text flows with parametric waves, creating liquid typography effect</p>
+        </div>
+        <div class="variations" id="variations5"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Concept 1: Flowing Text Mesh with integrated typography
+    function createFlowingTextMesh(size, variant = 'full') {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 240 100');
+      svg.setAttribute('width', size * 2.4);
+      svg.setAttribute('height', size);
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+      const gradient1 = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient1.setAttribute('id', `flow-grad1-${size}-${variant}`);
+      gradient1.setAttribute('x1', '0%');
+      gradient1.setAttribute('y1', '0%');
+      gradient1.setAttribute('x2', '100%');
+      gradient1.setAttribute('y2', '100%');
+
+      const stops1 = [
+        { offset: '0%', color: '#34D399' },
+        { offset: '40%', color: '#2DD4BF' },
+        { offset: '70%', color: '#22D3EE' },
+        { offset: '100%', color: '#3B82F6' }
+      ];
+
+      stops1.forEach(stop => {
+        const stopEl = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stopEl.setAttribute('offset', stop.offset);
+        stopEl.setAttribute('stop-color', stop.color);
+        gradient1.appendChild(stopEl);
+      });
+
+      defs.appendChild(gradient1);
+      svg.appendChild(defs);
+
+      // Symbol
+      const symbolGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      symbolGroup.setAttribute('transform', 'translate(30, 50)');
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M -15,0 Q -10,-20 0,-18 T 15,0 Q 10,20 0,18 T -15,0 Z');
+      path.setAttribute('fill', `url(#flow-grad1-${size}-${variant})`);
+      path.setAttribute('opacity', '0.9');
+      symbolGroup.appendChild(path);
+
+      svg.appendChild(symbolGroup);
+
+      if (variant === 'full' || variant === 'horizontal') {
+        // Text
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '70');
+        text.setAttribute('y', '62');
+        text.setAttribute('font-family', 'Syne, sans-serif');
+        text.setAttribute('font-weight', '800');
+        text.setAttribute('font-size', variant === 'full' ? '36' : '28');
+        text.setAttribute('fill', `url(#flow-grad1-${size}-${variant})`);
+        text.textContent = 'cBIM';
+        svg.appendChild(text);
+
+        if (variant === 'full') {
+          const subtext = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          subtext.setAttribute('x', '70');
+          subtext.setAttribute('y', '78');
+          subtext.setAttribute('font-family', 'JetBrains Mono, monospace');
+          subtext.setAttribute('font-weight', '500');
+          subtext.setAttribute('font-size', '10');
+          subtext.setAttribute('fill', '#9CA3AF');
+          subtext.setAttribute('letter-spacing', '1');
+          subtext.textContent = 'CARBON INTELLIGENCE';
+          svg.appendChild(subtext);
+        }
+      }
+
+      return svg;
+    }
+
+    // Concept 2: Crystalline with "C" monogram
+    function createCrystallineMonogram(size, variant = 'full') {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 240 100');
+      svg.setAttribute('width', size * 2.4);
+      svg.setAttribute('height', size);
+
+      // Crystal facets
+      const facets = [
+        { points: '40,25 52,35 40,50', color: '#34D399' },
+        { points: '40,25 28,35 40,50', color: '#2DD4BF' },
+        { points: '40,50 52,65 40,75', color: '#22D3EE' },
+        { points: '40,50 28,65 40,75', color: '#60A5FA' },
+        { points: '52,35 52,65 40,50', color: '#C084FC' },
+        { points: '28,35 28,65 40,50', color: '#10B981' }
+      ];
+
+      facets.forEach(facet => {
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', facet.points);
+        polygon.setAttribute('fill', facet.color);
+        polygon.setAttribute('opacity', '0.7');
+        polygon.setAttribute('stroke', '#ECFDF5');
+        polygon.setAttribute('stroke-width', '0.5');
+        svg.appendChild(polygon);
+      });
+
+      // Large "C" integrated
+      const cPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      cPath.setAttribute('d', 'M 52,35 A 15 15 0 1 1 52,65');
+      cPath.setAttribute('fill', 'none');
+      cPath.setAttribute('stroke', '#ECFDF5');
+      cPath.setAttribute('stroke-width', '2');
+      cPath.setAttribute('opacity', '0.6');
+      svg.appendChild(cPath);
+
+      if (variant === 'full' || variant === 'horizontal') {
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '75');
+        text.setAttribute('y', '60');
+        text.setAttribute('font-family', 'Orbitron, sans-serif');
+        text.setAttribute('font-weight', '700');
+        text.setAttribute('font-size', variant === 'full' ? '32' : '26');
+        text.setAttribute('fill', '#34D399');
+        text.textContent = 'cBIM AI';
+        svg.appendChild(text);
+
+        if (variant === 'full') {
+          const subtext = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          subtext.setAttribute('x', '75');
+          subtext.setAttribute('y', '74');
+          subtext.setAttribute('font-family', 'JetBrains Mono, monospace');
+          subtext.setAttribute('font-weight', '400');
+          subtext.setAttribute('font-size', '9');
+          subtext.setAttribute('fill', '#6B7280');
+          subtext.setAttribute('letter-spacing', '1.5');
+          subtext.textContent = 'CARBON ASSESSMENT';
+          svg.appendChild(subtext);
+        }
+      }
+
+      return svg;
+    }
+
+    // Concept 3: Orbital with central text
+    function createOrbitalTypeSystem(size, variant = 'full') {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 240 100');
+      svg.setAttribute('width', size * 2.4);
+      svg.setAttribute('height', size);
+
+      const orbits = [
+        { r: 30, color: '#34D399', width: 3, offset: 0 },
+        { r: 24, color: '#2DD4BF', width: 2.5, offset: 20 },
+        { r: 18, color: '#22D3EE', width: 2, offset: 40 }
+      ];
+
+      const centerX = 40;
+      const centerY = 50;
+
+      orbits.forEach(orbit => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', centerX);
+        circle.setAttribute('cy', centerY);
+        circle.setAttribute('r', orbit.r);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', orbit.color);
+        circle.setAttribute('stroke-width', orbit.width);
+        circle.setAttribute('stroke-linecap', 'round');
+
+        const circumference = 2 * Math.PI * orbit.r;
+        const gapSize = circumference * 0.25;
+        circle.setAttribute('stroke-dasharray', `${circumference - gapSize} ${gapSize}`);
+        circle.setAttribute('stroke-dashoffset', orbit.offset);
+
+        svg.appendChild(circle);
+      });
+
+      // Central text
+      if (variant === 'icon' || variant === 'full') {
+        const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        centerText.setAttribute('x', centerX);
+        centerText.setAttribute('y', centerY + 6);
+        centerText.setAttribute('font-family', 'Chakra Petch, sans-serif');
+        centerText.setAttribute('font-weight', '700');
+        centerText.setAttribute('font-size', '16');
+        centerText.setAttribute('fill', '#34D399');
+        centerText.setAttribute('text-anchor', 'middle');
+        centerText.textContent = 'C';
+        svg.appendChild(centerText);
+      }
+
+      if (variant === 'full' || variant === 'horizontal') {
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '85');
+        text.setAttribute('y', '58');
+        text.setAttribute('font-family', 'Chakra Petch, sans-serif');
+        text.setAttribute('font-weight', '700');
+        text.setAttribute('font-size', variant === 'full' ? '30' : '24');
+        text.setAttribute('fill', '#E5E7EB');
+        text.textContent = 'cBIM';
+        svg.appendChild(text);
+
+        const aiText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        aiText.setAttribute('x', '155');
+        aiText.setAttribute('y', '58');
+        aiText.setAttribute('font-family', 'Chakra Petch, sans-serif');
+        aiText.setAttribute('font-weight', '700');
+        aiText.setAttribute('font-size', variant === 'full' ? '30' : '24');
+        aiText.setAttribute('fill', '#34D399');
+        aiText.textContent = 'AI';
+        svg.appendChild(aiText);
+      }
+
+      return svg;
+    }
+
+    // Concept 4: Brutalist with bold integrated text
+    function createBrutalistLogotype(size, variant = 'full') {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 240 100');
+      svg.setAttribute('width', size * 2.4);
+      svg.setAttribute('height', size);
+
+      // Geometric planes
+      const layers = [
+        { points: '15,55 60,40 60,75 15,75', color: '#34D399', opacity: 0.9 },
+        { points: '10,42 55,30 55,60 10,65', color: '#22D3EE', opacity: 0.7 },
+        { points: '20,32 65,22 65,48 20,52', color: '#FB923C', opacity: 0.8 }
+      ];
+
+      layers.forEach(layer => {
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', layer.points);
+        polygon.setAttribute('fill', layer.color);
+        polygon.setAttribute('opacity', layer.opacity);
+        polygon.setAttribute('stroke', '#0B1120');
+        polygon.setAttribute('stroke-width', '2');
+        polygon.setAttribute('stroke-linejoin', 'miter');
+        svg.appendChild(polygon);
+      });
+
+      if (variant === 'full' || variant === 'horizontal') {
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '80');
+        text.setAttribute('y', '65');
+        text.setAttribute('font-family', 'Anybody, sans-serif');
+        text.setAttribute('font-weight', '800');
+        text.setAttribute('font-size', variant === 'full' ? '42' : '34');
+        text.setAttribute('font-stretch', 'condensed');
+        text.setAttribute('fill', '#E5E7EB');
+        text.setAttribute('letter-spacing', '-2');
+        text.textContent = 'cBIM';
+        svg.appendChild(text);
+
+        if (variant === 'full') {
+          const subtext = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          subtext.setAttribute('x', '80');
+          subtext.setAttribute('y', '78');
+          subtext.setAttribute('font-family', 'JetBrains Mono, monospace');
+          subtext.setAttribute('font-weight', '600');
+          subtext.setAttribute('font-size', '8');
+          subtext.setAttribute('fill', '#34D399');
+          subtext.setAttribute('letter-spacing', '2');
+          subtext.textContent = 'CARBON INTELLIGENCE';
+          svg.appendChild(subtext);
+        }
+      }
+
+      return svg;
+    }
+
+    // Concept 5: Fluid with wave-integrated text
+    function createFluidWordmark(size, variant = 'full') {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 240 100');
+      svg.setAttribute('width', size * 2.4);
+      svg.setAttribute('height', size);
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient.setAttribute('id', `fluid-grad-${size}-${variant}`);
+      gradient.setAttribute('x1', '0%');
+      gradient.setAttribute('y1', '0%');
+      gradient.setAttribute('x2', '0%');
+      gradient.setAttribute('y2', '100%');
+
+      const stops = [
+        { offset: '0%', color: '#34D399' },
+        { offset: '50%', color: '#2DD4BF' },
+        { offset: '100%', color: '#22D3EE' }
+      ];
+
+      stops.forEach(stop => {
+        const stopEl = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stopEl.setAttribute('offset', stop.offset);
+        stopEl.setAttribute('stop-color', stop.color);
+        gradient.appendChild(stopEl);
+      });
+
+      defs.appendChild(gradient);
+      svg.appendChild(defs);
+
+      // Waves
+      const waves = [
+        { d: 'M 5,35 Q 20,28 35,35 T 65,35', opacity: 0.9 },
+        { d: 'M 5,50 Q 20,43 35,50 T 65,50', opacity: 0.7 },
+        { d: 'M 5,65 Q 20,58 35,65 T 65,65', opacity: 0.5 }
+      ];
+
+      waves.forEach(wave => {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', wave.d);
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', `url(#fluid-grad-${size}-${variant})`);
+        path.setAttribute('stroke-width', '4');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('opacity', wave.opacity);
+        svg.appendChild(path);
+      });
+
+      if (variant === 'full' || variant === 'horizontal') {
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', '80');
+        text.setAttribute('y', '58');
+        text.setAttribute('font-family', 'Syne, sans-serif');
+        text.setAttribute('font-weight', '600');
+        text.setAttribute('font-size', variant === 'full' ? '34' : '28');
+        text.setAttribute('fill', `url(#fluid-grad-${size}-${variant})`);
+        text.textContent = 'cBIM';
+        svg.appendChild(text);
+
+        if (variant === 'full') {
+          const aiText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          aiText.setAttribute('x', '80');
+          aiText.setAttribute('y', '75');
+          aiText.setAttribute('font-family', 'Syne, sans-serif');
+          aiText.setAttribute('font-weight', '600');
+          aiText.setAttribute('font-size', '16');
+          aiText.setAttribute('fill', '#9CA3AF');
+          aiText.textContent = 'AI Platform';
+          svg.appendChild(aiText);
+        }
+      }
+
+      return svg;
+    }
+
+    // Render main showcases
+    const creators = [
+      { func: createFlowingTextMesh, id: 'showcase1', variations: 'variations1' },
+      { func: createCrystallineMonogram, id: 'showcase2', variations: 'variations2' },
+      { func: createOrbitalTypeSystem, id: 'showcase3', variations: 'variations3' },
+      { func: createBrutalistLogotype, id: 'showcase4', variations: 'variations4' },
+      { func: createFluidWordmark, id: 'showcase5', variations: 'variations5' }
+    ];
+
+    creators.forEach(creator => {
+      const showcase = document.getElementById(creator.id);
+      const logo = creator.func(120, 'full');
+      logo.classList.add('logo-animated');
+      showcase.appendChild(logo);
+
+      // Create variations
+      const variationsContainer = document.getElementById(creator.variations);
+
+      const variants = [
+        { name: 'Full Lockup', type: 'full', size: 60 },
+        { name: 'Horizontal', type: 'horizontal', size: 60 },
+        { name: 'Icon Only', type: 'icon', size: 60 }
+      ];
+
+      variants.forEach(variant => {
+        const card = document.createElement('div');
+        card.className = 'variation-card';
+
+        const variantLogo = creator.func(variant.size, variant.type);
+        card.appendChild(variantLogo);
+
+        const label = document.createElement('div');
+        label.className = 'variation-label';
+        label.textContent = variant.name;
+        card.appendChild(label);
+
+        variationsContainer.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

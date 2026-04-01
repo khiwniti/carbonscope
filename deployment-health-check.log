@@ -1,0 +1,31 @@
+Monitoring application startup...
+Time: Mon Mar 30 03:43:06 UTC 2026
+
+[Attempt 1/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 2/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 3/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 4/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 5/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 6/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 7/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 8/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 9/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 10/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 11/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 12/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 13/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 14/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 15/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 16/20] Backend: HTTP 503 | Frontend: HTTP 503
+[Attempt 17/20] Backend: HTTP 000000 | Frontend: HTTP 000000
+[Attempt 18/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 19/20] Backend: HTTP 000000 | Frontend: HTTP 503
+[Attempt 20/20] Backend: HTTP 000000 | Frontend: HTTP 503
+
+⚠️  Applications did not become healthy within expected time
+Final status: Backend=000000, Frontend=503
+
+This may be normal for first deployment. You can:
+1. Wait longer and retry
+2. Check logs: az webapp log tail --name suna-backend-app --resource-group suna-bim-rg
+3. Restart: az webapp restart --name suna-backend-app --resource-group suna-bim-rg

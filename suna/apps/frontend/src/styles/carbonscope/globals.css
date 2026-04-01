@@ -1,0 +1,256 @@
+/**
+* CarbonScope Global Styles
+* Dark engineering aesthetic with emerald green accents
+* EN 15978-aligned carbon assessment platform
+*/
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* Force Dark Theme */
+html {
+  color-scheme: dark;
+}
+
+html.dark,
+html[class~="dark"] {
+  color-scheme: dark;
+}
+
+/* Base Resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--cs-font-body);
+  background-color: var(--cs-bg-base);
+  color: var(--cs-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cs-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cs-border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cs-green-600);
+}
+
+/* Focus States */
+:focus-visible {
+  outline: 2px solid var(--cs-green-400);
+  outline-offset: 2px;
+}
+
+/* Keyframe Animations */
+
+@keyframes cs-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cs-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cs-scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cs-slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes cs-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes cs-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(52, 211, 153, 0.5);
+  }
+}
+
+@keyframes cs-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes cs-countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cs-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes cs-fillUp {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+@keyframes cs-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes cs-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation Utility Classes */
+.cs-fadeUp {
+  animation: cs-fadeUp 0.6s ease-out;
+}
+
+.cs-fadeIn {
+  animation: cs-fadeIn 0.4s ease-out;
+}
+
+.cs-scaleIn {
+  animation: cs-scaleIn 0.4s ease-out;
+}
+
+.cs-slideRight {
+  animation: cs-slideRight 0.5s ease-out;
+}
+
+.cs-pulse {
+  animation: cs-pulse 2s ease-in-out infinite;
+}
+
+.cs-glow {
+  animation: cs-glow 2s ease-in-out infinite;
+}
+
+.cs-shimmer {
+  animation: cs-shimmer 2s linear infinite;
+}
+
+.cs-float {
+  animation: cs-float 3s ease-in-out infinite;
+}
+
+.cs-spin {
+  animation: cs-spin 1s linear infinite;
+}
+
+/* Staggered Animations */
+.cs-stagger > * {
+  opacity: 0;
+  animation: cs-fadeUp 0.6s ease-out forwards;
+}
+
+.cs-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.cs-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.cs-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.cs-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.cs-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.cs-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.cs-stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.cs-stagger > *:nth-child(8) { animation-delay: 0.4s; }
+.cs-stagger > *:nth-child(9) { animation-delay: 0.45s; }
+.cs-stagger > *:nth-child(10) { animation-delay: 0.5s; }
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

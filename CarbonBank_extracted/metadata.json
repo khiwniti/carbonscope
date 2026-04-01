@@ -1,0 +1,8 @@
+{
+  "name": "CarbonBank (ธนาคารต้นไม้)",
+  "description": "Mobile-first application for tracking tree planting, calculating carbon credits, and managing land deeds for the government Tree Bank project.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}

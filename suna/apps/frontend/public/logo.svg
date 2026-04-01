@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60">
+  <defs>
+    <style>
+      .text {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 32px;
+        font-weight: 600;
+        fill: #34D399;
+      }
+    </style>
+  </defs>
+  <text x="10" y="42" class="text">BKS cBIM AI</text>
+</svg>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BKS cBIM AI Logo Concepts - Design Playground</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0B1120 0%, #1a2332 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .concept-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(52, 211, 153, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .concept-card:hover {
+            border-color: #34D399;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.2);
+        }
+
+        .concept-card.recommended {
+            border-color: #34D399;
+            border-width: 3px;
+        }
+
+        .recommended-badge {
+            display: inline-block;
+            background: #34D399;
+            color: #0B1120;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .concept-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #34D399;
+        }
+
+        .logo-preview {
+            background: #0B1120;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .wordmark {
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .wordmark .cbim {
+            color: #34D399;
+        }
+
+        .description {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pros, .cons {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .pros h4 {
+            color: #34D399;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .cons h4 {
+            color: #fbbf24;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .pros ul, .cons ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .pros li::before {
+            content: "✓ ";
+            color: #34D399;
+            font-weight: bold;
+        }
+
+        .cons li::before {
+            content: "⚠ ";
+            color: #fbbf24;
+        }
+
+        /* Logo Concept A - Crystalline Growth */
+        .crystal-logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        /* Logo Concept B - Fractal Block */
+        .fractal-logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        /* Logo Concept C - Geometric Leaf */
+        .leaf-logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        .size-preview {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .size-preview h4 {
+            color: #34D399;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .size-examples {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .size-example {
+            text-align: center;
+        }
+
+        .size-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .controls h3 {
+            color: #34D399;
+            margin-bottom: 15px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #34D399;
+            color: #0B1120;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #10B981;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(52, 211, 153, 0.2);
+            color: #34D399;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(52, 211, 153, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BKS cBIM AI Logo Concepts</h1>
+        <p class="subtitle">Interactive Design Playground - Compare All 3 Approaches</p>
+
+        <div class="concepts-grid">
+            <!-- Concept A: Crystalline Growth Matrix -->
+            <div class="concept-card recommended">
+                <span class="recommended-badge">⭐ RECOMMENDED</span>
+                <h2 class="concept-title">A: Crystalline Growth Matrix</h2>
+
+                <div class="logo-preview">
+                    <div class="logo-container">
+                        <svg class="crystal-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="crystalGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#34D399;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#6EE7B7;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Base crystal -->
+                            <polygon points="60,95 40,80 40,70 60,55 80,70 80,80" fill="url(#crystalGrad)" opacity="0.9"/>
+
+                            <!-- Mid layer -->
+                            <polygon points="60,70 45,60 45,48 60,38 75,48 75,60" fill="url(#crystalGrad)" opacity="0.95"/>
+
+                            <!-- Top layer -->
+                            <polygon points="60,50 50,43 50,33 60,26 70,33 70,43" fill="url(#crystalGrad)"/>
+
+                            <!-- Peak -->
+                            <polygon points="60,35 55,31 55,25 60,20 65,25 65,31" fill="#6EE7B7"/>
+
+                            <!-- Facet lines -->
+                            <line x1="60" y1="95" x2="60" y2="20" stroke="#0B1120" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="40" y1="80" x2="55" y2="31" stroke="#0B1120" stroke-width="1" opacity="0.2"/>
+                            <line x1="80" y1="80" x2="65" y2="31" stroke="#0B1120" stroke-width="1" opacity="0.2"/>
+                        </svg>
+
+                        <div class="wordmark">
+                            BKS <span class="cbim">cBIM</span> AI
+                        </div>
+                    </div>
+                </div>
+
+                <p class="description">
+                    Geometric crystal formation growing upward. 5 hexagonal facets in ascending size
+                    represent EN 15978 lifecycle stages. Emerald gradient from dark base to bright peak
+                    symbolizes carbon reduction journey. Bold angular geometry with mathematical precision.
+                </p>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Strengths</h4>
+                        <ul>
+                            <li>Perfect hybrid: natural + technical</li>
+                            <li>Unique in BIM software space</li>
+                            <li>Scales beautifully to any size</li>
+                            <li>Tells growth story visually</li>
+                            <li>Gradient shines on facets</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>More complex than minimal logos</li>
+                            <li>Needs careful scaling for tiny sizes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="size-preview">
+                    <h4>Size Versatility</h4>
+                    <div class="size-examples">
+                        <div class="size-example">
+                            <svg width="64" height="64" viewBox="0 0 120 120">
+                                <defs>
+                                    <linearGradient id="cg1" x1="0%" y1="100%" x2="0%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#10B981"/>
+                                        <stop offset="100%" style="stop-color:#6EE7B7"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="60,95 40,80 40,70 60,55 80,70 80,80" fill="url(#cg1)" opacity="0.9"/>
+                                <polygon points="60,70 45,60 45,48 60,38 75,48 75,60" fill="url(#cg1)" opacity="0.95"/>
+                                <polygon points="60,50 50,43 50,33 60,26 70,33 70,43" fill="url(#cg1)"/>
+                                <polygon points="60,35 55,31 55,25 60,20 65,25 65,31" fill="#6EE7B7"/>
+                            </svg>
+                            <div class="size-label">64px</div>
+                        </div>
+                        <div class="size-example">
+                            <svg width="32" height="32" viewBox="0 0 120 120">
+                                <defs>
+                                    <linearGradient id="cg2" x1="0%" y1="100%" x2="0%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#10B981"/>
+                                        <stop offset="100%" style="stop-color:#6EE7B7"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="60,95 40,80 40,70 60,55 80,70 80,80" fill="url(#cg2)" opacity="0.9"/>
+                                <polygon points="60,70 45,60 45,48 60,38 75,48 75,60" fill="url(#cg2)" opacity="0.95"/>
+                                <polygon points="60,50 50,43 50,33 60,26 70,33 70,43" fill="url(#cg2)"/>
+                                <polygon points="60,35 55,31 55,25 60,20 65,25 65,31" fill="#6EE7B7"/>
+                            </svg>
+                            <div class="size-label">32px</div>
+                        </div>
+                        <div class="size-example">
+                            <svg width="16" height="16" viewBox="0 0 120 120">
+                                <defs>
+                                    <linearGradient id="cg3" x1="0%" y1="100%" x2="0%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#10B981"/>
+                                        <stop offset="100%" style="stop-color:#6EE7B7"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="60,95 40,80 40,70 60,55 80,70 80,80" fill="url(#cg3)"/>
+                                <polygon points="60,50 50,43 50,33 60,26 70,33 70,43" fill="#6EE7B7"/>
+                            </svg>
+                            <div class="size-label">16px (favicon)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept B: Fractal Building Block -->
+            <div class="concept-card">
+                <h2 class="concept-title">B: Fractal Building Block</h2>
+
+                <div class="logo-preview">
+                    <div class="logo-container">
+                        <svg class="fractal-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="fractalGrad" x1="50%" y1="50%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#6EE7B7;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#34D399;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#10B981;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Outer cube -->
+                            <rect x="20" y="20" width="80" height="80" fill="none" stroke="url(#fractalGrad)" stroke-width="4"/>
+
+                            <!-- Mid cube -->
+                            <rect x="35" y="35" width="50" height="50" fill="none" stroke="url(#fractalGrad)" stroke-width="3"/>
+
+                            <!-- Inner cube -->
+                            <rect x="47.5" y="47.5" width="25" height="25" fill="url(#fractalGrad)"/>
+
+                            <!-- Connecting lines -->
+                            <line x1="20" y1="20" x2="47.5" y2="47.5" stroke="#34D399" stroke-width="1" opacity="0.4"/>
+                            <line x1="100" y1="20" x2="72.5" y2="47.5" stroke="#34D399" stroke-width="1" opacity="0.4"/>
+                            <line x1="20" y1="100" x2="47.5" y2="72.5" stroke="#34D399" stroke-width="1" opacity="0.4"/>
+                            <line x1="100" y1="100" x2="72.5" y2="72.5" stroke="#34D399" stroke-width="1" opacity="0.4"/>
+                        </svg>
+
+                        <div class="wordmark" style="flex-direction: column; align-items: flex-start;">
+                            <div style="font-size: 1.8rem;">BKS</div>
+                            <div style="font-size: 1.5rem; color: #34D399;">cBIM AI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="description">
+                    Single bold cube with fractal subdivision. Recursive pattern creates sense of infinite
+                    depth and analysis capability. Emerald gradient radiates from center outward. Strong
+                    outer boundary represents robust analysis framework.
+                </p>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Strengths</h4>
+                        <ul>
+                            <li>Strong geometric presence</li>
+                            <li>Tech-forward aesthetic</li>
+                            <li>Self-similarity = holistic thinking</li>
+                            <li>Very modern feel</li>
+                            <li>Compact and bold</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>Detail lost at small sizes</li>
+                            <li>Less obvious sustainability link</li>
+                            <li>May read as too abstract</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept C: Geometric Leaf Architecture -->
+            <div class="concept-card">
+                <h2 class="concept-title">C: Geometric Leaf Architecture</h2>
+
+                <div class="logo-preview">
+                    <div class="logo-container">
+                        <svg class="leaf-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="leafGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#34D399;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#6EE7B7;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Leaf shape made of triangles -->
+                            <path d="M 60,20 L 85,45 L 80,70 L 60,95 L 40,70 L 35,45 Z"
+                                  fill="url(#leafGrad)" stroke="#0B1120" stroke-width="2"/>
+
+                            <!-- Geometric veins -->
+                            <line x1="60" y1="20" x2="60" y2="95" stroke="#0B1120" stroke-width="2" opacity="0.3"/>
+                            <line x1="60" y1="40" x2="75" y2="55" stroke="#0B1120" stroke-width="1.5" opacity="0.25"/>
+                            <line x1="60" y1="40" x2="45" y2="55" stroke="#0B1120" stroke-width="1.5" opacity="0.25"/>
+                            <line x1="60" y1="60" x2="70" y2="70" stroke="#0B1120" stroke-width="1.5" opacity="0.25"/>
+                            <line x1="60" y1="60" x2="50" y2="70" stroke="#0B1120" stroke-width="1.5" opacity="0.25"/>
+
+                            <!-- Geometric segments -->
+                            <polygon points="60,20 75,35 60,45" fill="rgba(110,231,183,0.3)"/>
+                            <polygon points="60,20 45,35 60,45" fill="rgba(110,231,183,0.3)"/>
+                        </svg>
+
+                        <div class="wordmark">
+                            BKS <span class="cbim">cBIM</span> AI
+                        </div>
+                    </div>
+                </div>
+
+                <p class="description">
+                    Stylized leaf constructed entirely from geometric shapes. Triangular/polygonal segments
+                    form organic leaf shape. Visible "veins" as precise geometric lines. Bold outline with
+                    structured internal geometry creates balance between nature and precision.
+                </p>
+
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Strengths</h4>
+                        <ul>
+                            <li>Direct sustainability symbolism</li>
+                            <li>Immediately recognizable</li>
+                            <li>Approachable and friendly</li>
+                            <li>Clear environmental message</li>
+                            <li>Easy to understand</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Considerations</h4>
+                        <ul>
+                            <li>More literal, less abstract</li>
+                            <li>Common in sustainability space</li>
+                            <li>May feel less "tech/AI"</li>
+                            <li>Less distinctive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h3>Next Steps</h3>
+            <div class="control-buttons">
+                <button class="btn" onclick="selectConcept('A')">✓ Select Concept A (Recommended)</button>
+                <button class="btn btn-secondary" onclick="selectConcept('B')">Select Concept B</button>
+                <button class="btn btn-secondary" onclick="selectConcept('C')">Select Concept C</button>
+            </div>
+            <p style="margin-top: 15px; color: #94a3b8; font-size: 0.9rem;">
+                Click a concept to proceed with detailed design development
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function selectConcept(letter) {
+            const concepts = {
+                'A': 'Crystalline Growth Matrix',
+                'B': 'Fractal Building Block',
+                'C': 'Geometric Leaf Architecture'
+            };
+
+            alert(`You selected: Concept ${letter} - ${concepts[letter]}\n\nTell Claude in the terminal: "I choose ${letter}" to proceed with detailed design specs!`);
+        }
+
+        // Add hover effects
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.concept-title').textContent;
+                console.log('Selected:', title);
+            });
+        });
+    </script>
+</body>
+</html>

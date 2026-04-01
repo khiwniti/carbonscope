@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIM Carbon — Custom Logo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #34D399;
+      --accent: #10B981;
+      --purple-500: #A855F7;
+      --dark-900: #0B1120;
+      --dark-800: #1F2937;
+      --gray-200: #E5E7EB;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-900);
+      color: var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent), var(--purple-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      color: #9CA3AF;
+      font-size: 1.1rem;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    .showcase-card {
+      background: var(--dark-800);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      transition: all 0.3s;
+    }
+
+    .showcase-card:hover {
+      border-color: rgba(52, 211, 153, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo-container {
+      background: linear-gradient(135deg, rgba(11, 17, 32, 0.8), rgba(31, 41, 55, 0.4));
+      border-radius: 16px;
+      padding: 3rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .label {
+      font-size: 0.9rem;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .size-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #6B7280;
+      margin-top: 1rem;
+    }
+
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .animated {
+      animation: subtle-float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>BIM Carbon Logo</h1>
+    <p class="subtitle">Custom design with Bangkok Silicon "B" gradient</p>
+  </div>
+
+  <div class="showcase-grid">
+    <!-- Full Lockup -->
+    <div class="showcase-card">
+      <p class="label">Full Logo Lockup</p>
+      <div class="logo-container" id="full-logo"></div>
+      <p class="size-label">Recommended for headers and large displays</p>
+    </div>
+
+    <!-- Icon + Text Horizontal -->
+    <div class="showcase-card">
+      <p class="label">Horizontal Variant</p>
+      <div class="logo-container" id="horizontal-logo"></div>
+      <p class="size-label">Ideal for navigation bars and compact spaces</p>
+    </div>
+
+    <!-- Icon Only -->
+    <div class="showcase-card">
+      <p class="label">Icon Only</p>
+      <div class="logo-container" id="icon-logo"></div>
+      <p class="size-label">Avatar, favicon, app icon usage</p>
+    </div>
+
+    <!-- Small Size Test -->
+    <div class="showcase-card">
+      <p class="label">Scale Test</p>
+      <div class="logo-container" style="justify-content: space-around;" id="scale-test"></div>
+      <p class="size-label">Scalability from 32px to 120px</p>
+    </div>
+  </div>
+
+  <script>
+    // Custom BIM Carbon logo with Bangkok Silicon "B" gradient
+    function createBIMCarbonLogo(size, variant = 'full') {
+      const container = document.createElement('div');
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.gap = `${size * 0.15}px`;
+
+      // Icon container with reduced size (decreased growing effect)
+      const iconSize = size * 0.85; // Reduced from 1.0 to 0.85 for subtle effect
+      const iconContainer = document.createElement('div');
+      iconContainer.style.width = `${iconSize}px`;
+      iconContainer.style.height = `${iconSize}px`;
+      iconContainer.style.borderRadius = `${iconSize * 0.3}px`;
+      iconContainer.style.background = 'linear-gradient(135deg, #34D399 0%, #10B981 50%, #A855F7 100%)';
+      iconContainer.style.display = 'flex';
+      iconContainer.style.alignItems = 'center';
+      iconContainer.style.justifyContent = 'center';
+      iconContainer.style.boxShadow = `0 ${iconSize * 0.25}px ${iconSize * 0.625}px rgba(52, 211, 153, 0.3)`;
+      iconContainer.style.flexShrink = '0';
+
+      // Leaf SVG - slightly smaller and more subtle
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', iconSize * 0.45); // Reduced from 0.5
+      svg.setAttribute('height', iconSize * 0.45);
+      svg.setAttribute('viewBox', '0 0 24 24');
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'white');
+      svg.setAttribute('stroke-width', '2');
+      svg.setAttribute('stroke-linecap', 'round');
+      svg.setAttribute('stroke-linejoin', 'round');
+
+      const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path1.setAttribute('d', 'M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z');
+      svg.appendChild(path1);
+
+      const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path2.setAttribute('d', 'M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12');
+      svg.appendChild(path2);
+
+      iconContainer.appendChild(svg);
+      container.appendChild(iconContainer);
+
+      // Text with Bangkok Silicon "B" gradient
+      if (variant === 'full' || variant === 'horizontal') {
+        const textContainer = document.createElement('div');
+        textContainer.style.display = 'flex';
+        textContainer.style.alignItems = 'baseline';
+        textContainer.style.gap = '0px';
+
+        // Create SVG for gradient text
+        const textSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        const textHeight = size * 0.45;
+        textSvg.setAttribute('height', textHeight);
+        textSvg.setAttribute('viewBox', '0 0 200 100');
+        textSvg.style.overflow = 'visible';
+
+        // Define Bangkok Silicon gradient
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+        const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        gradient.setAttribute('id', `bangkok-gradient-${size}-${variant}`);
+        gradient.setAttribute('x1', '0%');
+        gradient.setAttribute('y1', '0%');
+        gradient.setAttribute('x2', '100%');
+        gradient.setAttribute('y2', '100%');
+
+        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop1.setAttribute('offset', '0%');
+        stop1.setAttribute('stop-color', '#00C6FF');
+        gradient.appendChild(stop1);
+
+        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop2.setAttribute('offset', '36.9%');
+        stop2.setAttribute('stop-color', '#6BC1FF');
+        gradient.appendChild(stop2);
+
+        const stop3 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop3.setAttribute('offset', '100%');
+        stop3.setAttribute('stop-color', '#0072FF');
+        gradient.appendChild(stop3);
+
+        defs.appendChild(gradient);
+
+        // Carbon gradient for "IM"
+        const carbonGradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        carbonGradient.setAttribute('id', `carbon-gradient-${size}-${variant}`);
+        carbonGradient.setAttribute('x1', '0%');
+        carbonGradient.setAttribute('y1', '0%');
+        carbonGradient.setAttribute('x2', '100%');
+        carbonGradient.setAttribute('y2', '100%');
+
+        const cstop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        cstop1.setAttribute('offset', '0%');
+        cstop1.setAttribute('stop-color', '#34D399');
+        carbonGradient.appendChild(cstop1);
+
+        const cstop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        cstop2.setAttribute('offset', '100%');
+        cstop2.setAttribute('stop-color', '#10B981');
+        carbonGradient.appendChild(cstop2);
+
+        defs.appendChild(carbonGradient);
+        textSvg.appendChild(defs);
+
+        // "B" with Bangkok Silicon gradient
+        const bText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        bText.setAttribute('x', '0');
+        bText.setAttribute('y', '70');
+        bText.setAttribute('font-family', 'Inter, sans-serif');
+        bText.setAttribute('font-weight', '800');
+        bText.setAttribute('font-size', '80');
+        bText.setAttribute('fill', `url(#bangkok-gradient-${size}-${variant})`);
+        bText.textContent = 'B';
+        textSvg.appendChild(bText);
+
+        // "IM" with carbon gradient
+        const imText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        imText.setAttribute('x', '65');
+        imText.setAttribute('y', '70');
+        imText.setAttribute('font-family', 'Inter, sans-serif');
+        imText.setAttribute('font-weight', '800');
+        imText.setAttribute('font-size', '80');
+        imText.setAttribute('fill', `url(#carbon-gradient-${size}-${variant})`);
+        imText.textContent = 'IM';
+        textSvg.appendChild(imText);
+
+        textContainer.appendChild(textSvg);
+
+        // "Carbon" subtitle for full variant
+        if (variant === 'full') {
+          const subtitle = document.createElement('div');
+          subtitle.style.fontFamily = 'Inter, sans-serif';
+          subtitle.style.fontSize = `${size * 0.18}px`;
+          subtitle.style.fontWeight = '600';
+          subtitle.style.color = '#9CA3AF';
+          subtitle.style.marginLeft = `${size * 0.1}px`;
+          subtitle.style.alignSelf = 'flex-end';
+          subtitle.style.paddingBottom = `${size * 0.02}px`;
+          subtitle.textContent = 'Carbon';
+          textContainer.appendChild(subtitle);
+        }
+
+        container.appendChild(textContainer);
+      }
+
+      return container;
+    }
+
+    // Render all variants
+    const fullLogo = createBIMCarbonLogo(100, 'full');
+    fullLogo.classList.add('animated');
+    document.getElementById('full-logo').appendChild(fullLogo);
+
+    const horizontalLogo = createBIMCarbonLogo(80, 'horizontal');
+    horizontalLogo.classList.add('animated');
+    document.getElementById('horizontal-logo').appendChild(horizontalLogo);
+
+    const iconLogo = createBIMCarbonLogo(80, 'icon');
+    iconLogo.classList.add('animated');
+    document.getElementById('icon-logo').appendChild(iconLogo);
+
+    // Scale test
+    const scaleTest = document.getElementById('scale-test');
+    const sizes = [32, 48, 64, 80, 100, 120];
+    sizes.forEach(size => {
+      const logo = createBIMCarbonLogo(size, 'horizontal');
+      scaleTest.appendChild(logo);
+    });
+  </script>
+</body>
+</html>

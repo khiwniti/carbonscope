@@ -1,0 +1,138 @@
+/** 
+* CarbonScope Design Tokens 
+* CSS Custom Properties for systematic UI consistency 
+*/
+
+:root {
+  /* ========== Background Colors ========== */
+  --cs-bg-base: #0B1120;
+  --cs-bg-surface: #111827;
+  --cs-bg-elevated: #1A2332;
+  --cs-bg-card: #162032;
+  --cs-bg-hover: #1E293B;
+  --cs-bg-overlay: rgba(0,0,0,0.6);
+  --cs-bg-subtle: #0F172A;
+  --cs-bg-input: #0D1526;
+
+  /* ========== Border Colors ========== */
+  --cs-border-default: #1E293B;
+  --cs-border-muted: #1a2236;
+  --cs-border-active: #059669;
+  --cs-border-hover: #334155;
+  --cs-border-focus: rgba(5,150,105,0.5);
+
+  /* ========== Text Colors ========== */
+  --cs-text-primary: #E2E8F0;
+  --cs-text-secondary: #94A3B8;
+  --cs-text-muted: #64748B;
+  --cs-text-inverse: #0B1120;
+  --cs-text-accent: #34D399;
+  --cs-text-warning: #FBBF24;
+  --cs-text-danger: #F87171;
+  --cs-text-link: #38BDF8;
+
+  /* ========== Emerald Green (Primary Brand) ========== */
+  --cs-green-50: #ECFDF5;
+  --cs-green-100: #D1FAE5;
+  --cs-green-200: #A7F3D0;
+  --cs-green-300: #6EE7B7;
+  --cs-green-400: #34D399; /* Primary accent */
+  --cs-green-500: #10B981;
+  --cs-green-600: #059669; /* Buttons, borders */
+  --cs-green-700: #047857;
+  --cs-green-800: #065F46;
+  --cs-green-900: #064E3B;
+  --cs-green-glow: rgba(52,211,153,0.15);
+  --cs-green-glow-strong: rgba(52,211,153,0.25);
+
+  /* ========== EN 15978 Lifecycle Stage Colors ========== */
+  --cs-lifecycle-a1a3: #3B82F6; /* Product Stage */
+  --cs-lifecycle-a4a5: #60A5FA; /* Construction Process */
+  --cs-lifecycle-b1b5: #F59E0B; /* Use Stage - Maintenance */
+  --cs-lifecycle-b6b7: #EA580C; /* Use Stage - Operational Energy */
+  --cs-lifecycle-c1c4: #6B7280; /* End of Life */
+  --cs-lifecycle-d: #10B981; /* Benefits Beyond */
+  
+  /* Lifecycle Backgrounds */
+  --cs-lifecycle-a1a3-bg: rgba(59,130,246,0.12);
+  --cs-lifecycle-a4a5-bg: rgba(96,165,250,0.12);
+  --cs-lifecycle-b1b5-bg: rgba(245,158,11,0.12);
+  --cs-lifecycle-b6b7-bg: rgba(234,88,12,0.12);
+  --cs-lifecycle-c1c4-bg: rgba(107,114,128,0.12);
+  --cs-lifecycle-d-bg: rgba(16,185,129,0.12);
+
+  /* ========== Semantic Status Colors ========== */
+  --cs-status-good: #10B981; /* Good carbon performance */
+  --cs-status-good-bg: rgba(16,185,129,0.1);
+  --cs-status-warning: #F59E0B; /* Warning threshold */
+  --cs-status-warning-bg: rgba(245,158,11,0.1);
+  --cs-status-danger: #EF4444; /* High carbon impact */
+  --cs-status-danger-bg: rgba(239,68,68,0.1);
+  --cs-status-info: #3B82F6; /* Informational */
+  --cs-status-info-bg: rgba(59,130,246,0.1);
+
+  /* ========== Typography ========== */
+  --cs-font-display: 'Instrument Serif', Georgia, serif;
+  --cs-font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --cs-font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --cs-font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --cs-font-data: 'Tabular Nums', 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* ========== Font Sizes ========== */
+  --cs-text-xs: 0.75rem; /* 12px */
+  --cs-text-sm: 0.875rem; /* 14px */
+  --cs-text-base: 1rem; /* 16px */
+  --cs-text-lg: 1.125rem; /* 18px */
+  --cs-text-xl: 1.25rem; /* 20px */
+  --cs-text-2xl: 1.5rem; /* 24px */
+  --cs-text-3xl: 1.875rem; /* 30px */
+  --cs-text-4xl: 2.25rem; /* 36px */
+  --cs-text-5xl: 3rem; /* 48px */
+
+  /* ========== Font Weights ========== */
+  --cs-weight-light: 300;
+  --cs-weight-normal: 400;
+  --cs-weight-medium: 500;
+  --cs-weight-semibold: 600;
+  --cs-weight-bold: 700;
+
+  /* ========== Spacing ========== */
+  --cs-space-0: 0;
+  --cs-space-1: 0.25rem; /* 4px */
+  --cs-space-2: 0.5rem; /* 8px */
+  --cs-space-3: 0.75rem; /* 12px */
+  --cs-space-4: 1rem; /* 16px */
+  --cs-space-5: 1.25rem; /* 20px */
+  --cs-space-6: 1.5rem; /* 24px */
+  --cs-space-8: 2rem; /* 32px */
+  --cs-space-10: 2.5rem; /* 40px */
+  --cs-space-12: 3rem; /* 48px */
+  --cs-space-14: 3.5rem; /* 56px */
+  --cs-space-16: 4rem; /* 64px */
+  --cs-space-20: 5rem; /* 80px */
+  --cs-space-24: 6rem; /* 96px */
+  --cs-space-32: 8rem; /* 128px */
+
+  /* ========== Border Radius ========== */
+  --cs-radius-sm: 6px;
+  --cs-radius-md: 10px;
+  --cs-radius-lg: 14px;
+  --cs-radius-xl: 20px;
+  --cs-radius-full: 9999px;
+
+  /* ========== Shadows ========== */
+  --cs-shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --cs-shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --cs-shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  --cs-shadow-glow: 0 0 20px rgba(52,211,153,0.08);
+  --cs-shadow-inner: inset 0 1px 2px rgba(0,0,0,0.3);
+
+  /* ========== Transitions ========== */
+  --cs-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --cs-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --cs-ease-smooth: cubic-bezier(0.45, 0, 0.15, 1);
+
+  --cs-duration-fast: 150ms;
+  --cs-duration-normal: 300ms;
+  --cs-duration-slow: 500ms;
+}

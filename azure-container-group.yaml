@@ -1,0 +1,98 @@
+apiVersion: '2021-10-01'
+location: southeastasia
+name: suna-services
+properties:
+  containers:
+  # Redis
+  - name: redis
+    properties:
+      image: carbonbimbc6740962ecd.azurecr.io/redis:7-alpine
+      resources:
+        requests:
+          cpu: 0.5
+          memoryInGb: 0.5
+      ports:
+      - port: 6379
+        protocol: TCP
+      environmentVariables: []
+      command:
+      - redis-server
+      - --save
+      - '60'
+      - '1'
+      - --loglevel
+      - warning
+
+  # Backend
+  - name: backend
+    properties:
+      image: carbonbimbc6740962ecd.azurecr.io/backend:latest
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 2
+      ports:
+      - port: 8000
+        protocol: TCP
+      environmentVariables:
+      - name: REDIS_HOST
+        value: localhost
+      - name: REDIS_PORT
+        value: '6379'
+      - name: REDIS_PASSWORD
+        value: ''
+      - name: REDIS_SSL
+        value: 'False'
+      - name: ENV_MODE
+        value: production
+      - name: WORKERS
+        value: '2'
+      - name: TIMEOUT
+        value: '75'
+      # Add your other environment variables here from backend/.env
+      - name: SUPABASE_URL
+        secureValue: 'YOUR_SUPABASE_URL'
+      - name: SUPABASE_KEY
+        secureValue: 'YOUR_SUPABASE_KEY'
+
+  # Frontend
+  - name: frontend
+    properties:
+      image: carbonbimbc6740962ecd.azurecr.io/frontend:latest
+      resources:
+        requests:
+          cpu: 0.5
+          memoryInGb: 1.5
+      ports:
+      - port: 3000
+        protocol: TCP
+      environmentVariables:
+      - name: NEXT_PUBLIC_BACKEND_URL
+        value: http://localhost:8000/v1
+      - name: NEXT_PUBLIC_URL
+        value: http://suna-bim-staging.southeastasia.azurecontainer.io:3000
+      - name: NEXT_PUBLIC_ENV_MODE
+        value: STAGING
+      - name: NODE_ENV
+        value: production
+      - name: NEXT_TELEMETRY_DISABLED
+        value: '1'
+      # Add your other frontend environment variables here
+
+  imageRegistryCredentials:
+  - server: carbonbimbc6740962ecd.azurecr.io
+    username: carbonbimbc6740962ecd
+    password: 'WILL_BE_REPLACED_BY_SCRIPT'
+
+  osType: Linux
+  restartPolicy: Always
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: TCP
+      port: 3000
+    - protocol: TCP
+      port: 8000
+    - protocol: TCP
+      port: 6379
+    dnsNameLabel: suna-bim-staging

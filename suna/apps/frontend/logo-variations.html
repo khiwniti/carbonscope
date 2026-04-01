@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BKS cBIM AI Logo Variations Explorer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0B1120;
+      color: #E5E7EB;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #9CA3AF;
+      margin-bottom: 3rem;
+    }
+
+    .section {
+      background: #1F2937;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #374151;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #34D399;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #E5E7EB;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: #111827;
+      border: 2px solid #374151;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      border-color: #34D399;
+      transform: translateY(-2px);
+    }
+
+    .card.recommended {
+      border-color: #34D399;
+      background: rgba(52, 211, 153, 0.05);
+    }
+
+    .card-label {
+      font-size: 0.9rem;
+      color: #9CA3AF;
+      margin-top: 1rem;
+    }
+
+    .recommended-badge {
+      display: inline-block;
+      background: #34D399;
+      color: #0B1120;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .logo-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+    }
+
+    .scale-test {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+      background: #111827;
+      border-radius: 8px;
+    }
+
+    .final-recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .final-card {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border: 2px solid #34D399;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .final-card h4 {
+      color: #34D399;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .spec-list {
+      text-align: left;
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+    }
+
+    .spec-list li {
+      color: #D1D5DB;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .spec-list strong {
+      color: #34D399;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BKS cBIM AI Logo Variations</h1>
+    <p class="subtitle">Explore refinements to your rotated-square-C design</p>
+
+    <!-- Stroke Weight Variations -->
+    <div class="section">
+      <h2>1. Stroke Weight Options</h2>
+      <div class="grid" id="strokeGrid"></div>
+    </div>
+
+    <!-- Gap Width Variations -->
+    <div class="section">
+      <h2>2. Gap Width Options</h2>
+      <div class="grid" id="gapGrid"></div>
+    </div>
+
+    <!-- Corner Roundness Variations -->
+    <div class="section">
+      <h2>3. Corner Roundness Options</h2>
+      <div class="grid" id="roundnessGrid"></div>
+    </div>
+
+    <!-- Scalability Test -->
+    <div class="section">
+      <h2>4. Scalability Test</h2>
+      <p style="color: #9CA3AF; margin-bottom: 1.5rem;">How the logo performs at different sizes (16px to 120px)</p>
+      <div class="scale-test" id="scaleTest"></div>
+    </div>
+
+    <!-- Final Recommendations -->
+    <div class="section">
+      <h2>5. Curated Combinations</h2>
+      <div class="final-recommendations" id="finalRecs"></div>
+    </div>
+  </div>
+
+  <script>
+    const EMERALD = '#34D399';
+
+    // Create logo SVG element
+    function createLogo(size, strokeWeight, gapWidth, roundness) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', 50 - 28.28);
+      rect.setAttribute('y', 50 - 28.28);
+      rect.setAttribute('width', 56.56);
+      rect.setAttribute('height', 56.56);
+      rect.setAttribute('fill', 'none');
+      rect.setAttribute('stroke', EMERALD);
+      rect.setAttribute('stroke-width', strokeWeight);
+      rect.setAttribute('rx', roundness);
+      rect.setAttribute('ry', roundness);
+      rect.setAttribute('transform', 'rotate(45 50 50)');
+
+      const perimeter = 4 * 56.56;
+      const gapLength = perimeter * (gapWidth / 100);
+      const dashArray = `${perimeter * 0.75 - gapLength / 2} ${gapLength}`;
+      rect.setAttribute('stroke-dasharray', dashArray);
+      rect.setAttribute('stroke-dashoffset', perimeter * 0.125);
+
+      svg.appendChild(rect);
+      return svg;
+    }
+
+    // Stroke Weight Variations
+    const strokeWeights = [
+      { value: 3, label: '3% - Light', recommended: false },
+      { value: 4, label: '4% - Regular', recommended: false },
+      { value: 6, label: '6% - Bold', recommended: true },
+      { value: 8, label: '8% - Extra Bold', recommended: false },
+      { value: 10, label: '10% - Heavy', recommended: false }
+    ];
+
+    const strokeGrid = document.getElementById('strokeGrid');
+    strokeWeights.forEach(option => {
+      const card = document.createElement('div');
+      card.className = 'card' + (option.recommended ? ' recommended' : '');
+
+      const preview = document.createElement('div');
+      preview.className = 'logo-preview';
+      preview.appendChild(createLogo(80, option.value, 15, 11));
+
+      const label = document.createElement('div');
+      label.className = 'card-label';
+      label.textContent = option.label;
+
+      card.appendChild(preview);
+      card.appendChild(label);
+
+      if (option.recommended) {
+        const badge = document.createElement('span');
+        badge.className = 'recommended-badge';
+        badge.textContent = 'RECOMMENDED';
+        card.appendChild(badge);
+      }
+
+      strokeGrid.appendChild(card);
+    });
+
+    // Gap Width Variations
+    const gapWidths = [
+      { value: 9, label: '9% - Narrow', recommended: false },
+      { value: 13, label: '13% - Balanced', recommended: false },
+      { value: 15, label: '15% - Open', recommended: true },
+      { value: 17, label: '17% - Wide', recommended: false },
+      { value: 20, label: '20% - Extra Wide', recommended: false }
+    ];
+
+    const gapGrid = document.getElementById('gapGrid');
+    gapWidths.forEach(option => {
+      const card = document.createElement('div');
+      card.className = 'card' + (option.recommended ? ' recommended' : '');
+
+      const preview = document.createElement('div');
+      preview.className = 'logo-preview';
+      preview.appendChild(createLogo(80, 6, option.value, 11));
+
+      const label = document.createElement('div');
+      label.className = 'card-label';
+      label.textContent = option.label;
+
+      card.appendChild(preview);
+      card.appendChild(label);
+
+      if (option.recommended) {
+        const badge = document.createElement('span');
+        badge.className = 'recommended-badge';
+        badge.textContent = 'RECOMMENDED';
+        card.appendChild(badge);
+      }
+
+      gapGrid.appendChild(card);
+    });
+
+    // Corner Roundness Variations
+    const roundnessOptions = [
+      { value: 0, label: '0% - Sharp', recommended: false },
+      { value: 6, label: '6% - Subtle', recommended: false },
+      { value: 11, label: '11% - Balanced', recommended: true },
+      { value: 13, label: '13% - Soft', recommended: false },
+      { value: 18, label: '18% - Very Soft', recommended: false }
+    ];
+
+    const roundnessGrid = document.getElementById('roundnessGrid');
+    roundnessOptions.forEach(option => {
+      const card = document.createElement('div');
+      card.className = 'card' + (option.recommended ? ' recommended' : '');
+
+      const preview = document.createElement('div');
+      preview.className = 'logo-preview';
+      preview.appendChild(createLogo(80, 6, 15, option.value));
+
+      const label = document.createElement('div');
+      label.className = 'card-label';
+      label.textContent = option.label;
+
+      card.appendChild(preview);
+      card.appendChild(label);
+
+      if (option.recommended) {
+        const badge = document.createElement('span');
+        badge.className = 'recommended-badge';
+        badge.textContent = 'RECOMMENDED';
+        card.appendChild(badge);
+      }
+
+      roundnessGrid.appendChild(card);
+    });
+
+    // Scalability Test
+    const scaleTest = document.getElementById('scaleTest');
+    const sizes = [16, 24, 32, 48, 64, 80, 96, 120];
+    sizes.forEach(size => {
+      scaleTest.appendChild(createLogo(size, 6, 15, 11));
+    });
+
+    // Final Recommendations
+    const recommendations = [
+      {
+        title: 'Recommended Combination',
+        specs: [
+          { label: 'Stroke Weight', value: '6% (Bold)' },
+          { label: 'Gap Width', value: '15% (Open)' },
+          { label: 'Corner Roundness', value: '11% (Balanced)' }
+        ],
+        description: 'Balanced design with strong presence and modern refinement',
+        params: { stroke: 6, gap: 15, roundness: 11 }
+      },
+      {
+        title: 'Bold & Open',
+        specs: [
+          { label: 'Stroke Weight', value: '8% (Extra Bold)' },
+          { label: 'Gap Width', value: '17% (Wide)' },
+          { label: 'Corner Roundness', value: '6% (Subtle)' }
+        ],
+        description: 'Maximum impact with strong geometric character',
+        params: { stroke: 8, gap: 17, roundness: 6 }
+      },
+      {
+        title: 'Refined & Subtle',
+        specs: [
+          { label: 'Stroke Weight', value: '4% (Regular)' },
+          { label: 'Gap Width', value: '13% (Balanced)' },
+          { label: 'Corner Roundness', value: '13% (Soft)' }
+        ],
+        description: 'Elegant and sophisticated with technical precision',
+        params: { stroke: 4, gap: 13, roundness: 13 }
+      }
+    ];
+
+    const finalRecs = document.getElementById('finalRecs');
+    recommendations.forEach(rec => {
+      const card = document.createElement('div');
+      card.className = 'final-card';
+
+      const title = document.createElement('h4');
+      title.textContent = rec.title;
+      card.appendChild(title);
+
+      const preview = document.createElement('div');
+      preview.className = 'logo-preview';
+      preview.appendChild(createLogo(96, rec.params.stroke, rec.params.gap, rec.params.roundness));
+      card.appendChild(preview);
+
+      const specList = document.createElement('ul');
+      specList.className = 'spec-list';
+      rec.specs.forEach(spec => {
+        const li = document.createElement('li');
+        const strong = document.createElement('strong');
+        strong.textContent = spec.label + ': ';
+        li.appendChild(strong);
+        li.appendChild(document.createTextNode(spec.value));
+        specList.appendChild(li);
+      });
+      card.appendChild(specList);
+
+      const desc = document.createElement('p');
+      desc.style.color = '#9CA3AF';
+      desc.style.fontSize = '0.9rem';
+      desc.textContent = rec.description;
+      card.appendChild(desc);
+
+      finalRecs.appendChild(card);
+    });
+  </script>
+</body>
+</html>

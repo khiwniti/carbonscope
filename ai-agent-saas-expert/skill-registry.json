@@ -1,0 +1,384 @@
+{
+  "registry": {
+    "version": "0.2.0",
+    "lastUpdated": "2026-04-01",
+    "plugins": {
+      "ai-agent-saas-expert": {
+        "name": "AI Agent SaaS Expert",
+        "version": "0.2.0",
+        "repository": "https://github.com/khiwniti/claude-plugin",
+        "agents": 10,
+        "skills": 11
+      }
+    }
+  },
+  "skills": {
+    "ai-agent-saas-patterns": {
+      "id": "ai-agent-saas-patterns",
+      "name": "AI Agent SaaS Patterns",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "architecture",
+      "tags": [
+        "ai",
+        "saas",
+        "monorepo",
+        "nextjs",
+        "multi-platform"
+      ],
+      "description": "Architecture patterns for AI agent platforms, monorepo structure, agent runtime design",
+      "dependencies": [],
+      "reusableIn": [
+        "web-apps",
+        "saas-platforms",
+        "ai-products"
+      ],
+      "complexity": "medium"
+    },
+    "database-architecture": {
+      "id": "database-architecture",
+      "name": "Database Architecture",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "database",
+      "tags": [
+        "postgresql",
+        "neo4j",
+        "redis",
+        "multi-database",
+        "prisma"
+      ],
+      "description": "Multi-database patterns (PostgreSQL, Graph DB, Redis) for AI agent SaaS",
+      "dependencies": [],
+      "reusableIn": [
+        "any"
+      ],
+      "complexity": "high"
+    },
+    "deployment-strategies": {
+      "id": "deployment-strategies",
+      "name": "Deployment Strategies",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "devops",
+      "tags": [
+        "vercel",
+        "docker",
+        "railway",
+        "ci-cd",
+        "environment-vars"
+      ],
+      "description": "Vercel, Docker, Railway deployment patterns and environment management",
+      "dependencies": [],
+      "reusableIn": [
+        "any"
+      ],
+      "complexity": "medium"
+    },
+    "llm-integration-patterns": {
+      "id": "llm-integration-patterns",
+      "name": "LLM Integration Patterns",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "ai",
+      "tags": [
+        "llm",
+        "ai-sdk",
+        "anthropic",
+        "openai",
+        "streaming",
+        "tool-calling"
+      ],
+      "description": "AI SDK v6 patterns, multi-provider setup, streaming, tool calling",
+      "dependencies": [],
+      "reusableIn": [
+        "ai-products",
+        "chatbots",
+        "ai-saas"
+      ],
+      "complexity": "high"
+    },
+    "nextjs-app-router-guide": {
+      "id": "nextjs-app-router-guide",
+      "name": "Next.js App Router Guide",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "framework",
+      "tags": [
+        "nextjs",
+        "react",
+        "app-router",
+        "routing",
+        "server-components"
+      ],
+      "description": "Next.js 15-16 App Router patterns, dynamic routes, server actions",
+      "dependencies": [],
+      "reusableIn": [
+        "nextjs-projects"
+      ],
+      "complexity": "medium"
+    },
+    "production-checklist": {
+      "id": "production-checklist",
+      "name": "Production Checklist",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "quality",
+      "tags": [
+        "production",
+        "checklist",
+        "security",
+        "performance",
+        "monitoring"
+      ],
+      "description": "Pre-deployment validation: security, observability, performance, scalability",
+      "dependencies": [],
+      "reusableIn": [
+        "any"
+      ],
+      "complexity": "low"
+    },
+    "sandbox-integration-guide": {
+      "id": "sandbox-integration-guide",
+      "name": "Sandbox Integration Guide",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "infrastructure",
+      "tags": [
+        "sandbox",
+        "daytona",
+        "e2b",
+        "docker",
+        "containers"
+      ],
+      "description": "Sandbox integration patterns for AI agent code execution",
+      "dependencies": [],
+      "reusableIn": [
+        "ai-agent-platforms",
+        "code-execution-tools"
+      ],
+      "complexity": "high"
+    },
+    "security-checklist": {
+      "id": "security-checklist",
+      "name": "Security Checklist",
+      "version": "0.1.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "security",
+      "tags": [
+        "security",
+        "authentication",
+        "api-security",
+        "validation",
+        "gdpr"
+      ],
+      "description": "Security patterns: auth, API security, input validation, compliance",
+      "dependencies": [],
+      "reusableIn": [
+        "any"
+      ],
+      "complexity": "medium"
+    },
+    "agent-chat-ui-patterns": {
+      "id": "agent-chat-ui-patterns",
+      "name": "Agent Chat UI Patterns",
+      "version": "0.2.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "frontend",
+      "tags": [
+        "react",
+        "chat-ui",
+        "streaming",
+        "tool-call",
+        "message-bubble",
+        "file-upload",
+        "accessibility"
+      ],
+      "description": "Production React component patterns: parts-based rendering, ToolCallCard, MessageBubble, virtualised MessageList, FileUploadZone",
+      "dependencies": [],
+      "reusableIn": [
+        "ai-agent-platforms",
+        "chatbots",
+        "ai-saas"
+      ],
+      "complexity": "high"
+    },
+    "agent-state-management": {
+      "id": "agent-state-management",
+      "name": "Agent State Management",
+      "version": "0.2.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "frontend",
+      "tags": [
+        "zustand",
+        "tanstack-query",
+        "state-management",
+        "optimistic-updates",
+        "react",
+        "hooks"
+      ],
+      "description": "Zustand store-per-concern + TanStack Query for agent chat: optimistic thread creation, selector memoisation, infinite history, cache invalidation",
+      "dependencies": [],
+      "reusableIn": [
+        "ai-agent-platforms",
+        "ai-saas"
+      ],
+      "complexity": "high"
+    },
+    "agent-streaming-ux": {
+      "id": "agent-streaming-ux",
+      "name": "Agent Streaming UX",
+      "version": "0.2.0",
+      "plugins": [
+        "ai-agent-saas-expert"
+      ],
+      "category": "frontend",
+      "tags": [
+        "sse",
+        "websocket",
+        "streaming",
+        "reconnection",
+        "real-time",
+        "abort",
+        "connection-banner"
+      ],
+      "description": "SSE + WebSocket frontend patterns: useSSEStream, useSandboxStatus, exponential backoff, abort generation, scroll anchor, network-aware UX",
+      "dependencies": [],
+      "reusableIn": [
+        "ai-agent-platforms",
+        "real-time-apps"
+      ],
+      "complexity": "high"
+    }
+  },
+  "categories": {
+    "architecture": {
+      "description": "System design and architecture patterns",
+      "skills": [
+        "ai-agent-saas-patterns"
+      ]
+    },
+    "database": {
+      "description": "Database design and optimization",
+      "skills": [
+        "database-architecture"
+      ]
+    },
+    "devops": {
+      "description": "Deployment and infrastructure",
+      "skills": [
+        "deployment-strategies"
+      ]
+    },
+    "ai": {
+      "description": "AI and LLM integration",
+      "skills": [
+        "llm-integration-patterns"
+      ]
+    },
+    "framework": {
+      "description": "Framework-specific patterns",
+      "skills": [
+        "nextjs-app-router-guide"
+      ]
+    },
+    "quality": {
+      "description": "Quality assurance and checklists",
+      "skills": [
+        "production-checklist"
+      ]
+    },
+    "infrastructure": {
+      "description": "Infrastructure and containers",
+      "skills": [
+        "sandbox-integration-guide"
+      ]
+    },
+    "security": {
+      "description": "Security and compliance",
+      "skills": [
+        "security-checklist"
+      ]
+    },
+    "frontend": {
+      "description": "Frontend agent UI patterns, state management, and streaming UX",
+      "skills": [
+        "agent-chat-ui-patterns",
+        "agent-state-management",
+        "agent-streaming-ux"
+      ]
+    }
+  },
+  "tags": {
+    "ai": [
+      "ai-agent-saas-patterns",
+      "llm-integration-patterns"
+    ],
+    "saas": [
+      "ai-agent-saas-patterns"
+    ],
+    "nextjs": [
+      "ai-agent-saas-patterns",
+      "nextjs-app-router-guide"
+    ],
+    "database": [
+      "database-architecture"
+    ],
+    "security": [
+      "security-checklist"
+    ],
+    "deployment": [
+      "deployment-strategies"
+    ],
+    "docker": [
+      "deployment-strategies",
+      "sandbox-integration-guide"
+    ],
+    "frontend": [
+      "agent-chat-ui-patterns",
+      "agent-state-management",
+      "agent-streaming-ux"
+    ],
+    "streaming": [
+      "agent-streaming-ux",
+      "agent-chat-ui-patterns"
+    ],
+    "react": [
+      "agent-chat-ui-patterns",
+      "agent-state-management",
+      "nextjs-app-router-guide"
+    ],
+    "zustand": [
+      "agent-state-management"
+    ],
+    "tool-call": [
+      "agent-chat-ui-patterns"
+    ],
+    "sse": [
+      "agent-streaming-ux"
+    ],
+    "websocket": [
+      "agent-streaming-ux"
+    ]
+  }
+}

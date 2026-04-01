@@ -1,0 +1,375 @@
+2026-03-30T03:25:35.1976665Z State: Starting, Action: EstablishingSiteNetworks, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-03-30T03:25:36.2825878Z State: Starting, Action: StartingSiteContainers, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: , DetailsLevel: INFO
+2026-03-30T03:25:36.2827181Z Container start method called.
+2026-03-30T03:25:36.2827770Z State: Starting, Action: PullingImage, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pulling image sunabimacr.azurecr.io/suna-backend:latest for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:25:36.2828539Z Establishing network.
+2026-03-30T03:25:36.2829587Z Pulling image: sunabimacr.azurecr.io/suna-backend:latest.
+2026-03-30T03:26:58.2159935Z Image sunabimacr.azurecr.io/suna-backend:latest is pulled from registry sunabimacr.azurecr.io
+2026-03-30T03:26:58.2193706Z Container is starting.
+2026-03-30T03:26:58.2201167Z State: Starting, Action: MountingVolumes, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Mounting volumes for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:26:58.2250295Z Establishing user namespace if not established already.
+2026-03-30T03:26:58.2253647Z Establishing network if not established already.
+2026-03-30T03:26:58.2255201Z Mounting volumes.
+2026-03-30T03:26:58.2259364Z Nested mountpoint volatile/logs
+2026-03-30T03:26:58.2325610Z Nested mountpoint 
+2026-03-30T03:26:58.2607296Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Finished pulling container image and mounting volumes for suna-backend-app. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-30T03:26:58.2608407Z Creating container.
+2026-03-30T03:26:58.2609145Z Creating pipes for streaming container io.
+2026-03-30T03:26:58.2609961Z Creating stdout named pipe at /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stdout_195e7cfa48a349fe8ac5fb9418eb0de6.
+2026-03-30T03:26:58.2805261Z Successfully created stdout named pipe at: /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stdout_195e7cfa48a349fe8ac5fb9418eb0de6.
+2026-03-30T03:26:58.2807044Z Opening named pipe /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stdout_195e7cfa48a349fe8ac5fb9418eb0de6 for reading in non-blocking mode.
+2026-03-30T03:26:58.2811406Z Successfully opened named pipe: /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stdout_195e7cfa48a349fe8ac5fb9418eb0de6.
+2026-03-30T03:26:58.2812622Z Successfully removed non-blocking flag from /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stdout_195e7cfa48a349fe8ac5fb9418eb0de6.
+2026-03-30T03:26:58.2894364Z Creating stderr named pipe at /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stderr_59782a95b059451fa0c71d7a869ff1a7.
+2026-03-30T03:26:58.2905221Z Successfully created stderr named pipe at: /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stderr_59782a95b059451fa0c71d7a869ff1a7.
+2026-03-30T03:26:58.3048282Z Opening named pipe /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stderr_59782a95b059451fa0c71d7a869ff1a7 for reading in non-blocking mode.
+2026-03-30T03:26:58.3090478Z Successfully opened named pipe: /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stderr_59782a95b059451fa0c71d7a869ff1a7.
+2026-03-30T03:26:58.3094784Z Successfully removed non-blocking flag from /podr/container/pipe/dd4c1c23e2a2_suna-backend-app/stderr_59782a95b059451fa0c71d7a869ff1a7.
+2026-03-30T03:26:58.3100261Z Creating container with image: sunabimacr.azurecr.io/suna-backend:latest from registry: sunabimacr.azurecr.io and fully qualified image name: sunabimacr.azurecr.io/suna-backend:latest
+2026-03-30T03:26:58.6916160Z Starting container: dd4c1c23e2a2_suna-backend-app.
+2026-03-30T03:26:58.7534822Z Starting watchers and probes.
+2026-03-30T03:26:58.7546052Z Starting metrics collection.
+2026-03-30T03:26:58.7558593Z Container is running.
+2026-03-30T03:26:58.7633052Z State: Starting, Action: CreatingContainer, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:26:58.8348435Z Container start method finished after 82551 ms.
+2026-03-30T03:26:58.8355229Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:26:58.8533136Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-30T03:29:53.2652636Z Container has finished running with exit code: 1.
+2026-03-30T03:29:53.2766639Z Container is terminating. Grace period: 5 seconds.
+2026-03-30T03:29:53.3042365Z Stop and delete container. Retry count = 0
+2026-03-30T03:29:53.3055177Z Stopping container: dd4c1c23e2a2_suna-backend-app.
+2026-03-30T03:29:53.3748711Z Deleting container: dd4c1c23e2a2_suna-backend-app. Retry count = 0
+2026-03-30T03:29:53.5515906Z Container spec TerminationMessagePolicy  path 
+2026-03-30T03:29:53.5589533Z Container is terminated. Total time elapsed: 274 ms.
+2026-03-30T03:29:53.5591750Z Site container: suna-backend-app terminated during site startup.
+2026-03-30T03:29:53.5773305Z State: Stopping, Action: CancellingStartup, LastError: , LastErrorTimestamp: 01/01/0001 00:00:00, LastErrorDetails: , Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:29:53.6013560Z Site startup probe failed after 174.7466113 seconds.
+2026-03-30T03:29:53.7698259Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:29:53.7892134Z Failed to start site. Revert by stopping site.
+2026-03-30T03:29:53.8016958Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:29:53.8403762Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:29:53.8424771Z Site: suna-backend-app stopped.
+2026-03-30T03:29:53.9025143Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:29:54.0835207Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:29:54.3165563Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:29:54 (UTC), DetailsLevel: ERR
+2026-03-30T03:29:54.4417495Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:29:54 (UTC), DetailsLevel: ERR
+2026-03-30T03:29:59.5765203Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:29:54 (UTC), DetailsLevel: ERR
+2026-03-30T03:30:00.3676157Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:29:54 (UTC), DetailsLevel: ERR
+2026-03-30T03:30:00.3682275Z Container start method called.
+2026-03-30T03:30:00.3683289Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image sunabimacr.azurecr.io/suna-backend:latest for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:30:00.3684329Z Establishing network.
+2026-03-30T03:30:00.3685749Z Pulling image: sunabimacr.azurecr.io/suna-backend:latest.
+2026-03-30T03:30:00.6105731Z Container is starting.
+2026-03-30T03:30:00.6106629Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:30:00.6107447Z Establishing user namespace if not established already.
+2026-03-30T03:30:00.6108310Z Establishing network if not established already.
+2026-03-30T03:30:00.6109185Z Mounting volumes.
+2026-03-30T03:30:00.6122069Z Nested mountpoint volatile/logs
+2026-03-30T03:30:00.6146130Z Nested mountpoint 
+2026-03-30T03:30:00.6475028Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for suna-backend-app. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-30T03:30:00.6476020Z Creating container.
+2026-03-30T03:30:00.6476769Z Creating pipes for streaming container io.
+2026-03-30T03:30:00.6477517Z Creating stdout named pipe at /podr/container/pipe/e8157e6970e5_suna-backend-app/stdout_955b80d35151409eab57e21f66824356.
+2026-03-30T03:30:00.6677652Z Successfully created stdout named pipe at: /podr/container/pipe/e8157e6970e5_suna-backend-app/stdout_955b80d35151409eab57e21f66824356.
+2026-03-30T03:30:00.6678744Z Opening named pipe /podr/container/pipe/e8157e6970e5_suna-backend-app/stdout_955b80d35151409eab57e21f66824356 for reading in non-blocking mode.
+2026-03-30T03:30:00.6680556Z Successfully opened named pipe: /podr/container/pipe/e8157e6970e5_suna-backend-app/stdout_955b80d35151409eab57e21f66824356.
+2026-03-30T03:30:00.6681358Z Successfully removed non-blocking flag from /podr/container/pipe/e8157e6970e5_suna-backend-app/stdout_955b80d35151409eab57e21f66824356.
+2026-03-30T03:30:00.6682602Z Creating stderr named pipe at /podr/container/pipe/e8157e6970e5_suna-backend-app/stderr_d3a666182dd34d61a6d68ab377294191.
+2026-03-30T03:30:00.6684092Z Successfully created stderr named pipe at: /podr/container/pipe/e8157e6970e5_suna-backend-app/stderr_d3a666182dd34d61a6d68ab377294191.
+2026-03-30T03:30:00.6684859Z Opening named pipe /podr/container/pipe/e8157e6970e5_suna-backend-app/stderr_d3a666182dd34d61a6d68ab377294191 for reading in non-blocking mode.
+2026-03-30T03:30:00.6685760Z Successfully opened named pipe: /podr/container/pipe/e8157e6970e5_suna-backend-app/stderr_d3a666182dd34d61a6d68ab377294191.
+2026-03-30T03:30:00.6686454Z Successfully removed non-blocking flag from /podr/container/pipe/e8157e6970e5_suna-backend-app/stderr_d3a666182dd34d61a6d68ab377294191.
+2026-03-30T03:30:00.6687562Z Creating container with image: sunabimacr.azurecr.io/suna-backend:latest from registry: sunabimacr.azurecr.io and fully qualified image name: sunabimacr.azurecr.io/suna-backend:latest
+2026-03-30T03:30:00.9331203Z Starting container: e8157e6970e5_suna-backend-app.
+2026-03-30T03:30:00.9895590Z Starting watchers and probes.
+2026-03-30T03:30:00.9899371Z Starting metrics collection.
+2026-03-30T03:30:00.9900803Z Container is running.
+2026-03-30T03:30:00.9901495Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:30:01.0232437Z Container start method finished after 654 ms.
+2026-03-30T03:30:01.0234071Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:30:01.0234297Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-30T03:32:39.4419843Z Container has finished running with exit code: 3.
+2026-03-30T03:32:39.4420956Z Container is terminating. Grace period: 5 seconds.
+2026-03-30T03:32:39.4424451Z Stop and delete container. Retry count = 0
+2026-03-30T03:32:39.4425279Z Stopping container: e8157e6970e5_suna-backend-app.
+2026-03-30T03:32:39.4813710Z Deleting container: e8157e6970e5_suna-backend-app. Retry count = 0
+2026-03-30T03:32:39.6091714Z Container spec TerminationMessagePolicy  path 
+2026-03-30T03:32:39.6093154Z Container is terminated. Total time elapsed: 167 ms.
+2026-03-30T03:32:39.6093957Z Site container: suna-backend-app terminated during site startup.
+2026-03-30T03:32:39.6108298Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:29:53, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:32:39.6310725Z Site startup probe failed after 158.6019615 seconds.
+2026-03-30T03:32:39.7610971Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:32:39.7668505Z Failed to start site. Revert by stopping site.
+2026-03-30T03:32:39.7669848Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:32:39.7672268Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:32:39.7672431Z Site: suna-backend-app stopped.
+2026-03-30T03:32:39.7863044Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:32:40.0075481Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:32:40.2500241Z Site: suna-backend-app will be blocked for 1 minutes till 03/30/2026 03:33:40
+2026-03-30T03:32:40.2502560Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: suna-backend-app will be blocked for 1 minutes till 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:32:40.2691255Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:32:40 (UTC), DetailsLevel: WARN
+2026-03-30T03:32:40.4092194Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:32:40 (UTC), DetailsLevel: WARN
+2026-03-30T03:32:45.4357411Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:32:45.4357775Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:32:50.5529403Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:32:50.5529657Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:32:55.6744376Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:32:55.6745019Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:00.7299679Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:00.7299960Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:05.8363044Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:05.8363350Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:10.9067397Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:10.9067893Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:15.9725228Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:15.9725449Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:21.0143841Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:21.0144145Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:26.1069265Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:26.1069553Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:31.1673475Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:31.1673717Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:36.2139035Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:36.2139344Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:33:40.2507778Z Site: suna-backend-app is unblocked.
+2026-03-30T03:33:41.3084493Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:42.0270695Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:33:40, DetailsLevel: WARN
+2026-03-30T03:33:42.0272320Z Container start method called.
+2026-03-30T03:33:42.0272903Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image sunabimacr.azurecr.io/suna-backend:latest for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:33:42.0273810Z Establishing network.
+2026-03-30T03:33:42.0274753Z Pulling image: sunabimacr.azurecr.io/suna-backend:latest.
+2026-03-30T03:33:42.2569830Z Container is starting.
+2026-03-30T03:33:42.2570679Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:33:42.2571527Z Establishing user namespace if not established already.
+2026-03-30T03:33:42.2572448Z Establishing network if not established already.
+2026-03-30T03:33:42.2573436Z Mounting volumes.
+2026-03-30T03:33:42.2574739Z Nested mountpoint volatile/logs
+2026-03-30T03:33:42.2721588Z Nested mountpoint 
+2026-03-30T03:33:42.3014595Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for suna-backend-app. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-30T03:33:42.3015711Z Creating container.
+2026-03-30T03:33:42.3016462Z Creating pipes for streaming container io.
+2026-03-30T03:33:42.3017202Z Creating stdout named pipe at /podr/container/pipe/e0394f6bb96c_suna-backend-app/stdout_a540f2737f1d44a0a720026db50120b0.
+2026-03-30T03:33:42.3019703Z Successfully created stdout named pipe at: /podr/container/pipe/e0394f6bb96c_suna-backend-app/stdout_a540f2737f1d44a0a720026db50120b0.
+2026-03-30T03:33:42.3020549Z Opening named pipe /podr/container/pipe/e0394f6bb96c_suna-backend-app/stdout_a540f2737f1d44a0a720026db50120b0 for reading in non-blocking mode.
+2026-03-30T03:33:42.3021473Z Successfully opened named pipe: /podr/container/pipe/e0394f6bb96c_suna-backend-app/stdout_a540f2737f1d44a0a720026db50120b0.
+2026-03-30T03:33:42.3022189Z Successfully removed non-blocking flag from /podr/container/pipe/e0394f6bb96c_suna-backend-app/stdout_a540f2737f1d44a0a720026db50120b0.
+2026-03-30T03:33:42.3023347Z Creating stderr named pipe at /podr/container/pipe/e0394f6bb96c_suna-backend-app/stderr_a7b35fb96b5d4be5ac486e622c9e5372.
+2026-03-30T03:33:42.3090568Z Successfully created stderr named pipe at: /podr/container/pipe/e0394f6bb96c_suna-backend-app/stderr_a7b35fb96b5d4be5ac486e622c9e5372.
+2026-03-30T03:33:42.3098146Z Opening named pipe /podr/container/pipe/e0394f6bb96c_suna-backend-app/stderr_a7b35fb96b5d4be5ac486e622c9e5372 for reading in non-blocking mode.
+2026-03-30T03:33:42.3099525Z Successfully opened named pipe: /podr/container/pipe/e0394f6bb96c_suna-backend-app/stderr_a7b35fb96b5d4be5ac486e622c9e5372.
+2026-03-30T03:33:42.3101145Z Successfully removed non-blocking flag from /podr/container/pipe/e0394f6bb96c_suna-backend-app/stderr_a7b35fb96b5d4be5ac486e622c9e5372.
+2026-03-30T03:33:42.3105188Z Creating container with image: sunabimacr.azurecr.io/suna-backend:latest from registry: sunabimacr.azurecr.io and fully qualified image name: sunabimacr.azurecr.io/suna-backend:latest
+2026-03-30T03:33:42.6147658Z Starting container: e0394f6bb96c_suna-backend-app.
+2026-03-30T03:33:42.6656458Z Starting watchers and probes.
+2026-03-30T03:33:42.6669387Z Starting metrics collection.
+2026-03-30T03:33:42.6742717Z Container is running.
+2026-03-30T03:33:42.6746616Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:33:42.7221788Z Container start method finished after 694 ms.
+2026-03-30T03:33:42.7243429Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:33:42.7381253Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-30T03:36:10.9233228Z Container has finished running with exit code: 3.
+2026-03-30T03:36:10.9238018Z Container is terminating. Grace period: 5 seconds.
+2026-03-30T03:36:10.9251261Z Stop and delete container. Retry count = 0
+2026-03-30T03:36:10.9255232Z Stopping container: e0394f6bb96c_suna-backend-app.
+2026-03-30T03:36:10.9652115Z Deleting container: e0394f6bb96c_suna-backend-app. Retry count = 0
+2026-03-30T03:36:11.1074438Z Container spec TerminationMessagePolicy  path 
+2026-03-30T03:36:11.1075803Z Container is terminated. Total time elapsed: 183 ms.
+2026-03-30T03:36:11.1076689Z Site container: suna-backend-app terminated during site startup.
+2026-03-30T03:36:11.1143658Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:32:39, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:36:11.1267889Z Site startup probe failed after 148.3881746 seconds.
+2026-03-30T03:36:11.2456951Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:36:11.2466041Z Failed to start site. Revert by stopping site.
+2026-03-30T03:36:11.2467134Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:36:11.2469137Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:36:11.2534674Z Site: suna-backend-app stopped.
+2026-03-30T03:36:11.2543166Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:36:11.4456138Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:36:11.6853031Z Site: suna-backend-app will be blocked for 1 minutes till 03/30/2026 03:37:11
+2026-03-30T03:36:11.6856484Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: suna-backend-app will be blocked for 1 minutes till 03/30/2026 03:37:11, DetailsLevel: WARN
+2026-03-30T03:36:11.6925939Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:36:11 (UTC), DetailsLevel: WARN
+2026-03-30T03:36:11.7569707Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:36:11 (UTC), DetailsLevel: WARN
+2026-03-30T03:36:17.6190625Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:37:11, DetailsLevel: WARN
+2026-03-30T03:36:17.6190885Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:37:11.6868968Z Site: suna-backend-app is unblocked.
+2026-03-30T03:39:03.8373504Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:37:11, DetailsLevel: WARN
+2026-03-30T03:39:04.5233493Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:37:11, DetailsLevel: WARN
+2026-03-30T03:39:04.5234890Z Container start method called.
+2026-03-30T03:39:04.5235803Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image sunabimacr.azurecr.io/suna-backend:latest for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:39:04.5236867Z Establishing network.
+2026-03-30T03:39:04.5250002Z Pulling image: sunabimacr.azurecr.io/suna-backend:latest.
+2026-03-30T03:39:04.7178076Z Container is starting.
+2026-03-30T03:39:04.7178969Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:39:04.7179848Z Establishing user namespace if not established already.
+2026-03-30T03:39:04.7180881Z Establishing network if not established already.
+2026-03-30T03:39:04.7182241Z Mounting volumes.
+2026-03-30T03:39:04.7183895Z Nested mountpoint volatile/logs
+2026-03-30T03:39:04.7216107Z Nested mountpoint 
+2026-03-30T03:39:04.7397019Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for suna-backend-app. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-30T03:39:04.7398994Z Creating container.
+2026-03-30T03:39:04.7400279Z Creating pipes for streaming container io.
+2026-03-30T03:39:04.7425271Z Creating stdout named pipe at /podr/container/pipe/72bca1320d27_suna-backend-app/stdout_cd98d0226e5e44f2881eba96ae4db1c0.
+2026-03-30T03:39:04.7427460Z Successfully created stdout named pipe at: /podr/container/pipe/72bca1320d27_suna-backend-app/stdout_cd98d0226e5e44f2881eba96ae4db1c0.
+2026-03-30T03:39:04.7428288Z Opening named pipe /podr/container/pipe/72bca1320d27_suna-backend-app/stdout_cd98d0226e5e44f2881eba96ae4db1c0 for reading in non-blocking mode.
+2026-03-30T03:39:04.7500104Z Successfully opened named pipe: /podr/container/pipe/72bca1320d27_suna-backend-app/stdout_cd98d0226e5e44f2881eba96ae4db1c0.
+2026-03-30T03:39:04.7501685Z Successfully removed non-blocking flag from /podr/container/pipe/72bca1320d27_suna-backend-app/stdout_cd98d0226e5e44f2881eba96ae4db1c0.
+2026-03-30T03:39:04.7545141Z Creating stderr named pipe at /podr/container/pipe/72bca1320d27_suna-backend-app/stderr_cd77a00da0ec48e68fcd1e303ecd164a.
+2026-03-30T03:39:04.7550670Z Successfully created stderr named pipe at: /podr/container/pipe/72bca1320d27_suna-backend-app/stderr_cd77a00da0ec48e68fcd1e303ecd164a.
+2026-03-30T03:39:04.7551971Z Opening named pipe /podr/container/pipe/72bca1320d27_suna-backend-app/stderr_cd77a00da0ec48e68fcd1e303ecd164a for reading in non-blocking mode.
+2026-03-30T03:39:04.7555016Z Successfully opened named pipe: /podr/container/pipe/72bca1320d27_suna-backend-app/stderr_cd77a00da0ec48e68fcd1e303ecd164a.
+2026-03-30T03:39:04.7556189Z Successfully removed non-blocking flag from /podr/container/pipe/72bca1320d27_suna-backend-app/stderr_cd77a00da0ec48e68fcd1e303ecd164a.
+2026-03-30T03:39:04.7557621Z Creating container with image: sunabimacr.azurecr.io/suna-backend:latest from registry: sunabimacr.azurecr.io and fully qualified image name: sunabimacr.azurecr.io/suna-backend:latest
+2026-03-30T03:39:05.0233924Z Starting container: 72bca1320d27_suna-backend-app.
+2026-03-30T03:39:05.0672027Z Starting watchers and probes.
+2026-03-30T03:39:05.0675640Z Starting metrics collection.
+2026-03-30T03:39:05.0680515Z Container is running.
+2026-03-30T03:39:05.0684614Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:39:05.1248326Z Container start method finished after 601 ms.
+2026-03-30T03:39:05.1250157Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:39:05.1250428Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-30T03:41:55.5971300Z Container has finished running with exit code: 1.
+2026-03-30T03:41:55.5972451Z Container is terminating. Grace period: 5 seconds.
+2026-03-30T03:41:55.6029562Z Stop and delete container. Retry count = 0
+2026-03-30T03:41:55.6030495Z Stopping container: 72bca1320d27_suna-backend-app.
+2026-03-30T03:41:55.6736797Z Deleting container: 72bca1320d27_suna-backend-app. Retry count = 0
+2026-03-30T03:41:55.9258630Z Container spec TerminationMessagePolicy  path 
+2026-03-30T03:41:55.9260222Z Container is terminated. Total time elapsed: 328 ms.
+2026-03-30T03:41:55.9265950Z Site container: suna-backend-app terminated during site startup.
+2026-03-30T03:41:55.9270845Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:36:11, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:41:55.9870700Z Site startup probe failed after 170.861566 seconds.
+2026-03-30T03:41:56.4172731Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:41:56.4189384Z Failed to start site. Revert by stopping site.
+2026-03-30T03:41:56.4190522Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:41:56.4192696Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:41:56.4192853Z Site: suna-backend-app stopped.
+2026-03-30T03:41:56.4488231Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:41:56.8381970Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:41:57.5282599Z Site: suna-backend-app will be blocked for 2 minutes till 03/30/2026 03:43:57
+2026-03-30T03:41:57.5284504Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: suna-backend-app will be blocked for 2 minutes till 03/30/2026 03:43:57, DetailsLevel: WARN
+2026-03-30T03:41:57.5286808Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:41:57 (UTC), DetailsLevel: WARN
+2026-03-30T03:41:57.6695696Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:41:57 (UTC), DetailsLevel: WARN
+2026-03-30T03:43:07.9392897Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:43:57, DetailsLevel: WARN
+2026-03-30T03:43:07.9393186Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:43:24.9301305Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:43:57, DetailsLevel: WARN
+2026-03-30T03:43:24.9301572Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:43:41.8128833Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:43:57, DetailsLevel: WARN
+2026-03-30T03:43:41.8129105Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:43:57.5294186Z Site: suna-backend-app is unblocked.
+2026-03-30T03:43:58.7057167Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:43:57, DetailsLevel: WARN
+2026-03-30T03:43:59.3611777Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:43:57, DetailsLevel: WARN
+2026-03-30T03:43:59.3612763Z Container start method called.
+2026-03-30T03:43:59.3613155Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image sunabimacr.azurecr.io/suna-backend:latest for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:43:59.3613973Z Establishing network.
+2026-03-30T03:43:59.3614981Z Pulling image: sunabimacr.azurecr.io/suna-backend:latest.
+2026-03-30T03:43:59.5628355Z Container is starting.
+2026-03-30T03:43:59.5633812Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:43:59.5635176Z Establishing user namespace if not established already.
+2026-03-30T03:43:59.5636084Z Establishing network if not established already.
+2026-03-30T03:43:59.5637028Z Mounting volumes.
+2026-03-30T03:43:59.5638645Z Nested mountpoint volatile/logs
+2026-03-30T03:43:59.5714553Z Nested mountpoint 
+2026-03-30T03:43:59.5892271Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for suna-backend-app. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-30T03:43:59.5893189Z Creating container.
+2026-03-30T03:43:59.5893908Z Creating pipes for streaming container io.
+2026-03-30T03:43:59.5894666Z Creating stdout named pipe at /podr/container/pipe/de9899e4b31a_suna-backend-app/stdout_39c7cd6a0d614ffd8b229681ea0e2346.
+2026-03-30T03:43:59.5896324Z Successfully created stdout named pipe at: /podr/container/pipe/de9899e4b31a_suna-backend-app/stdout_39c7cd6a0d614ffd8b229681ea0e2346.
+2026-03-30T03:43:59.5897089Z Opening named pipe /podr/container/pipe/de9899e4b31a_suna-backend-app/stdout_39c7cd6a0d614ffd8b229681ea0e2346 for reading in non-blocking mode.
+2026-03-30T03:43:59.5897949Z Successfully opened named pipe: /podr/container/pipe/de9899e4b31a_suna-backend-app/stdout_39c7cd6a0d614ffd8b229681ea0e2346.
+2026-03-30T03:43:59.5898637Z Successfully removed non-blocking flag from /podr/container/pipe/de9899e4b31a_suna-backend-app/stdout_39c7cd6a0d614ffd8b229681ea0e2346.
+2026-03-30T03:43:59.6002841Z Creating stderr named pipe at /podr/container/pipe/de9899e4b31a_suna-backend-app/stderr_4717f4459fe2413d849576bdacdd8d2d.
+2026-03-30T03:43:59.6005443Z Successfully created stderr named pipe at: /podr/container/pipe/de9899e4b31a_suna-backend-app/stderr_4717f4459fe2413d849576bdacdd8d2d.
+2026-03-30T03:43:59.6006602Z Opening named pipe /podr/container/pipe/de9899e4b31a_suna-backend-app/stderr_4717f4459fe2413d849576bdacdd8d2d for reading in non-blocking mode.
+2026-03-30T03:43:59.6007700Z Successfully opened named pipe: /podr/container/pipe/de9899e4b31a_suna-backend-app/stderr_4717f4459fe2413d849576bdacdd8d2d.
+2026-03-30T03:43:59.6009856Z Successfully removed non-blocking flag from /podr/container/pipe/de9899e4b31a_suna-backend-app/stderr_4717f4459fe2413d849576bdacdd8d2d.
+2026-03-30T03:43:59.6011901Z Creating container with image: sunabimacr.azurecr.io/suna-backend:latest from registry: sunabimacr.azurecr.io and fully qualified image name: sunabimacr.azurecr.io/suna-backend:latest
+2026-03-30T03:43:59.9345328Z Starting container: de9899e4b31a_suna-backend-app.
+2026-03-30T03:43:59.9786349Z Starting watchers and probes.
+2026-03-30T03:43:59.9795144Z Starting metrics collection.
+2026-03-30T03:43:59.9866873Z Container is running.
+2026-03-30T03:43:59.9873911Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:44:00.0084769Z Container start method finished after 647 ms.
+2026-03-30T03:44:00.0086430Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:44:00.0086622Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-30T03:46:35.5257822Z Container has finished running with exit code: 1.
+2026-03-30T03:46:35.5258985Z Container is terminating. Grace period: 5 seconds.
+2026-03-30T03:46:35.5409316Z Stop and delete container. Retry count = 0
+2026-03-30T03:46:35.5413920Z Stopping container: de9899e4b31a_suna-backend-app.
+2026-03-30T03:46:35.5803329Z Deleting container: de9899e4b31a_suna-backend-app. Retry count = 0
+2026-03-30T03:46:35.7661729Z Container spec TerminationMessagePolicy  path 
+2026-03-30T03:46:35.7709165Z Container is terminated. Total time elapsed: 234 ms.
+2026-03-30T03:46:35.7711389Z Site container: suna-backend-app terminated during site startup.
+2026-03-30T03:46:35.7712321Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:41:56, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:46:35.7911401Z Site startup probe failed after 155.7819598 seconds.
+2026-03-30T03:46:35.9563632Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:46:35.9834941Z Failed to start site. Revert by stopping site.
+2026-03-30T03:46:35.9837823Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:46:35.9845729Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:46:35.9846256Z Site: suna-backend-app stopped.
+2026-03-30T03:46:35.9943945Z State: Stopping, Action: UnmountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:46:36.2529592Z State: Stopping, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:46:36.3514578Z Site: suna-backend-app will be blocked for 2 minutes till 03/30/2026 03:48:36
+2026-03-30T03:46:36.3516228Z State: Blocked, Action: StoppingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site: suna-backend-app will be blocked for 2 minutes till 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:46:36.3518667Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:46:36 (UTC), DetailsLevel: WARN
+2026-03-30T03:46:36.4416420Z State: Stopped, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site stopped at 03/30/2026 03:46:36 (UTC), DetailsLevel: WARN
+2026-03-30T03:47:01.2743467Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:47:01.2743787Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:47:18.2107942Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:47:18.2108209Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:47:35.1708131Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:47:35.1708477Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:47:52.2209870Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:47:52.2210182Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:48:09.2244334Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:48:09.2244592Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:48:26.2342804Z State: Blocked, Action: None, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:48:26.2343074Z Start site prohibitted because the site is being blocked.
+2026-03-30T03:48:36.3524798Z Site: suna-backend-app is unblocked.
+2026-03-30T03:48:43.1245409Z State: Starting, Action: EstablishingSiteNetworks, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:48:43.8848525Z State: Starting, Action: StartingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site is blocked due to multiple, consecutive cold start failures. Site scheduled to be unblocked at 03/30/2026 03:48:36, DetailsLevel: WARN
+2026-03-30T03:48:43.8849593Z Container start method called.
+2026-03-30T03:48:43.8850193Z State: Starting, Action: PullingImage, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pulling image sunabimacr.azurecr.io/suna-backend:latest for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:48:43.8850993Z Establishing network.
+2026-03-30T03:48:43.8852011Z Pulling image: sunabimacr.azurecr.io/suna-backend:latest.
+2026-03-30T03:48:44.2560091Z Container is starting.
+2026-03-30T03:48:44.2563686Z State: Starting, Action: MountingVolumes, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Mounting volumes for suna-backend-app., DetailsLevel: INFO
+2026-03-30T03:48:44.2568072Z Establishing user namespace if not established already.
+2026-03-30T03:48:44.2570456Z Establishing network if not established already.
+2026-03-30T03:48:44.2571506Z Mounting volumes.
+2026-03-30T03:48:44.2576496Z Nested mountpoint volatile/logs
+2026-03-30T03:48:44.2693748Z Nested mountpoint 
+2026-03-30T03:48:44.2972153Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Finished pulling container image and mounting volumes for suna-backend-app. Allocatinng the rest of the container resources to finish container creation., DetailsLevel: INFO
+2026-03-30T03:48:44.2974066Z Creating container.
+2026-03-30T03:48:44.2975570Z Creating pipes for streaming container io.
+2026-03-30T03:48:44.2977124Z Creating stdout named pipe at /podr/container/pipe/691ae49d54d2_suna-backend-app/stdout_b3d32ad767a6429ebf7ca031521cd1d2.
+2026-03-30T03:48:44.3252302Z Successfully created stdout named pipe at: /podr/container/pipe/691ae49d54d2_suna-backend-app/stdout_b3d32ad767a6429ebf7ca031521cd1d2.
+2026-03-30T03:48:44.3255450Z Opening named pipe /podr/container/pipe/691ae49d54d2_suna-backend-app/stdout_b3d32ad767a6429ebf7ca031521cd1d2 for reading in non-blocking mode.
+2026-03-30T03:48:44.3257496Z Successfully opened named pipe: /podr/container/pipe/691ae49d54d2_suna-backend-app/stdout_b3d32ad767a6429ebf7ca031521cd1d2.
+2026-03-30T03:48:44.3259037Z Successfully removed non-blocking flag from /podr/container/pipe/691ae49d54d2_suna-backend-app/stdout_b3d32ad767a6429ebf7ca031521cd1d2.
+2026-03-30T03:48:44.3263127Z Creating stderr named pipe at /podr/container/pipe/691ae49d54d2_suna-backend-app/stderr_080683fd83fe488a955d02f7b5d9033e.
+2026-03-30T03:48:44.3276447Z Successfully created stderr named pipe at: /podr/container/pipe/691ae49d54d2_suna-backend-app/stderr_080683fd83fe488a955d02f7b5d9033e.
+2026-03-30T03:48:44.3280553Z Opening named pipe /podr/container/pipe/691ae49d54d2_suna-backend-app/stderr_080683fd83fe488a955d02f7b5d9033e for reading in non-blocking mode.
+2026-03-30T03:48:44.3362966Z Successfully opened named pipe: /podr/container/pipe/691ae49d54d2_suna-backend-app/stderr_080683fd83fe488a955d02f7b5d9033e.
+2026-03-30T03:48:44.3364891Z Successfully removed non-blocking flag from /podr/container/pipe/691ae49d54d2_suna-backend-app/stderr_080683fd83fe488a955d02f7b5d9033e.
+2026-03-30T03:48:44.3369212Z Creating container with image: sunabimacr.azurecr.io/suna-backend:latest from registry: sunabimacr.azurecr.io and fully qualified image name: sunabimacr.azurecr.io/suna-backend:latest
+2026-03-30T03:48:44.6724800Z Starting container: 691ae49d54d2_suna-backend-app.
+2026-03-30T03:48:44.7316808Z Starting watchers and probes.
+2026-03-30T03:48:44.7323950Z Starting metrics collection.
+2026-03-30T03:48:44.7325470Z Container is running.
+2026-03-30T03:48:44.7326278Z State: Starting, Action: CreatingContainer, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:48:44.7841930Z Container start method finished after 899 ms.
+2026-03-30T03:48:44.8602367Z State: Starting, Action: InitiatingSiteWarmUpProbe, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Container suna-backend-app successfully created and is running., DetailsLevel: INFO
+2026-03-30T03:48:44.8602847Z State: Starting, Action: WaitingForSiteWarmUpProbeSuccess, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Pinging warmup path to ensure container is ready to receive requests., DetailsLevel: INFO
+2026-03-30T03:51:23.7982007Z Container has finished running with exit code: 3.
+2026-03-30T03:51:23.7983416Z Container is terminating. Grace period: 5 seconds.
+2026-03-30T03:51:23.7986767Z Stop and delete container. Retry count = 0
+2026-03-30T03:51:23.7987609Z Stopping container: 691ae49d54d2_suna-backend-app.
+2026-03-30T03:51:23.8699540Z Deleting container: 691ae49d54d2_suna-backend-app. Retry count = 0
+2026-03-30T03:51:24.0295141Z Container spec TerminationMessagePolicy  path 
+2026-03-30T03:51:24.0301561Z Container is terminated. Total time elapsed: 231 ms.
+2026-03-30T03:51:24.0304462Z Site container: suna-backend-app terminated during site startup.
+2026-03-30T03:51:24.0305882Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:46:35, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:51:24.0610392Z Site startup probe failed after 159.2002606 seconds.
+2026-03-30T03:51:24.2608816Z State: Stopping, Action: CancellingStartup, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:51:24, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:51:24.2723979Z Failed to start site. Revert by stopping site.
+2026-03-30T03:51:24.2726207Z State: Stopping, Action: StoppingSite, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:51:24, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:51:24.2732124Z State: Stopping, Action: StoppingSiteContainers, LastError: ContainerTimeout, LastErrorTimestamp: 03/30/2026 03:51:24, LastErrorDetails: Container did not start within expected time limit of 230s. Please inspect your container logs for more details., Details: Site container: suna-backend-app terminated during site startup. Cancelling site startup., DetailsLevel: ERR
+2026-03-30T03:51:24.2732262Z Site: suna-backend-app stopped.

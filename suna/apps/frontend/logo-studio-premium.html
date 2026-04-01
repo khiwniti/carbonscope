@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cBIM AI — Premium Logo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --emerald-50: #ECFDF5;
+      --emerald-400: #34D399;
+      --emerald-500: #10B981;
+      --emerald-600: #059669;
+      --emerald-700: #047857;
+      --teal-400: #2DD4BF;
+      --teal-500: #14B8A6;
+      --cyan-400: #22D3EE;
+      --cyan-500: #06B6D4;
+      --blue-400: #60A5FA;
+      --blue-500: #3B82F6;
+      --purple-400: #C084FC;
+      --purple-500: #A855F7;
+      --orange-400: #FB923C;
+      --orange-500: #F97316;
+      --dark-900: #0B1120;
+      --dark-800: #1F2937;
+      --dark-700: #374151;
+      --gray-400: #9CA3AF;
+      --gray-200: #E5E7EB;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark-900);
+      color: var(--gray-200);
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      padding: 4rem 2rem 2rem;
+      background: linear-gradient(135deg, #0B1120 0%, #1a2332 100%);
+      border-bottom: 1px solid rgba(52, 211, 153, 0.1);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--emerald-400) 0%, var(--teal-400) 50%, var(--cyan-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--gray-400);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .concepts-grid {
+      display: grid;
+      gap: 3rem;
+      padding: 3rem 2rem;
+    }
+
+    .concept {
+      background: var(--dark-800);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .concept:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .concept-header {
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.05) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .concept-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .concept-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--emerald-400), var(--teal-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .concept-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.01em;
+    }
+
+    .concept-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.2);
+      border-radius: 12px;
+      color: var(--emerald-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .concept-body {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 2rem;
+      padding: 2.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .concept-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .showcase {
+      background: linear-gradient(135deg, rgba(11, 17, 32, 0.8) 0%, rgba(31, 41, 55, 0.4) 100%);
+      border-radius: 16px;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .showcase::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(52, 211, 153, 0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    .concept-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .detail-section h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--emerald-400);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-section p {
+      color: var(--gray-400);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .color-palette {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .color-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .color-swatch:hover {
+      transform: scale(1.1);
+    }
+
+    .scale-demos {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: rgba(11, 17, 32, 0.5);
+      border-radius: 12px;
+      justify-content: center;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -100% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .logo-animated {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="container">
+      <h1>cBIM AI Logo Studio</h1>
+      <p class="tagline">Five Distinctive Visual Identities — Carbon Intelligence Reimagined</p>
+    </div>
+  </div>
+
+  <div class="concepts-grid container">
+    <!-- Concept 1: Eco-Tech Gradient Mesh -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">01</span>
+          <h2 class="concept-title">Eco-Tech Mesh</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Maximalist</span>
+          <span class="tag">Gradient Rich</span>
+          <span class="tag">Data Flow</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase1"></div>
+        <div class="concept-details">
+          <div class="detail-section">
+            <h4>Concept</h4>
+            <p>A flowing organic shape with vibrant gradient mesh representing real-time carbon data streams. The form suggests both natural growth and digital precision, with multiple color stops creating depth and movement.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Aesthetic Direction</h4>
+            <p><strong>Eco-Futurism</strong> — Where sustainable architecture meets data visualization. Rich gradients evoke environmental vitality while sharp geometric anchors provide technical credibility.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Color Palette</h4>
+            <div class="color-palette" id="colors1"></div>
+          </div>
+          <div class="detail-section">
+            <h4>Scale Performance</h4>
+            <div class="scale-demos" id="scale1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept 2: Crystalline Carbon -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">02</span>
+          <h2 class="concept-title">Crystalline Carbon</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Faceted</span>
+          <span class="tag">Holographic</span>
+          <span class="tag">Scientific</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase2"></div>
+        <div class="concept-details">
+          <div class="detail-section">
+            <h4>Concept</h4>
+            <p>A crystalline structure inspired by carbon's molecular geometry. Faceted planes catch light differently, creating holographic color shifts. Represents the precision of molecular-level carbon assessment.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Aesthetic Direction</h4>
+            <p><strong>Scientific Luxury</strong> — Laboratory precision meets premium brand identity. The faceted geometry references carbon's atomic structure while prismatic colors suggest advanced material science.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Color Palette</h4>
+            <div class="color-palette" id="colors2"></div>
+          </div>
+          <div class="detail-section">
+            <h4>Scale Performance</h4>
+            <div class="scale-demos" id="scale2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept 3: Orbital Dynamics -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">03</span>
+          <h2 class="concept-title">Orbital Dynamics</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Kinetic</span>
+          <span class="tag">Circular</span>
+          <span class="tag">Systematic</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase3"></div>
+        <div class="concept-details">
+          <div class="detail-section">
+            <h4>Concept</h4>
+            <p>Concentric rings representing lifecycle assessment phases (EN 15978). Each orbit carries different carbon data, creating a systematic visual language. The gaps suggest continuous flow and evolution.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Aesthetic Direction</h4>
+            <p><strong>Kinetic Systems</strong> — Motion and data converge. The orbital structure reflects both atomic models and lifecycle thinking, while vibrant multi-color rings suggest comprehensive analysis.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Color Palette</h4>
+            <div class="color-palette" id="colors3"></div>
+          </div>
+          <div class="detail-section">
+            <h4>Scale Performance</h4>
+            <div class="scale-demos" id="scale3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept 4: Brutalist Topology -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">04</span>
+          <h2 class="concept-title">Brutalist Topology</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Bold</span>
+          <span class="tag">Geometric</span>
+          <span class="tag">Architectural</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase4"></div>
+        <div class="concept-details">
+          <div class="detail-section">
+            <h4>Concept</h4>
+            <p>Intersecting geometric planes creating a 3D topographic landscape. Sharp angles and bold overlaps suggest construction layers and building information modeling. High contrast with strategic color accents.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Aesthetic Direction</h4>
+            <p><strong>Architectural Brutalism</strong> — Raw, powerful, unapologetic. The layered planes reference construction drawings and BIM cross-sections while maintaining striking visual simplicity.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Color Palette</h4>
+            <div class="color-palette" id="colors4"></div>
+          </div>
+          <div class="detail-section">
+            <h4>Scale Performance</h4>
+            <div class="scale-demos" id="scale4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Concept 5: Parametric Flow -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-meta">
+          <span class="concept-number">05</span>
+          <h2 class="concept-title">Parametric Flow</h2>
+        </div>
+        <div class="concept-tags">
+          <span class="tag">Fluid</span>
+          <span class="tag">Organic</span>
+          <span class="tag">Computational</span>
+        </div>
+      </div>
+      <div class="concept-body">
+        <div class="showcase" id="showcase5"></div>
+        <div class="concept-details">
+          <div class="detail-section">
+            <h4>Concept</h4>
+            <p>A parametrically-designed wave form representing data flow and environmental harmony. The curved ribbons suggest wind patterns, water flow, and organic growth while maintaining mathematical precision.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Aesthetic Direction</h4>
+            <p><strong>Computational Nature</strong> — Where algorithms meet organic forms. Soft gradients and flowing curves evoke natural systems, while the precise geometry reveals computational design thinking.</p>
+          </div>
+          <div class="detail-section">
+            <h4>Color Palette</h4>
+            <div class="color-palette" id="colors5"></div>
+          </div>
+          <div class="detail-section">
+            <h4>Scale Performance</h4>
+            <div class="scale-demos" id="scale5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Concept 1: Eco-Tech Gradient Mesh
+    function createEcoTechMesh(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient.setAttribute('id', `eco-grad-${size}`);
+      gradient.setAttribute('x1', '0%');
+      gradient.setAttribute('y1', '0%');
+      gradient.setAttribute('x2', '100%');
+      gradient.setAttribute('y2', '100%');
+
+      const stops = [
+        { offset: '0%', color: '#34D399' },
+        { offset: '30%', color: '#2DD4BF' },
+        { offset: '60%', color: '#22D3EE' },
+        { offset: '100%', color: '#3B82F6' }
+      ];
+
+      stops.forEach(stop => {
+        const stopEl = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stopEl.setAttribute('offset', stop.offset);
+        stopEl.setAttribute('stop-color', stop.color);
+        gradient.appendChild(stopEl);
+      });
+
+      defs.appendChild(gradient);
+      svg.appendChild(defs);
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M 20,50 Q 30,20 50,25 T 80,50 Q 70,80 50,75 T 20,50 Z');
+      path.setAttribute('fill', `url(#eco-grad-${size})`);
+      path.setAttribute('opacity', '0.9');
+      svg.appendChild(path);
+
+      const overlay = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      overlay.setAttribute('d', 'M 30,45 Q 40,30 50,35 T 70,45 Q 65,60 50,58 T 30,45 Z');
+      overlay.setAttribute('fill', 'none');
+      overlay.setAttribute('stroke', '#ECFDF5');
+      overlay.setAttribute('stroke-width', '1.5');
+      overlay.setAttribute('opacity', '0.4');
+      svg.appendChild(overlay);
+
+      return svg;
+    }
+
+    // Concept 2: Crystalline Carbon
+    function createCrystallineCarbon(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const facets = [
+        { points: '50,20 65,35 50,50', color: '#34D399' },
+        { points: '50,20 35,35 50,50', color: '#2DD4BF' },
+        { points: '50,50 65,65 50,80', color: '#22D3EE' },
+        { points: '50,50 35,65 50,80', color: '#60A5FA' },
+        { points: '65,35 65,65 50,50', color: '#C084FC' },
+        { points: '35,35 35,65 50,50', color: '#10B981' }
+      ];
+
+      facets.forEach(facet => {
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', facet.points);
+        polygon.setAttribute('fill', facet.color);
+        polygon.setAttribute('opacity', '0.7');
+        polygon.setAttribute('stroke', '#ECFDF5');
+        polygon.setAttribute('stroke-width', '1');
+        svg.appendChild(polygon);
+      });
+
+      return svg;
+    }
+
+    // Concept 3: Orbital Dynamics
+    function createOrbitalDynamics(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const orbits = [
+        { r: 28, color: '#34D399', width: 3, offset: 0 },
+        { r: 22, color: '#2DD4BF', width: 2.5, offset: 20 },
+        { r: 16, color: '#22D3EE', width: 2, offset: 40 },
+        { r: 10, color: '#60A5FA', width: 1.5, offset: 60 }
+      ];
+
+      orbits.forEach(orbit => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', '50');
+        circle.setAttribute('cy', '50');
+        circle.setAttribute('r', orbit.r);
+        circle.setAttribute('fill', 'none');
+        circle.setAttribute('stroke', orbit.color);
+        circle.setAttribute('stroke-width', orbit.width);
+        circle.setAttribute('stroke-linecap', 'round');
+
+        const circumference = 2 * Math.PI * orbit.r;
+        const gapSize = circumference * 0.2;
+        circle.setAttribute('stroke-dasharray', `${circumference - gapSize} ${gapSize}`);
+        circle.setAttribute('stroke-dashoffset', orbit.offset);
+
+        svg.appendChild(circle);
+      });
+
+      const core = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      core.setAttribute('cx', '50');
+      core.setAttribute('cy', '50');
+      core.setAttribute('r', '4');
+      core.setAttribute('fill', '#C084FC');
+      svg.appendChild(core);
+
+      return svg;
+    }
+
+    // Concept 4: Brutalist Topology
+    function createBrutalistTopology(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const layers = [
+        { points: '20,60 80,40 80,80 20,80', color: '#34D399', opacity: 0.9 },
+        { points: '15,45 70,30 70,65 15,70', color: '#22D3EE', opacity: 0.7 },
+        { points: '25,30 85,20 85,50 25,55', color: '#FB923C', opacity: 0.8 }
+      ];
+
+      layers.forEach(layer => {
+        const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        polygon.setAttribute('points', layer.points);
+        polygon.setAttribute('fill', layer.color);
+        polygon.setAttribute('opacity', layer.opacity);
+        polygon.setAttribute('stroke', '#0B1120');
+        polygon.setAttribute('stroke-width', '2');
+        polygon.setAttribute('stroke-linejoin', 'miter');
+        svg.appendChild(polygon);
+      });
+
+      return svg;
+    }
+
+    // Concept 5: Parametric Flow
+    function createParametricFlow(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient.setAttribute('id', `flow-grad-${size}`);
+      gradient.setAttribute('x1', '0%');
+      gradient.setAttribute('y1', '0%');
+      gradient.setAttribute('x2', '0%');
+      gradient.setAttribute('y2', '100%');
+
+      const stops = [
+        { offset: '0%', color: '#34D399' },
+        { offset: '50%', color: '#2DD4BF' },
+        { offset: '100%', color: '#22D3EE' }
+      ];
+
+      stops.forEach(stop => {
+        const stopEl = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stopEl.setAttribute('offset', stop.offset);
+        stopEl.setAttribute('stop-color', stop.color);
+        gradient.appendChild(stopEl);
+      });
+
+      defs.appendChild(gradient);
+      svg.appendChild(defs);
+
+      const waves = [
+        { d: 'M 10,30 Q 30,20 50,30 T 90,30 L 90,50 Q 70,60 50,50 T 10,50 Z', opacity: 0.9 },
+        { d: 'M 10,45 Q 30,35 50,45 T 90,45 L 90,65 Q 70,75 50,65 T 10,65 Z', opacity: 0.7 },
+        { d: 'M 10,60 Q 30,50 50,60 T 90,60 L 90,80 Q 70,90 50,80 T 10,80 Z', opacity: 0.5 }
+      ];
+
+      waves.forEach(wave => {
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', wave.d);
+        path.setAttribute('fill', `url(#flow-grad-${size})`);
+        path.setAttribute('opacity', wave.opacity);
+        svg.appendChild(path);
+      });
+
+      return svg;
+    }
+
+    // Render main showcases
+    const showcase1 = document.getElementById('showcase1');
+    const logo1 = createEcoTechMesh(200);
+    logo1.classList.add('logo-animated');
+    showcase1.appendChild(logo1);
+
+    const showcase2 = document.getElementById('showcase2');
+    const logo2 = createCrystallineCarbon(200);
+    logo2.classList.add('logo-animated');
+    showcase2.appendChild(logo2);
+
+    const showcase3 = document.getElementById('showcase3');
+    const logo3 = createOrbitalDynamics(200);
+    logo3.classList.add('logo-animated');
+    showcase3.appendChild(logo3);
+
+    const showcase4 = document.getElementById('showcase4');
+    const logo4 = createBrutalistTopology(200);
+    logo4.classList.add('logo-animated');
+    showcase4.appendChild(logo4);
+
+    const showcase5 = document.getElementById('showcase5');
+    const logo5 = createParametricFlow(200);
+    logo5.classList.add('logo-animated');
+    showcase5.appendChild(logo5);
+
+    // Color palettes
+    const palettes = [
+      ['#34D399', '#2DD4BF', '#22D3EE', '#3B82F6'],
+      ['#34D399', '#2DD4BF', '#22D3EE', '#60A5FA', '#C084FC'],
+      ['#34D399', '#2DD4BF', '#22D3EE', '#60A5FA', '#C084FC'],
+      ['#34D399', '#22D3EE', '#FB923C', '#0B1120'],
+      ['#34D399', '#2DD4BF', '#22D3EE', '#ECFDF5']
+    ];
+
+    palettes.forEach((palette, i) => {
+      const container = document.getElementById(`colors${i + 1}`);
+      palette.forEach(color => {
+        const swatch = document.createElement('div');
+        swatch.className = 'color-swatch';
+        swatch.style.background = color;
+        container.appendChild(swatch);
+      });
+    });
+
+    // Scale demos
+    const sizes = [32, 48, 64, 96];
+    const creators = [
+      createEcoTechMesh,
+      createCrystallineCarbon,
+      createOrbitalDynamics,
+      createBrutalistTopology,
+      createParametricFlow
+    ];
+
+    creators.forEach((creator, i) => {
+      const container = document.getElementById(`scale${i + 1}`);
+      sizes.forEach(size => {
+        container.appendChild(creator(size));
+      });
+    });
+  </script>
+</body>
+</html>

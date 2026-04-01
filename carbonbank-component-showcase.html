@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarbonBank Component Showcase - Complete Migration Verification</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #111827;
+      color: #1f2937;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .showcase-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 60px;
+      color: white;
+    }
+
+    .showcase-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .showcase-subtitle {
+      font-size: 18px;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .component-section {
+      margin-bottom: 80px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #1f2937;
+    }
+
+    .section-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .section-description {
+      font-size: 14px;
+      color: #6b7280;
+      margin-left: auto;
+    }
+
+    .component-preview {
+      background: #F8F9FA;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 32px;
+    }
+
+    /* Component Styles from CarbonBank */
+
+    /* Header Component */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .project-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .project-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .greeting {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1f2937;
+      line-height: 1.2;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      position: relative;
+      padding: 10px;
+      background: white;
+      border-radius: 50%;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon-btn:hover {
+      color: #10b981;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.95);
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .avatar:active {
+      transform: scale(0.95);
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+      border-radius: 32px;
+      padding: 28px;
+      color: white;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(6, 78, 59, 0.2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-bottom: 24px;
+    }
+
+    .hero-card:active {
+      transform: scale(0.98);
+    }
+
+    .hero-glossy {
+      position: absolute;
+      top: -96px;
+      right: -96px;
+      width: 256px;
+      height: 256px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      filter: blur(48px);
+      pointer-events: none;
+    }
+
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGgyMHYyMEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMCAwdjIwTTAgMTBoMjAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #a7f3d0;
+      margin-bottom: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-value {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
+
+    .trend-badge {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.2s ease;
+    }
+
+    .stat-card:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(167, 243, 208, 0.8);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .stat-unit {
+      font-size: 12px;
+      font-weight: 500;
+      color: #a7f3d0;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .quick-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .action-btn {
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(229, 231, 235, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #6366f1;
+    }
+
+    .action-btn.emerald { color: #10b981; }
+    .action-btn.blue { color: #3b82f6; }
+    .action-btn.orange { color: #f97316; }
+
+    .quick-action:hover .action-btn {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .quick-action:active .action-btn {
+      transform: scale(0.9);
+    }
+
+    .action-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6b7280;
+      transition: color 0.2s ease;
+    }
+
+    .quick-action:hover .action-label {
+      color: #1f2937;
+    }
+
+    /* Chart Section */
+    .chart-section {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 24px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .chart-filter {
+      font-size: 12px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      padding: 6px 12px;
+      border-radius: 20px;
+      color: #6b7280;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .chart-placeholder {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Data Rows */
+    .data-rows {
+      margin-bottom: 24px;
+    }
+
+    .data-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      padding: 16px;
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      align-items: center;
+      border: 1px solid #e5e7eb;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .data-row:hover {
+      background: #f9fafb;
+      border-color: #10b981;
+    }
+
+    .data-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f2937;
+    }
+
+    .data-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #10b981;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .data-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-indicator 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-indicator {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.9); }
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav-container {
+      position: relative;
+      height: 100px;
+      margin-top: 40px;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.03);
+      border-radius: 24px 24px 0 0;
+    }
+
+    .bottom-nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 16px 24px 24px;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active {
+      transform: translateY(-4px);
+    }
+
+    .nav-icon {
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active .nav-icon {
+      color: #10b981;
+    }
+
+    .nav-item:not(.active) .nav-icon {
+      color: #9ca3af;
+    }
+
+    .nav-item.primary {
+      position: relative;
+      top: -24px;
+    }
+
+    .nav-primary-btn {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 5px solid white;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-primary-btn:active {
+      transform: scale(0.95);
+    }
+
+    .nav-label {
+      font-size: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-item.active .nav-label {
+      color: #10b981;
+    }
+
+    .nav-item:not(.active) .nav-label {
+      color: #9ca3af;
+    }
+
+    /* Tree List Item */
+    .tree-list-item {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tree-list-item:hover {
+      border-color: #10b981;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .tree-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .tree-species {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .tree-status-badge {
+      padding: 4px 12px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid #10b981;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #10b981;
+      text-transform: uppercase;
+    }
+
+    .tree-item-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .tree-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tree-stat-label {
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .tree-stat-value {
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    /* Achievement Badge */
+    .achievement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1.5px solid #10b981;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #10b981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+      margin: 8px;
+    }
+
+    /* Loading State */
+    .loading-state {
+      background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.1;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=');
+    }
+
+    .loading-icon {
+      width: 96px;
+      height: 96px;
+      background: white;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .loading-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .loading-subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+    }
+
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      margin: 0 auto;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Status Grid */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .status-item {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+    }
+
+    .status-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #10b981;
+      margin-bottom: 4px;
+    }
+
+    .status-label {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Login Screen */
+    .login-screen {
+      background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+      border-radius: 24px;
+      height: 600px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 40px 24px;
+    }
+
+    .login-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==');
+      opacity: 0.3;
+    }
+
+    .login-logo-card {
+      width: 96px;
+      height: 96px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .line-button {
+      width: 100%;
+      max-width: 360px;
+      background: #06C755;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(6, 199, 85, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      margin-bottom: 12px;
+    }
+
+    .line-button:hover {
+      background: #05b34c;
+      transform: translateY(-1px);
+    }
+
+    .guest-button {
+      width: 100%;
+      max-width: 360px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .guest-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Profile Screen */
+    .profile-screen {
+      background: #F8F9FA;
+      border-radius: 24px;
+      padding: 32px 20px;
+      min-height: 600px;
+    }
+
+    .profile-avatar-ring {
+      width: 96px;
+      height: 96px;
+      padding: 3px;
+      background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      position: relative;
+    }
+
+    .profile-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 700;
+      color: #6b7280;
+      overflow: hidden;
+    }
+
+    .profile-verified-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 24px;
+      height: 24px;
+      background: #3b82f6;
+      border-radius: 50%;
+      border: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .profile-wallet-card {
+      background: #1a1c23;
+      border-radius: 24px;
+      padding: 24px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      margin: 24px 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .wallet-mesh-gradient-1 {
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(16, 185, 129, 0.2);
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    .wallet-mesh-gradient-2 {
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 50%;
+      filter: blur(50px);
+    }
+
+    .profile-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #e5e7eb;
+    }
+
+    .profile-menu-item:hover {
+      background: #f9fafb;
+      border-color: #10b981;
+    }
+
+    /* Scanner Interface */
+    .scanner-interface {
+      background: #000;
+      border-radius: 24px;
+      height: 600px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scanner-viewfinder {
+      flex: 1;
+      position: relative;
+      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scanner-corners {
+      position: absolute;
+      inset: 60px;
+      border: 3px solid #10b981;
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .scanner-corners::before,
+    .scanner-corners::after,
+    .scanner-corners > span:first-child,
+    .scanner-corners > span:last-child {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border: 4px solid #10b981;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+    }
+
+    .scanner-corners::before {
+      top: -2px;
+      left: -2px;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 16px 0 0 0;
+    }
+
+    .scanner-corners::after {
+      top: -2px;
+      right: -2px;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 16px 0 0;
+    }
+
+    .scanner-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .scanner-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .scanner-btn:active {
+      transform: scale(0.95);
+    }
+
+    .flash-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .flash-btn.active {
+      background: #f59e0b;
+      border-color: #fbbf24;
+    }
+  </style>
+</head>
+<body>
+  <div class="showcase-container">
+    <!-- Showcase Header -->
+    <div class="showcase-header">
+      <div class="showcase-title">🌳 CarbonBank Complete Showcase</div>
+      <div class="showcase-subtitle">All 16 Components - Full App Migration Verified</div>
+    </div>
+
+    <!-- 1. Header Component -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title">Header Component</div>
+        <div class="section-description">Project badge, greeting, notifications, avatar</div>
+      </div>
+      <div class="component-preview">
+        <div class="header">
+          <div class="header-left">
+            <div class="project-badge">
+              <span class="pulse-dot"></span>
+              <span class="project-name">Ban Tha Li Project</span>
+            </div>
+            <h1 class="greeting">สวัสดี, คุณสมชาย</h1>
+          </div>
+          <div class="header-right">
+            <button class="icon-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="notification-dot"></span>
+            </button>
+            <div class="avatar">ส</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Hero Card -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title">Hero Card (Main Asset)</div>
+        <div class="section-description">Gradient, glossy effect, texture overlay, stats</div>
+      </div>
+      <div class="component-preview">
+        <div class="hero-card">
+          <div class="hero-glossy"></div>
+          <div class="hero-texture"></div>
+          <div class="hero-content">
+            <div class="hero-header">
+              <div>
+                <div class="hero-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span>Total Valuation</span>
+                </div>
+                <div class="hero-value">฿8,541.00</div>
+              </div>
+              <div class="trend-badge">
+                <span>↑</span>
+                <span>+12.5%</span>
+              </div>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-card">
+                <div class="stat-label">Carbon Credit</div>
+                <div class="stat-value">
+                  <span>2,847</span>
+                  <span class="stat-unit">kg</span>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">Active Trees</div>
+                <div class="stat-value">
+                  <span>189</span>
+                  <span class="stat-unit">Trees</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Quick Actions -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title">Quick Actions</div>
+        <div class="section-description">Colorful action buttons with Thai labels</div>
+      </div>
+      <div class="component-preview">
+        <div class="quick-actions">
+          <div class="quick-action">
+            <div class="action-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <path d="M9 15l2 2 4-4"></path>
+              </svg>
+            </div>
+            <span class="action-label">โฉนด</span>
+          </div>
+          <div class="quick-action">
+            <div class="action-btn emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+              </svg>
+            </div>
+            <span class="action-label">กระเป๋า</span>
+          </div>
+          <div class="quick-action">
+            <div class="action-btn blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+                <path d="M18 14h-8"></path>
+                <path d="M15 18h-5"></path>
+                <path d="M10 6h8v4h-8V6Z"></path>
+              </svg>
+            </div>
+            <span class="action-label">ข่าวสาร</span>
+          </div>
+          <div class="quick-action">
+            <div class="action-btn orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                <path d="M4 22h16"></path>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+              </svg>
+            </div>
+            <span class="action-label">อันดับ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Chart Section -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title">Chart Section</div>
+        <div class="section-description">White card with rounded corners, filter dropdown</div>
+      </div>
+      <div class="component-preview">
+        <div class="chart-section">
+          <div class="chart-header">
+            <h3 class="chart-title">สถิติการเติบโต</h3>
+            <button class="chart-filter">รายปี ▾</button>
+          </div>
+          <div class="chart-placeholder">
+            📈 Area Chart (Recharts)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Data Rows (System Status) -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title">Data Rows (System Status)</div>
+        <div class="section-description">Label, value, live indicator with pulse animation</div>
+      </div>
+      <div class="component-preview">
+        <div class="data-rows">
+          <div class="data-row">
+            <div class="data-label">Solar Panel Array</div>
+            <div class="data-value">247.8 kW</div>
+            <div class="data-indicator"></div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Rainwater Collection</div>
+            <div class="data-value">8,942 L</div>
+            <div class="data-indicator"></div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">HVAC Efficiency</div>
+            <div class="data-value">96.2%</div>
+            <div class="data-indicator"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Tree List Item -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <div class="section-title">Tree List Item</div>
+        <div class="section-description">Tree species, status badge, stats grid</div>
+      </div>
+      <div class="component-preview">
+        <div class="tree-list-item">
+          <div class="tree-item-header">
+            <div class="tree-species">🌳 Teak (สักทอง)</div>
+            <div class="tree-status-badge">Alive</div>
+          </div>
+          <div class="tree-item-stats">
+            <div class="tree-stat">
+              <div class="tree-stat-label">Planted</div>
+              <div class="tree-stat-value">24/03/2024</div>
+            </div>
+            <div class="tree-stat">
+              <div class="tree-stat-label">Carbon</div>
+              <div class="tree-stat-value">15.2 kg</div>
+            </div>
+            <div class="tree-stat">
+              <div class="tree-stat-label">Height</div>
+              <div class="tree-stat-value">2.4 m</div>
+            </div>
+          </div>
+        </div>
+        <div class="tree-list-item">
+          <div class="tree-item-header">
+            <div class="tree-species">🌲 Rubber (ยางพารา)</div>
+            <div class="tree-status-badge">Alive</div>
+          </div>
+          <div class="tree-item-stats">
+            <div class="tree-stat">
+              <div class="tree-stat-label">Planted</div>
+              <div class="tree-stat-value">15/01/2024</div>
+            </div>
+            <div class="tree-stat">
+              <div class="tree-stat-label">Carbon</div>
+              <div class="tree-stat-value">18.7 kg</div>
+            </div>
+            <div class="tree-stat">
+              <div class="tree-stat-label">Height</div>
+              <div class="tree-stat-value">3.1 m</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Achievement Badges -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <div class="section-title">Achievement Badges</div>
+        <div class="section-description">Green badges with icons, borders, shadows</div>
+      </div>
+      <div class="component-preview" style="text-align: center;">
+        <div class="achievement-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+          </svg>
+          <span>Carbon Neutral</span>
+        </div>
+        <div class="achievement-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <span>100 Trees Planted</span>
+        </div>
+        <div class="achievement-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          <span>Top Contributor</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Status Grid -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">8</div>
+        <div class="section-title">Status Grid</div>
+        <div class="section-description">2-column metric grid with large values</div>
+      </div>
+      <div class="component-preview">
+        <div class="status-grid">
+          <div class="status-item">
+            <div class="status-value">94%</div>
+            <div class="status-label">Energy Efficiency</div>
+          </div>
+          <div class="status-item">
+            <div class="status-value">1,247</div>
+            <div class="status-label">Trees Planted</div>
+          </div>
+          <div class="status-item">
+            <div class="status-value">42t</div>
+            <div class="status-label">CO₂ Reduced</div>
+          </div>
+          <div class="status-item">
+            <div class="status-value">$24k</div>
+            <div class="status-label">Cost Savings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Loading State -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">9</div>
+        <div class="section-title">Loading State</div>
+        <div class="section-description">Green gradient, pattern overlay, bounce animation</div>
+      </div>
+      <div class="component-preview">
+        <div class="loading-state">
+          <div class="loading-pattern"></div>
+          <div class="loading-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <path d="M12 22c.16-.4.43-.77.79-1.05l2.47-1.88C16.42 18.28 17 17.15 17 16v-4.24c0-.92-.42-1.78-1.13-2.33l-2.24-1.72a2.997 2.997 0 0 0-3.66 0L7.73 9.43C7.02 9.98 6.6 10.84 6.6 11.76V16c0 1.15.58 2.28 1.74 3.07l2.47 1.88c.36.28.63.65.79 1.05z"></path>
+              <path d="M12 2v6"></path>
+            </svg>
+          </div>
+          <div class="loading-title">CarbonBank</div>
+          <div class="loading-subtitle">ธนาคารต้นไม้แห่งชาติ</div>
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Bottom Navigation -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">10</div>
+        <div class="section-title">Bottom Navigation</div>
+        <div class="section-description">Glassmorphic bar, floating primary button, Thai labels</div>
+      </div>
+      <div class="component-preview">
+        <div class="bottom-nav-container">
+          <div class="bottom-nav">
+            <div class="bottom-nav-content">
+              <div class="nav-item active">
+                <svg class="nav-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span class="nav-label">หน้าแรก</span>
+              </div>
+              <div class="nav-item">
+                <svg class="nav-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span class="nav-label">ต้นไม้ของฉัน</span>
+              </div>
+              <div class="nav-item primary">
+                <div class="nav-primary-btn">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </div>
+                <span class="nav-label" style="color: #10b981;">สแกน</span>
+              </div>
+              <div class="nav-item">
+                <svg class="nav-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+                <span class="nav-label">แผนที่</span>
+              </div>
+              <div class="nav-item">
+                <svg class="nav-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <span class="nav-label">ตลาด</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Login Screen -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">11</div>
+        <div class="section-title">Login Screen</div>
+        <div class="section-description">Forest background, glassmorphic logo, LINE login button</div>
+      </div>
+      <div class="component-preview">
+        <div class="login-screen">
+          <div class="login-bg-overlay"></div>
+          <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <div class="login-logo-card">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                <path d="M12 22c.16-.4.43-.77.79-1.05l2.47-1.88C16.42 18.28 17 17.15 17 16v-4.24c0-.92-.42-1.78-1.13-2.33l-2.24-1.72a2.997 2.997 0 0 0-3.66 0L7.73 9.43C7.02 9.98 6.6 10.84 6.6 11.76V16c0 1.15.58 2.28 1.74 3.07l2.47 1.88c.36.28.63.65.79 1.05z"></path>
+                <path d="M12 2v6"></path>
+              </svg>
+            </div>
+            <h1 style="font-size: 40px; font-weight: 700; color: white; margin-bottom: 8px;">CarbonBank</h1>
+            <p style="font-size: 14px; color: #a7f3d0; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 48px;">ธนาคารต้นไม้แห่งชาติ</p>
+            <div style="width: 100%; max-width: 360px;">
+              <button class="line-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path>
+                </svg>
+                <span>เข้าสู่ระบบด้วย LINE</span>
+              </button>
+              <button class="guest-button">
+                <span>ทดลองใช้งาน (Guest Mode)</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Profile Screen -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">12</div>
+        <div class="section-title">Profile Screen</div>
+        <div class="section-description">Avatar ring, dark wallet card, menu items, tabs</div>
+      </div>
+      <div class="component-preview">
+        <div class="profile-screen">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <div class="profile-avatar-ring">
+              <div class="profile-avatar-inner">ส</div>
+              <div class="profile-verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path>
+                </svg>
+              </div>
+            </div>
+            <h2 style="font-size: 20px; font-weight: 700; color: #1f2937; margin-bottom: 8px;">คุณสมชาย ใจดี</h2>
+            <div style="display: flex; gap: 8px; justify-content: center; margin-top: 12px;">
+              <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; font-size: 10px; padding: 4px 12px; border-radius: 20px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(16, 185, 129, 0.3);">Verified Member</span>
+              <span style="background: rgba(251, 191, 36, 0.1); color: #f59e0b; font-size: 10px; padding: 4px 12px; border-radius: 20px; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(251, 191, 36, 0.3);">⭐ Level 3</span>
+            </div>
+          </div>
+
+          <!-- Wallet Card -->
+          <div class="profile-wallet-card">
+            <div class="wallet-mesh-gradient-1"></div>
+            <div class="wallet-mesh-gradient-2"></div>
+            <div style="position: relative; z-index: 10;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="padding: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; backdrop-filter: blur(8px);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                      <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                      <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                      <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em;">Total Balance</div>
+                    <div style="font-size: 12px; color: #10b981;">Available</div>
+                  </div>
+                </div>
+                <button style="width: 36px; height: 36px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </button>
+              </div>
+              <div style="font-size: 36px; font-weight: 700; margin-bottom: 16px;">
+                ฿8,541.00
+                <div style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                  <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; font-size: 10px; padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.3);">⚡ Carbon Assets</span>
+                  <span style="font-size: 14px; color: #d1d5db;">2,847.0 kg</span>
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <button style="background: white; color: black; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 12px; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);">📈 Trading</button>
+                <button style="background: rgba(255, 255, 255, 0.1); color: white; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 12px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; backdrop-filter: blur(8px);">📜 History</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Menu Items -->
+          <div style="margin-top: 24px;">
+            <p style="font-size: 11px; color: #6b7280; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; padding: 0 8px;">บัญชีของฉัน</p>
+            <div class="profile-menu-item">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <span style="font-size: 14px; font-weight: 600; color: #1f2937;">ข้อมูลส่วนตัว</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+            <div class="profile-menu-item">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 14px; font-weight: 600; color: #1f2937;">บัญชีธนาคาร</div>
+                  <div style="font-size: 11px; color: #9ca3af;">ธ.ก.ส. •••• 9988</div>
+                </div>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. Tree Scanner Interface -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">13</div>
+        <div class="section-title">Tree Scanner Interface</div>
+        <div class="section-description">Camera viewfinder, flash toggle, capture controls</div>
+      </div>
+      <div class="component-preview">
+        <div class="scanner-interface">
+          <div class="scanner-viewfinder">
+            <div class="scanner-corners">
+              <span></span>
+              <span></span>
+            </div>
+            <div style="position: absolute; top: 24px; left: 24px; right: 24px; display: flex; justify-content: space-between; align-items: center; z-index: 20;">
+              <button style="width: 40px; height: 40px; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </button>
+              <button class="flash-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                </svg>
+              </button>
+            </div>
+            <div style="text-align: center; color: white; font-size: 14px; opacity: 0.7;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 0 auto 12px;">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <p>จัดกรอบให้เห็นต้นไม้ชัดเจน</p>
+            </div>
+          </div>
+          <div class="scanner-controls">
+            <button style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; backdrop-filter: blur(8px);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </button>
+            <button class="scanner-btn">
+              <div style="width: 56px; height: 56px; background: #10b981; border-radius: 50%; box-shadow: 0 0 16px rgba(16, 185, 129, 0.6);"></div>
+            </button>
+            <button style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.3); cursor: pointer; backdrop-filter: blur(8px);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. Tree Detail Screen -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">14</div>
+        <div class="section-title">Tree Detail Screen</div>
+        <div class="section-description">Individual tree information, stats, timeline</div>
+      </div>
+      <div class="component-preview">
+        <div style="background: #F8F9FA; border-radius: 24px; padding: 24px; min-height: 500px;">
+          <!-- Header with back button -->
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+            <button style="width: 36px; height: 36px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <h2 style="font-size: 20px; font-weight: 700; color: #1f2937;">รายละเอียดต้นไม้</h2>
+          </div>
+
+          <!-- Tree Image Placeholder -->
+          <div style="background: linear-gradient(135deg, #064e3b 0%, #047857 100%); border-radius: 20px; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; position: relative; overflow: hidden;">
+            <div style="position: absolute; inset: 0; background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGgyMHYyMEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xMCAwdjIwTTAgMTBoMjAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg=='); opacity: 0.3;"></div>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="position: relative; z-index: 1;">
+              <path d="M12 22c.16-.4.43-.77.79-1.05l2.47-1.88C16.42 18.28 17 17.15 17 16v-4.24c0-.92-.42-1.78-1.13-2.33l-2.24-1.72a2.997 2.997 0 0 0-3.66 0L7.73 9.43C7.02 9.98 6.6 10.84 6.6 11.76V16c0 1.15.58 2.28 1.74 3.07l2.47 1.88c.36.28.63.65.79 1.05z"></path>
+              <path d="M12 2v6"></path>
+            </svg>
+          </div>
+
+          <!-- Species & Status -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <div>
+              <h3 style="font-size: 18px; font-weight: 700; color: #1f2937; margin-bottom: 4px;">🌳 Teak (สักทอง)</h3>
+              <p style="font-size: 12px; color: #6b7280; font-style: italic;">Tectona grandis</p>
+            </div>
+            <div style="padding: 6px 14px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 20px; font-size: 11px; font-weight: 700; color: #10b981; text-transform: uppercase;">ALIVE</div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;">
+            <div style="background: white; border-radius: 12px; padding: 12px; border: 1px solid #e5e7eb; text-align: center;">
+              <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">Height</div>
+              <div style="font-size: 18px; font-weight: 700; color: #1f2937;">2.4 m</div>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 12px; border: 1px solid #e5e7eb; text-align: center;">
+              <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">Carbon</div>
+              <div style="font-size: 18px; font-weight: 700; color: #10b981;">15.2 kg</div>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 12px; border: 1px solid #e5e7eb; text-align: center;">
+              <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">Age</div>
+              <div style="font-size: 18px; font-weight: 700; color: #1f2937;">8 mo</div>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div style="background: white; border-radius: 16px; padding: 16px; border: 1px solid #e5e7eb;">
+            <h4 style="font-size: 14px; font-weight: 700; color: #1f2937; margin-bottom: 12px;">📅 Timeline</h4>
+            <div style="display: flex; gap: 12px; margin-bottom: 12px;">
+              <div style="width: 3px; background: #10b981; border-radius: 2px;"></div>
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px;">ตรวจสอบสภาพ (Inspection)</div>
+                <div style="font-size: 11px; color: #6b7280;">24/03/2024 • ต้นไม้แข็งแรงดี</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px;">
+              <div style="width: 3px; background: #d1d5db; border-radius: 2px;"></div>
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 600; color: #1f2937; margin-bottom: 2px;">ลงทะเบียนปลูก (Planted)</div>
+                <div style="font-size: 11px; color: #6b7280;">15/01/2024 • เริ่มเข้าร่วมโครงการ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Map View -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">15</div>
+        <div class="section-title">Map Plotter View</div>
+        <div class="section-description">Map interface with tree location pins</div>
+      </div>
+      <div class="component-preview">
+        <div style="background: #F8F9FA; border-radius: 24px; overflow: hidden; height: 500px; position: relative;">
+          <!-- Map placeholder with grid pattern -->
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #e5e7eb 0%, #f3f4f6 100%); background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTSAwIDAgTCA0MCAwIEwgNDAgNDAgTCAwIDQwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2QxZDVkYiIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+');"></div>
+
+          <!-- Map controls -->
+          <div style="position: absolute; top: 20px; right: 20px; z-index: 10; display: flex; flex-direction: column; gap: 8px;">
+            <button style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+            <button style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1f2937" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Tree pins -->
+          <div style="position: absolute; top: 40%; left: 30%; z-index: 5;">
+            <div style="width: 40px; height: 40px; background: #10b981; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); border: 3px solid white;"></div>
+          </div>
+          <div style="position: absolute; top: 55%; left: 50%; z-index: 5;">
+            <div style="width: 40px; height: 40px; background: #10b981; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); border: 3px solid white;"></div>
+          </div>
+          <div style="position: absolute; top: 35%; left: 65%; z-index: 5;">
+            <div style="width: 40px; height: 40px; background: #10b981; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); border: 3px solid white;"></div>
+          </div>
+
+          <!-- Bottom info card -->
+          <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: white; border-radius: 16px; padding: 16px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); z-index: 10; border: 1px solid #e5e7eb;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <div style="font-size: 14px; font-weight: 700; color: #1f2937;">Ban Tha Li Project</div>
+              <div style="font-size: 11px; color: #6b7280; background: #f3f4f6; padding: 4px 10px; border-radius: 12px;">189 trees</div>
+            </div>
+            <div style="font-size: 12px; color: #6b7280;">📍 Chiang Mai, Thailand</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. Trading Market -->
+    <div class="component-section">
+      <div class="section-header">
+        <div class="section-number">16</div>
+        <div class="section-title">Trading Market View</div>
+        <div class="section-description">Carbon credit trading interface with price chart</div>
+      </div>
+      <div class="component-preview">
+        <div style="background: #F8F9FA; border-radius: 24px; padding: 24px; min-height: 500px;">
+          <!-- Market Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <div>
+              <h2 style="font-size: 20px; font-weight: 700; color: #1f2937; margin-bottom: 4px;">Carbon Market</h2>
+              <p style="font-size: 12px; color: #6b7280;">ตลาดคาร์บอนเครดิต</p>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 11px; color: #6b7280; margin-bottom: 2px;">Current Price</div>
+              <div style="font-size: 24px; font-weight: 700; color: #10b981;">฿3,000</div>
+            </div>
+          </div>
+
+          <!-- Price Chart Placeholder -->
+          <div style="background: white; border-radius: 16px; padding: 20px; border: 1px solid #e5e7eb; margin-bottom: 20px; height: 180px; position: relative; overflow: hidden;">
+            <!-- Simple line chart visual -->
+            <svg width="100%" height="100%" viewBox="0 0 400 140" style="position: absolute; inset: 0;">
+              <polyline points="0,100 50,85 100,95 150,70 200,75 250,55 300,65 350,45 400,50" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="0,100 50,85 100,95 150,70 200,75 250,55 300,65 350,45 400,50 400,140 0,140" fill="url(#gradient)" opacity="0.3"/>
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.3" />
+                  <stop offset="100%" style="stop-color:#10b981;stop-opacity:0" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div style="position: absolute; top: 16px; right: 16px; display: flex; gap: 8px;">
+              <button style="font-size: 11px; padding: 4px 10px; background: #10b981; color: white; border-radius: 8px; border: none; font-weight: 600; cursor: pointer;">1W</button>
+              <button style="font-size: 11px; padding: 4px 10px; background: #f3f4f6; color: #6b7280; border-radius: 8px; border: none; font-weight: 600; cursor: pointer;">1M</button>
+              <button style="font-size: 11px; padding: 4px 10px; background: #f3f4f6; color: #6b7280; border-radius: 8px; border: none; font-weight: 600; cursor: pointer;">1Y</button>
+            </div>
+          </div>
+
+          <!-- Trading Actions -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+            <button style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 16px; border-radius: 16px; font-weight: 700; font-size: 14px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+              <span>Buy Carbon</span>
+            </button>
+            <button style="background: white; color: #1f2937; padding: 16px; border-radius: 16px; font-weight: 700; font-size: 14px; border: 1px solid #e5e7eb; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+              </svg>
+              <span>Sell Carbon</span>
+            </button>
+          </div>
+
+          <!-- Market Stats -->
+          <div style="background: white; border-radius: 16px; padding: 16px; border: 1px solid #e5e7eb;">
+            <h4 style="font-size: 14px; font-weight: 700; color: #1f2937; margin-bottom: 12px;">Market Stats</h4>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+              <div>
+                <div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">24h Volume</div>
+                <div style="font-size: 16px; font-weight: 700; color: #1f2937;">1,247 kg</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">24h Change</div>
+                <div style="font-size: 16px; font-weight: 700; color: #10b981;">+12.5%</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">Market Cap</div>
+                <div style="font-size: 16px; font-weight: 700; color: #1f2937;">฿24.5M</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #6b7280; margin-bottom: 4px;">Total Supply</div>
+                <div style="font-size: 16px; font-weight: 700; color: #1f2937;">8,167 kg</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="component-section" style="text-align: center; padding: 60px 0;">
+      <h2 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 16px;">
+        ✅ Complete Migration
+      </h2>
+      <p style="font-size: 18px; color: #9ca3af; margin-bottom: 32px;">
+        All 16 CarbonBank components successfully migrated
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="carbonbank-theme-playground.html" style="display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3); transition: transform 0.2s ease;">
+          Open Interactive Playground
+        </a>
+        <a href="CARBONBANK_MIGRATION_COMPLETE.md" style="display: inline-block; padding: 14px 28px; background: rgba(255, 255, 255, 0.1); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.2s ease;">
+          View Documentation
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

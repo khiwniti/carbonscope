@@ -1,0 +1,9 @@
+{
+  "name": "@bks/cbim-frontend-legacy",
+  "version": "1.0.0",
+  "description": "BKS cBIM AI Frontend (Legacy) - Carbon Assessment Platform",
+  "keywords": ["bim", "carbon", "cbim", "sustainability", "EN15978"],
+  "private": true,
+  "scripts": {},
+  "dependencies": {}
+}

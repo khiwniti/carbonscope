@@ -1,0 +1,151 @@
+version: '3.9'
+
+services:
+  # =============================================================================
+  # Redis - In-memory cache and task queue
+  # =============================================================================
+  redis:
+    image: redis:8-alpine
+    container_name: suna-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - /mnt/data/redis:/data
+      - ./suna/backend/services/docker/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf --appendonly yes --maxmemory 4gb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - suna-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =============================================================================
+  # GraphDB - RDF/SPARQL knowledge graph database
+  # =============================================================================
+  graphdb:
+    image: ontotext/graphdb:10.7.0
+    container_name: suna-graphdb
+    platform: linux/amd64
+    restart: unless-stopped
+    ports:
+      - "7200:7200"
+    volumes:
+      - /mnt/data/graphdb/home:/opt/graphdb/home
+      - /mnt/data/graphdb/work:/opt/graphdb/work
+    environment:
+      GDB_JAVA_OPTS: >-
+        -Xmx4g
+        -Xms4g
+        -Ddefault.min.distinct.threshold=100000000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7200/rest/monitor/infrastructure"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - suna-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =============================================================================
+  # Backend - Python FastAPI
+  # =============================================================================
+  backend:
+    image: carbonbimbc6740962ecd.azurecr.io/backend:latest
+    build:
+      context: ./suna/backend
+      dockerfile: Dockerfile
+    container_name: suna-backend
+    platform: linux/amd64
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./suna/backend/.env
+    environment:
+      - ENV_MODE=production
+      - WORKERS=4
+      - TIMEOUT=75
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - GRAPHDB_URL=http://graphdb:7200
+      - GRAPHDB_REPOSITORY=carbonbim-thailand
+    volumes:
+      - /mnt/data/logs:/app/logs
+    depends_on:
+      redis:
+        condition: service_healthy
+      graphdb:
+        condition: service_healthy
+    networks:
+      - suna-network
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =============================================================================
+  # Frontend - Next.js
+  # =============================================================================
+  frontend:
+    image: carbonbimbc6740962ecd.azurecr.io/frontend:latest
+    build:
+      context: ./suna
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        PNPM_LOCKFILE_MODE: --frozen-lockfile
+    container_name: suna-frontend
+    restart: unless-stopped
+    init: true
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./suna/apps/frontend/.env.local
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8000/v1
+    depends_on:
+      - backend
+    networks:
+      - suna-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  suna-network:
+    driver: bridge
+
+# Note: Volumes are mapped to /mnt/data which is the attached Azure data disk
+# This ensures data persists across container restarts

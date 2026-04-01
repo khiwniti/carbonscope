@@ -1,0 +1,81 @@
+version: '3.8'
+
+# Local testing with ACR images
+# Usage: docker-compose -f docker-compose.acr-test.yml up
+
+services:
+  backend:
+    image: ${ACR_LOGIN_SERVER}/${BACKEND_IMAGE:-suna-backend}:${IMAGE_TAG:-latest}
+    container_name: suna-backend-test
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - ENVIRONMENT=development
+      - DATABASE_URL=${DATABASE_URL:-postgresql://postgres:postgres@db:5432/suna}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+    networks:
+      - suna-network
+    depends_on:
+      - db
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    image: ${ACR_LOGIN_SERVER}/${FRONTEND_IMAGE:-suna-frontend}:${IMAGE_TAG:-latest}
+    container_name: suna-frontend-test
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    networks:
+      - suna-network
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db:
+    image: postgres:15-alpine
+    container_name: suna-db-test
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=suna
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - suna-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: suna-redis-test
+    networks:
+      - suna-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  suna-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

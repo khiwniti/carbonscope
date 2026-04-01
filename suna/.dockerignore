@@ -1,0 +1,71 @@
+# Dependencies
+**/node_modules
+**/.pnp
+**/.pnp.js
+
+# Testing
+**/coverage
+**/.nyc_output
+
+# Production
+**/dist
+**/build
+**/.next
+**/out
+
+# Misc
+**/.DS_Store
+**/*.pem
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+**/.pnpm-debug.log*
+
+# Local env files
+**/.env*.local
+**/.env.development
+**/.env.test
+
+# Vercel
+**/.vercel
+
+# Typescript
+**/*.tsbuildinfo
+
+# Git
+**/.git
+**/.gitignore
+.github
+
+# IDE
+**/.vscode
+**/.idea
+**/*.swp
+**/*.swo
+
+# Documentation
+**/*.md
+!apps/frontend/README.md
+claudedocs
+**/__tests__
+**/*.test.*
+**/*.spec.*
+
+# Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.Python
+**/venv
+**/env
+**/.venv
+
+# Keep only what we need
+!apps/frontend
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!turbo.json

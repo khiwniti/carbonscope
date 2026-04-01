@@ -1,0 +1,113 @@
+🚀 Deploying SUNA via Azure CLI
+================================
+
+1️⃣  Checking VM status...
+⚠️  VM is not running. Starting VM...
+Waiting 30 seconds for VM to be ready...
+✅ VM is running
+
+2️⃣  Installing Docker (if needed)...
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nDocker already installed\n\n[stderr]\n"
+    }
+  ]
+}
+✅ Docker ready
+
+3️⃣  Creating directories...
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nDirectories created\n\n[stderr]\nchown: invalid user: ‘azureuser:azureuser’\n"
+    }
+  ]
+}
+✅ Directories created
+
+4️⃣  Creating docker-compose.production.yml on VM...
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nDocker compose file created\n\n[stderr]\n/var/lib/waagent/run-command/download/40/script.sh: 1: cannot create ~/suna-production/docker-compose.production.yml: Directory nonexistent\n"
+    }
+  ]
+}
+✅ Docker compose created
+
+5️⃣  Creating environment file templates...
+{
+  "value": [
+    {
+      "code": "ProvisioningState/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "Enable succeeded: \n[stdout]\nEnvironment templates created\n\n[stderr]\n"
+    }
+  ]
+}
+✅ Environment files created
+
+6️⃣  Logging into ACR and pulling images...
+Enable succeeded: 
+[stdout]
+Login Succeeded
+Images pulled
+
+[stderr]
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+open /root/suna-production/docker-compose.production.yml: no such file or directory
+
+✅ Images pulled
+
+7️⃣  Starting all services...
+Enable succeeded: 
+[stdout]
+Services started
+
+[stderr]
+open /root/suna-production/docker-compose.production.yml: no such file or directory
+open /root/suna-production/docker-compose.production.yml: no such file or directory
+
+✅ Services started
+
+✅ Deployment Complete!
+
+🌐 Services are running at:
+   Frontend: http://20.55.21.69:3000
+   Backend:  http://20.55.21.69:8000
+   GraphDB:  http://20.55.21.69:7200
+
+📝 Next Steps:
+
+1. Update environment variables:
+   az vm run-command invoke --resource-group DSC-TEAM --name coder-vm \
+     --command-id RunShellScript \
+     --scripts 'cd ~/suna-production && nano suna/backend/.env'
+
+2. Restart services after updating credentials:
+   az vm run-command invoke --resource-group DSC-TEAM --name coder-vm \
+     --command-id RunShellScript \
+     --scripts 'cd ~/suna-production && docker compose -f docker-compose.production.yml restart'
+
+3. Initialize GraphDB:
+   az vm run-command invoke --resource-group DSC-TEAM --name coder-vm \
+     --command-id RunShellScript \
+     --scripts 'curl -X POST http://localhost:7200/rest/repositories -H "Content-Type: application/json" -d "{\"id\":\"carbonbim-thailand\",\"title\":\"SUNA\",\"ruleset\":\"rdfsplus-optimized\"}"'
+
+4. Setup Cloudflare domain (see setup-cloudflare-domain.sh)
+

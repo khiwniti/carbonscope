@@ -1,0 +1,155 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: suna-postgres
+    environment:
+      POSTGRES_DB: suna_bim
+      POSTGRES_USER: suna
+      POSTGRES_PASSWORD: suna_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U suna"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - suna-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: suna-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - suna-network
+
+  # GraphDB for TGO Knowledge Graph
+  graphdb:
+    image: ontotext/graphdb:10.7.3
+    container_name: suna-graphdb
+    environment:
+      GDB_HEAP_SIZE: 2g
+      GDB_MIN_MEM: 1g
+      GDB_MAX_MEM: 2g
+    ports:
+      - "7200:7200"
+    volumes:
+      - graphdb_data:/opt/graphdb/home
+      - ./backend/knowledge_graph/schemas:/import
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7200/rest/monitor/infrastructure"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - suna-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: suna-backend
+    environment:
+      DATABASE_URL: postgresql://suna:suna_dev_password@postgres:5432/suna_bim
+      REDIS_URL: redis://redis:6379
+      GRAPHDB_URL: http://graphdb:7200
+      ENVIRONMENT: development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - backend_cache:/root/.cache
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      graphdb:
+        condition: service_healthy
+    command: uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - suna-network
+    restart: unless-stopped
+
+  # Frontend Next.js App
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: suna-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+    command: npm run dev
+    networks:
+      - suna-network
+    restart: unless-stopped
+
+  # Prometheus Monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: suna-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - suna-network
+
+  # Grafana Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    container_name: suna-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - suna-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  graphdb_data:
+  backend_cache:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  suna-network:
+    driver: bridge

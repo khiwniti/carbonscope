@@ -1,0 +1,113 @@
+# =============================================================================
+# COPY AND PASTE THESE COMMANDS TO DEPLOY SUNA
+# =============================================================================
+# Run these from YOUR LOCAL MACHINE (not this environment)
+# =============================================================================
+
+# ============================================================================
+# STEP 1: Copy all files to coder-vm (from this directory)
+# ============================================================================
+
+scp -i "/path/to/VM Key.pem" -r suna/ azureuser@20.55.21.69:~/suna-production/
+scp -i "/path/to/VM Key.pem" docker-compose.production.yml azureuser@20.55.21.69:~/suna-production/
+scp -i "/path/to/VM Key.pem" deploy-package.sh azureuser@20.55.21.69:~/
+scp -i "/path/to/VM Key.pem" setup-cloudflare-domain.sh azureuser@20.55.21.69:~/
+scp -i "/path/to/VM Key.pem" force-update.sh azureuser@20.55.21.69:~/
+scp -i "/path/to/VM Key.pem" check-version.sh azureuser@20.55.21.69:~/
+
+# ============================================================================
+# STEP 2: SSH to coder-vm and deploy
+# ============================================================================
+
+ssh -i "/path/to/VM Key.pem" azureuser@20.55.21.69
+
+# Once connected to coder-vm, run:
+chmod +x ~/deploy-package.sh ~/setup-cloudflare-domain.sh ~/force-update.sh ~/check-version.sh
+./deploy-package.sh
+
+# ============================================================================
+# STEP 3: Update environment variables (still on coder-vm)
+# ============================================================================
+
+cd ~/suna-production
+
+# Generate encryption keys
+openssl rand -base64 32  # Copy this for ENCRYPTION_KEY
+openssl rand -base64 32  # Copy this for MCP_CREDENTIAL_ENCRYPTION_KEY
+
+# Edit backend environment
+nano suna/backend/.env
+# Update:
+# - DATABASE_URL=postgresql://...
+# - SUPABASE_URL=https://...
+# - SUPABASE_SERVICE_ROLE_KEY=...
+# - SUPABASE_ANON_KEY=...
+# - ENCRYPTION_KEY=<paste key from above>
+# - MCP_CREDENTIAL_ENCRYPTION_KEY=<paste key from above>
+
+# Edit frontend environment
+nano suna/apps/frontend/.env.local
+# Update:
+# - NEXT_PUBLIC_BACKEND_URL=https://api.carbon-bim.ensimu.space
+# - NEXT_PUBLIC_URL=https://carbon-bim.ensimu.space
+# - NEXT_PUBLIC_SUPABASE_URL=https://...
+# - NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+# - KORTIX_ADMIN_API_KEY=<generate with: openssl rand -base64 32>
+
+# Restart services
+docker compose -f docker-compose.production.yml restart
+
+# ============================================================================
+# STEP 4: Initialize GraphDB (still on coder-vm)
+# ============================================================================
+
+curl -X POST http://localhost:7200/rest/repositories \
+  -H "Content-Type: application/json" \
+  -d '{"id":"carbonbim-thailand","title":"SUNA Carbon BIM Thailand","ruleset":"rdfsplus-optimized"}'
+
+# Verify
+curl http://localhost:7200/rest/repositories
+
+# ============================================================================
+# STEP 5: Setup HTTPS with Cloudflare (still on coder-vm)
+# ============================================================================
+
+./setup-cloudflare-domain.sh
+
+# ============================================================================
+# STEP 6: Configure Cloudflare DNS (from your browser)
+# ============================================================================
+
+# Go to: https://dash.cloudflare.com
+# Select domain: ensimu.space
+# Add DNS records:
+
+# Type  | Name           | Content      | Proxy Status
+# ------|----------------|--------------|-------------
+# A     | carbon-bim     | 20.55.21.69  | Proxied (orange cloud)
+# A     | api.carbon-bim | 20.55.21.69  | Proxied (orange cloud)
+# A     | graphdb.carbon-bim | 20.55.21.69 | Proxied (orange cloud)
+
+# Set SSL/TLS mode to: Full (strict)
+
+# ============================================================================
+# STEP 7: Test deployment
+# ============================================================================
+
+# Wait 2 minutes for DNS propagation, then test:
+
+# From browser:
+# https://carbon-bim.ensimu.space
+# https://api.carbon-bim.ensimu.space/docs
+# https://graphdb.carbon-bim.ensimu.space
+
+# From command line:
+curl https://carbon-bim.ensimu.space
+curl https://api.carbon-bim.ensimu.space/v1/health
+
+# ============================================================================
+# DONE! Your SUNA deployment is live at:
+# Frontend: https://carbon-bim.ensimu.space
+# Backend API: https://api.carbon-bim.ensimu.space
+# GraphDB: https://graphdb.carbon-bim.ensimu.space
+# ============================================================================

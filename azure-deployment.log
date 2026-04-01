@@ -1,0 +1,34 @@
+[0;34m========================================[0m
+[0;34m  Deploy to Azure App Service[0m
+[0;34m========================================[0m
+
+[1;33m[i][0m Creating App Service Plan...
+[0;32m[✓][0m App Service Plan ready
+[1;33m[i][0m Creating backend web app...
+WARNING: Option '--deployment-container-image-name' has been deprecated and will be removed in a future release.
+WARNING: No credential was provided to access Azure Container Registry. Trying to look up...
+WARNING: Option '--docker-custom-image-name' has been deprecated and will be removed in a future release. Use '--container-image-name' instead.
+WARNING: Option '--docker-registry-server-url' has been deprecated and will be removed in a future release. Use '--container-registry-url' instead.
+WARNING: Option '--docker-registry-server-user' has been deprecated and will be removed in a future release. Use '--container-registry-user' instead.
+WARNING: Option '--docker-registry-server-password' has been deprecated and will be removed in a future release. Use '--container-registry-password' instead.
+[0;32m[✓][0m Backend deployed: https://suna-backend-app.azurewebsites.net
+[1;33m[i][0m Creating frontend web app...
+WARNING: Option '--deployment-container-image-name' has been deprecated and will be removed in a future release.
+WARNING: No credential was provided to access Azure Container Registry. Trying to look up...
+WARNING: Option '--docker-custom-image-name' has been deprecated and will be removed in a future release. Use '--container-image-name' instead.
+WARNING: Option '--docker-registry-server-url' has been deprecated and will be removed in a future release. Use '--container-registry-url' instead.
+WARNING: Option '--docker-registry-server-user' has been deprecated and will be removed in a future release. Use '--container-registry-user' instead.
+WARNING: Option '--docker-registry-server-password' has been deprecated and will be removed in a future release. Use '--container-registry-password' instead.
+[0;32m[✓][0m Frontend deployed: https://suna-frontend-app.azurewebsites.net
+[1;33m[i][0m Enabling continuous deployment...
+
+[0;32m========================================[0m
+[0;32m  Deployment Complete![0m
+[0;32m========================================[0m
+
+[0;34mFrontend:[0m https://suna-frontend-app.azurewebsites.net
+[0;34mBackend API:[0m https://suna-backend-app.azurewebsites.net/docs
+
+[1;33m[i][0m Note: First startup may take 2-3 minutes
+[1;33m[i][0m Continuous deployment enabled - push new images to auto-update
+

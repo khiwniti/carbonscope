@@ -1,0 +1,10 @@
+{
+  "name": "comprehensive-suna-bim-agent",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

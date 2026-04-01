@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.lightweight
+    container_name: bim-backend
+    restart: unless-stopped
+    expose:
+      - "8000"
+    environment:
+      # Database (Supabase)
+      DATABASE_URL: ${SUPABASE_DATABASE_URL}
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+
+      # Redis (local container)
+      REDIS_URL: redis://redis:6379
+
+      # LLM Providers
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      LITELLM_NUM_RETRIES: 2
+      LITELLM_REQUEST_TIMEOUT: 300
+
+      # BIM Processing
+      MAX_WORKERS: 1
+      WORKER_MEMORY_LIMIT: 512MB
+
+      # Security
+      JWT_SECRET: ${JWT_SECRET}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+
+    volumes:
+      - ./backend/data:/app/data
+      - ./uploads:/app/uploads
+    depends_on:
+      - redis
+    mem_limit: 400m
+    cpus: 0.7
+
+  frontend:
+    image: nginx:alpine
+    container_name: bim-frontend
+    restart: unless-stopped
+    expose:
+      - "80"
+    volumes:
+      - ./frontend-dist:/usr/share/nginx/html:ro
+      - ./nginx/frontend.conf:/etc/nginx/conf.d/default.conf:ro
+    mem_limit: 64m
+    cpus: 0.1
+
+  redis:
+    image: redis:7-alpine
+    container_name: bim-redis
+    restart: unless-stopped
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    mem_limit: 128m
+    cpus: 0.1
+
+  nginx:
+    image: nginx:alpine
+    container_name: bim-nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - backend
+      - frontend
+    mem_limit: 64m
+    cpus: 0.1
+
+volumes:
+  redis_data:

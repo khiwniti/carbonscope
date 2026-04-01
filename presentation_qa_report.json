@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-03-29T17:08:29.737407",
+  "file": "SUNA_Sales_Analysis_Feb_Mar_2026.pptx",
+  "quality_score": 95.0,
+  "total_checks": 10,
+  "passed": 9,
+  "warnings": 1,
+  "issues": 0,
+  "details": {
+    "passed": [
+      "✅ Slide count: 7/7 slides",
+      "✅ Extracted 7 slide titles",
+      "✅ Bilingual format correct (7/7 slides)",
+      "✅ Data accuracy: 100.0% (15/15 values)",
+      "✅ Font consistency: 0 fonts used",
+      "✅ Color validation: Professional palette detected",
+      "✅ Text alignment: 3 alignment types used",
+      "✅ Readability: All text meets minimum size requirements",
+      "✅ Contrast: Professional color scheme with good contrast"
+    ],
+    "warnings": [
+      "⚠️ Found 14 empty text shapes"
+    ],
+    "issues": []
+  },
+  "metrics": {
+    "total_slides": 7,
+    "slide_titles": [
+      "Sales Performance Analysis",
+      "Executive Summary",
+      "February 2026 Performance",
+      "March 2026 Performance (1-29)",
+      "Month-over-Month Comparison",
+      "Key Insights & Recommendations",
+      "Action Plan for April 2026"
+    ],
+    "total_shapes": 58,
+    "text_shapes": 57,
+    "bilingual_slides": 7,
+    "data_accuracy": 100.0,
+    "fonts_used": [],
+    "font_size_range": [
+      0,
+      0
+    ],
+    "alignments": {
+      "CENTER (2)": 74,
+      "None": 60,
+      "LEFT (1)": 3
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@bks/cbim-desktop",
+  "version": "1.0.0",
+  "description": "BKS cBIM AI Desktop - Carbon Assessment Platform",
+  "keywords": ["bim", "carbon", "cbim", "sustainability", "EN15978", "desktop", "electron"],
+  "author": {
+    "name": "BKS",
+    "email": "support@bks-cbim.com",
+    "url": "https://bks-cbim.com"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:mac": "node -r dotenv/config -e 'require(\"./build-signed.js\")' || electron-builder --mac",
+    "build:mac:unsigned": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@electron/notarize": "^2.3.2",
+    "dotenv": "^16.4.5",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.bks.cbim.desktop",
+    "productName": "BKS cBIM AI",
+    "protocols": {
+      "name": "BKS cBIM AI",
+      "schemes": ["cbim"]
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.productivity",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist"
+    },
+    "afterSign": "notarize.js",
+    "dmg": {
+      "sign": false,
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    }
+  }
+}

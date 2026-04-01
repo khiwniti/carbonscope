@@ -1,0 +1,25 @@
+{
+  "name": "ai-agent-saas-expert",
+  "version": "0.2.0",
+  "description": "Professional AI agent team specialized in building production-ready AI agent chat SaaS applications. Comprehensive auditing, validation, and best practices for Next.js monorepos with multi-database architectures, sandbox integration, LLM providers, and frontend agent UI patterns (streaming chat, tool-call rendering, state management, SSE/WebSocket UX).",
+  "author": {
+    "name": "AI Agent SaaS Expert Team",
+    "email": "expert@ai-agent-saas.dev"
+  },
+  "keywords": [
+    "ai-agent",
+    "saas",
+    "nextjs",
+    "production-readiness",
+    "architecture",
+    "security",
+    "performance",
+    "sandbox",
+    "llm-integration"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-agent-saas-expert"
+  }
+}

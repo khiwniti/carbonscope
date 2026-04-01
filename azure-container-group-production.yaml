@@ -1,0 +1,213 @@
+apiVersion: '2021-10-01'
+location: southeastasia
+name: suna-production
+identity:
+  type: UserAssigned
+  userAssignedIdentities:
+    # Update this with your managed identity resource ID after running azure-keyvault-setup.sh
+    /subscriptions/YOUR_SUBSCRIPTION/resourceGroups/carbon-bim-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/suna-container-identity: {}
+properties:
+  containers:
+  # =============================================================================
+  # Redis - In-memory data store
+  # =============================================================================
+  - name: redis
+    properties:
+      image: carbonbimbc6740962ecd.azurecr.io/redis:7-alpine
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1
+      ports:
+      - port: 6379
+        protocol: TCP
+      environmentVariables:
+      - name: REDIS_PASSWORD
+        secureValue: YOUR_REDIS_PASSWORD  # Replace with strong password
+      command:
+      - redis-server
+      - --requirepass
+      - YOUR_REDIS_PASSWORD
+      - --save
+      - '300'
+      - '10'
+      - --appendonly
+      - 'yes'
+      - --maxmemory
+      - 512mb
+      - --maxmemory-policy
+      - allkeys-lru
+
+  # =============================================================================
+  # Backend - Python FastAPI
+  # =============================================================================
+  - name: backend
+    properties:
+      image: carbonbimbc6740962ecd.azurecr.io/backend:latest
+      resources:
+        requests:
+          cpu: 2
+          memoryInGb: 4
+        limits:
+          cpu: 2
+          memoryInGb: 4
+      ports:
+      - port: 8000
+        protocol: TCP
+      environmentVariables:
+      # Redis Configuration
+      - name: REDIS_HOST
+        value: localhost
+      - name: REDIS_PORT
+        value: '6379'
+      - name: REDIS_PASSWORD
+        secureValue: YOUR_REDIS_PASSWORD
+      - name: REDIS_SSL
+        value: 'False'
+
+      # Environment
+      - name: ENV_MODE
+        value: production
+      - name: WORKERS
+        value: '4'
+      - name: TIMEOUT
+        value: '75'
+      - name: PYTHONPATH
+        value: /app
+
+      # Database (Use Key Vault secrets in production!)
+      - name: DATABASE_URL
+        secureValue: postgresql://USER:PASSWORD@HOST:5432/DATABASE
+      - name: SUPABASE_URL
+        secureValue: https://YOUR_PROJECT.supabase.co
+      - name: SUPABASE_SERVICE_ROLE_KEY
+        secureValue: YOUR_SERVICE_ROLE_KEY
+      - name: SUPABASE_ANON_KEY
+        secureValue: YOUR_ANON_KEY
+
+      # Encryption
+      - name: ENCRYPTION_KEY
+        secureValue: YOUR_32_BYTE_BASE64_KEY
+      - name: MCP_CREDENTIAL_ENCRYPTION_KEY
+        secureValue: YOUR_32_BYTE_BASE64_KEY
+
+      # External Services
+      - name: DAYTONA_API_KEY
+        secureValue: YOUR_DAYTONA_KEY
+
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 8000
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 3
+
+      readinessProbe:
+        httpGet:
+          path: /health
+          port: 8000
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        timeoutSeconds: 3
+        failureThreshold: 3
+
+  # =============================================================================
+  # Frontend - Next.js
+  # =============================================================================
+  - name: frontend
+    properties:
+      image: carbonbimbc6740962ecd.azurecr.io/frontend:latest
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 2
+        limits:
+          cpu: 1
+          memoryInGb: 2
+      ports:
+      - port: 3000
+        protocol: TCP
+      environmentVariables:
+      # Backend Integration
+      - name: NEXT_PUBLIC_BACKEND_URL
+        value: https://YOUR_DOMAIN/api/v1
+      - name: NEXT_PUBLIC_URL
+        value: https://YOUR_DOMAIN
+
+      # Environment
+      - name: NEXT_PUBLIC_ENV_MODE
+        value: production
+      - name: NODE_ENV
+        value: production
+      - name: NEXT_TELEMETRY_DISABLED
+        value: '1'
+      - name: HOSTNAME
+        value: 0.0.0.0
+      - name: PORT
+        value: '3000'
+
+      # Supabase (Public keys)
+      - name: NEXT_PUBLIC_SUPABASE_URL
+        value: https://YOUR_PROJECT.supabase.co
+      - name: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        value: YOUR_ANON_KEY
+
+      # Feature Flags
+      - name: NEXT_PUBLIC_DISABLE_MOBILE_ADVERTISING
+        value: 'true'
+      - name: NEXT_PUBLIC_FORCE_LOCALHOST
+        value: 'false'
+
+      # Admin (Secret!)
+      - name: KORTIX_ADMIN_API_KEY
+        secureValue: YOUR_ADMIN_API_KEY
+
+      # Analytics (Optional)
+      - name: NEXT_PUBLIC_POSTHOG_KEY
+        value: YOUR_POSTHOG_KEY
+      - name: NEXT_PUBLIC_GTM_ID
+        value: YOUR_GTM_ID
+
+      livenessProbe:
+        httpGet:
+          path: /api/health
+          port: 3000
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 5
+        failureThreshold: 3
+
+      readinessProbe:
+        httpGet:
+          path: /api/health
+          port: 3000
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        timeoutSeconds: 3
+        failureThreshold: 3
+
+  # =============================================================================
+  # Container Registry Credentials
+  # =============================================================================
+  imageRegistryCredentials:
+  - server: carbonbimbc6740962ecd.azurecr.io
+    username: carbonbimbc6740962ecd
+    password: WILL_BE_REPLACED_BY_DEPLOYMENT_SCRIPT
+
+  # =============================================================================
+  # Networking & Access
+  # =============================================================================
+  osType: Linux
+  restartPolicy: Always
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: TCP
+      port: 3000
+      name: frontend
+    - protocol: TCP
+      port: 8000
+      name: backend
+    dnsNameLabel: suna-production

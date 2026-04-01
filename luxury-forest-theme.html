@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Forest Design System - Sustainable Architecture</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a0f0d 0%, #0d1512 50%, #0a0f0d 100%);
+      color: #e8f5e9;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at bottom right, rgba(5, 150, 105, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      grid-template-rows: 1fr auto;
+      height: 100vh;
+      gap: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .controls {
+      background: rgba(15, 25, 20, 0.7);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(16, 185, 129, 0.15);
+      padding: 32px 28px;
+      overflow-y: auto;
+      grid-row: 1 / -1;
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .controls::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .controls::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 4px;
+    }
+
+    .controls::-webkit-scrollbar-thumb {
+      background: rgba(16, 185, 129, 0.3);
+      border-radius: 4px;
+    }
+
+    .controls::-webkit-scrollbar-thumb:hover {
+      background: rgba(16, 185, 129, 0.5);
+    }
+
+    .preview-container {
+      background: transparent;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .prompt-output {
+      background: rgba(15, 25, 20, 0.8);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(16, 185, 129, 0.15);
+      padding: 28px 32px;
+      grid-column: 2;
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #86efac;
+      margin-bottom: 28px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      opacity: 0.8;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #10b981;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 3px;
+      height: 12px;
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      border-radius: 2px;
+    }
+
+    .control-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #d1fae5;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.1) 100%);
+      border-radius: 3px;
+      outline: none;
+      position: relative;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4), 0 0 0 4px rgba(16, 185, 129, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.6), 0 0 0 6px rgba(16, 185, 129, 0.15);
+      transform: scale(1.1);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+    }
+
+    input[type="color"] {
+      width: 100%;
+      height: 42px;
+      border: 2px solid rgba(16, 185, 129, 0.2);
+      border-radius: 8px;
+      background: rgba(15, 25, 20, 0.5);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    input[type="color"]:hover {
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(15, 25, 20, 0.6);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 8px;
+      color: #d1fae5;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    select:hover {
+      background: rgba(15, 25, 20, 0.8);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    .value-display {
+      display: inline-block;
+      font-size: 12px;
+      color: #10b981;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      margin-left: 8px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .presets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .preset-btn {
+      padding: 12px 10px;
+      background: rgba(15, 25, 20, 0.4);
+      border: 1.5px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      color: #d1fae5;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preset-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .preset-btn:hover::before {
+      opacity: 1;
+    }
+
+    .preset-btn:hover {
+      background: rgba(15, 25, 20, 0.6);
+      border-color: rgba(16, 185, 129, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+
+    .preset-btn.active {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
+      border-color: #10b981;
+      color: #86efac;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1), 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Preview Styles */
+    .preview-grid {
+      display: grid;
+      gap: 28px;
+      max-width: 1400px;
+    }
+
+    .preview-section {
+      background: rgba(15, 25, 20, 0.5);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 36px;
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .preview-section:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.1);
+    }
+
+    .preview-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #f0fdf4;
+      letter-spacing: -0.01em;
+    }
+
+    .component-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: var(--padding);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-color) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent-color);
+    }
+
+    .metric-card {
+      flex: 1;
+      min-width: 220px;
+      max-width: 320px;
+    }
+
+    .metric-value {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--accent-color);
+      margin-bottom: 6px;
+      font-family: 'Inter', 'SF Mono', Monaco, monospace;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .metric-trend {
+      font-size: 13px;
+      color: var(--success-color);
+      margin-top: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .metric-trend::before {
+      content: '↗';
+      font-size: 16px;
+    }
+
+    .btn {
+      padding: var(--btn-padding);
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(15, 25, 20, 0.6);
+      color: var(--accent-color);
+      border: 1.5px solid rgba(16, 185, 129, 0.3);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 25, 20, 0.8);
+      border-color: var(--accent-color);
+    }
+
+    .building-viz {
+      background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      border-radius: calc(var(--radius) * 1.2);
+      padding: 48px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .building-viz::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      animation: shimmer 8s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .building-icon {
+      font-size: 96px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+      position: relative;
+      z-index: 1;
+    }
+
+    .building-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .building-subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sustainability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--success-bg);
+      color: var(--success-color);
+      border-radius: 24px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 16px;
+      border: 1px solid var(--success-color);
+      box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .sustainability-badge::before {
+      content: '✓';
+      font-weight: bold;
+    }
+
+    .data-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 20px;
+      padding: 18px 20px;
+      background: var(--row-bg);
+      border-radius: calc(var(--radius) * 0.8);
+      margin-bottom: 10px;
+      align-items: center;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .data-row:hover {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .data-label {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .data-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-color);
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    }
+
+    .data-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success-color);
+      box-shadow: 0 0 8px var(--success-color);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.9); }
+    }
+
+    /* Prompt Output */
+    .prompt-text {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #d1fae5;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: rgba(15, 25, 20, 0.6);
+      border-radius: 10px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .copy-btn {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+
+    .copy-feedback {
+      display: inline-block;
+      margin-left: 16px;
+      font-size: 13px;
+      color: #4ade80;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .copy-feedback.show {
+      opacity: 1;
+    }
+
+    /* Luxury Forest Theme Variables */
+    :root {
+      --card-bg: rgba(15, 25, 20, 0.6);
+      --border-color: rgba(16, 185, 129, 0.2);
+      --text-primary: #f0fdf4;
+      --text-secondary: #86efac;
+      --accent-color: #10b981;
+      --accent-light: #34d399;
+      --accent-dark: #059669;
+      --secondary-color: rgba(15, 25, 20, 0.7);
+      --success-color: #4ade80;
+      --success-bg: rgba(74, 222, 128, 0.15);
+      --row-bg: rgba(15, 25, 20, 0.4);
+      --bg-gradient-start: #064e3b;
+      --bg-gradient-end: #047857;
+      --radius: 12px;
+      --padding: 24px;
+      --btn-padding: 14px 28px;
+      --shadow-hover: 0 12px 40px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Glassmorphism enhancement */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="controls">
+      <h1>🌿 Luxury Forest Design</h1>
+      <p class="subtitle">Premium sustainable architecture interface system</p>
+
+      <div class="section">
+        <div class="section-title">Theme Presets</div>
+        <div class="presets">
+          <button class="preset-btn active" onclick="applyPreset('luxury-forest')">🌿 Luxury Forest</button>
+          <button class="preset-btn" onclick="applyPreset('emerald')">💎 Emerald</button>
+          <button class="preset-btn" onclick="applyPreset('jade')">🟢 Jade</button>
+          <button class="preset-btn" onclick="applyPreset('forest-gold')">✨ Forest Gold</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Color Palette</div>
+
+        <div class="control-group">
+          <label>Primary Accent
+            <span class="value-display" id="accentDisplay">#10b981</span>
+          </label>
+          <input type="color" id="accentColor" value="#10b981" oninput="updateState('accentColor', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Success Color
+            <span class="value-display" id="successDisplay">#4ade80</span>
+          </label>
+          <input type="color" id="successColor" value="#4ade80" oninput="updateState('successColor', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Background Gradient Start
+            <span class="value-display" id="gradientStartDisplay">#064e3b</span>
+          </label>
+          <input type="color" id="gradientStart" value="#064e3b" oninput="updateState('gradientStart', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Background Gradient End
+            <span class="value-display" id="gradientEndDisplay">#047857</span>
+          </label>
+          <input type="color" id="gradientEnd" value="#047857" oninput="updateState('gradientEnd', this.value)">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Layout & Spacing</div>
+
+        <div class="control-group">
+          <label>Border Radius
+            <span class="value-display" id="radiusDisplay">12px</span>
+          </label>
+          <input type="range" id="radius" min="0" max="32" value="12" oninput="updateState('radius', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Card Padding
+            <span class="value-display" id="paddingDisplay">24px</span>
+          </label>
+          <input type="range" id="padding" min="16" max="56" value="24" oninput="updateState('padding', this.value)">
+        </div>
+
+        <div class="control-group">
+          <label>Shadow Intensity
+            <span class="value-display" id="shadowDisplay">Luxury</span>
+          </label>
+          <input type="range" id="shadow" min="0" max="2" value="2" step="1" oninput="updateState('shadow', this.value)">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Typography</div>
+
+        <div class="control-group">
+          <label>Font Weight</label>
+          <select id="fontWeight" onchange="updateState('fontWeight', this.value)">
+            <option value="500">Medium (500)</option>
+            <option value="600">Semi-Bold (600)</option>
+            <option value="700" selected>Bold (700)</option>
+            <option value="800">Extra Bold (800)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Letter Spacing
+            <span class="value-display" id="letterSpacingDisplay">-0.02em</span>
+          </label>
+          <input type="range" id="letterSpacing" min="-0.05" max="0.05" step="0.01" value="-0.02" oninput="updateState('letterSpacing', this.value)">
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-container">
+      <div class="preview-grid" id="preview">
+        <div class="preview-section">
+          <div class="preview-title">Building Overview Dashboard</div>
+          <div class="building-viz">
+            <div class="building-icon">🏢</div>
+            <div class="building-title">Emerald Tower Complex</div>
+            <div class="building-subtitle">LEED Platinum • BREEAM Outstanding • Net Zero Carbon</div>
+            <div class="sustainability-badge">Carbon Neutral Certified</div>
+          </div>
+        </div>
+
+        <div class="preview-section">
+          <div class="preview-title">Sustainability Performance</div>
+          <div class="component-row">
+            <div class="card metric-card">
+              <div class="metric-value">92%</div>
+              <div class="metric-label">Energy Efficiency</div>
+              <div class="metric-trend">+18% vs baseline</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-value">156t</div>
+              <div class="metric-label">CO₂ Offset</div>
+              <div class="metric-trend">This quarter</div>
+            </div>
+            <div class="card metric-card">
+              <div class="metric-value">$127k</div>
+              <div class="metric-label">Annual Savings</div>
+              <div class="metric-trend">ROI: 3.2 years</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-section">
+          <div class="preview-title">Green Building Systems</div>
+          <div class="data-row">
+            <div class="data-label">Solar Panel Array (Rooftop)</div>
+            <div class="data-value">247.8 kW</div>
+            <div class="data-indicator"></div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Geothermal Heat Pump</div>
+            <div class="data-value">94.2%</div>
+            <div class="data-indicator"></div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Rainwater Harvesting</div>
+            <div class="data-value">8,942 L</div>
+            <div class="data-indicator"></div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Green Roof Ecosystem</div>
+            <div class="data-value">Active</div>
+            <div class="data-indicator"></div>
+          </div>
+          <div class="data-row">
+            <div class="data-label">Smart HVAC (AI-Optimized)</div>
+            <div class="data-value">96.8%</div>
+            <div class="data-indicator"></div>
+          </div>
+        </div>
+
+        <div class="preview-section">
+          <div class="preview-title">Executive Actions</div>
+          <div class="component-row">
+            <button class="btn">Generate ESG Report</button>
+            <button class="btn btn-secondary">View Analytics</button>
+            <button class="btn btn-secondary">Export Certificate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-output">
+      <div class="prompt-text" id="promptText">
+        Create a luxury forest-inspired design system for sustainable architecture dashboards: deep emerald accent (#10b981), sophisticated glassmorphism effects, premium bold typography (700 weight), generous spacing (24px padding), and dramatic shadows for depth. Include gradient overlays, animated shimmer effects, and metallic accents. Perfect for high-end LEED Platinum and BREEAM Outstanding certified building interfaces with executive-level polish.
+      </div>
+      <button class="copy-btn" onclick="copyPrompt()">Copy Design System Prompt</button>
+      <span class="copy-feedback" id="copyFeedback">✓ Copied to clipboard!</span>
+    </div>
+  </div>
+
+  <script>
+    const PRESETS = {
+      'luxury-forest': {
+        accentColor: '#10b981',
+        successColor: '#4ade80',
+        gradientStart: '#064e3b',
+        gradientEnd: '#047857',
+        radius: 12,
+        padding: 24,
+        shadow: 2,
+        fontWeight: 700,
+        letterSpacing: -0.02
+      },
+      'emerald': {
+        accentColor: '#059669',
+        successColor: '#34d399',
+        gradientStart: '#022c22',
+        gradientEnd: '#064e3b',
+        radius: 16,
+        padding: 28,
+        shadow: 2,
+        fontWeight: 800,
+        letterSpacing: -0.03
+      },
+      'jade': {
+        accentColor: '#34d399',
+        successColor: '#6ee7b7',
+        gradientStart: '#064e3b',
+        gradientEnd: '#065f46',
+        radius: 14,
+        padding: 26,
+        shadow: 1,
+        fontWeight: 700,
+        letterSpacing: -0.01
+      },
+      'forest-gold': {
+        accentColor: '#10b981',
+        successColor: '#fbbf24',
+        gradientStart: '#064e3b',
+        gradientEnd: '#78350f',
+        radius: 18,
+        padding: 32,
+        shadow: 2,
+        fontWeight: 800,
+        letterSpacing: -0.02
+      }
+    };
+
+    let state = { ...PRESETS['luxury-forest'] };
+    let currentPreset = 'luxury-forest';
+
+    function applyPreset(presetName) {
+      currentPreset = presetName;
+      state = { ...PRESETS[presetName] };
+
+      document.getElementById('accentColor').value = state.accentColor;
+      document.getElementById('successColor').value = state.successColor;
+      document.getElementById('gradientStart').value = state.gradientStart;
+      document.getElementById('gradientEnd').value = state.gradientEnd;
+      document.getElementById('radius').value = state.radius;
+      document.getElementById('padding').value = state.padding;
+      document.getElementById('shadow').value = state.shadow;
+      document.getElementById('fontWeight').value = state.fontWeight;
+      document.getElementById('letterSpacing').value = state.letterSpacing;
+
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      updateAll();
+    }
+
+    function updateState(key, value) {
+      state[key] = value;
+      updateAll();
+    }
+
+    function updateAll() {
+      updateDisplays();
+      renderPreview();
+      updatePrompt();
+    }
+
+    function updateDisplays() {
+      document.getElementById('accentDisplay').textContent = state.accentColor;
+      document.getElementById('successDisplay').textContent = state.successColor;
+      document.getElementById('gradientStartDisplay').textContent = state.gradientStart;
+      document.getElementById('gradientEndDisplay').textContent = state.gradientEnd;
+      document.getElementById('radiusDisplay').textContent = state.radius + 'px';
+      document.getElementById('paddingDisplay').textContent = state.padding + 'px';
+
+      const shadowLabels = ['Minimal', 'Medium', 'Luxury'];
+      document.getElementById('shadowDisplay').textContent = shadowLabels[state.shadow];
+
+      document.getElementById('letterSpacingDisplay').textContent = state.letterSpacing + 'em';
+    }
+
+    function renderPreview() {
+      const root = document.documentElement;
+
+      root.style.setProperty('--accent-color', state.accentColor);
+      root.style.setProperty('--accent-light', lightenColor(state.accentColor, 20));
+      root.style.setProperty('--accent-dark', darkenColor(state.accentColor, 20));
+      root.style.setProperty('--success-color', state.successColor);
+      root.style.setProperty('--success-bg', hexToRgba(state.successColor, 0.15));
+      root.style.setProperty('--bg-gradient-start', state.gradientStart);
+      root.style.setProperty('--bg-gradient-end', state.gradientEnd);
+      root.style.setProperty('--radius', state.radius + 'px');
+      root.style.setProperty('--padding', state.padding + 'px');
+
+      const shadowValues = [
+        '0 4px 12px rgba(16, 185, 129, 0.15)',
+        '0 8px 24px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.15)',
+        '0 12px 40px rgba(16, 185, 129, 0.35), 0 0 0 1px rgba(16, 185, 129, 0.25)'
+      ];
+      root.style.setProperty('--shadow-hover', shadowValues[state.shadow]);
+
+      document.body.style.fontWeight = state.fontWeight;
+      document.body.style.letterSpacing = state.letterSpacing + 'em';
+    }
+
+    function updatePrompt() {
+      const parts = [];
+
+      const presetDescriptions = {
+        'luxury-forest': 'luxury forest-inspired theme with deep emerald tones',
+        'emerald': 'premium emerald theme with sophisticated dark backgrounds',
+        'jade': 'refined jade theme with bright green highlights',
+        'forest-gold': 'opulent forest-gold fusion with warm metallic accents'
+      };
+
+      parts.push(presetDescriptions[currentPreset] || 'custom luxury theme');
+      parts.push(`primary accent ${state.accentColor}`);
+
+      if (state.radius < 8) parts.push('sharp modern corners');
+      else if (state.radius > 18) parts.push('ultra-smooth rounded corners');
+      else parts.push(`${state.radius}px professional radius`);
+
+      if (state.padding > 30) parts.push('spacious luxury padding');
+      else if (state.padding < 20) parts.push('compact efficient layout');
+      else parts.push(`${state.padding}px premium spacing`);
+
+      const shadowLabels = { 0: 'minimal shadows', 1: 'sophisticated depth', 2: 'dramatic luxury shadows with glassmorphism' };
+      parts.push(shadowLabels[state.shadow]);
+
+      const weightLabels = { 500: 'medium', 600: 'semi-bold', 700: 'bold', 800: 'extra bold' };
+      parts.push(`${weightLabels[state.fontWeight]} professional typography`);
+
+      const prompt = `Create a ${parts.join(', ')} for sustainable architecture dashboards. Include animated gradient overlays, shimmer effects, glassmorphism with backdrop blur, premium micro-interactions, and executive-level polish. Perfect for LEED Platinum, BREEAM Outstanding, and Living Building Challenge certified properties. Features carbon-neutral badges, ESG performance metrics, and high-end building systems monitoring.`;
+
+      document.getElementById('promptText').textContent = prompt;
+    }
+
+    function copyPrompt() {
+      const promptText = document.getElementById('promptText').textContent;
+      navigator.clipboard.writeText(promptText).then(() => {
+        const feedback = document.getElementById('copyFeedback');
+        feedback.classList.add('show');
+        setTimeout(() => {
+          feedback.classList.remove('show');
+        }, 2500);
+      });
+    }
+
+    function hexToRgba(hex, alpha) {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    function lightenColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.min(255, (num >> 16) + amt);
+      const G = Math.min(255, ((num >> 8) & 0x00FF) + amt);
+      const B = Math.min(255, (num & 0x0000FF) + amt);
+      return `#${(0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1)}`;
+    }
+
+    function darkenColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = Math.max(0, (num >> 16) - amt);
+      const G = Math.max(0, ((num >> 8) & 0x00FF) - amt);
+      const B = Math.max(0, (num & 0x0000FF) - amt);
+      return `#${(0x1000000 + R * 0x10000 + G * 0x100 + B).toString(16).slice(1)}`;
+    }
+
+    updateAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BKS cBIM AI - Original Logo Concepts</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0B1120;
+      color: #E5E7EB;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #9CA3AF;
+      margin-bottom: 3rem;
+    }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .concept-card {
+      background: #1F2937;
+      border: 2px solid #374151;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .concept-card:hover {
+      border-color: #34D399;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(52, 211, 153, 0.1);
+    }
+
+    .concept-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .concept-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #0B1120;
+      font-size: 1.2rem;
+    }
+
+    .concept-title {
+      font-size: 1.4rem;
+      color: #34D399;
+      font-weight: 600;
+    }
+
+    .logo-showcase {
+      background: #111827;
+      border-radius: 12px;
+      padding: 3rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+
+    .concept-description {
+      color: #D1D5DB;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .concept-rationale {
+      background: rgba(52, 211, 153, 0.05);
+      border-left: 3px solid #34D399;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .concept-rationale h4 {
+      color: #34D399;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .concept-rationale p {
+      color: #9CA3AF;
+      font-size: 0.95rem;
+    }
+
+    .variations-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: #111827;
+      border-radius: 8px;
+    }
+
+    .variation-item {
+      text-align: center;
+    }
+
+    .variation-label {
+      font-size: 0.75rem;
+      color: #6B7280;
+      margin-top: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #E5E7EB;
+      margin: 3rem 0 1.5rem;
+      font-weight: 600;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .comparison-card {
+      background: #1F2937;
+      border: 1px solid #374151;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .comparison-card h3 {
+      color: #34D399;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>cBIM AI Logo Concepts</h1>
+    <p class="subtitle">Three original directions for sustainable construction intelligence</p>
+
+    <div class="concepts-grid">
+      <!-- Concept 1: Carbon Cycle -->
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-number">1</div>
+          <h3 class="concept-title">Carbon Cycle</h3>
+        </div>
+
+        <div class="logo-showcase" id="concept1"></div>
+
+        <p class="concept-description">
+          A continuous circular flow representing lifecycle carbon assessment (EN 15978).
+          The flowing loop symbolizes cradle-to-grave tracking with an integrated arrow showing forward progress and sustainability commitment.
+        </p>
+
+        <div class="concept-rationale">
+          <h4>Design Rationale</h4>
+          <p>Circular economy principles meet data flow visualization. The gap creates visual tension while maintaining smooth continuity.</p>
+        </div>
+
+        <div class="variations-row" id="concept1-variations"></div>
+      </div>
+
+      <!-- Concept 2: Data Lattice -->
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-number">2</div>
+          <h3 class="concept-title">Data Lattice</h3>
+        </div>
+
+        <div class="logo-showcase" id="concept2"></div>
+
+        <p class="concept-description">
+          An isometric cube wireframe representing BIM spatial intelligence and structured data architecture.
+          The 3D perspective conveys depth, precision, and the multi-dimensional nature of carbon assessment.
+        </p>
+
+        <div class="concept-rationale">
+          <h4>Design Rationale</h4>
+          <p>Technical precision meets architectural thinking. The wireframe suggests transparency and data-driven methodology.</p>
+        </div>
+
+        <div class="variations-row" id="concept2-variations"></div>
+      </div>
+
+      <!-- Concept 3: Growth Nexus -->
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-number">3</div>
+          <h3 class="concept-title">Growth Nexus</h3>
+        </div>
+
+        <div class="logo-showcase" id="concept3"></div>
+
+        <p class="concept-description">
+          An organic leaf form constructed from geometric precision lines. Balances natural sustainability
+          (organic shape) with technical rigor (geometric construction), representing the intersection of nature and data.
+        </p>
+
+        <div class="concept-rationale">
+          <h4>Design Rationale</h4>
+          <p>Biomimicry meets digital precision. The dual nature reflects sustainable construction through intelligent systems.</p>
+        </div>
+
+        <div class="variations-row" id="concept3-variations"></div>
+      </div>
+    </div>
+
+    <h2>Side-by-Side Comparison</h2>
+    <div class="comparison-grid" id="comparison"></div>
+  </div>
+
+  <script>
+    const EMERALD = '#34D399';
+    const DARK = '#0B1120';
+
+    // Concept 1: Carbon Cycle - Flowing circular loop with arrow
+    function createCarbonCycle(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      // Outer circle with gap
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', '50');
+      circle.setAttribute('cy', '50');
+      circle.setAttribute('r', '30');
+      circle.setAttribute('fill', 'none');
+      circle.setAttribute('stroke', EMERALD);
+      circle.setAttribute('stroke-width', '4');
+      circle.setAttribute('stroke-linecap', 'round');
+
+      const circumference = 2 * Math.PI * 30;
+      const gapSize = circumference * 0.15;
+      circle.setAttribute('stroke-dasharray', `${circumference - gapSize} ${gapSize}`);
+      circle.setAttribute('stroke-dashoffset', '0');
+
+      svg.appendChild(circle);
+
+      // Arrow at the gap
+      const arrowGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      arrowGroup.setAttribute('transform', 'translate(50, 20) rotate(45)');
+
+      const arrowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      arrowPath.setAttribute('d', 'M -4 -6 L 0 0 L -4 6 M 0 0 L -8 0');
+      arrowPath.setAttribute('stroke', EMERALD);
+      arrowPath.setAttribute('stroke-width', '2.5');
+      arrowPath.setAttribute('fill', 'none');
+      arrowPath.setAttribute('stroke-linecap', 'round');
+      arrowPath.setAttribute('stroke-linejoin', 'round');
+
+      arrowGroup.appendChild(arrowPath);
+      svg.appendChild(arrowGroup);
+
+      // Inner concentric hint
+      const innerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      innerCircle.setAttribute('cx', '50');
+      innerCircle.setAttribute('cy', '50');
+      innerCircle.setAttribute('r', '20');
+      innerCircle.setAttribute('fill', 'none');
+      innerCircle.setAttribute('stroke', EMERALD);
+      innerCircle.setAttribute('stroke-width', '1.5');
+      innerCircle.setAttribute('opacity', '0.3');
+
+      svg.appendChild(innerCircle);
+
+      return svg;
+    }
+
+    // Concept 2: Data Lattice - Isometric cube wireframe
+    function createDataLattice(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const cubeGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      cubeGroup.setAttribute('transform', 'translate(50, 45)');
+
+      // Isometric projection coordinates
+      const points = {
+        // Front face
+        ftl: [-15, -8],   // front top left
+        ftr: [15, -8],    // front top right
+        fbr: [15, 12],    // front bottom right
+        fbl: [-15, 12],   // front bottom left
+
+        // Back face
+        btl: [-15, -28],  // back top left
+        btr: [15, -28],   // back top right
+        bbr: [15, -8],    // back bottom right (same as ftr in iso)
+        bbl: [-15, -8],   // back bottom left (same as ftl in iso)
+      };
+
+      function line(x1, y1, x2, y2, opacity = 1) {
+        const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        l.setAttribute('x1', x1);
+        l.setAttribute('y1', y1);
+        l.setAttribute('x2', x2);
+        l.setAttribute('y2', y2);
+        l.setAttribute('stroke', EMERALD);
+        l.setAttribute('stroke-width', '2');
+        l.setAttribute('opacity', opacity);
+        l.setAttribute('stroke-linecap', 'round');
+        return l;
+      }
+
+      // Back face (lighter)
+      cubeGroup.appendChild(line(points.btl[0], points.btl[1], points.btr[0], points.btr[1], 0.4));
+      cubeGroup.appendChild(line(points.btr[0], points.btr[1], points.bbr[0], points.bbr[1], 0.4));
+      cubeGroup.appendChild(line(points.bbr[0], points.bbr[1], points.bbl[0], points.bbl[1], 0.4));
+      cubeGroup.appendChild(line(points.bbl[0], points.bbl[1], points.btl[0], points.btl[1], 0.4));
+
+      // Connecting edges
+      cubeGroup.appendChild(line(points.ftl[0], points.ftl[1], points.btl[0], points.btl[1], 0.6));
+      cubeGroup.appendChild(line(points.ftr[0], points.ftr[1], points.btr[0], points.btr[1], 0.6));
+      cubeGroup.appendChild(line(points.fbr[0], points.fbr[1], points.bbr[0], points.bbr[1], 0.6));
+      cubeGroup.appendChild(line(points.fbl[0], points.fbl[1], points.bbl[0], points.bbl[1], 0.6));
+
+      // Front face (brightest)
+      cubeGroup.appendChild(line(points.ftl[0], points.ftl[1], points.ftr[0], points.ftr[1]));
+      cubeGroup.appendChild(line(points.ftr[0], points.ftr[1], points.fbr[0], points.fbr[1]));
+      cubeGroup.appendChild(line(points.fbr[0], points.fbr[1], points.fbl[0], points.fbl[1]));
+      cubeGroup.appendChild(line(points.fbl[0], points.fbl[1], points.ftl[0], points.ftl[1]));
+
+      // Internal cross bracing for data/structure feel
+      cubeGroup.appendChild(line(points.ftl[0], points.ftl[1], points.fbr[0], points.fbr[1], 0.25));
+      cubeGroup.appendChild(line(points.ftr[0], points.ftr[1], points.fbl[0], points.fbl[1], 0.25));
+
+      svg.appendChild(cubeGroup);
+      return svg;
+    }
+
+    // Concept 3: Growth Nexus - Geometric leaf
+    function createGrowthNexus(size) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.setAttribute('width', size);
+      svg.setAttribute('height', size);
+
+      const leafGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      leafGroup.setAttribute('transform', 'translate(50, 50)');
+
+      // Leaf outline using path (organic shape from geometric points)
+      const leafPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      leafPath.setAttribute('d', 'M 0,-25 Q 15,-20 20,-5 Q 22,5 18,15 Q 12,22 0,28 Q -12,22 -18,15 Q -22,5 -20,-5 Q -15,-20 0,-25 Z');
+      leafPath.setAttribute('fill', 'none');
+      leafPath.setAttribute('stroke', EMERALD);
+      leafPath.setAttribute('stroke-width', '2.5');
+      leafPath.setAttribute('stroke-linejoin', 'round');
+
+      leafGroup.appendChild(leafPath);
+
+      // Central vein (stem)
+      const vein = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      vein.setAttribute('x1', '0');
+      vein.setAttribute('y1', '-25');
+      vein.setAttribute('x2', '0');
+      vein.setAttribute('y2', '28');
+      vein.setAttribute('stroke', EMERALD);
+      vein.setAttribute('stroke-width', '2');
+      vein.setAttribute('opacity', '0.6');
+
+      leafGroup.appendChild(vein);
+
+      // Lateral veins (geometric precision)
+      const veinAngles = [-15, -5, 5, 15];
+      veinAngles.forEach(y => {
+        const leftVein = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        leftVein.setAttribute('x1', '0');
+        leftVein.setAttribute('y1', y);
+        leftVein.setAttribute('x2', -12 - Math.abs(y) * 0.3);
+        leftVein.setAttribute('y2', y + 5);
+        leftVein.setAttribute('stroke', EMERALD);
+        leftVein.setAttribute('stroke-width', '1.2');
+        leftVein.setAttribute('opacity', '0.4');
+        leafGroup.appendChild(leftVein);
+
+        const rightVein = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        rightVein.setAttribute('x1', '0');
+        rightVein.setAttribute('y1', y);
+        rightVein.setAttribute('x2', 12 + Math.abs(y) * 0.3);
+        rightVein.setAttribute('y2', y + 5);
+        rightVein.setAttribute('stroke', EMERALD);
+        rightVein.setAttribute('stroke-width', '1.2');
+        rightVein.setAttribute('opacity', '0.4');
+        leafGroup.appendChild(rightVein);
+      });
+
+      svg.appendChild(leafGroup);
+      return svg;
+    }
+
+    // Render main concepts
+    document.getElementById('concept1').appendChild(createCarbonCycle(160));
+    document.getElementById('concept2').appendChild(createDataLattice(160));
+    document.getElementById('concept3').appendChild(createGrowthNexus(160));
+
+    // Render variations
+    const sizes = [48, 64, 80];
+    const variationLabels = ['Small', 'Medium', 'Large'];
+
+    sizes.forEach((size, i) => {
+      const div1 = document.createElement('div');
+      div1.className = 'variation-item';
+      div1.appendChild(createCarbonCycle(size));
+      const label1 = document.createElement('div');
+      label1.className = 'variation-label';
+      label1.textContent = variationLabels[i];
+      div1.appendChild(label1);
+      document.getElementById('concept1-variations').appendChild(div1);
+
+      const div2 = document.createElement('div');
+      div2.className = 'variation-item';
+      div2.appendChild(createDataLattice(size));
+      const label2 = document.createElement('div');
+      label2.className = 'variation-label';
+      label2.textContent = variationLabels[i];
+      div2.appendChild(label2);
+      document.getElementById('concept2-variations').appendChild(div2);
+
+      const div3 = document.createElement('div');
+      div3.className = 'variation-item';
+      div3.appendChild(createGrowthNexus(size));
+      const label3 = document.createElement('div');
+      label3.className = 'variation-label';
+      label3.textContent = variationLabels[i];
+      div3.appendChild(label3);
+      document.getElementById('concept3-variations').appendChild(div3);
+    });
+
+    // Comparison grid
+    const concepts = [
+      { name: 'Carbon Cycle', create: createCarbonCycle },
+      { name: 'Data Lattice', create: createDataLattice },
+      { name: 'Growth Nexus', create: createGrowthNexus }
+    ];
+
+    concepts.forEach(concept => {
+      const card = document.createElement('div');
+      card.className = 'comparison-card';
+
+      const title = document.createElement('h3');
+      title.textContent = concept.name;
+      card.appendChild(title);
+
+      card.appendChild(concept.create(120));
+
+      document.getElementById('comparison').appendChild(card);
+    });
+  </script>
+</body>
+</html>

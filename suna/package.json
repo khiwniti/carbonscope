@@ -1,0 +1,29 @@
+{
+  "name": "@bks/cbim-ai",
+  "version": "1.0.0",
+  "description": "BKS cBIM AI - Carbon Assessment Platform for Sustainable Construction",
+  "keywords": ["bim", "carbon", "cbim", "sustainability", "EN15978", "lca", "green-building", "carbon-assessment"],
+  "private": true,
+  "scripts": {
+    "dev:frontend": "pnpm --filter @bks/cbim-frontend dev",
+    "dev:mobile": "pnpm --filter @bks/cbim-mobile dev",
+    "build:frontend": "pnpm --filter @bks/cbim-frontend build"
+  },
+  "dependencies": {
+    "@babel/types": "^7.28.6",
+    "@supabase/ssr": "^0.9.0",
+    "@types/dompurify": "^3.2.0",
+    "dompurify": "^3.3.3",
+    "next": "^16.1.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.2.7",
+      "@types/react-dom": "^19.1.7"
+    }
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

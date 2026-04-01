@@ -1,0 +1,384 @@
+/**
+ * Theme Enhancements for SUNA BIM
+ * Emerald Green Theme (#10b981) with Dark Mode Support
+ * WCAG 2.1 AA Compliant Color Contrast (≥4.5:1)
+ */
+
+:root {
+  /* Emerald Green Primary Colors */
+  --emerald-50: oklch(0.969 0.023 166.11);
+  --emerald-100: oklch(0.941 0.051 163.52);
+  --emerald-200: oklch(0.891 0.096 162.48);
+  --emerald-300: oklch(0.826 0.141 162.77);
+  --emerald-400: oklch(0.738 0.177 163.23);
+  --emerald-500: oklch(0.648 0.189 163.71); /* #10b981 */
+  --emerald-600: oklch(0.550 0.177 165.68);
+  --emerald-700: oklch(0.463 0.148 166.35);
+  --emerald-800: oklch(0.386 0.118 166.55);
+  --emerald-900: oklch(0.327 0.095 167.41);
+  --emerald-950: oklch(0.193 0.060 170.68);
+
+  /* BIM-Specific Colors */
+  --carbon-footprint: var(--emerald-600);
+  --eco-friendly: var(--emerald-500);
+  --warning-carbon: oklch(0.769 0.188 70.08);
+  --error-carbon: oklch(0.577 0.245 27.325);
+
+  /* Enhanced Contrast for Accessibility */
+  --text-on-emerald: oklch(0.985 0 0); /* White text on emerald */
+  --emerald-contrast: oklch(0.145 0 0); /* Dark text for light emerald backgrounds */
+}
+
+.dark {
+  /* Dark mode emerald adjustments for WCAG contrast */
+  --emerald-300-dark: oklch(0.750 0.141 162.77);
+  --emerald-400-dark: oklch(0.680 0.177 163.23);
+  --emerald-500-dark: oklch(0.598 0.189 163.71);
+
+  /* Dark mode BIM colors */
+  --carbon-footprint: var(--emerald-400-dark);
+  --eco-friendly: var(--emerald-500-dark);
+}
+
+/* ============================================================================ */
+/* Emerald Theme Utility Classes */
+/* ============================================================================ */
+
+.bg-emerald-primary {
+  background-color: var(--emerald-500);
+  color: var(--text-on-emerald);
+}
+
+.text-emerald-primary {
+  color: var(--emerald-600);
+}
+
+.dark .text-emerald-primary {
+  color: var(--emerald-400-dark);
+}
+
+.border-emerald-primary {
+  border-color: var(--emerald-500);
+}
+
+.dark .border-emerald-primary {
+  border-color: var(--emerald-500-dark);
+}
+
+/* Emerald gradient backgrounds */
+.bg-emerald-gradient {
+  background: linear-gradient(135deg, var(--emerald-400) 0%, var(--emerald-600) 100%);
+  color: var(--text-on-emerald);
+}
+
+.dark .bg-emerald-gradient {
+  background: linear-gradient(135deg, var(--emerald-400-dark) 0%, var(--emerald-600) 100%);
+}
+
+/* ============================================================================ */
+/* Carbon Footprint Visualization Colors */
+/* ============================================================================ */
+
+.carbon-low {
+  color: var(--emerald-600);
+}
+
+.dark .carbon-low {
+  color: var(--emerald-400-dark);
+}
+
+.carbon-medium {
+  color: var(--warning-carbon);
+}
+
+.carbon-high {
+  color: var(--error-carbon);
+}
+
+.bg-carbon-low {
+  background-color: var(--emerald-100);
+}
+
+.dark .bg-carbon-low {
+  background-color: oklch(0.25 0.05 162.77);
+}
+
+.bg-carbon-medium {
+  background-color: oklch(0.95 0.08 70.08);
+}
+
+.dark .bg-carbon-medium {
+  background-color: oklch(0.25 0.08 70.08);
+}
+
+.bg-carbon-high {
+  background-color: oklch(0.95 0.10 27.325);
+}
+
+.dark .bg-carbon-high {
+  background-color: oklch(0.25 0.10 27.325);
+}
+
+/* ============================================================================ */
+/* Enhanced Focus Indicators (WCAG 2.1 AA) */
+/* ============================================================================ */
+
+.focus-emerald:focus-visible {
+  outline: 3px solid var(--emerald-500);
+  outline-offset: 2px;
+}
+
+.dark .focus-emerald:focus-visible {
+  outline: 3px solid var(--emerald-400-dark);
+}
+
+/* Enhanced focus ring for interactive elements */
+.focus-ring-emerald {
+  @apply focus-visible:ring-4 focus-visible:ring-offset-2;
+  --tw-ring-color: var(--emerald-500);
+}
+
+.dark .focus-ring-emerald {
+  --tw-ring-color: var(--emerald-400-dark);
+}
+
+/* ============================================================================ */
+/* Thai Font Support (Noto Sans Thai) */
+/* ============================================================================ */
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/notosansthai/v25/iJWnBXeUZi_OHPqn4wq6hQ2_hbJ1xyN9wd43SofNWcd1MKVQt_So_9CdU5RtpzF-QRvzzXg.woff2') format('woff2');
+  unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/notosansthai/v25/iJWnBXeUZi_OHPqn4wq6hQ2_hbJ1xyN9wd43SofNWcd1MKVQt_So_9CdU5RtpzF-QRv5zHg.woff2') format('woff2');
+  unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/notosansthai/v25/iJWnBXeUZi_OHPqn4wq6hQ2_hbJ1xyN9wd43SofNWcd1MKVQt_So_9CdU5RtpzF-QRsNy3g.woff2') format('woff2');
+  unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+.thai-text,
+[lang="th"] {
+  font-family: 'Noto Sans Thai', var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.8; /* Thai text needs more line height */
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================================ */
+/* High Contrast Mode Adjustments */
+/* ============================================================================ */
+
+@media (prefers-contrast: high) {
+  :root {
+    --emerald-500: oklch(0.550 0.189 163.71); /* Darker for higher contrast */
+    --text-on-emerald: oklch(1.0 0 0); /* Pure white */
+  }
+
+  .dark {
+    --emerald-400-dark: oklch(0.750 0.177 163.23); /* Lighter in dark mode */
+  }
+
+  /* Increase border widths */
+  * {
+    border-width: 2px;
+  }
+
+  /* Enhance focus indicators */
+  *:focus-visible {
+    outline-width: 4px !important;
+    outline-offset: 3px !important;
+  }
+}
+
+/* ============================================================================ */
+/* Reduced Motion Preferences */
+/* ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable shimmer effects */
+  .animate-shimmer,
+  .animate-shimmer-gray,
+  .animate-shimmer-text {
+    animation: none !important;
+  }
+
+  .animate-shimmer::before,
+  .animate-shimmer-gray::before {
+    display: none !important;
+  }
+}
+
+/* ============================================================================ */
+/* Print Styles */
+/* ============================================================================ */
+
+@media print {
+  .dark {
+    /* Force light mode for printing */
+    color-scheme: light;
+  }
+
+  .dark * {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* Hide interactive elements */
+  button,
+  input,
+  select,
+  textarea {
+    border: 1px solid black !important;
+  }
+
+  /* Ensure emerald elements print correctly */
+  .bg-emerald-primary,
+  .bg-emerald-gradient {
+    background-color: #10b981 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ============================================================================ */
+/* Loading State Improvements */
+/* ============================================================================ */
+
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--emerald-100) 0%,
+    var(--emerald-200) 50%,
+    var(--emerald-100) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s ease-in-out infinite;
+}
+
+.dark .loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.25 0.05 162.77) 0%,
+    oklch(0.30 0.08 162.77) 50%,
+    oklch(0.25 0.05 162.77) 100%
+  );
+}
+
+@keyframes shimmer-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================================================ */
+/* Responsive Safe Area Insets (for mobile devices) */
+/* ============================================================================ */
+
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+}
+
+.safe-top {
+  padding-top: var(--safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: var(--safe-area-inset-bottom);
+}
+
+.safe-left {
+  padding-left: var(--safe-area-inset-left);
+}
+
+.safe-right {
+  padding-right: var(--safe-area-inset-right);
+}
+
+/* ============================================================================ */
+/* Mobile-Specific Enhancements */
+/* ============================================================================ */
+
+@media (max-width: 767px) {
+  /* Larger touch targets for mobile (48x48px minimum) */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Improve tap highlight color */
+  * {
+    -webkit-tap-highlight-color: rgba(16, 185, 129, 0.1);
+  }
+}
+
+/* ============================================================================ */
+/* Tablet-Specific Enhancements */
+/* ============================================================================ */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  /* Optimize spacing for tablet */
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ============================================================================ */
+/* Desktop-Specific Enhancements */
+/* ============================================================================ */
+
+@media (min-width: 1280px) {
+  /* Enhanced hover effects for desktop */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
