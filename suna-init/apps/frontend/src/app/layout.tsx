@@ -113,12 +113,11 @@ export default function RootLayout({
         
         {/* Container Load - Initialize dataLayer with page context BEFORE GTM loads */}
         <script
-          dangerouslySetInnerHTML={{
-            __html: `
+          dangerouslySetInnerHTML={getSafeHtml(`
               (function() {
                 window.dataLayer = window.dataLayer || [];
                 var pathname = window.location.pathname;
-                
+
                 // Get language from localStorage, cookie, or default to 'en'
                 var lang = 'en';
                 try {
@@ -138,9 +137,9 @@ export default function RootLayout({
                     }
                   }
                 } catch (e) {}
-                
+
                 var context = { master_group: 'General', content_group: 'Other', page_type: 'other', language: lang };
-                
+
                 if (pathname === '/' || pathname === '') {
                   context = { master_group: 'General', content_group: 'Other', page_type: 'home', language: lang };
                 } else if (pathname.indexOf('/auth') === 0) {
@@ -152,11 +151,10 @@ export default function RootLayout({
                 } else if (pathname.indexOf('/settings') === 0) {
                   context = { master_group: 'Platform', content_group: 'User', page_type: 'settings', language: lang };
                 }
-                
+
                 window.dataLayer.push(context);
               })();
-            `,
-          }}
+            `)}
         />
         
         {/* Static SEO meta tags - rendered in initial HTML */}
@@ -185,8 +183,7 @@ export default function RootLayout({
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+          dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: siteMetadata.name,
@@ -205,14 +202,12 @@ export default function RootLayout({
                 contactType: 'Customer Support',
                 url: siteMetadata.url,
               },
-            }),
-          }}
+            }))}
         />
 
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+          dangerouslySetInnerHTML={getSafeHtml(JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'SoftwareApplication',
               name: siteMetadata.title,
@@ -230,8 +225,7 @@ export default function RootLayout({
                 ratingValue: '4.8',
                 ratingCount: '1000',
               },
-            }),
-          }}
+            }))}
         />
       </head>
 
