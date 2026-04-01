@@ -5,13 +5,14 @@ Provides an endpoint to send OTP-only emails for users who experience
 magic link expiration due to email security scanners (e.g., Microsoft Defender).
 """
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, EmailStr
 import httpx
 import os
 from core.utils.logger import logger
 from core.utils.config import config
 from core.services.email import email_service
+from core.middleware.rate_limit import limiter, AUTH_RATE_LIMIT
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -26,7 +27,8 @@ class SendOtpResponse(BaseModel):
 
 
 @router.post("/send-otp", response_model=SendOtpResponse)
-async def send_otp_email(request: SendOtpRequest):
+@limiter.limit(AUTH_RATE_LIMIT)
+async def send_otp_email(http_request: Request, request: SendOtpRequest):
     """
     Generate a new OTP and send it via custom email (no magic link).
 

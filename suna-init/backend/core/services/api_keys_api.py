@@ -7,7 +7,7 @@ This module provides REST API endpoints for managing API keys:
 - DELETE /api/api-keys/{key_id} - Revoke/delete an API key
 """
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from typing import List
 from uuid import UUID
 
@@ -19,6 +19,7 @@ from core.services.api_keys import (
 )
 from core.utils.auth_utils import verify_and_get_user_id_from_jwt
 from core.utils.logger import logger
+from core.middleware.rate_limit import limiter, API_KEY_RATE_LIMIT
 
 router = APIRouter(tags=["api-keys"])
 
@@ -58,7 +59,9 @@ async def get_account_id_from_user_id(user_id: str) -> UUID:
 
 
 @router.post("/api-keys", response_model=APIKeyCreateResponse)
+@limiter.limit(API_KEY_RATE_LIMIT)
 async def create_api_key(
+    http_request: Request,
     request: APIKeyCreateRequest,
     user_id: str = Depends(verify_and_get_user_id_from_jwt),
     api_key_service: APIKeyService = Depends(get_api_key_service),

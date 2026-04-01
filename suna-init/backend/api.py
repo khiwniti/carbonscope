@@ -54,6 +54,8 @@ from core.notifications import api as notifications_api
 from core.services.orphan_cleanup import cleanup_orphaned_agent_runs
 from auth import api as auth_api
 from core.utils.auth_utils import verify_and_get_user_id_from_jwt
+from core.middleware.rate_limit import limiter, rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
 
 if sys.platform == "win32":
@@ -350,6 +352,12 @@ app = FastAPI(
 
 # Configure OpenAPI docs with API Key and Bearer token auth
 configure_openapi(app)
+
+# Add rate limiter state to app
+app.state.limiter = limiter
+
+# Add rate limit exceeded exception handler
+app.add_exception_handler(RateLimitExceeded, rate_limit_exceeded_handler)
 
 
 @app.middleware("http")
