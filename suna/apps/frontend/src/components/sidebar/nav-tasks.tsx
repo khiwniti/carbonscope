@@ -100,6 +100,7 @@ const TaskItem: React.FC<{
               "p-1 rounded-md hover:bg-accent transition-all",
               isHovering ? "opacity-100" : "opacity-0"
             )}
+            aria-label="More options"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();

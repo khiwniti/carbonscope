@@ -471,8 +471,9 @@ export function SidebarLeft({
                     activeView === view ? 'bg-card border-[1.5px] border-border' : 'border-[1.5px] border-transparent'
                   )}
                   onClick={() => handleViewChange(view)}
+                  aria-label={label}
                 >
-                  <Icon className="!h-4 !w-4" />
+                  <Icon className="!h-4 !w-4" aria-hidden="true" />
                   <span className="text-xs text-muted-foreground whitespace-nowrap">
                     {label}
                   </span>
