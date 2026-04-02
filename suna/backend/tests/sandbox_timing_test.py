@@ -1,3 +1,4 @@
+import pytest
 #!/usr/bin/env python3
 """
 Sandbox Timing Test Script
@@ -104,6 +105,7 @@ async def test_create_sandbox() -> TimingResult:
     return result
 
 
+@pytest.mark.skip(reason="Requires live sandbox service")
 async def test_start_stopped_sandbox() -> TimingResult:
     """Test: Start a sandbox that is in STOPPED state."""
     result = TimingResult("Start STOPPED sandbox")
@@ -173,6 +175,7 @@ async def test_start_stopped_sandbox() -> TimingResult:
     return result
 
 
+@pytest.mark.skip(reason="Requires live sandbox service")
 async def test_get_sandbox_state() -> TimingResult:
     """Test: How long does it take to just get sandbox state."""
     result = TimingResult("Get sandbox state (API call)")
@@ -260,6 +263,7 @@ async def test_check_pool_sandbox_states():
         print(f"Error checking pool: {e}")
 
 
+@pytest.mark.skip(reason="Requires live sandbox service")
 async def test_ping_keeps_alive():
     """Test: Does a simple API call (ping) prevent auto-stop?"""
     result = TimingResult("Ping sandbox (API get only)")
@@ -312,6 +316,7 @@ async def test_ping_keeps_alive():
     return result
 
 
+@pytest.mark.skip(reason="Requires live sandbox service")
 async def test_command_keeps_alive():
     """Test: Does executing a real command prevent auto-stop?"""
     result = TimingResult("Command keeps sandbox alive")

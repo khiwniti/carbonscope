@@ -1,0 +1,27 @@
+PREFIX trees: <http://www.bca.gov.sg/greenmark/trees-nc-1.1#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?greenPercentage ?threshold ?mr1Status
+WHERE {
+    # Calculate percentage of green-labelled materials
+    {
+        SELECT (COUNT(?mat) AS ?totalMaterials) WHERE {
+            ?mat rdf:type trees:Material .
+        }
+    }
+    {
+        SELECT (COUNT(?mat) AS ?greenMaterials) WHERE {
+            ?mat rdf:type trees:Material ;
+                 trees:hasGreenLabel true .
+        }
+    }
+    BIND(
+        IF(?totalMaterials > 0,
+           (?greenMaterials / ?totalMaterials) * 100,
+           0
+        ) AS ?greenPercentage
+    )
+    # MR1 requires >= 30% green-labelled materials
+    BIND(30 AS ?threshold)
+    BIND(IF(?greenPercentage >= ?threshold, "PASS", "FAIL") AS ?mr1Status)
+}

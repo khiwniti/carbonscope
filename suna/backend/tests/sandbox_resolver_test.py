@@ -1,3 +1,4 @@
+import pytest
 import asyncio
 import sys
 import os
@@ -13,6 +14,7 @@ from core.services.supabase import DBConnection
 from core.sandbox.resolver import resolve_sandbox, get_resolver
 
 
+@pytest.mark.skip(reason="Requires live sandbox service")
 async def test_resolver_consistency():
     print("\n" + "="*60)
     print("SANDBOX RESOLVER CONSISTENCY TEST")
@@ -89,6 +91,7 @@ async def test_resolver_consistency():
         print(f"   Parallel: {sandbox_ids}")
 
 
+@pytest.mark.skip(reason="Requires live sandbox service")
 async def test_resolver_vs_upload_handler():
     print("\n" + "="*60)
     print("RESOLVER VS UPLOAD HANDLER TEST")

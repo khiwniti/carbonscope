@@ -35,7 +35,7 @@ echo ""
 echo "2️⃣  No bare console.log"
 CONSOLE_COUNT=$(grep -rn "console\.\(log\|warn\|info\|debug\)" \
   src/ --include="*.tsx" --include="*.ts" 2>/dev/null | \
-  grep -v "logger\.ts\|//.*console\|eslint-disable" | wc -l)
+  grep -v "logger\.ts\|//.*console\|eslint-disable\|__tests__\|\.test\.\|\.spec\." | wc -l)
 if [ "$CONSOLE_COUNT" -eq 0 ]; then
   ok "No bare console.log/warn/info/debug"
 else

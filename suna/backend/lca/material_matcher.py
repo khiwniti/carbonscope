@@ -307,7 +307,8 @@ class MaterialMatcher:
         # Multi-algorithm fuzzy matching
         token_set_score = fuzz.token_set_ratio(query_norm, target_norm) / 100.0
         partial_score = fuzz.partial_ratio(query_norm, target_norm) / 100.0
-        jaro_score = fuzz.jaro_winkler_similarity(query_norm, target_norm)
+        from rapidfuzz.distance import JaroWinkler
+        jaro_score = JaroWinkler.normalized_similarity(query_norm, target_norm)
 
         # Weighted average
         confidence = (

@@ -392,13 +392,12 @@ class TestExcelGenerator:
         # Verify Thai Unicode range
         assert any(ord(c) >= 0x0E00 and ord(c) <= 0x0E7F for c in thai_text)
 
-    def test_performance_basic_report(self, excel_generator, sample_report_data, benchmark):
+    def test_performance_basic_report(self, excel_generator, sample_report_data):
         """Benchmark basic Excel report generation performance."""
-        result = benchmark(
-            excel_generator.generate_report,
-            data=sample_report_data
+        import time as _t; _t0 = _t.time()
+        result = excel_generator.generate_report(data=sample_report_data
         )
-
+        assert (_t.time() - _t0) < 10, "generation took too long"
         assert result is not None
         assert len(result) > 0
 
