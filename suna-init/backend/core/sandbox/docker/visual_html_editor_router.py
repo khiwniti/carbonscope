@@ -6,13 +6,10 @@ Provides visual HTML editing endpoints as a FastAPI router that can be included 
 """
 
 import os
-import re
-from typing import Optional, Dict, Any
-from pathlib import Path
+from typing import Dict, Any
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import HTMLResponse, FileResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from bs4 import BeautifulSoup, NavigableString, Comment
 

@@ -34,7 +34,7 @@ class SubscriptionService:
             plan_type = 'yearly'
             billing_cycle_anchor = datetime.now(timezone.utc)
             next_credit_grant = billing_cycle_anchor + relativedelta(months=1)
-            logger.info(f"[REVENUECAT] Yearly plan detected - setting up monthly refill schedule")
+            logger.info("[REVENUECAT] Yearly plan detected - setting up monthly refill schedule")
         elif period_type == 'yearly_commitment':
             plan_type = 'yearly_commitment'
             credits_amount *= 12
@@ -46,7 +46,7 @@ class SubscriptionService:
         existing_account = await SubscriptionRepository.get_credit_account(None, app_user_id)
         
         if existing_account:
-            logger.info(f"[REVENUECAT] Existing account found, checking for Stripe subscription...")
+            logger.info("[REVENUECAT] Existing account found, checking for Stripe subscription...")
             logger.info(f"[REVENUECAT] Current account state: tier={existing_account.get('tier')}, provider={existing_account.get('provider')}")
         else:
             logger.warning(f"[REVENUECAT] No existing account found for {app_user_id}")
@@ -60,7 +60,7 @@ class SubscriptionService:
         else:
             try:
                 if existing_account:
-                    logger.info(f"[REVENUECAT] Using reset_expiring_credits for existing account")
+                    logger.info("[REVENUECAT] Using reset_expiring_credits for existing account")
                     credit_result = await credit_manager.reset_expiring_credits(
                         account_id=app_user_id,
                         new_credits=credits_amount,
@@ -69,7 +69,7 @@ class SubscriptionService:
                     )
                     logger.info(f"[REVENUECAT] Credit reset result: {credit_result}")
                 else:
-                    logger.info(f"[REVENUECAT] Using add_credits for new account")
+                    logger.info("[REVENUECAT] Using add_credits for new account")
                     credit_result = await credit_manager.add_credits(
                         account_id=app_user_id,
                         amount=credits_amount,
@@ -128,7 +128,7 @@ class SubscriptionService:
                         description=f"RevenueCat subscription recovery: {tier_info.display_name} ({period_type})",
                         type='tier_grant'
                     )
-                    logger.info(f"[REVENUECAT] ✅ Credits re-granted successfully")
+                    logger.info("[REVENUECAT] ✅ Credits re-granted successfully")
 
             if existing_account:
                 logger.info("[REVENUECAT] Step 3: Canceling prior Stripe subscription (if any)...")
@@ -167,7 +167,7 @@ class SubscriptionService:
         period_start, period_end = SubscriptionService._extract_renewal_period(event)
         
         if not period_start or not period_end:
-            logger.warning(f"[REVENUECAT] Missing period timestamps, cannot track renewal")
+            logger.warning("[REVENUECAT] Missing period timestamps, cannot track renewal")
             return
         
         credits_amount = Decimal(str(tier_info.monthly_credits))
@@ -176,7 +176,7 @@ class SubscriptionService:
         real_period_end = period_end
         
         if period_type == 'yearly':
-            logger.info(f"[REVENUECAT RENEWAL] Yearly plan renewal - granting 1 monthly credit batch")
+            logger.info("[REVENUECAT RENEWAL] Yearly plan renewal - granting 1 monthly credit batch")
             anchor_date = datetime.fromtimestamp(period_start, tz=timezone.utc)
             next_grant = anchor_date + relativedelta(months=1)
             
@@ -189,7 +189,7 @@ class SubscriptionService:
             real_period_end = int(next_grant.timestamp())
             
         elif period_type == 'yearly_commitment':
-            logger.info(f"[REVENUECAT RENEWAL] Yearly commitment - granting 12x credits upfront")
+            logger.info("[REVENUECAT RENEWAL] Yearly commitment - granting 12x credits upfront")
             credits_amount *= 12
         
         from .credit_service import CreditService
@@ -209,7 +209,7 @@ class SubscriptionService:
         expiration_at_ms = event.get('expiration_at_ms')
         if not expiration_at_ms:
             logger.warning(
-                f"[REVENUECAT PRODUCT_CHANGE] No expiration date, cannot schedule change"
+                "[REVENUECAT PRODUCT_CHANGE] No expiration date, cannot schedule change"
             )
             return
         
@@ -218,8 +218,8 @@ class SubscriptionService:
         
         if old_period_type == 'yearly_commitment':
             logger.info(
-                f"[REVENUECAT PRODUCT_CHANGE] Yearly commitment detected - "
-                f"user cannot change until commitment ends"
+                "[REVENUECAT PRODUCT_CHANGE] Yearly commitment detected - "
+                "user cannot change until commitment ends"
             )
         
         await SubscriptionRepository.schedule_plan_change(

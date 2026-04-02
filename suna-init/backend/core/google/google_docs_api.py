@@ -128,7 +128,7 @@ async def convert_and_upload_to_google_docs(
             )
             return ConvertToDocsResponse(
                 success=True,
-                message=f"Successfully converted and uploaded to Google Docs",
+                message="Successfully converted and uploaded to Google Docs",
                 docx_url=None, 
                 google_docs_url=upload_result["web_view_link"],
                 google_docs_file_id=upload_result["file_id"]
@@ -140,7 +140,7 @@ async def convert_and_upload_to_google_docs(
             except:
                 pass  
     
-    except HTTPException as he:
+    except HTTPException:
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

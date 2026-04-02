@@ -2,7 +2,6 @@
 
 import asyncio
 from datetime import datetime, timezone, timedelta
-from typing import List, Dict, Any
 
 from core.utils.logger import logger
 from core.services.supabase import DBConnection

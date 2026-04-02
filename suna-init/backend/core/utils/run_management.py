@@ -1,6 +1,5 @@
 """Agent run management utilities - starting, stopping, and monitoring agent runs."""
-import json
-from typing import Optional, List
+from typing import Optional
 from fastapi import HTTPException
 from core.services import redis
 from core.utils.logger import logger

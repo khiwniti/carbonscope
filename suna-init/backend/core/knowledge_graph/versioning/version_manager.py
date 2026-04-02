@@ -36,7 +36,7 @@ Usage:
 """
 
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional, Tuple
 from dateutil.relativedelta import relativedelta
 
@@ -108,7 +108,7 @@ class VersionManager:
 
         # Validate it's a proper URI format
         if not (uri.startswith('http://') or uri.startswith('https://')):
-            raise ValueError(f"URI must start with http:// or https://")
+            raise ValueError("URI must start with http:// or https://")
 
         return uri
 

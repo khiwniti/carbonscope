@@ -10,8 +10,7 @@ from core.utils.auth_utils import verify_and_get_user_id_from_jwt
 from core.utils.logger import logger
 from core.services.supabase import DBConnection
 from core.tools.apify_tool import ApifyTool
-from core.agentpress.thread_manager import ThreadManager
-from core.services.redis import get_client, get as redis_get, set as redis_set
+from core.services.redis import get_client, set as redis_set
 from core.utils.distributed_lock import DistributedLock
 from datetime import datetime, timezone
 import json

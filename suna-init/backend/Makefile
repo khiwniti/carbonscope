@@ -18,3 +18,14 @@ test-imports:
 	@echo "Testing critical imports..."
 	@uv run python core/utils/scripts/check_imports.py
 
+
+test-utils:
+	@echo "Running utils unit tests (fast, no external deps)..."
+	@cd tests/utils && ../../.venv/bin/python -m pytest . -q --timeout=10
+
+test-syntax:
+	@echo "Checking Python syntax..."
+	@.venv/bin/python -m py_compile $$(find core boq -name "*.py" | grep -v __pycache__) && echo "✅ All files OK"
+
+fast-check: lint test-syntax test-utils
+	@echo "✅ All fast checks passed"

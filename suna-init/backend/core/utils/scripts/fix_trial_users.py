@@ -2,15 +2,13 @@
 import asyncio
 import sys
 from pathlib import Path
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from decimal import Decimal
 
 backend_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
-from core.billing.credits.manager import credit_manager
 
 async def fix_trial_users():
     """Fix users who incorrectly have trial credits as non-expiring"""
@@ -56,7 +54,7 @@ async def fix_trial_users():
             corrected_expiring = expiring + trial_amount
             
             # The total balance should remain the same
-            print(f"\n  Correcting to:")
+            print("\n  Correcting to:")
             print(f"  Non-expiring: ${corrected_non_expiring} (removed trial credits)")
             print(f"  Expiring: ${corrected_expiring} (added trial credits)")
             print(f"  Total Balance: ${balance} (unchanged)")

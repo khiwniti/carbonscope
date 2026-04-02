@@ -8,12 +8,11 @@ import sys
 from pathlib import Path
 
 # Add backend directory to path (go up 3 levels from scripts dir)
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
-from decimal import Decimal
 
 async def check_purchases():
     db = DBConnection()

@@ -14,11 +14,11 @@ from pathlib import Path
 from typing import Optional
 from datetime import datetime
 
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
+from fastapi import APIRouter, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-from boq.parser import parse_boq, BOQParseResult
+from boq.parser import parse_boq
 from boq.cache import get_cache_manager
 
 logger = logging.getLogger(__name__)

@@ -111,7 +111,7 @@ class MCPToolExecutor:
             logger.error(f"❌ [MCP EXEC] SSE execution timeout for {tool_name}")
             return ToolResult(
                 success=False,
-                output=f"SSE tool execution timeout after 30 seconds"
+                output="SSE tool execution timeout after 30 seconds"
             )
         except Exception as e:
             logger.error(f"❌ [MCP EXEC] SSE execution failed for {tool_name}: {e}")
@@ -147,7 +147,7 @@ class MCPToolExecutor:
             logger.error(f"❌ [MCP EXEC] HTTP execution timeout for {tool_name}")
             return ToolResult(
                 success=False,
-                output=f"HTTP tool execution timeout after 30 seconds"
+                output="HTTP tool execution timeout after 30 seconds"
             )
         except Exception as e:
             logger.error(f"❌ [MCP EXEC] HTTP execution failed for {tool_name}: {e}")
@@ -189,7 +189,7 @@ class MCPToolExecutor:
             logger.error(f"❌ [MCP EXEC] JSON/stdio execution timeout for {tool_name}")
             return ToolResult(
                 success=False,
-                output=f"JSON/stdio tool execution timeout after 30 seconds"
+                output="JSON/stdio tool execution timeout after 30 seconds"
             )
         except Exception as e:
             logger.error(f"❌ [MCP EXEC] JSON/stdio execution failed for {tool_name}: {e}")

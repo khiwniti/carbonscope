@@ -6,7 +6,6 @@ from .base_tool import AgentBuilderBaseTool
 from core.composio_integration.composio_service import get_integration_service
 from core.composio_integration.composio_profile_service import ComposioProfileService
 from core.credentials.profile_service import get_profile_service
-from core.mcp_module.mcp_service import mcp_service
 from .mcp_search_tool import MCPSearchTool
 from core.utils.logger import logger
 
@@ -96,7 +95,7 @@ class CredentialProfileTool(AgentBuilderBaseTool):
                 "total_count": len(formatted_profiles)
             })
             
-        except Exception as e:
+        except Exception:
             return self.fail_response("Error getting credential profiles")
 
     @openapi_schema({
@@ -412,7 +411,7 @@ After connecting, you'll be able to use {result.toolkit.name} tools in your agen
                                 agentpress_tools=current_config.get('tools', {}).get('agentpress', {}),
                                 change_description=f"Deleted credential profile {profile.display_name}"
                             )
-                        except Exception as e:
+                        except Exception:
                             return self.fail_response("Failed to update agent config")
             
             # Delete the profile
@@ -429,5 +428,5 @@ After connecting, you'll be able to use {result.toolkit.name} tools in your agen
                 }
             })
             
-        except Exception as e:
+        except Exception:
             return self.fail_response("Error deleting credential profile")

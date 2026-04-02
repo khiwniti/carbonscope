@@ -8,9 +8,8 @@ Uses smart batching and resource cleanup to handle large presentations efficient
 
 import json
 import asyncio
-import os
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 import tempfile
 import shutil
 from dataclasses import dataclass
@@ -778,7 +777,7 @@ class OptimizedHTMLToPPTXConverter:
                         containers.forEach(container => container.remove());
                     }
                 """)
-                print(f"🧹 Final cleanup completed: backgrounds restored, capture IDs removed")
+                print("🧹 Final cleanup completed: backgrounds restored, capture IDs removed")
             except Exception as e:
                 print(f"Warning: Failed to perform final cleanup: {e}")
             
@@ -906,7 +905,7 @@ class OptimizedHTMLToPPTXConverter:
             
             return background_path
             
-        except Exception as e:
+        except Exception:
             # Create a simple white background as fallback
             from PIL import Image
             background_path = temp_dir / f"clean_background_{html_path.stem}.png"
@@ -1492,7 +1491,7 @@ class OptimizedHTMLToPPTXConverter:
                 try:
                     with open(temp_output_path, 'rb') as f:
                         pptx_content = f.read()
-                except Exception as e:
+                except Exception:
                     raise
                 
                 return pptx_content, len(presentation.slides), presentation_name

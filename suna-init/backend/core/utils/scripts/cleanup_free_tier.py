@@ -6,11 +6,11 @@ from datetime import datetime, timezone
 from decimal import Decimal
 import time
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
 
 class CleanupFreeTierService:
     def __init__(self):

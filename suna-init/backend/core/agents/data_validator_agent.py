@@ -6,7 +6,6 @@ and sanity range checks on input data and calculation results.
 
 import logging
 from typing import Dict, Any, List
-from decimal import Decimal
 from .base import Agent
 from .state import AgentState
 

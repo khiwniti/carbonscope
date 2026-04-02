@@ -5,11 +5,11 @@ import sys
 import argparse
 from pathlib import Path
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
 
 async def update_stripe_customer_id(user_email: str, new_customer_id: str):
     logger.info("="*80)
@@ -46,22 +46,22 @@ async def update_stripe_customer_id(user_email: str, new_customer_id: str):
             'id': new_customer_id
         }).eq('account_id', account_id).execute()
         
-        logger.info(f"\n✅ Updated billing_customers table")
+        logger.info("\n✅ Updated billing_customers table")
     else:
         # Insert new record
-        logger.info(f"\nNo existing billing customer found, creating new record")
+        logger.info("\nNo existing billing customer found, creating new record")
         await client.schema('basejump').from_('billing_customers').insert({
             'id': new_customer_id,
             'account_id': account_id
         }).execute()
-        logger.info(f"✅ Created new billing_customers record")
+        logger.info("✅ Created new billing_customers record")
     
     # Verify
     verify_result = await client.schema('basejump').from_('billing_customers').select('id, account_id').eq('account_id', account_id).execute()
     
     if verify_result.data:
         logger.info(f"\n{'='*80}")
-        logger.info(f"VERIFICATION")
+        logger.info("VERIFICATION")
         logger.info(f"{'='*80}")
         logger.info(f"✅ Stripe customer ID is now: {verify_result.data[0]['id']}")
 

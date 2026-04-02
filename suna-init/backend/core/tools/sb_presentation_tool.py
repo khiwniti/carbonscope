@@ -3,7 +3,7 @@ from core.sandbox.tool_base import SandboxToolsBase
 from core.agentpress.thread_manager import ThreadManager
 from core.utils.logger import logger
 from core.services.http_client import get_http_client
-from typing import List, Dict, Optional, Union, TYPE_CHECKING
+from typing import Dict, Optional, TYPE_CHECKING
 import json
 import os
 from datetime import datetime
@@ -415,7 +415,7 @@ class SandboxPresentationTool(SandboxToolsBase):
         try:
             with open(metadata_path, 'r') as f:
                 return json.load(f)
-        except Exception as e:
+        except Exception:
             return {}
 
     def _read_template_slide(self, template_name: str, slide_filename: str) -> str:
@@ -424,7 +424,7 @@ class SandboxPresentationTool(SandboxToolsBase):
         try:
             with open(slide_path, 'r') as f:
                 return f.read()
-        except Exception as e:
+        except Exception:
             return ""
 
     async def _copy_template_to_workspace(self, template_name: str, presentation_name: str) -> str:

@@ -84,7 +84,7 @@ async def calculate_carbon(request: CarbonCalcRequest):
 # ---------------------------------------------------------------------------
 # Project summary endpoint (Phase 2 placeholder)
 # ---------------------------------------------------------------------------
-from fastapi import Path as FastAPIPath, Body
+from fastapi import Path as FastAPIPath
 from pathlib import Path as StdPath
 import json
 

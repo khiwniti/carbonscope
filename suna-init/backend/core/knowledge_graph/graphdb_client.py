@@ -9,13 +9,12 @@ This module provides a client for interacting with GraphDB, including:
 """
 
 import logging
-from typing import Optional, Dict, Any, List, Union
+from typing import Optional, Dict, Any, Union
 from urllib.parse import urljoin
 
 import requests
-from rdflib import Graph, Namespace, URIRef, Literal
-from rdflib.namespace import RDF, RDFS, OWL, XSD
-from SPARQLWrapper import SPARQLWrapper, JSON, XML, N3, TURTLE, RDFXML, POST, GET
+from rdflib import Graph
+from SPARQLWrapper import SPARQLWrapper, JSON, XML, N3, TURTLE, RDFXML, GET
 
 
 logger = logging.getLogger(__name__)

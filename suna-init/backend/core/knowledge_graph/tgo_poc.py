@@ -24,19 +24,17 @@ Performance Targets:
 """
 
 import argparse
-import json
 import logging
 import sys
 import time
 import unicodedata
-from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
 from typing import Dict, List, Any
 
 import requests
-from rdflib import Graph, Namespace, URIRef, Literal
-from rdflib.namespace import RDF, RDFS, XSD, DCTERMS, OWL
+from rdflib import Graph, Namespace, Literal
+from rdflib.namespace import RDF, RDFS, XSD, DCTERMS
 
 # Import our knowledge graph modules
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -44,7 +42,6 @@ from core.knowledge_graph import (
     GraphDBClient,
     GraphDBError,
     VersionManager,
-    VersionManagerError,
     get_emission_factor,
     search_materials,
     list_materials_by_category,

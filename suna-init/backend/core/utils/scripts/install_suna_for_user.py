@@ -30,12 +30,12 @@ import sys
 from pathlib import Path
 from typing import Optional, Dict, Any
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.utils.suna_default_agent_service import SunaDefaultAgentService
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
 
 
 class SunaUserInstaller:
@@ -115,20 +115,20 @@ class SunaUserInstaller:
         account = await self.get_account_by_email(email)
         if not account:
             print(f"❌ No account found for email: {email}")
-            print(f"   Make sure the user has signed up and has a personal account")
+            print("   Make sure the user has signed up and has a personal account")
             return
         
         account_id = account['id']
         print(f"✅ Found account: {account['name']} ({account_id})")
         
-        print(f"🚀 Installing Suna agent...")
+        print("🚀 Installing Suna agent...")
         agent_id = await self.service.install_suna_agent_for_user(
             account_id, 
             replace_existing=replace
         )
         
         if agent_id:
-            print(f"✅ Successfully installed Suna agent!")
+            print("✅ Successfully installed Suna agent!")
             print(f"   🤖 Agent ID: {agent_id}")
             print(f"   👤 User: {email}")
             print(f"   📦 Account: {account_id}")
@@ -145,7 +145,7 @@ class SunaUserInstaller:
             )
             
             if agent_id:
-                print(f"✅ Successfully installed Suna agent!")
+                print("✅ Successfully installed Suna agent!")
                 print(f"   🤖 Agent ID: {agent_id}")
                 print(f"   📦 Account: {account_id}")
             else:

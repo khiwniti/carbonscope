@@ -5,11 +5,10 @@ This module provides endpoints for exporting content from the mobile/web app
 to various formats (PDF, DOCX, HTML, Markdown).
 """
 
-from pathlib import Path
 from io import BytesIO
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 from urllib.parse import quote

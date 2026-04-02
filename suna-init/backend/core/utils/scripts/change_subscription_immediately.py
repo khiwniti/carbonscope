@@ -7,13 +7,13 @@ from datetime import datetime, timezone, timedelta
 from decimal import Decimal
 from typing import Optional
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 import stripe
 from core.services.supabase import DBConnection
 from core.utils.config import config
-from core.utils.logger import logger
 from core.billing.shared.config import (
     TIERS,
     get_tier_by_price_id,
@@ -162,7 +162,7 @@ async def change_subscription_immediately(
     current_tier_info = get_tier_by_price_id(current_price_id)
     current_item_id = items_data[0].id if hasattr(items_data[0], 'id') else items_data[0]['id']
     
-    logger.info(f"\nCurrent subscription:")
+    logger.info("\nCurrent subscription:")
     logger.info(f"  ID: {current_subscription.id}")
     logger.info(f"  Status: {current_subscription.status}")
     logger.info(f"  Tier: {current_tier_info.name if current_tier_info else 'unknown'} ({current_tier_info.display_name if current_tier_info else 'unknown'})")
@@ -182,7 +182,7 @@ async def change_subscription_immediately(
                 logger.warning(f"User has active commitment until {commitment_end.date()}")
                 logger.warning("Proceeding anyway as this is an admin override")
     
-    logger.info(f"\nChanging to:")
+    logger.info("\nChanging to:")
     logger.info(f"  Tier: {target_tier} ({target_tier_info.display_name})")
     logger.info(f"  Billing: {billing_type}")
     logger.info(f"  Price ID: {target_price_id}")
@@ -192,9 +192,9 @@ async def change_subscription_immediately(
         logger.info("\n[DRY RUN] Would perform the following actions:")
         logger.info(f"  1. Cancel any pending schedule on subscription {current_subscription.id}")
         logger.info(f"  2. Update subscription item {current_item_id} to price {target_price_id}")
-        logger.info(f"  3. Update credit_accounts table with new tier info")
+        logger.info("  3. Update credit_accounts table with new tier info")
         if is_commitment_price_id(target_price_id):
-            logger.info(f"  4. Set up yearly commitment tracking")
+            logger.info("  4. Set up yearly commitment tracking")
         logger.info("\n[DRY RUN] No changes made")
         return True
     
@@ -316,7 +316,7 @@ async def change_subscription_immediately(
     
     if final_account.data:
         acc = final_account.data[0]
-        logger.info(f"Final state:")
+        logger.info("Final state:")
         logger.info(f"  Tier: {acc.get('tier')}")
         logger.info(f"  Balance: ${acc.get('balance')}")
         logger.info(f"  Subscription ID: {acc.get('stripe_subscription_id')}")

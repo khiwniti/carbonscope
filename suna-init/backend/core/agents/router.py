@@ -4,7 +4,7 @@ This module implements the routing logic used by the supervisor to select
 which agent should handle a given query based on capability matching.
 """
 
-from typing import Set, Dict, List
+from typing import Dict, List
 from .base import Agent
 
 

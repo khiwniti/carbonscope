@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 
 # Lazy import to avoid dependency loading at module import time
 if TYPE_CHECKING:
-    from boq.carbon_pipeline import CarbonCalculationPipeline
+    pass
 
 logger = logging.getLogger(__name__)
 
@@ -179,7 +179,7 @@ async def get_audit_trail(
 
         return JSONResponse(content=audit)
 
-    except ValueError as e:
+    except ValueError:
         # Audit not found
         raise HTTPException(
             status_code=404,

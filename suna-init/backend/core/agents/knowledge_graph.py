@@ -4,7 +4,7 @@ This agent performs SPARQL queries on the GraphDB knowledge graph for
 TREES/EDGE compliance validation and semantic reasoning.
 """
 
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from .base import Agent
 from .state import AgentState
 import logging

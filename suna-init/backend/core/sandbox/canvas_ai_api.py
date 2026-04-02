@@ -8,8 +8,7 @@ import os
 import base64
 import asyncio
 import replicate
-from io import BytesIO
-from typing import Optional, Literal
+from typing import Optional
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 

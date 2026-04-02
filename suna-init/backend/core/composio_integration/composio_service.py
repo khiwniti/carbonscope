@@ -1,11 +1,8 @@
-import os
-from typing import Optional, List, Dict, Any
-from composio_client import Composio
+from typing import Optional, Dict, Any
 from core.utils.logger import logger
 from pydantic import BaseModel
 from core.services.supabase import DBConnection
 
-from .client import ComposioClient, get_composio_client
 from .toolkit_service import ToolkitService, ToolkitInfo
 from .auth_config_service import AuthConfigService, AuthConfig
 from .connected_account_service import ConnectedAccountService, ConnectedAccount
@@ -111,7 +108,7 @@ class ComposioIntegrationService:
             
             
             
-            logger.debug(f"Step 5 complete: Generated MCP URLs")
+            logger.debug("Step 5 complete: Generated MCP URLs")
             
             # Prefer connected_account URL (pins to exact OAuth credentials) over user_id URL (ambiguous if user has multiple accounts)
             if mcp_url_response.connected_account_urls:

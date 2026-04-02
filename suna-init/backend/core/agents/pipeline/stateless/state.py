@@ -112,7 +112,7 @@ class RunState:
                 logger.error(f"[RunState] Message load retry failed: {e}")
         # Also retry if loaded 0 messages (possible DB/cache race)
         elif len(self._messages) == 0:
-            logger.warning(f"[RunState] Message load returned 0 messages, retrying from DB...")
+            logger.warning("[RunState] Message load returned 0 messages, retrying from DB...")
             try:
                 await self._load_messages_from_db()
             except Exception as e:
@@ -160,7 +160,7 @@ class RunState:
             
             if not can_run:
                 logger.error(f"[RunState] {message}")
-                self._terminate(f"insufficient_credits")
+                self._terminate("insufficient_credits")
                 await stream_user_error(
                     stream_key=self.stream_key,
                     error=message,

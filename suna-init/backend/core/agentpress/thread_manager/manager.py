@@ -1,7 +1,7 @@
 import asyncio
-import json
-from typing import List, Dict, Any, Optional, Type, Union, AsyncGenerator, Literal, cast, TYPE_CHECKING
+from typing import List, Dict, Any, Optional, Type, Union, AsyncGenerator, Literal, TYPE_CHECKING
 
+from core.utils.logger import logger
 if TYPE_CHECKING:
     from core.jit.config import JITConfig
 from core.agentpress.tool import Tool
@@ -9,7 +9,6 @@ from core.agentpress.tool_registry import ToolRegistry
 from core.agentpress.processor_config import ProcessorConfig
 from core.agentpress.error_processor import ErrorProcessor
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
 from langfuse.client import StatefulGenerationClient, StatefulTraceClient
 from core.services.langfuse import langfuse
 

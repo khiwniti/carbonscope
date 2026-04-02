@@ -26,11 +26,17 @@ os.environ.setdefault("REDIS_SSL", "false")
 
 
 @pytest.fixture(scope="session", autouse=True)
-def mock_external_services():
+def mock_external_services(request):
     """
     Mock all external service connections for the entire test session.
-    This prevents tests from trying to connect to real databases, Redis, etc.
+    Skipped for tests/utils/ which have their own minimal conftest.
     """
+    # Skip heavy mocking for utils tests (they have their own conftest)
+    test_paths = [str(item.fspath) for item in request.session.items]
+    if test_paths and all("tests/utils" in p for p in test_paths):
+        yield {}
+        return
+
     with patch("boq.cache.get_redis_client") as mock_redis, \
          patch("core.services.supabase.DBConnection") as mock_db, \
          patch("core.agentpress.thread_manager.ThreadManager") as mock_thread_mgr:

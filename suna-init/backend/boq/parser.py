@@ -10,10 +10,10 @@ import hashlib
 import logging
 from pathlib import Path
 from decimal import Decimal, InvalidOperation
-from typing import Optional, List, Tuple
+from typing import Optional
 from datetime import datetime
 
-from .models import BOQMaterial, BOQParseResult, BOQError
+from .models import BOQMaterial, BOQParseResult
 from .unit_normalizer import normalize_unit
 
 logger = logging.getLogger(__name__)
@@ -147,7 +147,7 @@ def parse_boq(
 
                 try:
                     unit, conversion_factor = normalize_unit(str(unit_raw))
-                except ValueError as e:
+                except ValueError:
                     errors.append({
                         "error_type": "UNIT_ERROR",
                         "line_number": line_number,

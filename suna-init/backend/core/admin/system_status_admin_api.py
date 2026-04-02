@@ -12,7 +12,6 @@ from core.services.system_status import (
     TechnicalIssue,
     set_system_status
 )
-from core.utils.logger import logger
 
 router = APIRouter(prefix="/admin/system-status", tags=["admin", "system-status"])
 

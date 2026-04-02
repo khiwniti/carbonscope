@@ -6,7 +6,7 @@ Ensures calculations are reproducible by:
 - Using a fixed random seed
 """
 
-from decimal import Decimal, getcontext
+from decimal import getcontext
 
 # Set high precision for Decimal operations
 getcontext().prec = 28

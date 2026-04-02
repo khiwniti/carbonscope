@@ -1,7 +1,6 @@
 """Memory background job functions."""
 
 import asyncio
-from datetime import datetime, timezone
 from typing import List, Dict, Any
 
 from core.utils.logger import logger, structlog

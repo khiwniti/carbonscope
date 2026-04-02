@@ -8,7 +8,6 @@ Uses slowapi with Redis backend (if available) or in-memory storage as fallback.
 """
 
 import os
-from typing import Callable
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded

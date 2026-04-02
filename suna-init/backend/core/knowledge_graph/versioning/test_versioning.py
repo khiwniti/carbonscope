@@ -7,10 +7,10 @@ Integration tests that require GraphDB should be placed in tests/integration/.
 
 import unittest
 from datetime import datetime
-from unittest.mock import Mock, MagicMock, patch
+from unittest.mock import Mock, patch
 
 # Import from local module
-from suna.backend.core.knowledge_graph.versioning.version_manager import VersionManager, VersionManagerError
+from suna.backend.core.knowledge_graph.versioning.version_manager import VersionManager
 
 
 class TestVersionManager(unittest.TestCase):

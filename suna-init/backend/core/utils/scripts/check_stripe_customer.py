@@ -6,12 +6,12 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 import stripe
 from core.utils.config import config
-from core.utils.logger import logger
 
 stripe.api_key = config.STRIPE_SECRET_KEY
 
@@ -22,7 +22,7 @@ async def check_stripe_customer(customer_id: str):
     
     try:
         customer = await stripe.Customer.retrieve_async(customer_id)
-        logger.info(f"\n✅ Found customer:")
+        logger.info("\n✅ Found customer:")
         logger.info(f"  ID: {customer.id}")
         logger.info(f"  Email: {customer.email}")
         logger.info(f"  Name: {customer.name}")
@@ -61,7 +61,7 @@ async def check_stripe_customer(customer_id: str):
         if items_data:
             for item in items_data:
                 price = item.price
-                logger.info(f"\nPrice Details:")
+                logger.info("\nPrice Details:")
                 logger.info(f"  Price ID: {price.id}")
                 logger.info(f"  Amount: ${price.unit_amount / 100:.2f}")
                 logger.info(f"  Currency: {price.currency}")

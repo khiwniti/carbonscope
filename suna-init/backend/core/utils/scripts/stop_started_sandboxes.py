@@ -20,6 +20,7 @@ Examples:
     python stop_started_sandboxes.py --save-json --json-file started_sandboxes.json
 """
 
+from core.utils.logger import logger
 PROD_DAYTONA_API_KEY = ""  # Your production Daytona API key
 
 import dotenv
@@ -36,7 +37,6 @@ import json
 from datetime import datetime
 from typing import List, Dict, Optional
 from core.utils.config import config
-from core.utils.logger import logger
 
 try:
     from daytona import Daytona

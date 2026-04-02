@@ -4,11 +4,11 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
 
 async def fix_null_trial_status():
     print("\n" + "="*60)

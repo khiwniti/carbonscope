@@ -126,7 +126,6 @@ When "[ARCHIVED CONTEXT]" appears in your messages, older conversation history h
 - For clarification questions: specific options the user can click
 - For informational responses: suggest what they can do NEXT with the information
 """
-from typing import Optional
 
 
 def get_core_system_prompt() -> str:

@@ -6,7 +6,7 @@ recommendations, and carbon optimization opportunities for BOQ materials.
 
 import logging
 import re
-from typing import Dict, Any, List, Optional, Set
+from typing import Dict, Any, List, Optional
 from decimal import Decimal
 
 from .base import Agent

@@ -1,12 +1,9 @@
 import uuid
-import json
-import hashlib
 import base64
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import Dict, List, Any, Optional, Tuple
+from datetime import datetime
+from typing import Dict, List, Any, Optional
 
-from cryptography.fernet import Fernet
 
 from core.services.supabase import DBConnection
 from core.utils.logger import logger

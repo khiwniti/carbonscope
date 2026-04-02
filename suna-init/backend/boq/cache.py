@@ -7,11 +7,9 @@ Layer 3: Calculation results cache (7d TTL)
 """
 
 import json
-import hashlib
 import logging
 from typing import Optional, Dict, Any
 from decimal import Decimal
-from datetime import timedelta
 import redis
 
 logger = logging.getLogger(__name__)

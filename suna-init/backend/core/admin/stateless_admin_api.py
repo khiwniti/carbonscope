@@ -126,7 +126,7 @@ async def get_run_info(
 
 @router.get("/dashboard")
 async def get_dashboard(admin_user: Dict = Depends(require_admin)) -> Dict[str, Any]:
-    from core.agents.pipeline.stateless import metrics, recovery, ownership, write_buffer
+    from core.agents.pipeline.stateless import metrics, recovery, ownership
     from core.agents.pipeline.stateless.persistence import wal, dlq
     from core.agents import repo as agents_repo
 

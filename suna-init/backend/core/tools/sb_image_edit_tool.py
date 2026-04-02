@@ -18,7 +18,7 @@ from PIL import Image
 from core.utils.logger import logger
 from core.utils.config import get_config
 from core.billing.credits.media_integration import media_billing
-from core.billing.credits.media_calculator import select_image_quality, cap_quality_for_tier, FREE_TIERS
+from core.billing.credits.media_calculator import select_image_quality, FREE_TIERS
 from core.utils.image_processing import upscale_image_sync, remove_background_sync, UPSCALE_MODEL, REMOVE_BG_MODEL
 from core.utils.file_name_generator import generate_smart_filename
 
@@ -707,7 +707,7 @@ Generate, edit, upscale, or remove background from images. Video generation supp
                     input_params["last_frame_image"] = f"data:image/png;base64,{last_frame_b64}"
                     logger.info(f"Video: Using last frame image (size: {len(last_frame_bytes)} bytes)")
             
-            logger.info(f"Calling Replicate bytedance/seedance-1.5-pro for video generation")
+            logger.info("Calling Replicate bytedance/seedance-1.5-pro for video generation")
             logger.debug(f"Video params: duration={input_params.get('duration')}, aspect_ratio={input_params.get('aspect_ratio')}, generate_audio={input_params.get('generate_audio')}, has_image={'image' in input_params}")
             
             # Wrap replicate.run() in thread pool to avoid blocking event loop

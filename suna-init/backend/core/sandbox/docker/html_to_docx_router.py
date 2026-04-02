@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import json
-import os
 from pathlib import Path
-from typing import Dict, Optional
-import tempfile
+from typing import Optional
 import re
 from io import BytesIO
 
@@ -280,7 +278,7 @@ async def convert_document_to_docx(request: ConvertRequest):
         
         return ConvertResponse(
             success=True,
-            message=f"DOCX generated successfully",
+            message="DOCX generated successfully",
             docx_url=docx_url,
             filename=docx_path.name
         )

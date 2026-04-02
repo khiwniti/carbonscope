@@ -1,10 +1,9 @@
-import json
 import asyncio
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
-from uuid import uuid4, UUID
+from uuid import uuid4
 from enum import Enum
 
 from core.services.supabase import DBConnection
@@ -103,7 +102,6 @@ class VersionService:
     
     async def _update_agent_current_version(self, agent_id: str, version_id: str, version_count: int):
         from core.versioning import repo as versioning_repo
-        from core.agents import repo as agents_repo
         
         # Update agent's current version ID
         await versioning_repo.update_agent_current_version(agent_id, version_id)
@@ -463,7 +461,6 @@ class VersionService:
         return new_version
     
     async def get_current_mcp_config(self, agent_id: str, user_id: str = "system") -> Optional[Dict[str, Any]]:
-        import time
         start_time = time.time()
         
         from core.cache.runtime_cache import (

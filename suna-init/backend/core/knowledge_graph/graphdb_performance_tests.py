@@ -40,11 +40,10 @@ import unicodedata
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any
 from collections import defaultdict
 
-import requests
-from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, RDFS, XSD, DCTERMS
 
 # Import knowledge graph modules
@@ -55,7 +54,6 @@ from core.knowledge_graph import (
     get_emission_factor,
     search_materials,
     list_materials_by_category,
-    get_all_categories,
 )
 
 # Configure logging

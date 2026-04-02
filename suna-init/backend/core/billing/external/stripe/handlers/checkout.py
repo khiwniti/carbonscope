@@ -26,10 +26,10 @@ class CheckoutHandler:
         elif session.get('metadata', {}).get('type') == 'yearly_upgrade':
             await CheckoutHandler._handle_yearly_upgrade_payment(session)
         elif session.get('subscription'):
-            logger.info(f"[WEBHOOK] Routing to subscription checkout handler")
+            logger.info("[WEBHOOK] Routing to subscription checkout handler")
             await CheckoutHandler._handle_subscription_checkout(session)
         else:
-            logger.warning(f"[WEBHOOK] Checkout session has neither credit_purchase type nor subscription")
+            logger.warning("[WEBHOOK] Checkout session has neither credit_purchase type nor subscription")
 
     @staticmethod
     async def _handle_credit_purchase(session):
@@ -42,7 +42,7 @@ class CheckoutHandler:
             
         try:
             credit_amount = Decimal(credit_amount_str)
-        except (ValueError, TypeError) as e:
+        except (ValueError, TypeError):
             return
         
         try:

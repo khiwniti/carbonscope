@@ -2,7 +2,6 @@ from typing import List, Dict, Any, Optional
 from core.utils.pagination import PaginationService, PaginationParams, PaginatedResponse, PaginationMeta
 from core.utils.logger import logger
 from core.agents.agent_loader import AgentLoader
-from core.utils.query_utils import batch_query_in
 
 
 class AgentFilters:

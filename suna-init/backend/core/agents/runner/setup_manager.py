@@ -2,7 +2,6 @@ import asyncio
 import json
 import time
 import uuid
-from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 import structlog
@@ -147,14 +146,14 @@ async def prewarm_user_context(account_id: str) -> None:
             locale_prompt = get_locale_context_prompt(locale)
             context_parts.append(f"\n\n{locale_prompt}\n")
         if username:
-            username_info = f"\n\n<user_info>\n"
+            username_info = "\n\n<user_info>\n"
             username_info += f"The user's name is: {username}\n"
             username_info += "Use this to personalize responses and address the user appropriately.\n"
             username_info += "</user_info>"
             context_parts.append(username_info)
         if subscription:
             sub = subscription
-            tier_info = f"\n\n<user_subscription>\n"
+            tier_info = "\n\n<user_subscription>\n"
             tier_info += f"Current plan: {sub['display_name']} ({sub['name']})\n"
             if sub['name'] in ('free', 'none'):
                 tier_info += "Tier type: Free\n"

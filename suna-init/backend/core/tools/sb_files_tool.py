@@ -9,7 +9,6 @@ import json
 import litellm
 import openai
 import asyncio
-import re
 from typing import Optional
 
 
@@ -283,7 +282,7 @@ Usage:
             await self.sandbox.fs.upload_file(new_content.encode(), full_path)
             
             return ToolResult(success=True, output=json.dumps({
-                "message": f"Replacement successful.",
+                "message": "Replacement successful.",
                 "file_path": file_path,
                 "original_content": content,
                 "updated_content": new_content

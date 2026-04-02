@@ -536,7 +536,7 @@ class ContextArchiver:
                             lines.append("**Input:**")
                             lines.append(f"```json\n{json.dumps(block['input'], indent=2)}\n```")
                     elif block.get('type') == 'tool_result':
-                        lines.append(f"**Tool Result:**")
+                        lines.append("**Tool Result:**")
                         lines.append(f"```\n{block.get('content', '')}\n```")
                 lines.append("")
         elif isinstance(content, dict):
@@ -797,7 +797,7 @@ Return ONLY valid JSON."""
             return json.loads(full_response)
 
         except asyncio.TimeoutError:
-            logger.warning(f"[ContextArchiver] Summary LLM call timed out after 30s, using fallback")
+            logger.warning("[ContextArchiver] Summary LLM call timed out after 30s, using fallback")
             return self._fallback_summary(messages)
         except json.JSONDecodeError as e:
             logger.error(f"[ContextArchiver] Failed to parse LLM response: {e}")

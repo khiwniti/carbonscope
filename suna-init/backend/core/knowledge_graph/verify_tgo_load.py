@@ -20,17 +20,16 @@ import argparse
 import json
 import logging
 import sys
-import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 
 # Add project root to path
 project_root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(project_root))
 
 from suna.backend.core.knowledge_graph.graphdb_client import GraphDBClient, GraphDBError
-from suna.backend.core.knowledge_graph.versioning.version_manager import VersionManager, VersionManagerError
+from suna.backend.core.knowledge_graph.versioning.version_manager import VersionManager
 
 # Configure logging
 logging.basicConfig(

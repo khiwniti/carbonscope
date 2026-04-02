@@ -9,7 +9,7 @@ This script demonstrates:
 5. Verifying round-trip integrity
 """
 
-from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, RDFS, XSD
 
 from graphdb_client import GraphDBClient

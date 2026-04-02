@@ -29,7 +29,7 @@ except ImportError:
 set_json_dumps(_json_serialize)
 set_json_loads(_json_deserialize)
 
-from core.utils.config import config, EnvMode
+from core.utils.config import config
 
 def _get_db_config():
     """

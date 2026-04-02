@@ -11,9 +11,7 @@ Can be run:
 3. One-time - migrate entire database
 """
 
-import json
 import uuid
-import re
 from typing import Dict, Any, List, Optional
 from core.utils.logger import logger
 from core.agentpress.xml_tool_parser import strip_xml_tool_calls, parse_xml_tool_calls

@@ -1,11 +1,9 @@
 import asyncio
-import json
 import traceback
 import uuid
-from datetime import datetime, timezone
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Depends, Form, Query, Body, Request
-from core.utils.auth_utils import verify_and_get_user_id_from_jwt, verify_and_authorize_thread_access, require_thread_access, require_thread_write_access, AuthorizedThreadAccess, get_optional_user_id
+from core.utils.auth_utils import verify_and_get_user_id_from_jwt, verify_and_authorize_thread_access, require_thread_write_access, AuthorizedThreadAccess, get_optional_user_id
 from core.utils.logger import logger
 from core.sandbox.sandbox import create_sandbox, delete_sandbox
 from core.utils.config import config, EnvMode

@@ -1,6 +1,7 @@
 from typing import Dict, List, Tuple, Type, Optional
 from core.agentpress.tool import Tool
 
+            from core.utils.logger import logger
 CORE_TOOLS = [
     ('expand_msg_tool', 'core.tools.expand_msg_tool', 'ExpandMessageTool'),
     ('message_tool', 'core.tools.message_tool', 'MessageTool'),
@@ -62,7 +63,6 @@ def get_all_tools() -> Dict[str, Type[Tool]]:
         try:
             tools_map[tool_name] = get_tool_class(module_path, class_name)
         except (ImportError, AttributeError) as e:
-            from core.utils.logger import logger
             logger.debug(f"Skipping tool {tool_name}: {e}")
     
     return tools_map

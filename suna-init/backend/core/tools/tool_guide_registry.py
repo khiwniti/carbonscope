@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import threading
 
 
+        from core.utils.logger import logger
 @dataclass
 class ToolGuideEntry:
     tool_name: str
@@ -31,9 +32,8 @@ class ToolGuideRegistry:
     
     def initialize(self) -> None:
         from core.tools.tool_registry import ALL_TOOLS, get_tool_class
-        from core.utils.logger import logger
         
-        logger.info(f"🔧 [DYNAMIC TOOLS] Initializing Tool Guide Registry...")
+        logger.info("🔧 [DYNAMIC TOOLS] Initializing Tool Guide Registry...")
         loaded_count = 0
         with_guides_count = 0
         

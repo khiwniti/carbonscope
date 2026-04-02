@@ -5,6 +5,7 @@ import asyncio
 import json
 
 
+        from core.utils.logger import logger
 _mcp_registry_lock: Optional[asyncio.Lock] = None
 
 
@@ -200,7 +201,6 @@ class ExpandMessageTool(Tool):
         import time
         from core.tools.tool_guide_registry import get_tool_guide, get_tool_guide_registry
         from core.jit import JITLoader
-        from core.utils.logger import logger
         
         start = time.time()
         

@@ -4,7 +4,6 @@ import uuid
 import re
 from typing import Dict, Any
 from pathlib import Path
-import mimetypes
 import chardet
 
 import PyPDF2

@@ -10,6 +10,7 @@ import logging
 import time
 from typing import Union, List
 
+            from core.utils.logger import logger
 @tool_metadata(
     display_name="Image Search",
     description="Find images on the internet for any topic or subject",
@@ -56,7 +57,6 @@ class SandboxImageSearchTool(SandboxToolsBase):
         self.serper_api_key = config.SERPER_API_KEY
         
         if not self.serper_api_key:
-            from core.utils.logger import logger
             logger.warning("SERPER_API_KEY not configured - Image Search Tool will not be available")
 
     @openapi_schema({

@@ -3,17 +3,16 @@ import asyncio
 import sys
 from pathlib import Path
 from typing import Dict
-from datetime import datetime, timezone
 from decimal import Decimal
 import time
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 import stripe
 from core.services.supabase import DBConnection
 from core.utils.config import config
-from core.utils.logger import logger
 from core.billing.shared.config import TIERS
 from core.billing.credits.manager import credit_manager
 

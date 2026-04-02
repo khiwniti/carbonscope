@@ -13,16 +13,15 @@ from ..shared.config import (
     CREDITS_PER_DOLLAR,
     get_tier_by_name,
     is_model_allowed,
-    get_price_type,
     TIERS
 )
 from ..subscriptions import subscription_service
 from ..external.stripe import StripeAPIWrapper
 from ..repo import get_credit_account
+from ..shared.cache_utils import ACCOUNT_STATE_CACHE_TTL
 
 router = APIRouter(tags=["billing-account-state"])
 
-from ..shared.cache_utils import ACCOUNT_STATE_CACHE_TTL, invalidate_account_state_cache
 
 # Stripe subscription cache TTL (10 minutes - Stripe data rarely changes)
 # Increased from 5 min to reduce Stripe API calls in production
@@ -88,7 +87,6 @@ def _extract_scheduled_changes_from_credit_account(credit_account: Dict) -> Dict
             pending_product = credit_account.get('revenuecat_pending_change_product')
             pending_date = credit_account.get('revenuecat_pending_change_date')
             if pending_product and pending_date:
-                from core.billing.external.revenuecat.utils import ProductMapper
                 target_tier_name, target_tier_info = ProductMapper.get_tier_info(pending_product)
                 if target_tier_info and current_tier_name != target_tier_name:
                     current_tier = get_tier_by_name(current_tier_name)
@@ -158,7 +156,6 @@ async def _build_minimal_account_state(account_id: str) -> Dict:
     - No models iteration
     - No scheduled changes processing
     """
-    import time
     t_start = time.time()
 
     # Single DB query - get credit account
@@ -314,7 +311,6 @@ async def _get_cached_stripe_subscription(subscription_id: str, timeout: float =
 
 
 async def _build_account_state(account_id: str, skip_cache: bool = False) -> Dict:
-    import time
     t_start = time.time()
     
     credit_account_task = get_credit_account(account_id)
@@ -401,7 +397,6 @@ async def _build_account_state(account_id: str, skip_cache: bool = False) -> Dic
     provider = credit_account.get('provider', 'stripe')
 
     stripe_subscription_id = credit_account.get('stripe_subscription_id')
-    from core.utils.limits_checker import get_all_limits_fast
 
     t_limits = time.time()
     all_limits = await get_all_limits_fast(account_id, tier_info=subscription_tier_info)

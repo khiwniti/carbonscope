@@ -2,12 +2,11 @@ import asyncio
 import time
 from typing import Dict, Any, List, Optional, AsyncGenerator, cast, TYPE_CHECKING
 
+from core.utils.logger import logger
 if TYPE_CHECKING:
     from langfuse.client import StatefulGenerationClient
 
-from core.utils.logger import logger
 from core.agentpress.processor_config import ProcessorConfig
-from core.agentpress.error_processor import ErrorProcessor
 
 from core.agentpress.thread_manager.services.messages.preparer import MessagePreparer
 from core.agentpress.thread_manager.services.execution.llm_executor import LLMExecutor

@@ -1,17 +1,12 @@
 
 import json
-import os
 import sys
 import re
 import asyncio
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, Any
+from typing import Dict, List, Tuple
 import tempfile
-import subprocess
 from dataclasses import dataclass
-import base64
-import io
-import datetime
 
 try:
     from playwright.async_api import async_playwright
@@ -177,7 +172,7 @@ class PerfectHTMLToPPTXConverter:
             self.slides_info.sort(key=lambda x: x['number'])
             
             if not self.slides_info:
-                print(f"---")
+                print("---")
                 raise ValueError("No valid slides found in metadata.json")
             
             # Set default output path if not provided
@@ -876,7 +871,7 @@ class PerfectHTMLToPPTXConverter:
                         containers.forEach(container => container.remove());
                     }
                 """)
-                print(f"🧹 Final cleanup completed: backgrounds restored, capture IDs removed")
+                print("🧹 Final cleanup completed: backgrounds restored, capture IDs removed")
             except Exception as e:
                 print(f"Warning: Failed to perform final cleanup: {e}")
             
@@ -1004,7 +999,7 @@ class PerfectHTMLToPPTXConverter:
             
             return background_path
             
-        except Exception as e:
+        except Exception:
             # Create a simple white background as fallback
             from PIL import Image
             background_path = temp_dir / f"clean_background_{html_path.stem}.png"
@@ -1417,7 +1412,7 @@ class PerfectHTMLToPPTXConverter:
             height = Inches(11.25)  # 1080px at 96 DPI
             
             picture = slide.shapes.add_picture(str(background_image_path), left, top, width, height)
-            print(f"    ✅ Perfect background added (1920x1080)")
+            print("    ✅ Perfect background added (1920x1080)")
         
         # Step 3: Extract and add editable text elements
         print("  📝 Extracting editable text elements...")
@@ -1617,7 +1612,7 @@ class PerfectHTMLToPPTXConverter:
         presentation.save(str(self.output_path))
         print(f"\n🎉 PERFECT 1:1 PPTX created successfully: {self.output_path}")
         print(f"📊 Total slides: {len(presentation.slides)}")
-        print(f"✨ Clean background + Visual elements + Fully editable text!")
+        print("✨ Clean background + Visual elements + Fully editable text!")
 
 
 def check_dependencies():

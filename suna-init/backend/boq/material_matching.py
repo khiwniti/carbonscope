@@ -6,7 +6,6 @@ Bridges BOQ parser output with TGO material matching engine.
 
 import logging
 from typing import List, Dict, Any, Optional
-from decimal import Decimal
 
 from .models import BOQMaterial
 from core.knowledge_graph.graphdb_client import GraphDBClient

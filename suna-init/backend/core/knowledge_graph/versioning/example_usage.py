@@ -15,7 +15,6 @@ Prerequisites:
 """
 
 import sys
-from datetime import datetime
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 

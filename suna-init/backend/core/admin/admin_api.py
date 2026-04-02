@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
-from typing import Optional, List, Dict, Any
+from typing import Optional, Dict
 from datetime import datetime, timedelta
 from pydantic import BaseModel
 from core.auth import require_admin
@@ -10,7 +10,6 @@ from core.utils.auth_utils import verify_admin_api_key
 from core.utils.suna_default_agent_service import SunaDefaultAgentService
 from core.utils.config import config, EnvMode
 from dotenv import load_dotenv, set_key, find_dotenv, dotenv_values
-import os
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 

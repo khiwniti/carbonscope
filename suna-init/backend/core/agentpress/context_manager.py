@@ -741,7 +741,7 @@ class ContextManager:
         if not is_valid:
             logger.error(f"🚨 CRITICAL: Could not fully repair message structure. Orphaned: {len(orphaned)}, Unanswered: {len(unanswered)}")
         else:
-            logger.info(f"✅ Message structure successfully repaired")
+            logger.info("✅ Message structure successfully repaired")
 
         return result
 
@@ -1121,7 +1121,7 @@ class ContextManager:
                 start_part = msg_content[:start_length]
                 end_part = msg_content[-end_length:] if end_length > 0 else ""
                 
-                return start_part + f"\n\n... (middle truncated) ...\n\n" + end_part + f"\n\nThis message is too long, repeat relevant information in your response to remember it"
+                return start_part + "\n\n... (middle truncated) ...\n\n" + end_part + "\n\nThis message is too long, repeat relevant information in your response to remember it"
             else:
                 return msg_content
         elif isinstance(msg_content, dict):
@@ -1135,7 +1135,7 @@ class ContextManager:
                 start_part = json_str[:start_length]
                 end_part = json_str[-end_length:] if end_length > 0 else ""
                 
-                return start_part + f"\n\n... (middle truncated) ...\n\n" + end_part + f"\n\nThis message is too long, repeat relevant information in your response to remember it"
+                return start_part + "\n\n... (middle truncated) ...\n\n" + end_part + "\n\nThis message is too long, repeat relevant information in your response to remember it"
             else:
                 return msg_content
   

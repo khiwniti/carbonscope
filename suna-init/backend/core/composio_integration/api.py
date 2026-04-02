@@ -15,20 +15,18 @@ import asyncio
 import json
 import hashlib
 import time
-import re
 import base64
 import httpx
 
 from .composio_service import (
     get_integration_service,
 )
-from .toolkit_service import ToolkitService, ToolsListResponse
+from .toolkit_service import ToolkitService
 from .composio_profile_service import ComposioProfileService, ComposioProfile
 from .composio_trigger_service import ComposioTriggerService
 from .trigger_schema import TriggerSchemaService
 from core.triggers.trigger_service import get_trigger_service, TriggerEvent, TriggerType
 from core.triggers.execution_service import get_execution_service
-from .client import ComposioClient
 from core.triggers.api import sync_triggers_to_version_config
 
 router = APIRouter(prefix="/composio", tags=["composio"])
@@ -591,7 +589,6 @@ async def get_toolkit_icons_batch(
     request: Request,
     current_user_id: Optional[str] = Depends(get_optional_current_user_id_from_jwt)
 ):
-    import asyncio
     
     try:
         body = await request.json()

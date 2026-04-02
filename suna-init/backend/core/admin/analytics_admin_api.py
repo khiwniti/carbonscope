@@ -26,7 +26,6 @@ from core.services.supabase import DBConnection
 from core.utils.logger import logger
 from core.utils.pagination import PaginationService, PaginationParams, PaginatedResponse
 from core.utils.config import config
-from core.utils.query_utils import batch_query_in
 from openpyxl import Workbook
 from openpyxl.styles import Font
 import openai

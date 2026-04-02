@@ -7,11 +7,10 @@ Provides 5-year retention for compliance.
 
 import uuid
 from datetime import datetime, timezone
-from typing import List, Dict, Any, Optional
-from decimal import Decimal
-from sqlalchemy import Column, String, DateTime, JSON, Integer, Numeric, Text, ForeignKey, Index, create_engine
+from typing import Dict, Any
+from sqlalchemy import Column, String, DateTime, Integer, Numeric, Text, ForeignKey, Index
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship, declarative_base, Session, sessionmaker
+from sqlalchemy.orm import relationship, declarative_base
 
 # Create Base for SQLAlchemy models
 Base = declarative_base()

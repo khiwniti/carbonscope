@@ -94,7 +94,7 @@ class MemoryExtractionService:
                 timeout=60, 
             )
             
-            logger.debug(f"Got response from LLM")
+            logger.debug("Got response from LLM")
             content = response.choices[0].message.content
             logger.info(f"Raw extraction response length: {len(content) if content else 0}")
             

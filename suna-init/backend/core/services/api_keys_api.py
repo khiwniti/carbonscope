@@ -1,4 +1,12 @@
 """
+from fastapi import APIRouter, Depends, HTTPException, Request
+from typing import List
+from uuid import UUID
+from core.services.api_keys import (
+from core.utils.auth_utils import verify_and_get_user_id_from_jwt
+from core.middleware.rate_limit import limiter, API_KEY_RATE_LIMIT
+    from core.utils.db_helpers import get_db
+        from core.utils.db_helpers import get_db
 API Keys API Endpoints
 
 This module provides REST API endpoints for managing API keys:
@@ -7,26 +15,18 @@ This module provides REST API endpoints for managing API keys:
 - DELETE /api/api-keys/{key_id} - Revoke/delete an API key
 """
 
-from fastapi import APIRouter, Depends, HTTPException, Request
-from typing import List
-from uuid import UUID
 
-from core.services.api_keys import (
     APIKeyService,
     APIKeyCreateRequest,
     APIKeyResponse,
     APIKeyCreateResponse,
 )
-from core.utils.auth_utils import verify_and_get_user_id_from_jwt
-from core.utils.logger import logger
-from core.middleware.rate_limit import limiter, API_KEY_RATE_LIMIT
 
 router = APIRouter(tags=["api-keys"])
 
 
 async def get_api_key_service() -> APIKeyService:
     """Dependency to get API key service instance"""
-    from core.utils.db_helpers import get_db
     db = await get_db()
     return APIKeyService(db)
 
@@ -34,7 +34,6 @@ async def get_api_key_service() -> APIKeyService:
 async def get_account_id_from_user_id(user_id: str) -> UUID:
     """Get account ID from user ID using basejump accounts table"""
     try:
-        from core.utils.db_helpers import get_db
         db = await get_db()
         client = await db.client
 

@@ -1,5 +1,4 @@
 from typing import Tuple, Optional
-from decimal import Decimal
 from core.utils.logger import logger
 from ....shared.config import get_tier_by_name
 

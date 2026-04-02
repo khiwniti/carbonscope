@@ -1,11 +1,10 @@
 from datetime import datetime, timezone
 from typing import Optional, Dict, List, Any
 from fastapi import APIRouter, HTTPException, Depends
-from uuid import uuid4
 
 from core.utils.auth_utils import verify_and_get_user_id_from_jwt
 from core.utils.logger import logger
-from core.templates.template_service import MCPRequirementValue, ConfigType, ProfileId, QualifiedName
+from core.templates.template_service import MCPRequirementValue
 
 from core.api_models import JsonAnalysisRequest, JsonAnalysisResponse, JsonImportRequestModel, JsonImportResponse
 from core.services.supabase import DBConnection

@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List, Optional, Dict, Any, cast
 from pydantic import BaseModel, validator
-import urllib.parse
 
 from core.utils.logger import logger
 from core.utils.auth_utils import verify_and_get_user_id_from_jwt

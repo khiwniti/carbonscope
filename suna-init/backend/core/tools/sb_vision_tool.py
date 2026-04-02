@@ -3,7 +3,7 @@ import base64
 import mimetypes
 import uuid
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Tuple
 from io import BytesIO
 from PIL import Image
 from urllib.parse import urlparse
@@ -15,7 +15,6 @@ import json
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 import tempfile
-import requests
 import aiohttp
 from core.utils.config import config
 from core.utils.logger import logger
@@ -366,7 +365,7 @@ Images remain in the sandbox and can be loaded again anytime. SVG files are auto
                     file_info = await self.sandbox.fs.get_file_info(full_path)
                     if file_info.is_dir:
                         return self.fail_response(f"Path '{cleaned_path}' is a directory, not an image file.")
-                except Exception as e:
+                except Exception:
                     return self.fail_response(f"Image file not found at path: '{cleaned_path}'")
 
                 # Check file size
@@ -376,7 +375,7 @@ Images remain in the sandbox and can be loaded again anytime. SVG files are auto
                 # Read image file content
                 try:
                     image_bytes = await self.sandbox.fs.download_file(full_path)
-                except Exception as e:
+                except Exception:
                     return self.fail_response(f"Could not read image file: {cleaned_path}")
 
                 # Determine MIME type

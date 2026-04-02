@@ -11,9 +11,9 @@ from typing import List, Optional, Tuple
 
 from dotenv import load_dotenv
 
+from core.utils.logger import logger
 load_dotenv()
 
-from core.utils.logger import logger
 
 
 # Chunk configuration
@@ -466,7 +466,7 @@ class ThreadSearchService:
                 top = results[0]
                 logger.info(f"[ThreadSearch] Supabase OK: {len(results)} results, top={top.score:.3f}, preview=\"{top.text_preview[:80]}\"")
             else:
-                logger.info(f"[ThreadSearch] Supabase OK: 0 results")
+                logger.info("[ThreadSearch] Supabase OK: 0 results")
 
             return results
 

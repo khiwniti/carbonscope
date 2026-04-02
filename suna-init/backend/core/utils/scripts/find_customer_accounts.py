@@ -5,11 +5,11 @@ import sys
 import argparse
 from pathlib import Path
 
+from core.utils.logger import logger
 backend_dir = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(backend_dir))
 
 from core.services.supabase import DBConnection
-from core.utils.logger import logger
 
 async def find_customer_accounts(customer_id: str):
     logger.info("="*80)
@@ -28,7 +28,7 @@ async def find_customer_accounts(customer_id: str):
         return
     
     account_id = billing_result.data[0]['account_id']
-    logger.info(f"✅ Found billing customer")
+    logger.info("✅ Found billing customer")
     logger.info(f"   Stripe Customer ID: {customer_id}")
     logger.info(f"   Account ID: {account_id}")
     
@@ -37,7 +37,7 @@ async def find_customer_accounts(customer_id: str):
     
     if account_result.data:
         acc = account_result.data[0]
-        logger.info(f"\nAccount Details:")
+        logger.info("\nAccount Details:")
         logger.info(f"   ID: {acc['id']}")
         logger.info(f"   Name: {acc.get('name', 'N/A')}")
         logger.info(f"   Slug: {acc.get('slug', 'N/A')}")
@@ -47,7 +47,7 @@ async def find_customer_accounts(customer_id: str):
     members_result = await client.schema('basejump').from_('account_user').select('user_id, account_role').eq('account_id', account_id).execute()
     
     if members_result.data:
-        logger.info(f"\nAccount Members:")
+        logger.info("\nAccount Members:")
         for member in members_result.data:
             user_id = member['user_id']
             role = member['account_role']
@@ -63,7 +63,7 @@ async def find_customer_accounts(customer_id: str):
     
     if credit_result.data:
         credit = credit_result.data[0]
-        logger.info(f"\nCredit Account:")
+        logger.info("\nCredit Account:")
         logger.info(f"   Tier: {credit.get('tier', 'none')}")
         logger.info(f"   Balance: ${credit.get('balance', 0)}")
         logger.info(f"   Subscription ID: {credit.get('stripe_subscription_id', 'None')}")

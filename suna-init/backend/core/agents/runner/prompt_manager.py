@@ -1,4 +1,3 @@
-import os
 import json
 import asyncio
 import datetime
@@ -6,7 +5,7 @@ import time
 from typing import Optional, Tuple, List
 from core.tools.mcp_tool_wrapper import MCPToolWrapper
 from core.agentpress.tool import SchemaType
-from core.tools.tool_guide_registry import get_minimal_tool_index, get_minimal_tool_index_filtered, get_tool_guide
+from core.tools.tool_guide_registry import get_minimal_tool_index, get_tool_guide
 from core.utils.logger import logger
 
 class PromptManager:
@@ -53,9 +52,9 @@ class PromptManager:
                 'configured_mcps': agent_config.get('configured_mcps', []),
                 'account_id': user_id
             }
-            logger.debug(f"⏱️ [PROMPT TIMING] MCP config from agent_config (no re-fetch): 0.0ms")
+            logger.debug("⏱️ [PROMPT TIMING] MCP config from agent_config (no re-fetch): 0.0ms")
         else:
-            logger.debug(f"⏱️ [PROMPT TIMING] No MCP config in agent_config: 0.0ms")
+            logger.debug("⏱️ [PROMPT TIMING] No MCP config in agent_config: 0.0ms")
         
         t3 = time.time()
         system_content = await PromptManager._append_mcp_tools_info(system_content, agent_config, mcp_wrapper_instance, fresh_mcp_config, xml_tool_calling)
@@ -536,7 +535,7 @@ Multiple parallel tool calls:
     @staticmethod
     def _append_datetime_info(system_content: str) -> str:
         now = datetime.datetime.now(datetime.timezone.utc)
-        datetime_info = f"\n\n<current_datetime>\n"
+        datetime_info = "\n\n<current_datetime>\n"
         datetime_info += f"Today's date: {now.strftime('%A, %B %d, %Y')}\n"
         datetime_info += f"Current year: {now.strftime('%Y')}\n"
         datetime_info += f"Current month: {now.strftime('%B')}\n"
@@ -629,7 +628,7 @@ Multiple parallel tool calls:
             logger.debug(f"Added locale context ({locale}) to system prompt for user {user_id}")
         
         if username:
-            username_info = f"\n\n<user_info>\n"
+            username_info = "\n\n<user_info>\n"
             username_info += f"The user's name is: {username}\n"
             username_info += "Use this to personalize responses and address the user appropriately.\n"
             username_info += "</user_info>"
@@ -639,7 +638,7 @@ Multiple parallel tool calls:
         if subscription:
             from core.utils.config import config
             sub = subscription
-            tier_info = f"\n\n<user_subscription>\n"
+            tier_info = "\n\n<user_subscription>\n"
             tier_info += f"Current plan: {sub['display_name']} ({sub['name']})\n"
             if sub['name'] in ('free', 'none'):
                 tier_info += "Tier type: Free\n"
@@ -683,7 +682,7 @@ Multiple parallel tool calls:
             return None
         
         if not thread_id:
-            logger.debug(f"Memory fetch skipped: no thread_id")
+            logger.debug("Memory fetch skipped: no thread_id")
             return None
         
         try:
@@ -790,7 +789,7 @@ Multiple parallel tool calls:
 
             # Skip tier check in local mode (for testing)
             if config.ENV_MODE == EnvMode.LOCAL:
-                logger.debug(f"[PROMO] Local mode - showing promo for testing")
+                logger.debug("[PROMO] Local mode - showing promo for testing")
             else:
                 tier_info = await subscription_service.get_user_subscription_tier(user_id)
                 tier_name = tier_info.get('name', 'free')

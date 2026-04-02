@@ -1,4 +1,4 @@
-from daytona_sdk import AsyncDaytona, DaytonaConfig, CreateSandboxFromSnapshotParams, AsyncSandbox, SessionExecuteRequest, Resources, SandboxState
+from daytona_sdk import AsyncDaytona, DaytonaConfig, CreateSandboxFromSnapshotParams, AsyncSandbox, SessionExecuteRequest, SandboxState
 from dotenv import load_dotenv
 from core.utils.logger import logger
 from core.utils.config import config
@@ -136,7 +136,7 @@ async def create_sandbox(password: str, project_id: str = None) -> AsyncSandbox:
     # Start supervisord in a session for new sandbox
     await start_supervisord_session(sandbox)
     
-    logger.info(f"Sandbox environment successfully initialized")
+    logger.info("Sandbox environment successfully initialized")
     return sandbox
 
 async def delete_sandbox(sandbox_id: str) -> bool:

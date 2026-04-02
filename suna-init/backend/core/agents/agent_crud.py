@@ -1,27 +1,47 @@
 from typing import Optional
-from fastapi import APIRouter, HTTPException, Depends, File, UploadFile, Query, Request
+from fastapi import APIRouter, HTTPException, Depends, Query, Request
 
 from core.utils.auth_utils import verify_and_get_user_id_from_jwt
 from core.utils.logger import logger
 from core.utils.config import config, EnvMode
 from core.utils.pagination import PaginationParams
 from core.utils.core_tools_helper import ensure_core_tools_enabled
-from core.ai_models import model_manager
 
 from core.api_models import (
+from core.services.supabase import DBConnection
+from core.utils.mcp_helpers import merge_custom_mcps
+    from core.versioning.version_service import get_version_service
+from core.config.config_helper import build_unified_config
+        from core.agents import repo as agents_repo
+                from core.versioning import repo as versioning_repo
+                    import json
+                from core.versioning import repo as versioning_repo
+                import uuid
+            import json
+        from .agent_loader import get_agent_loader
+    from core.agents import repo as agents_repo
+            from core.triggers.trigger_service import get_trigger_service
+            from core.cache.runtime_cache import invalidate_agent_config_cache
+            from core.utils.cache import Cache
+        from .agent_service import AgentService, AgentFilters
+        from .agent_loader import get_agent_loader
+    from core.agents import repo as agents_repo
+    from core.utils.limits_checker import check_agent_count_limit
+            from core.config.suna_config import SUNA_CONFIG
+            from core.config.config_helper import _get_default_agentpress_tools
+            from core.ai_models import model_manager
+        from core.utils.cache import Cache
+        from .agent_loader import get_agent_loader
+        from core.utils.icon_generator import generate_icon_and_colors as generate_agent_icon_and_colors
     AgentUpdateRequest, AgentResponse, AgentVersionResponse, AgentsResponse, 
     PaginationInfo, AgentCreateRequest, AgentIconGenerationRequest, AgentIconGenerationResponse
 )
-from core.services.supabase import DBConnection
 
 db = DBConnection()
-from core.utils.mcp_helpers import merge_custom_mcps
 
 async def _get_version_service():
     """Get the version service instance."""
-    from core.versioning.version_service import get_version_service
     return await get_version_service()
-from core.config.config_helper import build_unified_config
 
 router = APIRouter(tags=["agents"])
 
@@ -38,7 +58,6 @@ async def update_agent(
         print(f"[DEBUG] update_agent: Received icon fields - icon_name={agent_data.icon_name}, icon_color={agent_data.icon_color}, icon_background={agent_data.icon_background}")
     
     try:
-        from core.agents import repo as agents_repo
         
         existing_agent_data = await agents_repo.get_agent_by_id(agent_id)
         
@@ -106,12 +125,10 @@ async def update_agent(
         if current_version_data is None:
             logger.debug(f"Agent {agent_id} has no version data, creating initial version")
             try:
-                from core.versioning import repo as versioning_repo
                 triggers = await versioning_repo.get_agent_triggers(agent_id)
                 
                 parsed_triggers = []
                 if triggers:
-                    import json
                     for trigger in triggers:
                         trigger_copy = trigger.copy()
                         if 'config' in trigger_copy and isinstance(trigger_copy['config'], str):
@@ -145,8 +162,6 @@ async def update_agent(
                 )
                 initial_version_data["config"] = initial_config
                 
-                from core.versioning import repo as versioning_repo
-                import uuid
                 
                 version_id = str(uuid.uuid4())
                 await versioning_repo.create_agent_version_with_config(
@@ -188,7 +203,6 @@ async def update_agent(
         def values_different(new_val, old_val):
             if new_val is None:
                 return False
-            import json
             try:
                 new_json = json.dumps(new_val, sort_keys=True) if new_val is not None else None
                 old_json = json.dumps(old_val, sort_keys=True) if old_val is not None else None
@@ -376,7 +390,6 @@ async def update_agent(
             }
         
         # Load the updated agent with full config
-        from .agent_loader import get_agent_loader
         loader = await get_agent_loader()
         agent_data_obj = await loader.load_agent(agent_id, user_id, load_config=True)
         
@@ -390,7 +403,6 @@ async def update_agent(
 
 @router.delete("/agents/{agent_id}", summary="Delete Agent", operation_id="delete_agent")
 async def delete_agent(agent_id: str, user_id: str = Depends(verify_and_get_user_id_from_jwt)):
-    from core.agents import repo as agents_repo
     
     logger.debug(f"Deleting agent: {agent_id}")
     
@@ -411,7 +423,6 @@ async def delete_agent(agent_id: str, user_id: str = Depends(verify_and_get_user
         
         # Clean up triggers before deleting agent
         try:
-            from core.triggers.trigger_service import get_trigger_service
             trigger_service = get_trigger_service(db)
             
             triggers = await agents_repo.get_agent_triggers(agent_id)
@@ -437,14 +448,12 @@ async def delete_agent(agent_id: str, user_id: str = Depends(verify_and_get_user
             raise HTTPException(status_code=403, detail="Unable to delete agent - permission denied or agent not found")
         
         try:
-            from core.cache.runtime_cache import invalidate_agent_config_cache
             await invalidate_agent_config_cache(agent_id)
             logger.debug(f"🗑️ Invalidated cache for deleted agent {agent_id}")
         except Exception as cache_error:
             logger.warning(f"Agent config cache invalidation failed for {agent_id}: {str(cache_error)}")
         
         try:
-            from core.utils.cache import Cache
             await Cache.invalidate(f"agent_count_limit:{user_id}")
         except Exception as cache_error:
             logger.warning(f"Cache invalidation failed for user {user_id}: {str(cache_error)}")
@@ -474,7 +483,6 @@ async def get_agents(
     content_type: Optional[str] = Query(None, description="Content type filter: 'agents', 'templates', or None for agents only")
 ):
     try:
-        from .agent_service import AgentService, AgentFilters
         
         tools_list = []
         if tools:
@@ -537,7 +545,6 @@ async def get_agent(agent_id: str, user_id: str = Depends(verify_and_get_user_id
     logger.debug(f"Fetching agent {agent_id} for user: {user_id}")
     
     try:
-        from .agent_loader import get_agent_loader
         loader = await get_agent_loader()
         
         agent_data = await loader.load_agent(agent_id, user_id, load_config=True)
@@ -554,12 +561,10 @@ async def create_agent(
     agent_data: AgentCreateRequest,
     user_id: str = Depends(verify_and_get_user_id_from_jwt)
 ):
-    from core.agents import repo as agents_repo
     
     logger.debug(f"Creating new agent for user: {user_id}")
     client = await db.client
     
-    from core.utils.limits_checker import check_agent_count_limit
     limit_check = await check_agent_count_limit(user_id)
     
     if not limit_check['can_create']:
@@ -596,9 +601,6 @@ async def create_agent(
         
         try:
             version_service = await _get_version_service()
-            from core.config.suna_config import SUNA_CONFIG
-            from core.config.config_helper import _get_default_agentpress_tools
-            from core.ai_models import model_manager
             
             system_prompt = SUNA_CONFIG["system_prompt"]
             
@@ -643,13 +645,11 @@ async def create_agent(
             await agents_repo.delete_agent(agent['agent_id'], user_id)
             raise HTTPException(status_code=500, detail="Failed to create initial version")
         
-        from core.utils.cache import Cache
         await Cache.invalidate(f"agent_count_limit:{user_id}")
         
         logger.debug(f"Created agent {agent['agent_id']} with v1 for user: {user_id}")
         
         # Load the created agent with full config
-        from .agent_loader import get_agent_loader
         loader = await get_agent_loader()
         agent_data = await loader.load_agent(agent['agent_id'], user_id, load_config=True)
         
@@ -670,7 +670,6 @@ async def generate_agent_icon(
     logger.debug(f"Generating icon and colors for agent: {request.name}")
     
     try:
-        from core.utils.icon_generator import generate_icon_and_colors as generate_agent_icon_and_colors
         
         result = await generate_agent_icon_and_colors(
             name=request.name

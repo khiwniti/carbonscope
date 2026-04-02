@@ -12,6 +12,7 @@ Usage:
     python delete_free_user_sandboxes.py [--dry-run] [--sandbox-ids ID1,ID2,ID3] [--use-json file.json]
 """
 
+from core.utils.logger import logger
 PROD_SUPABASE_URL = "https://jbriwassebxdwoieikga.supabase.co"  # Your production Supabase URL
 PROD_SUPABASE_KEY = ""  # Your production Supabase service role key  
 PROD_STRIPE_SECRET_KEY = ""  # Your production Stripe secret key
@@ -32,10 +33,8 @@ import sys
 import argparse
 import json
 import re
-from datetime import datetime
-from typing import List, Optional, Dict, Set
+from typing import List, Optional, Dict
 from core.utils.config import config
-from core.utils.logger import logger
 from core.services.supabase import DBConnection
 from core.billing.subscriptions import subscription_service
 

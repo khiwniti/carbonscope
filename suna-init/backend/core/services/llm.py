@@ -1,14 +1,13 @@
 from typing import Union, Dict, Any, Optional, AsyncGenerator, List
 import os
-import json
 import asyncio
 
+from core.utils.logger import logger
 os.environ.setdefault("AIOHTTP_CONNECTOR_LIMIT", "0")
 os.environ.setdefault("AIOHTTP_CONNECTOR_LIMIT_PER_HOST", "0")
 
 import litellm
 from litellm.files.main import ModelResponse
-from core.utils.logger import logger
 from core.utils.config import config
 from core.utils.llm_debugger import llm_debug
 from core.agentpress.error_processor import ErrorProcessor
@@ -191,7 +190,7 @@ async def make_llm_api_call(
     messages = _strip_internal_properties(messages)
     
     if model_name == "mock-ai":
-        logger.info(f"[LLM] Using mock provider for testing")
+        logger.info("[LLM] Using mock provider for testing")
         from core.test_harness.mock_llm import get_mock_provider
         mock_provider = get_mock_provider(delay_ms=20)
         return mock_provider.acompletion(

@@ -358,7 +358,6 @@ async def install_template(
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
-from core.utils.pagination import PaginationParams
 
 class MarketplacePaginationInfo(BaseModel):
     current_page: int
@@ -442,7 +441,7 @@ async def get_marketplace_templates(
                 from core.utils.auth_utils import verify_and_get_user_id_from_jwt
                 user_id = await verify_and_get_user_id_from_jwt(request)
                 creator_id_filter = user_id
-            except Exception as e:
+            except Exception:
                 raise HTTPException(status_code=401, detail="Authentication required for 'mine' filter")
         
         tags_list = []
