@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, memo, useMemo } from 'react';
 import * as ResizablePrimitive from 'react-resizable-panels';
 import { SiteHeader } from '@/components/thread/thread-site-header';
-import { CarbonScopeComputer, ToolCallInput } from '@/components/thread/CarbonScope-computer';
+import { CarbonScopeComputer, ToolCallInput } from '@/components/thread/carbonscope-computer';
 import { Project } from '@/lib/api/threads';
 import { ApiMessageType } from '@/components/thread/types';
 import { useIsMobile } from '@/hooks/utils';
@@ -11,7 +11,7 @@ import {
   ResizablePanel,
   ResizableHandle,
 } from '@/components/ui/resizable';
-import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/carbonscope-computer-store';
 
 interface ThreadLayoutProps {
   children: React.ReactNode;

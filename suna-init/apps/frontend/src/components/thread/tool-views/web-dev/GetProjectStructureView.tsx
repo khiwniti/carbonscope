@@ -18,7 +18,7 @@ import {
   Globe,
   Play
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from '../types';
 import { getToolTitle, normalizeContentToString } from '../utils';
 import { cn } from '@/lib/utils';

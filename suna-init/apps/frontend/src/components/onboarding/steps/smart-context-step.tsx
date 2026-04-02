@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { StepWrapper } from '../shared/step-wrapper';

@@ -4,7 +4,7 @@ import { memo, useState, useRef, useEffect, useCallback, KeyboardEvent } from 'r
 import { useQueryClient } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
 import { backendApi } from '@/lib/api-client';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { fileQueryKeys } from '@/hooks/files/use-file-queries';
 
 interface TerminalLine {

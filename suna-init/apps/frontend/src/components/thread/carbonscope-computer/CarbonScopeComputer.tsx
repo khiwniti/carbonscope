@@ -8,7 +8,7 @@ import { createPortal } from 'react-dom';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ApiMessageType } from '@/components/thread/types';
 import { Globe, CircleDashed } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useIsMobile } from '@/hooks/utils';
 import { ToolView } from '../tool-views/wrapper';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,7 +21,7 @@ import {
   useCarbonScopeComputerStore,
   useCarbonScopeComputerPendingToolNavIndex,
   useCarbonScopeComputerClearPendingToolNav,
-} from '@/stores/CarbonScope-computer-store';
+} from '@/stores/carbonscope-computer-store';
 import { FileBrowserView } from './FileBrowserView';
 import { FileViewerView } from './FileViewerView';
 import { ToolCallData, ToolResultData } from '../tool-views/types';
@@ -82,7 +82,7 @@ interface ToolCallSnapshot {
 
 type NavigationMode = 'live' | 'manual';
 
-const FLOATING_LAYOUT_ID = 'CarbonScope-computer-float';
+const FLOATING_LAYOUT_ID = 'carbonscope-computer-float';
 
 export const CarbonScopeComputer = memo(function CarbonScopeComputer({
   isOpen,
@@ -990,7 +990,7 @@ export const CarbonScopeComputer = memo(function CarbonScopeComputer({
   return (
     <motion.div
       key="sidepanel-resizable"
-      layoutId="CarbonScope-computer-window"
+      layoutId="carbonscope-computer-window"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       transition={{

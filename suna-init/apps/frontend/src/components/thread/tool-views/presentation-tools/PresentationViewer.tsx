@@ -27,7 +27,7 @@ import {
   ExternalLink,
   ChevronDown,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from '../types';
 import { formatTimestamp, getToolTitle } from '../utils';
 import { downloadPresentation, handleGoogleSlidesUpload } from '../utils/presentation-utils';

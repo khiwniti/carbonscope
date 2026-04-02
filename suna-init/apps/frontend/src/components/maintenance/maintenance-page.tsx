@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useApiHealth } from '@/hooks/usage/use-health';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';

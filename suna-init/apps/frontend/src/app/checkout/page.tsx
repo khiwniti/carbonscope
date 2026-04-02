@@ -3,7 +3,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Script from 'next/script';
 
@@ -173,7 +173,7 @@ export default function CheckoutPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-white flex items-center justify-center">
-        <CarbonScopeLoader size="large" forceTheme="light" />
+        <CarbonScopeLoader size="large" />
       </div>
     }>
       <CheckoutContent />

@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CreditCard, Zap, Shield, ArrowRight, CheckCircle, LogOut } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { toast } from '@/lib/toast';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, Suspense, lazy } from 'react';

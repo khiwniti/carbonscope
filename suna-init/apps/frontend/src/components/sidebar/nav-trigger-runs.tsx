@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ThreadIcon } from './thread-icon';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSidebar } from '@/components/ui/sidebar';

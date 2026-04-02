@@ -36,7 +36,7 @@ import {
     FileIcon,
     Folder,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { toast } from '@/lib/toast';
 import { createClient } from '@/lib/supabase/client';
 import { useNameValidation } from '@/lib/validation';

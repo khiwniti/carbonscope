@@ -394,7 +394,7 @@ export const useCarbonScopeComputerStore = create<CarbonScopeComputerState>()(
       },
     }),
     {
-      name: 'CarbonScope-computer-store',
+      name: 'carbonscope-computer-store',
     }
   )
 );

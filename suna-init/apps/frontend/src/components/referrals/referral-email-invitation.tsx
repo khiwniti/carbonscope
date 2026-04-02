@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Mail, X, Check } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useSendReferralEmails } from '@/hooks/referrals/use-referrals';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';

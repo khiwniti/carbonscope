@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
 import { toast } from '@/lib/toast';
-import { ToolCallInput } from '@/components/thread/CarbonScope-computer';
+import { ToolCallInput } from '@/components/thread/carbonscope-computer';
 import { UnifiedMessage, ParsedMetadata, AgentStatus } from '@/components/thread/types';
 import { safeJsonParse } from '@/components/thread/utils';
 import { useIsMobile } from '@/hooks/utils';
 import { isAskOrCompleteTool } from './utils';
 import { isHiddenTool } from '@agentpress/shared/tools';
-import { useCarbonScopeComputerStore, useIsSidePanelOpen, useSetIsSidePanelOpen } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore, useIsSidePanelOpen, useSetIsSidePanelOpen } from '@/stores/carbonscope-computer-store';
 import { getOrAssignToolNumber, getToolNumber } from './tool-tracking';
 
 interface UseThreadToolCallsReturn {

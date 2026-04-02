@@ -15,7 +15,7 @@ import {
   Info,
   Download,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 
 interface VideoRendererProps {
   url: string;

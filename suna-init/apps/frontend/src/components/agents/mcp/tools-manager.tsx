@@ -22,7 +22,7 @@ import {
   RefreshCw,
   Save
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { cn } from '@/lib/utils';
 
 import { useCustomMCPToolsData } from '@/hooks/agents/use-custom-mcp-tools';

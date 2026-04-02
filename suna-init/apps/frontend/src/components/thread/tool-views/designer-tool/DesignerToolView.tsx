@@ -15,7 +15,7 @@ import {
   Lock,
   Unlock,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from '../types';
 import { formatTimestamp } from '../utils';
 import { extractDesignerData } from './_utils';

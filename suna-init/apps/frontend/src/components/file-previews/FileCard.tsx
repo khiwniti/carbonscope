@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { cn } from '@/lib/utils';
 import { getFileType, getFileIcon, getTypeLabel, getFileSize, getFilename } from '@/lib/utils/file-utils';
 

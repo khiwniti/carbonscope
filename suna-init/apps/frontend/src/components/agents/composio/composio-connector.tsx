@@ -59,7 +59,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { backendApi } from '@/lib/api-client';
 import { composioApi } from '@/hooks/composio/utils';
 import { ComposioToolsSelector } from './composio-tools-selector';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 
 interface ComposioConnectorProps {
   app: ComposioToolkit;

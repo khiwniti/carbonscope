@@ -46,7 +46,7 @@ const PresenceDebug = lazy(() =>
 );
 
 const CarbonScopeAppBanners = lazy(() => 
-  import('@/components/announcements/CarbonScope-app-banners').then(mod => ({ default: mod.CarbonScopeAppBanners }))
+  import('@/components/announcements/carbonscope-app-banners').then(mod => ({ default: mod.CarbonScopeAppBanners }))
 );
 
 const TutorialsBanner = lazy(() => 

@@ -6,8 +6,8 @@ import {
   transformerNotationWordHighlight,
 } from '@shikijs/transformers';
 import type { HTMLAttributes } from 'react';
-import {
 import { getSafeHtml } from '@/lib/sanitize';
+import {
   type BundledLanguage,
   type CodeOptionsMultipleThemes,
   codeToHtml,

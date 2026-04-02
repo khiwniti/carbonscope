@@ -10,7 +10,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { cn } from '@/lib/utils';
 import { getFilename, getFileIcon } from '@/lib/utils/file-utils';
 import { useFileContentQuery } from '@/hooks/files/use-file-queries';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 
 // Configure PDF.js worker (idempotent — same as pdf-renderer.tsx)
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(

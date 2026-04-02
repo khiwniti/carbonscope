@@ -19,7 +19,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Search, Check, ChevronDown, Plus, Plug, Brain, LibraryBig, Zap, Sparkles, ChevronLeft } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useAgents } from '@/hooks/agents/use-agents';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 import { SpotlightCard } from '@/components/ui/spotlight-card';

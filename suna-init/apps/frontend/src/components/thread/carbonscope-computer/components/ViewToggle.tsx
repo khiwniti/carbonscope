@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { ViewType } from '@/stores/CarbonScope-computer-store';
+import { ViewType } from '@/stores/carbonscope-computer-store';
 import { HIDE_BROWSER_TAB } from '@/components/thread/utils';
 
 interface ViewToggleProps {

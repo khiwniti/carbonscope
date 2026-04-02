@@ -16,7 +16,7 @@ import {
   Table,
   CheckCircle2,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from './types';
 import { getToolTitle } from './utils';
 import { Card, CardContent } from '@/components/ui/card';

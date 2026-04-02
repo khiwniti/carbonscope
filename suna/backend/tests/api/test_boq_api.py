@@ -6,7 +6,7 @@ import io
 from fastapi.testclient import TestClient
 from fastapi import FastAPI
 
-from api.boq import router
+from routers.boq import router
 from core.auth.auth import get_current_user
 
 

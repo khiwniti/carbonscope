@@ -67,7 +67,7 @@ import { fileQueryKeys } from '@/hooks/files';
 import { useProjectRealtime } from '@/hooks/threads';
 import { handleGoogleSlidesUpload } from './tool-views/utils/presentation-utils';
 import { useTranslations } from 'next-intl';
-import { useCarbonScopeComputerStore, useSetIsSidePanelOpen } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore, useSetIsSidePanelOpen } from '@/stores/carbonscope-computer-store';
 import { useToolStreamStore } from '@/stores/tool-stream-store';
 import { useOptimisticFilesStore } from '@/stores/optimistic-files-store';
 import { useProcessStreamOperation } from '@/stores/spreadsheet-store';

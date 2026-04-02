@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Cpu, HardDrive, MemoryStick, MapPin, AlertTriangle, Loader2 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 import { cn } from '@/lib/utils';
 import type { SandboxState, SandboxStatus, SandboxDetails } from '@/hooks/files/use-sandbox-details';

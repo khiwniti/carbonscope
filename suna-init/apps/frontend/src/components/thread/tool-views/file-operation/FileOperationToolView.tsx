@@ -12,7 +12,7 @@ import {
   Minus,
   Plus,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import {
   formatTimestamp,
   getToolTitle,
@@ -74,7 +74,7 @@ import { toast } from '@/lib/toast';
 import { PresentationSlideCard } from '../presentation-tools/PresentationSlideCard';
 import { PresentationSlideSkeleton } from '../presentation-tools/PresentationSlideSkeleton';
 import { usePresentationViewerStore } from '@/stores/presentation-viewer-store';
-import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/carbonscope-computer-store';
 import { useSmoothStream } from '@/lib/streaming';
 
 const UnifiedDiffView: React.FC<{ lineDiff: LineDiff[]; fileName?: string }> = ({ lineDiff, fileName }) => (

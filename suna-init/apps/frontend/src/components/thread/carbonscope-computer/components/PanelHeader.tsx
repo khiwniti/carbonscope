@@ -4,7 +4,7 @@ import { memo, useState, useEffect } from 'react';
 import { Minimize2, Wifi, BatteryLow, BatteryMedium, BatteryFull, BatteryCharging, FolderOpen, Activity, Loader2, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DrawerTitle } from '@/components/ui/drawer';
-import { ViewType } from '@/stores/CarbonScope-computer-store';
+import { ViewType } from '@/stores/carbonscope-computer-store';
 import { cn } from '@/lib/utils';
 import { ViewToggle } from './ViewToggle';
 import { ToolbarButtons } from './ToolbarButtons';
@@ -243,7 +243,7 @@ export const PanelHeader = memo(function PanelHeader({
         {/* Left: Logo - compact for mobile */}
         <div className="flex items-center min-w-0">
           <Image
-            src="/CarbonScope-computer-white.svg"
+            src="/carbonscope-computer-white.svg"
             alt="CarbonScope Computer"
             width={120}
             height={14}
@@ -251,7 +251,7 @@ export const PanelHeader = memo(function PanelHeader({
             priority
           />
           <Image
-            src="/CarbonScope-computer-black.svg"
+            src="/carbonscope-computer-black.svg"
             alt="CarbonScope Computer"
             width={120}
             height={14}
@@ -300,7 +300,7 @@ export const PanelHeader = memo(function PanelHeader({
         className="flex items-center justify-center cursor-pointer select-none hover:opacity-80 transition-opacity"
       >
         <Image
-          src="/CarbonScope-computer-white.svg"
+          src="/carbonscope-computer-white.svg"
           alt="CarbonScope Computer"
           width={140}
           height={16}
@@ -308,7 +308,7 @@ export const PanelHeader = memo(function PanelHeader({
           priority
         />
         <Image
-          src="/CarbonScope-computer-black.svg"
+          src="/carbonscope-computer-black.svg"
           alt="CarbonScope Computer"
           width={140}
           height={16}

@@ -22,7 +22,7 @@ import {
   Zap,
   Brain,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { format, addDays, subDays, startOfWeek, startOfMonth, startOfQuarter, startOfYear } from 'date-fns';

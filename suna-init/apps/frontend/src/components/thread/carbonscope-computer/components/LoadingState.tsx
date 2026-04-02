@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DrawerContent } from '@/components/ui/drawer';
-import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/carbonscope-computer-store';
 import { PanelHeader } from './PanelHeader';
 
 interface LoadingStateProps {

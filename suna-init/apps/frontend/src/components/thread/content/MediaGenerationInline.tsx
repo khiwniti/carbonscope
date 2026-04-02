@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from 'react';
 import { Play, Pause } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useImageContent, useFileContent } from '@/hooks/files';
 import { getToolIcon } from '@/components/thread/utils';
 import { AppIcon } from '@/components/thread/tool-views/shared/AppIcon';

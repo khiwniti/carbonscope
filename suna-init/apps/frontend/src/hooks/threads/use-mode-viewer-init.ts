@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/carbonscope-computer-store';
 
 type Mode = 'slides' | 'sheets' | 'docs' | 'canvas' | 'video' | 'research';
 

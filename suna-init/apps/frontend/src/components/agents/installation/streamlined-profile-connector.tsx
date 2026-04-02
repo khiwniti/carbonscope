@@ -9,7 +9,7 @@ import {
   Shield,
   Settings
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { toast } from '@/lib/toast';
 import { ComposioCredentialProfileSelector } from '@/components/agents/composio/composio-credential-profile-selector';
 import { ComposioConnector } from '@/components/agents/composio/composio-connector';

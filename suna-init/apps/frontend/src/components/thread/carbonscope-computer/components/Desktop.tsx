@@ -12,7 +12,7 @@ import { getUserFriendlyToolName, getToolIcon } from '@/components/thread/utils'
 import { ToolCallInput } from '../CarbonScopeComputer';
 import { Project } from '@/lib/api/threads';
 import { ApiMessageType } from '@/components/thread/types';
-import { ViewType } from '@/stores/CarbonScope-computer-store';
+import { ViewType } from '@/stores/carbonscope-computer-store';
 import { cn } from '@/lib/utils';
 import { useSandboxDetails, useSandboxStatus } from '@/hooks/files/use-sandbox-details';
 import { useDirectoryQuery, fetchFileContent, fileQueryKeys } from '@/hooks/files/use-file-queries';

@@ -44,7 +44,7 @@ import {
   Lock,
   Sparkles,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { toast } from '@/lib/toast';
 import { cn } from '@/lib/utils';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image as ImageIcon, ImageOff, CheckCircle, AlertTriangle, Download, ZoomIn, ZoomOut, Trash2 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from '../types';
 import {
   formatTimestamp,

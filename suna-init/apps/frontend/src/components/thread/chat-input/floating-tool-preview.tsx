@@ -1,10 +1,10 @@
 import React from 'react';
 import { Maximize2 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { getToolIcon, getUserFriendlyToolName, extractPrimaryParam } from '@/components/thread/utils';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { ToolCallInput } from '@/components/thread/CarbonScope-computer';
+import { ToolCallInput } from '@/components/thread/carbonscope-computer';
 import { motion } from 'framer-motion';
 
 export type { ToolCallInput };
@@ -80,7 +80,7 @@ export const FloatingToolPreview: React.FC<FloatingToolPreviewProps> = ({
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
       <motion.div
-        layoutId="CarbonScope-computer-window"
+        layoutId="carbonscope-computer-window"
         className="bg-card border border-border rounded-3xl p-2 w-full cursor-pointer group"
         onClick={onExpand}
         whileHover={{ scale: 1.01 }}

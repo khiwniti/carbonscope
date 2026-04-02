@@ -17,7 +17,7 @@ import {
   CheckCircle,
   Zap
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { cn } from '@/lib/utils';
 import { ProfileConnector } from './streamlined-profile-connector';
 import { CustomServerStep } from './custom-server-step';

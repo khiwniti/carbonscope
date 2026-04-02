@@ -12,7 +12,7 @@ import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, ArrowLeft, Info, Zap, ChevronRight, Plus, Sparkles, CheckCircle2, Link2, Activity } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useComposioAppsWithTriggers, useComposioAppTriggers, useCreateComposioEventTrigger, ComposioTriggerType } from '@/hooks/composio/use-composio-triggers';
 import { useUpdateTrigger } from '@/hooks/triggers';
 import { useComposioProfiles } from '@/hooks/composio/use-composio-profiles';

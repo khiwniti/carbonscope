@@ -14,7 +14,7 @@ import {
   ExternalLink,
   Pencil,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ThreadIcon } from './thread-icon';
 import { toast } from '@/lib/toast';
 import Link from 'next/link';

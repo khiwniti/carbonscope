@@ -19,7 +19,7 @@ export const EmptyState = memo(function EmptyState({ t }: EmptyStateProps) {
           
           {/* Logo - dark mode (white logo) */}
           <Image
-            src="/CarbonScope-computer-white.svg"
+            src="/carbonscope-computer-white.svg"
             alt="CarbonScope Computer"
             width={240}
             height={27}
@@ -29,7 +29,7 @@ export const EmptyState = memo(function EmptyState({ t }: EmptyStateProps) {
           
           {/* Logo - light mode (black logo) */}
           <Image
-            src="/CarbonScope-computer-black.svg"
+            src="/carbonscope-computer-black.svg"
             alt="CarbonScope Computer"
             width={240}
             height={27}

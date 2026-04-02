@@ -2,7 +2,7 @@ import { ToolViewProps } from '../types';
 import { getToolTitle } from '../utils';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, Download, RefreshCw } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useMemo, useState, useCallback } from 'react';
 import { SpreadsheetSimulation } from './SpreadsheetSimulation';
 import { SpreadsheetViewer, SyncState } from './SpreadsheetViewer';

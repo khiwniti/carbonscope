@@ -7,7 +7,7 @@ import { getUserFriendlyToolName, getToolIcon } from '@/components/thread/utils'
 import { cn } from '@/lib/utils';
 import { ToolCallInput } from '../CarbonScopeComputer';
 import { AppIcon } from '../../tool-views/shared/AppIcon';
-import { ViewType } from '@/stores/CarbonScope-computer-store';
+import { ViewType } from '@/stores/carbonscope-computer-store';
 
 const convertToolName = (toolName: string) => {
   if (toolName.includes('_')) {

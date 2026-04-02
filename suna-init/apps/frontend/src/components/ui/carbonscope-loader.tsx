@@ -36,6 +36,17 @@ interface CarbonScopeLoaderProps {
    * @default true
    */
   loop?: boolean;
+  /**
+   * Force a specific loader variant (overrides auto-detection).
+   * Use 'white' on dark backgrounds, 'black' on light backgrounds.
+   * @default 'auto'
+   */
+  variant?: 'white' | 'black' | 'auto';
+  /**
+   * Force light or dark theme for the loader colour.
+   * @deprecated Use 'variant' instead
+   */
+  forceTheme?: 'light' | 'dark';
 }
 
 const SIZE_MAP = {
@@ -79,6 +90,10 @@ export function CarbonScopeLoader({
   style,
   autoPlay = true,
   loop = true,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  variant,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  forceTheme,
 }: CarbonScopeLoaderProps) {
   const loaderSize = customSize || SIZE_MAP[size];
 

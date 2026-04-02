@@ -16,7 +16,7 @@ import {
   Home,
   Download
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { cn } from '@/lib/utils';
 import { useDirectoryQuery } from '@/hooks/files/use-file-queries';
 import { backendApi } from '@/lib/api-client';
@@ -40,7 +40,7 @@ import '@syncfusion/ej2-popups/styles/material.css';
 import '@syncfusion/ej2-dropdowns/styles/material.css';
 import '@syncfusion/ej2-grids/styles/material.css';
 import '@syncfusion/ej2-react-spreadsheet/styles/material.css';
-import '../../tool-views/spreadsheet/CarbonScope-spreadsheet-styles.css';
+import '../../tool-views/spreadsheet/carbonscope-spreadsheet-styles.css';
 
 const SYNCFUSION_LICENSE = "Ngo9BigBOggjHTQxAR8/V1JGaF1cXmhKYVFxWmFZfVhgdVdMZFtbR3JPIiBoS35RcEVhW3pfcnBdRWFeU0J0VEFf";
 const SYNCFUSION_BASE_URL = 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet';

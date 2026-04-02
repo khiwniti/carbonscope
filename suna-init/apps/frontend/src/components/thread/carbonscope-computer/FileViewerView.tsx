@@ -16,7 +16,7 @@ import {
   FileText,
   Download,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import {
   EditableFileRenderer,
   getEditableFileType,
@@ -32,7 +32,7 @@ import {
 } from '@/hooks/files';
 import { useDownloadRestriction } from '@/hooks/billing';
 import { cn } from '@/lib/utils';
-import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
+import { useCarbonScopeComputerStore } from '@/stores/carbonscope-computer-store';
 import { PresentationViewer } from '../tool-views/presentation-tools/PresentationViewer';
 import { FullScreenPresentationViewer } from '../tool-views/presentation-tools/FullScreenPresentationViewer';
 import { usePresentationViewerStore } from '@/stores/presentation-viewer-store';

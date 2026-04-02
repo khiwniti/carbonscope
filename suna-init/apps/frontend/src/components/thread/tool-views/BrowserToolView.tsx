@@ -24,7 +24,7 @@ import { ImageLoader } from './shared/ImageLoader';
 import { JsonViewer } from './shared/JsonViewer';
 import { ToolViewIconTitle } from './shared/ToolViewIconTitle';
 import { ToolViewFooter } from './shared/ToolViewFooter';
-import { CarbonScopeComputerHeader } from '../CarbonScope-computer/CarbonScopeComputerHeader';
+import { CarbonScopeComputerHeader } from '../carbonscope-computer/CarbonScopeComputerHeader';
 import { useSmoothToolField } from '@/hooks/messages';
 
 interface BrowserHeaderProps {

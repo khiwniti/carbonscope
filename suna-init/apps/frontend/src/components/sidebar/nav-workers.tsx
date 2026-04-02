@@ -8,7 +8,7 @@ import { AgentAvatar } from '@/components/thread/content/agent-avatar';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { NewAgentDialog } from '@/components/agents/new-agent-dialog';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useSidebar } from '@/components/ui/sidebar';
 import { useIsMobile } from '@/hooks/utils';
 import { usePricingModalStore } from '@/stores/pricing-modal-store';

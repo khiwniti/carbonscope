@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
 import { Computer, CornerDownLeft, Paperclip, Mic, Zap, FolderOpen, Globe, Presentation, BarChart3, FileText, Search, Image as ImageIcon, ChevronRight, File, Database } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { motion } from 'framer-motion';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 

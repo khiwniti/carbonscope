@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import React from 'react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { cn } from '@/lib/utils';
 
 const MermaidRendererClient = dynamic(

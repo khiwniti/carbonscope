@@ -9,7 +9,7 @@ import {
   ArrowUpRight,
   BookOpen
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from './types';
 import {
   formatTimestamp,

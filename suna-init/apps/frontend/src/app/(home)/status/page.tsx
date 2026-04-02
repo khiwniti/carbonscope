@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { AlertTriangle, CheckCircle, Clock, Wrench, Activity, Shield, Database, Globe, Zap } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 import { useTechnicalIssueQuery } from '@/hooks/edge-flags';
 import { AnimatedBg } from '@/components/ui/animated-bg';

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, memo, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useTranslations } from "next-intl";
 import {
   UnifiedMessage,

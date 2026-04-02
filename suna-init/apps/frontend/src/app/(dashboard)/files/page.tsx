@@ -2,12 +2,12 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useThreads } from '@/hooks/threads/use-threads';
-import { FileBrowserView } from '@/components/thread/CarbonScope-computer/FileBrowserView';
-import { FileViewerView } from '@/components/thread/CarbonScope-computer/FileViewerView';
-import { SandboxStatusView } from '@/components/thread/CarbonScope-computer/components/SandboxStatusView';
-import { useCarbonScopeComputerStore } from '@/stores/CarbonScope-computer-store';
+import { FileBrowserView } from '@/components/thread/carbonscope-computer/FileBrowserView';
+import { FileViewerView } from '@/components/thread/carbonscope-computer/FileViewerView';
+import { SandboxStatusView } from '@/components/thread/carbonscope-computer/components/SandboxStatusView';
+import { useCarbonScopeComputerStore } from '@/stores/carbonscope-computer-store';
 import { useSandboxStatusWithAutoStart, isSandboxUsable } from '@/hooks/files/use-sandbox-details';
 import { Button } from '@/components/ui/button';
 import {

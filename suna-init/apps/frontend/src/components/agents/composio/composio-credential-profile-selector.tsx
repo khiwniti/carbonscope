@@ -14,7 +14,7 @@ import {
   XCircle,
   Plus,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { useCredentialProfilesForMcp } from '@/hooks/mcp/use-credential-profiles';
 
 interface ComposioCredentialProfileSelectorProps {

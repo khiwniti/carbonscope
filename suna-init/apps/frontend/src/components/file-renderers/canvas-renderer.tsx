@@ -24,7 +24,7 @@ import {
   Frame,
   Palette,
 } from 'lucide-react';
-import { CarbonScopeLoader } from '@/components/ui/CarbonScope-loader';
+import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
