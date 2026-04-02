@@ -8,7 +8,6 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
-import { getSafeHtml } from '@/lib/sanitize';
 
 // Global cache for rendered Mermaid diagrams
 const mermaidCache = new Map<string, string>();
