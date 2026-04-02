@@ -4,6 +4,8 @@ from typing import Optional
 from core.utils.logger import logger
 
 
+from core.config import timeouts
+
 class BackgroundTaskManager:
     def __init__(self, state, ownership):
         self._state = state
@@ -47,7 +49,7 @@ class BackgroundTaskManager:
     async def _flush_loop(self):
         while True:
             try:
-                await asyncio.sleep(5)
+                await asyncio.sleep(timeouts.BACKGROUND_TASK_INTERVAL)
                 if self._state:
                     await self._state.flush()
             except asyncio.CancelledError:
@@ -58,7 +60,7 @@ class BackgroundTaskManager:
     async def _heartbeat_loop(self):
         while True:
             try:
-                await asyncio.sleep(10)
+                await asyncio.sleep(timeouts.BACKGROUND_TASK_RETRY_INTERVAL)
                 if self._state:
                     await self._ownership._heartbeat(self._state.run_id)
             except asyncio.CancelledError:

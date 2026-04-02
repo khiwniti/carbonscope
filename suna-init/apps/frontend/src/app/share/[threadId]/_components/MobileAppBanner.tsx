@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
+import { TIMEOUTS } from '@/config/timeouts';
 
 // Detect if user is on mobile device
 function isMobileDevice(): boolean {
@@ -67,7 +68,7 @@ export function MobileAppBanner({ threadId }: MobileAppBannerProps) {
 
     // Show banner after a short delay for better UX
     if (mobile) {
-      setTimeout(() => setIsVisible(true), 500);
+      setTimeout(() => setIsVisible(true), TIMEOUTS.MOBILE_BANNER_SHOW);
     }
   }, []);
 
@@ -84,14 +85,14 @@ export function MobileAppBanner({ threadId }: MobileAppBannerProps) {
     // Try to open the app
     window.location.href = appUrl;
 
-    // Fallback: If app doesn't open within 2 seconds, show app store
+    // Fallback: If app doesn't open, show app store after delay
     setTimeout(() => {
       if (platform === 'ios') {
         window.location.href = 'https://apps.apple.com/app/CarbonScope/id6739583417';
       } else if (platform === 'android') {
         window.location.href = 'https://play.google.com/store/apps/details?id=com.CarbonScope.app';
       }
-    }, 2000);
+    }, TIMEOUTS.AUTH_REDIRECT_DELAY);
   };
 
   // Don't render on desktop or if dismissed

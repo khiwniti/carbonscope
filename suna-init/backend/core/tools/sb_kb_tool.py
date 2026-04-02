@@ -7,6 +7,8 @@ from core.utils.config import config
 from core.knowledge_base.validation import FileNameValidator, ValidationError
 from core.utils.logger import logger
 
+from core.config import timeouts
+
 @tool_metadata(
     display_name="Knowledge Base",
     description="Store and retrieve information from your personal knowledge library",
@@ -406,7 +408,7 @@ class SandboxKbTool(SandboxToolsBase):
                 logger.debug(f"[KB_SYNC] Upload call completed for: {destination}")
 
                 # Small delay to ensure filesystem sync
-                await asyncio.sleep(0.3)
+                await asyncio.sleep(timeouts.VOICE_GENERATION_PROCESS_DELAY)
 
                 # Verify using SDK's get_file_info method first
                 try:

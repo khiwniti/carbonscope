@@ -1,3 +1,5 @@
+from core.config import timeouts
+
 #!/usr/bin/env python3
 import asyncio
 import sys
@@ -72,7 +74,7 @@ class VerifySubscriptionSyncService:
             await asyncio.gather(*tasks, return_exceptions=True)
             
             if i + batch_size < len(customers_result.data):
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(timeouts.STRESS_TEST_DELAY)
     
     async def verify_customer(self, customer: Dict) -> None:
         stripe_customer_id = customer['id']

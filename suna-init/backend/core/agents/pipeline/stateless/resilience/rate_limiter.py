@@ -8,6 +8,8 @@ from collections import deque
 from core.utils.logger import logger
 
 
+from core.config import timeouts
+
 class RateLimiter(ABC):
     @abstractmethod
     async def acquire(self, tokens: int = 1) -> bool:
@@ -89,7 +91,7 @@ class SlidingWindow(RateLimiter):
         while True:
             if await self.try_acquire(tokens):
                 return True
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(timeouts.FILE_POLL_INTERVAL)
 
     async def try_acquire(self, tokens: int = 1) -> bool:
         async with self._lock:

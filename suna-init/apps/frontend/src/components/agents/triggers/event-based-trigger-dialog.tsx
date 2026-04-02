@@ -22,6 +22,7 @@ import { cn, truncateString } from '@/lib/utils';
 import { ComposioConnector } from '@/components/agents/composio/composio-connector';
 import { UnifiedMarkdown } from '@/components/markdown';
 import { AgentModelSelector } from '@/components/agents/config/model-selector';
+import { TIMEOUTS } from '@/config/timeouts';
 
 interface EventBasedTriggerDialogProps {
     open: boolean;
@@ -445,15 +446,15 @@ export const EventBasedTriggerDialog: React.FC<EventBasedTriggerDialogProps> = (
                             setSelectedTrigger(matchingTrigger);
                         } else {
                             toast.error('Could not find the trigger type. It may have been removed or renamed.');
-                            setTimeout(() => onOpenChange(false), 2000);
+                            setTimeout(() => onOpenChange(false), TIMEOUTS.DIALOG_AUTO_CLOSE);
                         }
                     } else {
                         toast.error('Invalid trigger configuration: missing trigger_slug');
-                        setTimeout(() => onOpenChange(false), 2000);
+                        setTimeout(() => onOpenChange(false), TIMEOUTS.DIALOG_AUTO_CLOSE);
                     }
                 } else {
                     toast.error('No triggers available for this app');
-                    setTimeout(() => onOpenChange(false), 2000);
+                    setTimeout(() => onOpenChange(false), TIMEOUTS.DIALOG_AUTO_CLOSE);
                 }
             }
         }

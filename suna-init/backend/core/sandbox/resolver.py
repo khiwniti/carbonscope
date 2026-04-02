@@ -10,6 +10,8 @@ from core.sandbox.sandbox import get_or_start_sandbox, create_sandbox
 from core.cache.runtime_cache import get_cached_project_metadata, set_cached_project_metadata
 
 
+from core.config import timeouts
+
 @dataclass
 class SandboxInfo:
     sandbox_id: str
@@ -188,7 +190,7 @@ class SandboxResolver:
             sandbox = await create_sandbox(password, project_id)
             sandbox_id = sandbox.id
             
-            await asyncio.sleep(2)
+            await asyncio.sleep(timeouts.RETRY_DELAY)
             
             vnc_url, website_url, token = await self._get_preview_links(sandbox)
             

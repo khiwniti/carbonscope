@@ -7,6 +7,8 @@ from core.billing.external.stripe import StripeAPIWrapper
 from ..repositories.credit_account import CreditAccountRepository
 import stripe # type: ignore
 
+from core.config import timeouts
+
 class SchedulingService:
     def __init__(self):
         self.credit_repo = CreditAccountRepository()
@@ -114,7 +116,7 @@ class SchedulingService:
             else:
                 await self._release_completed_schedule(existing_schedule_id)
                 import asyncio
-                await asyncio.sleep(1)
+                await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
                 return None
                 
         except stripe.error.InvalidRequestError as e:

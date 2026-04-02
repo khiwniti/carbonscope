@@ -26,6 +26,7 @@ import { AgentAvatar } from '@/components/thread/content/agent-avatar';
 import { TriggerConfigStep } from './trigger-config-step';
 import { TriggerVariablesStep, type TriggerVariable } from './trigger-variables-step';
 import { toast } from '@/lib/toast';
+import { TIMEOUTS } from '@/config/timeouts';
 
 interface StreamlinedInstallDialogProps {
   item: MarketplaceTemplate | null;
@@ -431,7 +432,7 @@ export const StreamlinedInstallDialog: React.FC<StreamlinedInstallDialogProps> =
                       onProfileSelect={handleProfileSelect}
                       onComplete={() => {
                         if (currentStep < setupSteps.length - 1) {
-                          setTimeout(() => setCurrentStep(currentStep + 1), 500);
+                          setTimeout(() => setCurrentStep(currentStep + 1), TIMEOUTS.STEP_TRANSITION);
                         }
                       }}
                     />

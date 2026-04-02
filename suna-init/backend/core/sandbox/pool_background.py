@@ -5,6 +5,8 @@ from core.utils.logger import logger
 from core.sandbox.pool_config import get_pool_config
 from core.sandbox.pool_service import get_pool_service, SandboxPoolService
 
+from core.config import timeouts
+
 _pool_task: Optional[asyncio.Task] = None
 _cleanup_task: Optional[asyncio.Task] = None
 _keepalive_task: Optional[asyncio.Task] = None
@@ -19,7 +21,7 @@ async def _pool_replenishment_loop(service: SandboxPoolService) -> None:
         f"(min_size={config.min_size}, check_interval={config.check_interval}s)"
     )
     
-    await asyncio.sleep(5)
+    await asyncio.sleep(timeouts.BACKGROUND_TASK_INTERVAL)
     
     while True:
         try:
@@ -51,7 +53,7 @@ async def _pool_cleanup_loop(service: SandboxPoolService) -> None:
         f"(max_age={config.max_age}s, cleanup_interval={cleanup_interval}s)"
     )
     
-    await asyncio.sleep(60)
+    await asyncio.sleep(timeouts.CLEANUP_INTERVAL)
     
     while True:
         try:
@@ -79,7 +81,7 @@ async def _pool_keepalive_loop(service: SandboxPoolService) -> None:
         f"(interval={KEEPALIVE_INTERVAL_SECONDS}s)"
     )
     
-    await asyncio.sleep(30)
+    await asyncio.sleep(timeouts.KEEPALIVE_INTERVAL)
     
     while True:
         try:

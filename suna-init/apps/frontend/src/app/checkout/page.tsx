@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Script from 'next/script';
+import { TIMEOUTS } from '@/config/timeouts';
 
 function CheckoutContent() {
   const searchParams = useSearchParams()!;
@@ -28,21 +29,21 @@ function CheckoutContent() {
     // Check immediately
     if (checkStripe()) return;
 
-    // Keep checking for 5 seconds
+    // Keep checking for checkout polling interval
     const interval = setInterval(() => {
       if (checkStripe()) {
         clearInterval(interval);
       }
-    }, 100);
+    }, TIMEOUTS.CHECKOUT_POLL_INTERVAL);
 
     const timeout = setTimeout(() => {
       clearInterval(interval);
       if (typeof window.Stripe === 'undefined') {
-        console.error('❌ Stripe still not loaded after 5 seconds');
+        console.error('❌ Stripe still not loaded after timeout');
         setError('Payment system taking too long to load. Please refresh the page.');
         setIsLoading(false);
       }
-    }, 5000);
+    }, TIMEOUTS.CHECKOUT_TIMEOUT);
 
     return () => {
       clearInterval(interval);

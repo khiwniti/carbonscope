@@ -12,6 +12,8 @@ import asyncio
 import re
 from typing import Optional
 
+from core.config import timeouts
+
 @tool_metadata(
     display_name="Write & Edit",
     description="Write and edit files in the workspace. Create new files or modify existing ones",
@@ -380,7 +382,7 @@ Usage:
             await self.sandbox.fs.delete_file(full_path)
             
             # Verify the file was actually deleted
-            await asyncio.sleep(0.1)  # Small delay to ensure deletion is processed
+            await asyncio.sleep(timeouts.FILE_POLL_INTERVAL)  # Small delay to ensure deletion is processed
             if await self._file_exists(full_path):
                 logger.warning(f"File '{file_path}' still exists after delete_file call. Attempting alternative deletion method.")
                 # Try alternative: use shell command as fallback
@@ -389,7 +391,7 @@ Usage:
                     if result.exit_code != 0:
                         return self.fail_response(f"Failed to delete file '{file_path}'. File still exists after deletion attempt. Exit code: {result.exit_code}, stderr: {result.stderr}")
                     # Verify again
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(timeouts.FILE_POLL_INTERVAL)
                     if await self._file_exists(full_path):
                         return self.fail_response(f"Failed to delete file '{file_path}'. File still exists after deletion attempt.")
                 except Exception as shell_error:

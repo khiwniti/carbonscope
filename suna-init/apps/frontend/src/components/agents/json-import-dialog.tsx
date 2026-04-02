@@ -14,6 +14,7 @@ import type { SetupStep } from './installation/types';
 import { useAnalyzeJsonForImport, useImportAgentFromJson, type JsonAnalysisResult, type JsonImportResult } from '@/hooks/agents/use-json-import';
 import { AgentCountLimitError } from '@/lib/api/errors';
 import { cn } from '@/lib/utils';
+import { TIMEOUTS } from '@/config/timeouts';
 
 interface JsonImportDialogProps {
   open: boolean;
@@ -240,7 +241,7 @@ export const JsonImportDialog: React.FC<JsonImportDialogProps> = ({
 
   const handleStepComplete = useCallback(() => {
     if (currentStep < setupSteps.length - 1) {
-      setTimeout(() => setCurrentStep(currentStep + 1), 500);
+      setTimeout(() => setCurrentStep(currentStep + 1), TIMEOUTS.STEP_TRANSITION);
     }
   }, [currentStep, setupSteps.length]);
 

@@ -5,6 +5,8 @@ from core.utils.config import config
 from core.utils.config import Configuration
 import asyncio
 
+from core.config import timeouts
+
 load_dotenv()
 
 # logger.debug("Initializing Daytona sandbox configuration")
@@ -56,7 +58,7 @@ async def get_or_start_sandbox(sandbox_id: str) -> AsyncSandbox:
                 
                 # Wait for sandbox to reach STARTED state
                 for _ in range(30):
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
                     sandbox = await daytona.get(sandbox_id)
                     if sandbox.state == SandboxState.STARTED:
                         break

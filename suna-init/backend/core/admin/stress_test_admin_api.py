@@ -1,3 +1,5 @@
+from core.config import timeouts
+
 """
 Admin Stress Test API
 Runs stress tests by making actual HTTP calls to /agent/start endpoint.
@@ -250,7 +252,7 @@ async def run_stress_test(
                 }) + "\n"
             
             if batch_num < num_batches - 1:
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(timeouts.STRESS_TEST_DELAY)
         
         # Calculate summary
         total_time = time.time() - start_time

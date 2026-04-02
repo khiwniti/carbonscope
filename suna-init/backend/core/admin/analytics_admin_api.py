@@ -1,3 +1,5 @@
+from core.config import timeouts
+
 """
 Analytics Admin API
 Provides analytics data for the admin dashboard including:
@@ -3633,7 +3635,7 @@ async def _fetch_stripe_revenue(start_ts: int, end_ts: int) -> Dict[str, Any]:
 
                 failed_indices = still_failed
                 if failed_indices:
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
 
         successful_windows = 0
         failed_windows = 0

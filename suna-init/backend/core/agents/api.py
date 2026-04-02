@@ -1,3 +1,5 @@
+from core.config import timeouts
+
 """
 Agent runs API endpoints.
 
@@ -952,7 +954,7 @@ async def stream_agent_run(
     
     if not agent_run_data:
         for attempt in range(15):
-            await asyncio.sleep(0.2)
+            await asyncio.sleep(timeouts.API_RATE_LIMIT_DELAY)
             agent_run_data = await get_agent_run_stream_data(agent_run_id)
             if agent_run_data:
                 break

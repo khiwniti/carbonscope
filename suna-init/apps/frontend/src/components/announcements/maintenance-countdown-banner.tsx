@@ -3,6 +3,7 @@
 import { Wrench, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { AlertBanner } from './alert-banner';
+import { TIMEOUTS } from '@/config/timeouts';
 
 interface MaintenanceCountdownBannerProps {
   startTime: string;
@@ -72,7 +73,7 @@ export function MaintenanceCountdownBanner({
     };
 
     updateCountdown();
-    const interval = setInterval(updateCountdown, 30000);
+    const interval = setInterval(updateCountdown, TIMEOUTS.MAINTENANCE_CHECK);
     return () => clearInterval(interval);
   }, [startTime, endTime]);
 

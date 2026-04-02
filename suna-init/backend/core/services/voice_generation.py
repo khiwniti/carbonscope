@@ -1,3 +1,5 @@
+from core.config import timeouts
+
 """
 Voice Generation Service
 
@@ -442,7 +444,7 @@ async def generate_voice_stream(
         try:
             for i, chunk in enumerate(chunks):
                 if i > 0:
-                    await asyncio.sleep(0.3)
+                    await asyncio.sleep(timeouts.VOICE_GENERATION_PROCESS_DELAY)
                 url = await generate_voice_chunk(
                     text=chunk,
                     voice=request.voice,

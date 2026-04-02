@@ -22,6 +22,8 @@ from .auto_continue import AutoContinueChecker
 from .initialization import ManagerInitializer
 
 
+from core.config import timeouts
+
 class StatelessCoordinator(BaseCoordinator):
     INIT_TIMEOUT = 10.0
 
@@ -213,7 +215,7 @@ class StatelessCoordinator(BaseCoordinator):
         except Exception as e:
             logger.warning(f"[Coordinator] Pre-status flush error: {e}")
 
-        await asyncio.sleep(0.2)
+        await asyncio.sleep(timeouts.API_RATE_LIMIT_DELAY)
 
         # Queue for conversation analytics (non-blocking)
         try:

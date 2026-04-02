@@ -8,6 +8,8 @@ from core.agentpress.thread_manager import ThreadManager
 from core.utils.tool_output_streaming import stream_tool_output, get_tool_output_streaming_context, get_current_tool_call_id
 from core.utils.logger import logger
 
+from core.config import timeouts
+
 @tool_metadata(
     display_name="Bash",
     description="Execute bash commands in the workspace with optional timeout",
@@ -192,7 +194,7 @@ Usage notes:
                 
                 # Always cd to workspace directory since PTY starts in container's WORKDIR (/app)
                 await pty_handle.send_input(f"cd {cwd}\n")
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(timeouts.FILE_POLL_INTERVAL)
                 
                 # Add marker to detect completion
                 marker = f"__CMD_DONE_{str(uuid4())[:8]}__"
@@ -218,7 +220,7 @@ Usage notes:
                 # We need to wait for the SECOND occurrence
                 start_time = time.time()
                 while (time.time() - start_time) < timeout:
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(timeouts.FILE_POLL_INTERVAL)
                     
                     # Check if marker appeared in output (need 2 occurrences)
                     current_output = "".join(output_buffer)

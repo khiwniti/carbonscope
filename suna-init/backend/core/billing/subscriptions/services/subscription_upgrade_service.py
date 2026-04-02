@@ -6,6 +6,8 @@ import asyncio
 from core.utils.logger import logger
 from core.billing.shared.config import get_tier_by_price_id, get_price_type
 from core.billing.external.stripe import (
+from core.config import timeouts
+
     StripeAPIWrapper,
     generate_subscription_modify_idempotency_key
 )
@@ -44,7 +46,7 @@ class SubscriptionUpgradeService:
             subscription['customer'], subscription_id, account_id
         )
         
-        await asyncio.sleep(1)
+        await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
         
         modify_key = generate_subscription_modify_idempotency_key(subscription_id, target_price_id)
         
@@ -64,7 +66,7 @@ class SubscriptionUpgradeService:
             logger.error(f"Failed to modify subscription {subscription_id}: {e}")
             raise
         
-        await asyncio.sleep(1)
+        await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
         await self._cleanup_duplicate_subscriptions(
             subscription['customer'], updated_subscription.id, account_id
         )
@@ -209,7 +211,7 @@ class SubscriptionUpgradeService:
                     try:
                         await StripeAPIWrapper.cancel_subscription(sub.id, cancel_immediately=True)
                         duplicates_found.append(sub.id)
-                        await asyncio.sleep(0.5)
+                        await asyncio.sleep(timeouts.STRESS_TEST_DELAY)
                     except Exception as e:
                         logger.error(f"[CLEANUP] Failed to cancel duplicate subscription {sub.id}: {e}")
             

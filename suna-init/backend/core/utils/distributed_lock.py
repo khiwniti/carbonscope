@@ -6,6 +6,8 @@ from contextlib import asynccontextmanager
 from core.utils.logger import logger
 from core.services.supabase import DBConnection
 
+from core.config import timeouts
+
 class DistributedLock:
     def __init__(self, lock_key: str, timeout_seconds: int = 300, holder_id: Optional[str] = None):
         self.lock_key = lock_key
@@ -41,13 +43,13 @@ class DistributedLock:
                     logger.warning(f"[LOCK] Lock acquisition timeout after {elapsed}s: {self.lock_key}")
                     return False
                 
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(timeouts.STRESS_TEST_DELAY)
                 
             except Exception as e:
                 logger.error(f"[LOCK] Error acquiring lock {self.lock_key}: {e}")
                 if not wait:
                     return False
-                await asyncio.sleep(1)
+                await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
     
     async def release(self) -> bool:
         if not self._acquired:

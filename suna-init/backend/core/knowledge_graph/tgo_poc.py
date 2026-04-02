@@ -1,3 +1,5 @@
+from core.config import timeouts
+
 #!/usr/bin/env python3
 """
 TGO Proof-of-Concept Script
@@ -838,7 +840,7 @@ def main():
                 logger.error("Failed to create repository")
                 return 1
             # Wait for repository to be ready
-            time.sleep(2)
+            time.sleep(timeouts.TGO_API_DELAY)
 
         # Initialize clients
         client = GraphDBClient(REPOSITORY_URL)
@@ -856,7 +858,7 @@ def main():
         if args.reset:
             logger.warning("Clearing all data from repository")
             client.clear_repository()
-            time.sleep(1)
+            time.sleep(timeouts.TGO_RETRY_DELAY)
 
         # Step 2: Load ontology and data
         if args.all or args.load_data:

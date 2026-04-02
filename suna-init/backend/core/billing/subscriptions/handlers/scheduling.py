@@ -5,6 +5,8 @@ import stripe # type: ignore
 
 from core.utils.logger import logger
 from core.billing.shared.config import (
+from core.config import timeouts
+
     get_tier_by_name,
     get_tier_by_price_id,
     get_price_type
@@ -159,7 +161,7 @@ class SchedulingHandler:
                             logger.info(f"[DOWNGRADE] Released stale schedule {existing_schedule_id}")
                         except Exception as e:
                             logger.warning(f"[DOWNGRADE] Could not release schedule {existing_schedule_id}: {e}")
-                        await asyncio.sleep(1)
+                        await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
                         return None
                 
                 logger.info(f"[DOWNGRADE] Updating active schedule {existing_schedule_id}")
@@ -201,7 +203,7 @@ class SchedulingHandler:
                 except Exception as e:
                     logger.warning(f"[DOWNGRADE] Could not release schedule {existing_schedule_id}: {e}")
                 
-                await asyncio.sleep(1)
+                await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
                 return None
                 
         except stripe.error.InvalidRequestError as e:
@@ -218,7 +220,7 @@ class SchedulingHandler:
                     )
                 except Exception as release_err:
                     logger.warning(f"[DOWNGRADE] Could not release schedule: {release_err}")
-                await asyncio.sleep(1)
+                await asyncio.sleep(timeouts.SUBSCRIPTION_SCHEDULING_DELAY)
                 return None
             else:
                 raise

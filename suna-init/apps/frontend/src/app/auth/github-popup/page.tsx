@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
+import { TIMEOUTS } from '@/config/timeouts';
 
 interface AuthMessage {
   type: 'github-auth-success' | 'github-auth-error';
@@ -43,7 +44,7 @@ export default function GitHubOAuthPopup() {
       // Close popup after short delay
       setTimeout(() => {
         window.close();
-      }, 500);
+      }, TIMEOUTS.POPUP_STATUS_CHECK);
     };
 
     const handleError = (message: string) => {
@@ -57,7 +58,7 @@ export default function GitHubOAuthPopup() {
       // Close popup after delay to show error
       setTimeout(() => {
         window.close();
-      }, 2000);
+      }, TIMEOUTS.AUTH_REDIRECT_DELAY);
     };
 
     const handleOAuth = async () => {
@@ -79,7 +80,7 @@ export default function GitHubOAuthPopup() {
 
           try {
             // Wait a moment for Supabase to process the session
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, TIMEOUTS.GITHUB_POPUP_CHECK));
 
             const {
               data: { session },
@@ -108,11 +109,11 @@ export default function GitHubOAuthPopup() {
               }
             });
 
-            // Cleanup subscription after timeout
+            // Cleanup subscription after timeout (10 seconds)
             setTimeout(() => {
               subscription.unsubscribe();
               handleError('Authentication timeout - please try again');
-            }, 10000); // 10 second timeout
+            }, 10000);
           } catch (authError: any) {
             console.error('Auth processing error:', authError);
             handleError(authError.message || 'Authentication failed');

@@ -10,6 +10,8 @@ from typing import Optional, Dict, List, Any
 from dotenv import load_dotenv
 from core.utils.logger import logger
 
+from core.config import timeouts
+
 REDIS_KEY_TTL = 3600 * 2
 
 # Default timeouts (in seconds) - can be overridden via environment variables
@@ -126,10 +128,10 @@ class StreamHub:
                                     self.messages_dropped += 1
                 except (ConnectionError, RedisConnectionError, OSError) as e:
                     logger.warning(f"Hub pump connection error for {stream_key}: {e}")
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(timeouts.STRESS_TEST_DELAY)
                 except Exception as e:
                     logger.warning(f"Hub pump error for {stream_key}: {e}")
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(timeouts.FILE_POLL_INTERVAL)
         except asyncio.CancelledError:
             logger.debug(f"Hub pump cancelled for {stream_key}")
             raise
