@@ -1,211 +1,226 @@
 <div align="center">
 
-# CarbonScope
+# 🌿 CarbonScope
 
-**The complete platform for creating autonomous AI agents that work for you**
+**AI-Powered BIM Carbon Analysis Platform**
 
-Build, manage, and train sophisticated AI agents for any use case. Create powerful agents that act autonomously on your behalf.
+Analyze, track, and reduce embodied carbon in building projects — with autonomous AI agents, BOQ analysis, TGO compliance, and real-time carbon advisory.
 
-[![Discord Follow](https://dcbadge.limes.pink/api/server/RvFhXUdZ9H?style=flat)](https://discord.com/invite/RvFhXUdZ9H)
-[![Twitter Follow](https://img.shields.io/twitter/follow/CarbonScope)](https://x.com/CarbonScope)
-[![GitHub Repo stars](https://img.shields.io/github/stars/CarbonScope-ai/suna)](https://github.com/CarbonScope-ai/suna)
-[![Issues](https://img.shields.io/github/issues/CarbonScope-ai/suna)](https://github.com/CarbonScope-ai/suna/labels/bug)
+[![GitHub Repo stars](https://img.shields.io/github/stars/khiwniti/carbonscope)](https://github.com/khiwniti/carbonscope)
+[![Issues](https://img.shields.io/github/issues/khiwniti/carbonscope)](https://github.com/khiwniti/carbonscope/issues)
+[![License](https://img.shields.io/github/license/khiwniti/carbonscope)](LICENSE)
 
-<!-- Keep these links. Translations will automatically update with the README. -->
-[Deutsch](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=de) | 
-[Español](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=es) | 
-[français](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=fr) | 
-[日本語](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=ja) | 
-[한국어](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=ko) | 
-[Português](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=pt) | 
-[Русский](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=ru) | 
-[中文](https://www.readme-i18n.com/CarbonScope-ai/suna?lang=zh)
+[English](#) | [ภาษาไทย](#thai-version)
 
 ![CarbonScope Screenshot](apps/frontend/public/banner.png)
+
 </div>
 
+---
 
+## 🌟 What is CarbonScope?
 
+CarbonScope is a comprehensive platform that combines **AI agent intelligence** with **BIM (Building Information Modeling)** workflows to help architects, engineers, and sustainability consultants:
 
-## 🌟 What Makes CarbonScope Special
+- 📊 **Analyze embodied carbon** from Bill of Quantities (BOQ) data
+- 🏗️ **Connect BIM models** to carbon databases and emission factors
+- 🇹🇭 **TGO compliance** — aligned with Thailand Greenhouse Gas Management Organization standards
+- 💬 **AI Carbon Advisor** — conversational agent for carbon reduction strategies
+- 📁 **File intelligence** — upload BOQ files (Excel, PDF, CSV) for automatic carbon extraction
+- 📈 **Analytics dashboard** — track carbon KPIs across projects and portfolios
 
-### 🤖 Includes CarbonScope Super Worker – Flagship Generalist AI Worker
-Meet CarbonScope Super Worker, our showcase agent that demonstrates the full power of the CarbonScope platform. Through natural conversation, CarbonScope Super Worker handles research, data analysis, browser automation, file management, and complex workflows – showing you what's possible when you build with CarbonScope.
-
-### 🔧 Build Custom CarbonScope Super Worker-Type Agents
-Create your own specialized agents tailored to specific domains, workflows, or business needs. Whether you need agents for customer service, data processing, content creation, or industry-specific tasks, CarbonScope provides the infrastructure and tools to build, deploy, and scale them.
-
-### 🚀 Complete Platform Capabilities
-- **Browser Automation**: Navigate websites, extract data, fill forms, automate web workflows
-- **File Management**: Create, edit, and organize documents, spreadsheets, presentations, code
-- **Web Intelligence**: Crawling, search capabilities, data extraction and synthesis
-- **System Operations**: Command-line execution, system administration, DevOps tasks
-- **API Integrations**: Connect with external services and automate cross-platform workflows
-- **Agent Builder**: Visual tools to configure, customize, and deploy agents
-
-## 📋 Table of Contents
-
-- [🌟 What Makes CarbonScope Special](#-what-makes-CarbonScope-special)
-- [🎯 Agent Examples & Use Cases](#-agent-examples--use-cases)
-- [🏗️ Platform Architecture](#️-platform-architecture)
-- [🚀 Quick Start](#-quick-start)
-- [🏠 Self-Hosting](#-self-hosting)
-- [🤝 Contributing](#-contributing)
-- [📄 License](LICENSE)
-
-## 🎯 Agent Examples & Use Cases
-
-### CarbonScope Super Worker - Your Generalist AI Worker
-
-CarbonScope Super Worker demonstrates the full capabilities of the CarbonScope platform as a versatile AI worker that can:
-
-**🔍 Research & Analysis**
-- Conduct comprehensive web research across multiple sources
-- Analyze documents, reports, and datasets
-- Synthesize information and create detailed summaries
-- Market research and competitive intelligence
-
-**🌐 Browser Automation**
-- Navigate complex websites and web applications
-- Extract data from multiple pages automatically
-- Fill forms and submit information
-- Automate repetitive web-based workflows
-
-**📁 File & Document Management**
-- Create and edit documents, spreadsheets, presentations
-- Organize and structure file systems
-- Convert between different file formats
-- Generate reports and documentation
-
-**📊 Data Processing & Analysis**
-- Clean and transform datasets from various sources
-- Perform statistical analysis and create visualizations
-- Monitor KPIs and generate insights
-- Integrate data from multiple APIs and databases
-
-**⚙️ System Administration**
-- Execute command-line operations safely
-- Manage system configurations and deployments
-- Automate DevOps workflows
-- Monitor system health and performance
-
-### Build Your Own Specialized Agents
-
-The CarbonScope platform enables you to create agents tailored to specific needs:
-
-**🎧 Customer Service Agents**
-- Handle support tickets and FAQ responses
-- Manage user onboarding and training
-- Escalate complex issues to human agents
-- Track customer satisfaction and feedback
-
-**✍️ Content Creation Agents**
-- Generate marketing copy and social media posts
-- Create technical documentation and tutorials
-- Develop educational content and training materials
-- Maintain content calendars and publishing schedules
-
-**📈 Sales & Marketing Agents**
-- Qualify leads and manage CRM systems
-- Schedule meetings and follow up with prospects
-- Create personalized outreach campaigns
-- Generate sales reports and forecasts
-
-**🔬 Research & Development Agents**
-- Conduct academic and scientific research
-- Monitor industry trends and innovations
-- Analyze patents and competitive landscapes
-- Generate research reports and recommendations
-
-**🏭 Industry-Specific Agents**
-- Healthcare: Patient data analysis, appointment scheduling
-- Finance: Risk assessment, compliance monitoring
-- Legal: Document review, case research
-- Education: Curriculum development, student assessment
-
-Each agent can be configured with custom tools, workflows, knowledge bases, and integrations specific to your requirements.
+---
 
 ## 🏗️ Platform Architecture
 
-![Architecture Diagram](docs/images/diagram.png)
+CarbonScope is built on four interconnected layers:
 
-CarbonScope consists of four main components that work together to provide a complete AI agent development platform:
-
-### 🔧 Backend API
-Python/FastAPI service that powers the agent platform with REST endpoints, thread management, agent orchestration, and LLM integration with Anthropic, OpenAI, and others via LiteLLM. Includes agent builder tools, workflow management, and extensible tool system.
+### 🤖 AI Agent Engine (Suna Core)
+Python/FastAPI service with autonomous agent orchestration, LiteLLM integration (Claude, GPT-4, Groq), and a tool system for browser automation, file processing, and API connectivity.
 
 ### 🖥️ Frontend Dashboard
-Next.js/React application providing a comprehensive agent management interface with chat interfaces, agent configuration dashboards, workflow builders, monitoring tools, and deployment controls.
+Next.js 15 / React 18 / TailwindCSS 4 application with:
+- BOQ upload & carbon analysis views
+- TGO emission factor lookup
+- Carbon Advisor chat interface
+- Agent management & configuration
+- Real-time monitoring & analytics
 
-### 🐳 Agent Runtime
-Isolated Docker execution environments for each agent instance featuring browser automation, code interpreter, file system access, tool integration, security sandboxing, and scalable agent deployment.
+### 🐳 Sandboxed Agent Runtime
+Isolated Docker environments per agent instance — browser automation, code interpreter, file system access, and secure tool execution.
 
 ### 🗄️ Database & Storage
-Supabase-powered data layer handling authentication, user management, agent configurations, conversation history, file storage, workflow state, analytics, and real-time subscriptions for live agent monitoring.
+Supabase-powered data layer — auth, user management, project data, conversation history, file storage, and real-time subscriptions.
+
+---
 
 ## 🚀 Quick Start
 
-Get your CarbonScope platform running in minutes with our automated setup wizard:
+### Prerequisites
+- Docker & Docker Compose
+- Node.js 20+ & pnpm
+- Python 3.11+ & uv
+- Supabase account
+- LLM API key (Anthropic / OpenAI / etc.)
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Clone
 ```bash
-git clone https://github.com/CarbonScope-ai/suna.git
-cd suna
+git clone https://github.com/khiwniti/carbonscope.git
+cd carbonscope
 ```
 
-### 2️⃣ Run the Setup Wizard
+### 2️⃣ Configure
 ```bash
 python setup.py
 ```
-The wizard will guide you through configuring all required services with progress saving, so you can resume if interrupted.
+The interactive wizard guides you through all required services. Progress is saved — resume anytime if interrupted.
 
-### 3️⃣ Manage the Platform
+### 3️⃣ Start
 ```bash
-python start.py          # Interactive start/stop
-python start.py start    # Start all services
-python start.py stop     # Stop all services
-python start.py status   # Show service status
-python start.py restart  # Restart all services
+python start.py start     # Start all services
+python start.py stop      # Stop all services
+python start.py status    # Show service status
+python start.py restart   # Restart all services
 ```
 
-The service manager automatically detects your setup method (Docker or Manual) and manages services accordingly.
+### 4️⃣ Open
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
 
-### 📋 Viewing Realtime Logs
+---
 
-**Manual Setup (native processes):**
+## 📋 View Logs
+
+**Manual / Native:**
 ```bash
-# View both backend and frontend logs
 tail -f backend.log frontend.log
-
-# View backend only
-tail -f backend.log
-
-# View frontend only
-tail -f frontend.log
 ```
 
-**Docker Setup:**
+**Docker:**
 ```bash
-# View all service logs
 docker compose logs -f
-
-# View specific service
 docker compose logs -f backend
 docker compose logs -f frontend
 ```
 
-### 4️⃣ Add More API Keys (Optional)
-After initial setup, you can run `python setup.py` again to:
-- **Add/Update API Keys** - Configure additional LLM providers (Anthropic, OpenAI, Groq, etc.), search APIs (Tavily, Firecrawl, etc.), and other integrations
-- **Clear setup and start fresh** - Remove all configuration and start over
+---
 
-That's it! Your CarbonScope platform will be running with CarbonScope Super Worker ready to assist you. Ty mate
+## 🔑 Key Features
+
+| Feature | Description |
+|---|---|
+| **BOQ Carbon Analysis** | Upload Bill of Quantities → auto-extract materials → map to emission factors |
+| **TGO Lookup** | Thailand GHG Organization certified emission factors database |
+| **Carbon Advisor Chat** | Conversational AI for reduction strategies and material substitutions |
+| **Agent Builder** | Create custom agents for carbon workflows, reporting, and compliance |
+| **BIM Integration** | Connect IFC/Revit models for automated quantity takeoff |
+| **Portfolio Analytics** | Track carbon performance across multiple projects |
+| **Thai Language Support** | Full UI and report localization in Thai (ภาษาไทย) |
+| **Export & Reports** | Generate PDF/Excel carbon reports for clients and regulators |
+
+---
+
+## 🗂️ Project Structure
+
+```
+carbonscope/
+├── apps/
+│   ├── frontend/        # Next.js 15 web application
+│   ├── mobile/          # React Native app
+│   └── desktop/         # Electron desktop app
+├── packages/
+│   └── shared/          # Shared TypeScript types & utilities
+├── backend/             # FastAPI Python backend
+│   ├── core/            # Business logic & agent engine
+│   ├── routers/         # API route handlers
+│   └── tests/           # pytest test suite
+├── sdk/                 # Python SDK for agent development
+├── docs/                # Documentation
+├── setup/               # Setup wizard
+├── infra/               # Infrastructure as Code
+├── setup.py             # Interactive setup wizard
+└── start.py             # Platform process manager
+```
+
+---
+
+## 🧑‍💻 Development
+
+### Frontend
+```bash
+cd apps/frontend
+pnpm install
+pnpm dev          # Start dev server (Turbopack)
+pnpm build        # Production build
+pnpm lint         # ESLint
+pnpm format       # Prettier
+```
+
+### Backend
+```bash
+cd backend
+uv run python api.py              # Start API server
+uv run pytest                     # Run all tests
+uv run pytest -m e2e              # E2E tests only
+uv run ruff check core/           # Lint
+uv run ruff check --fix core/     # Auto-fix
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feat/my-feature`
+3. Commit your changes: `git commit -m 'feat: add feature'`
+4. Push to your branch: `git push origin feat/my-feature`
+5. Open a Pull Request
+
+Please follow the code style guidelines in [`AGENTS.md`](AGENTS.md).
+
+---
+
+## 🔒 Security
+
+**Never commit API keys, tokens, or credentials to this repository.**
+
+- Store secrets in `.env` files (already in `.gitignore`)
+- Use GitHub Secrets for CI/CD
+- Rotate any credentials that were accidentally exposed immediately via [GitHub Settings → Tokens](https://github.com/settings/tokens)
+
+---
+
+## 📄 License
+
+[Apache 2.0](LICENSE) — see the LICENSE file for details.
+
 ---
 
 <div align="center">
 
-**Ready to build your first AI agent?** 
+**Built for a low-carbon future 🌍**
 
-[Get Started](./docs/SELF-HOSTING.md) • [Join Discord](https://discord.com/invite/RvFhXUdZ9H) • [Follow on Twitter](https://x.com/CarbonScope)
+[Issues](https://github.com/khiwniti/carbonscope/issues) • [Discussions](https://github.com/khiwniti/carbonscope/discussions) • [Docs](./docs)
 
 </div>
+
+---
+
+<a name="thai-version"></a>
+## 🇹🇭 CarbonScope ภาษาไทย
+
+**แพลตฟอร์ม AI วิเคราะห์คาร์บอนสำหรับโครงการก่อสร้าง**
+
+CarbonScope ช่วยให้สถาปนิก วิศวกร และที่ปรึกษาด้านความยั่งยืน สามารถ:
+
+- 📊 วิเคราะห์คาร์บอนสะสม (Embodied Carbon) จากข้อมูล BOQ
+- 🏗️ เชื่อมต่อโมเดล BIM กับฐานข้อมูลค่าการปล่อยก๊าซ
+- 🇹🇭 รองรับมาตรฐาน **อบก. (TGO)** — องค์การบริหารจัดการก๊าซเรือนกระจก
+- 💬 **ที่ปรึกษา AI** สำหรับกลยุทธ์ลดคาร์บอนแบบสนทนา
+- 📈 แดชบอร์ดติดตาม KPI คาร์บอนรายโครงการ
+
+```bash
+git clone https://github.com/khiwniti/carbonscope.git
+cd carbonscope && python setup.py
+```
