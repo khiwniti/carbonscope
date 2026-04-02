@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from 'react';
+import { logger } from '@/lib/logger';
 import { toast } from '@/lib/toast';
 import { ToolCallInput } from '@/components/thread/carbonscope-computer';
 import { UnifiedMessage, ParsedMetadata, AgentStatus } from '@/components/thread/types';
@@ -233,7 +234,7 @@ export function useThreadToolCalls(
         navigateToIndex(foundIndex);
         return;
       }
-      console.warn(`[handleToolClick] Could not find tool call with ID: ${toolCallId}`);
+      logger.warn(`[handleToolClick] Could not find tool call with ID: ${toolCallId}`);
     }
 
     // Handle streaming tool calls (message ID is null)
@@ -261,7 +262,7 @@ export function useThreadToolCalls(
         return;
       }
       
-      console.warn("No streaming tool calls found to open.");
+      logger.warn("No streaming tool calls found to open.");
       return;
     }
 
@@ -273,7 +274,7 @@ export function useThreadToolCalls(
     const toolIndex = assistantMessageToToolIndex.current.get(compositeKey);
 
     // #region debug - tool click debugging
-    console.log('[handleToolClick] Debug', {
+    logger.log('[handleToolClick] Debug', {
       clickedAssistantMessageId,
       clickedToolName,
       normalizedToolName,
@@ -288,7 +289,7 @@ export function useThreadToolCalls(
     if (toolIndex !== undefined) {
       navigateToIndex(toolIndex);
     } else {
-      console.warn(
+      logger.warn(
         `[PAGE] Could not find matching tool call in toolCalls array for assistant message ID: ${clickedAssistantMessageId}, tool name: ${clickedToolName}`,
       );
       

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { logger } from '@/lib/logger';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -273,8 +274,8 @@ export const StreamlinedInstallDialog: React.FC<StreamlinedInstallDialogProps> =
   const handleInstall = useCallback(async () => {
     if (!item || !instanceName.trim()) return;
     
-    console.log('Dialog handleInstall - triggerVariables:', triggerVariables);
-    console.log('Dialog handleInstall - missingTriggerVariables:', missingTriggerVariables);
+    logger.log('Dialog handleInstall - triggerVariables:', triggerVariables);
+    logger.log('Dialog handleInstall - missingTriggerVariables:', missingTriggerVariables);
     
     // Validate trigger variables if they exist
     if (Object.keys(missingTriggerVariables).length > 0) {

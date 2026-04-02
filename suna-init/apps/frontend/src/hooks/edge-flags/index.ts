@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -31,7 +32,7 @@ async function fetchSystemStatus(): Promise<SystemStatusResponse> {
     const response = await fetch(`${BACKEND_URL}/system/status`);
     
     if (!response.ok) {
-      console.warn('Failed to fetch system status:', response.status);
+      logger.warn('Failed to fetch system status:', response.status);
       return {
         maintenanceNotice: { enabled: false },
         technicalIssue: { enabled: false },
@@ -40,7 +41,7 @@ async function fetchSystemStatus(): Promise<SystemStatusResponse> {
     
     return await response.json();
   } catch (error) {
-    console.warn('Failed to fetch system status:', error);
+    logger.warn('Failed to fetch system status:', error);
     return {
       maintenanceNotice: { enabled: false },
       technicalIssue: { enabled: false },

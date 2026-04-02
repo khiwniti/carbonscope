@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useEffect } from 'react';
 import { useParams } from 'next/navigation';
@@ -142,7 +143,7 @@ export default function DashboardLayoutContent({
   // Log data prefetching for debugging
   useEffect(() => {
     if (isMobile) {
-      console.log('📱 Mobile Layout - Prefetched data:', {
+      logger.log('📱 Mobile Layout - Prefetched data:', {
         projects: projects?.length || 0,
         accounts: accounts?.length || 0,
         user: !!user

@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState } from 'react';
 import { codeToHtml } from 'shiki';
+import { getSafeHtml } from '@/lib/sanitize';
 import { useTheme } from 'next-themes';
 import { MermaidRenderer } from './mermaid-renderer';
 
@@ -88,7 +89,7 @@ function CodeBlockCode({
   return highlightedHtml ? (
     <div
       className={classNames}
-      dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+      dangerouslySetInnerHTML={getSafeHtml(highlightedHtml)}
       {...props}
     />
   ) : (

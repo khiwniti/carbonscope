@@ -7,7 +7,6 @@ from core.billing.external.stripe import StripeAPIWrapper
 from ..repositories.credit_account import CreditAccountRepository
 import stripe # type: ignore
 
-from core.config import timeouts
 
 class SchedulingService:
     def __init__(self):

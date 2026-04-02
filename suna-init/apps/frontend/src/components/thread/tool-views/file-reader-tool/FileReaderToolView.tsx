@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { logger } from '@/lib/logger';
 import {
   FileText,
   AlertTriangle,
@@ -337,7 +338,7 @@ export function FileReaderToolView({
   isStreaming = false,
 }: ToolViewProps) {
   if (!toolCall) {
-    console.warn('FileReaderToolView: toolCall is undefined.');
+    logger.warn('FileReaderToolView: toolCall is undefined.');
     return null;
   }
 

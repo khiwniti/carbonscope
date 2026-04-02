@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { logger } from '@/lib/logger';
 import { ToolViewProps } from '../types';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -151,7 +152,7 @@ export function SheetsToolView({
 
   // Defensive check - ensure toolCall is defined (after all hooks)
   if (!toolCall) {
-    console.warn('SheetsToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('SheetsToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

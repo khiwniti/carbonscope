@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import * as React from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
@@ -21,7 +22,7 @@ export function AnnouncementDialog() {
   const Component = announcementRegistry[currentAnnouncement.component];
 
   if (!Component) {
-    console.warn(`Unknown announcement component: ${currentAnnouncement.component}`);
+    logger.warn(`Unknown announcement component: ${currentAnnouncement.component}`);
     return null;
   }
 

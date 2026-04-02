@@ -14,7 +14,12 @@ from fastapi.testclient import TestClient
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from api import app
+# Import app from api.py (top-level module)
+import importlib.util, os
+_spec = importlib.util.spec_from_file_location("api_module", os.path.join(os.path.dirname(__file__), "../../api.py"))
+_mod = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_mod)
+app = _mod.app
 from boq.cache import get_cache_manager
 
 client = TestClient(app)

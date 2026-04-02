@@ -31,7 +31,7 @@ def mock_external_services():
     Mock all external service connections for the entire test session.
     This prevents tests from trying to connect to real databases, Redis, etc.
     """
-    with patch("core.services.redis.get_redis_client") as mock_redis, \
+    with patch("boq.cache.get_redis_client") as mock_redis, \
          patch("core.services.supabase.DBConnection") as mock_db, \
          patch("core.agentpress.thread_manager.ThreadManager") as mock_thread_mgr:
 

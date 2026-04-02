@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   Search,
   CheckCircle,
@@ -31,7 +32,7 @@ export function DiscoverUserMcpServersToolView({
 }: ToolViewProps) {
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('DiscoverUserMcpServersToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('DiscoverUserMcpServersToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

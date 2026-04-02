@@ -10,7 +10,6 @@ from core.sandbox.sandbox import get_or_start_sandbox, create_sandbox
 from core.cache.runtime_cache import get_cached_project_metadata, set_cached_project_metadata
 
 
-from core.config import timeouts
 
 @dataclass
 class SandboxInfo:

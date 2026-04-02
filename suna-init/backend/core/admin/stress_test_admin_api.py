@@ -1,4 +1,3 @@
-from core.config import timeouts
 
 """
 Admin Stress Test API

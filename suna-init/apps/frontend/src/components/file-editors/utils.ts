@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 // Process Unicode escape sequences in content
 export const processUnicodeContent = (content: any, forCodeBlock: boolean = false): string => {
   // Handle different content types
@@ -16,7 +17,7 @@ export const processUnicodeContent = (content: any, forCodeBlock: boolean = fals
         return '```json\n' + jsonString + '\n```';
       }
     } catch (error) {
-      console.warn('Failed to stringify object:', error);
+      logger.warn('Failed to stringify object:', error);
       return String(content);
     }
   }

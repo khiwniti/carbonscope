@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useEffect } from 'react';
 import { Gift, Clock } from 'lucide-react';
@@ -15,7 +16,7 @@ export function PromoBanner({ className }: PromoBannerProps) {
     if (promo && process.env.NODE_ENV !== 'production') {
       // Helpful during development/debugging; logs only when the active promo changes.
       // eslint-disable-next-line no-console
-      console.log('[PromoBanner] promo', promo);
+      logger.log('[PromoBanner] promo', promo);
     }
   }, [promo?.promoId]);
 

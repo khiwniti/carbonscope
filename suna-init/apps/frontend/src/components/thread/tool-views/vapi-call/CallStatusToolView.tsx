@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import { Phone, Clock, MessageSquare, DollarSign, CheckCircle, AlertTriangle, Bot, User } from 'lucide-react';
 import { ToolViewProps } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,7 +20,7 @@ export function CallStatusToolView({
 }: ToolViewProps) {
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('CallStatusToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('CallStatusToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

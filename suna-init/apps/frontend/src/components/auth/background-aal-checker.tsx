@@ -1,4 +1,5 @@
 "use client";
+import { logger } from '@/lib/logger';
 
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
@@ -80,7 +81,7 @@ export function BackgroundAALChecker({
         case 'unknown':
         default:
           // Unknown AAL state, log and allow access (fail open)
-          console.warn('Background: Unknown AAL state:', { current_level, next_level, action_required });
+          logger.warn('Background: Unknown AAL state:', { current_level, next_level, action_required });
           break;
       }
     }

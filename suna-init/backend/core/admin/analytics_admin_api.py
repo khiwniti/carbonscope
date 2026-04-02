@@ -1,4 +1,3 @@
-from core.config import timeouts
 
 """
 Analytics Admin API

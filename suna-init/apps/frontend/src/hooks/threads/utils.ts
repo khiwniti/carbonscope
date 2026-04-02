@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
+import { logger } from '@/lib/logger';
 import { backendApi } from "@/lib/api-client";
 import { getProject, updateProject, type Project } from "@/lib/api/threads";
 
@@ -122,7 +123,7 @@ export const deleteThread = async (threadId: string, sandboxId?: string): Promis
         throw new Error(`Failed to delete thread: ${errorText}`);
       }
 
-      console.log(`Thread ${threadId} deleted successfully`);
+      logger.log(`Thread ${threadId} deleted successfully`);
     } catch (error) {
       console.error('Error deleting thread:', error);
       throw error;
@@ -134,7 +135,7 @@ export const getPublicProjects = async (): Promise<Project[]> => {
     // NOTE: This function should not be called directly anymore
     // Use usePublicProjectsQuery() hook instead, which derives from cached threads
     // This is kept for backward compatibility but should be deprecated
-    console.warn('getPublicProjects() called directly - use usePublicProjectsQuery() hook instead');
+    logger.warn('getPublicProjects() called directly - use usePublicProjectsQuery() hook instead');
     
     try {
       const { getThreadsPaginated } = await import('@/lib/api/threads');

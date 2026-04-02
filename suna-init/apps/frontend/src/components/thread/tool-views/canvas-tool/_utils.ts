@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import { ToolCallData, ToolResultData } from '../types';
 
 // Legacy type aliases for compatibility
@@ -93,7 +94,7 @@ export function extractCanvasData(
         parsedResult = toolResult.output;
       }
     } catch (e) {
-      console.warn('Failed to parse tool result:', e);
+      logger.warn('Failed to parse tool result:', e);
     }
   }
 

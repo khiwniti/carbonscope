@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { Button } from '@/components/ui/button';
 import { Zap, Server, Store, Settings, Lock } from 'lucide-react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -63,7 +64,7 @@ export const MCPConfigurationNew: React.FC<MCPConfigurationProps> = ({
       if (profileId) {
         setShowComposioToolsManager(true);
       } else {
-        console.warn('Composio MCP has no profile_id:', mcp);
+        logger.warn('Composio MCP has no profile_id:', mcp);
       }
     } else {
       setShowCustomToolsManager(true);

@@ -5,7 +5,6 @@ from core.utils.logger import logger
 from core.sandbox.pool_config import get_pool_config
 from core.sandbox.pool_service import get_pool_service, SandboxPoolService
 
-from core.config import timeouts
 
 _pool_task: Optional[asyncio.Task] = None
 _cleanup_task: Optional[asyncio.Task] = None

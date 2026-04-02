@@ -8,7 +8,6 @@ from collections import deque
 from core.utils.logger import logger
 
 
-from core.config import timeouts
 
 class RateLimiter(ABC):
     @abstractmethod

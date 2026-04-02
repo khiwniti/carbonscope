@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/client';
+import { logger } from '@/lib/logger';
 import { handleApiError } from '../error-handler';
 import { backendApi } from '../api-client';
 import { 
@@ -374,13 +375,13 @@ export const getActiveAgentRuns = async (): Promise<ActiveAgentRun[]> => {
     );
 
     if (response.error) {
-      console.warn(`Failed to fetch active agent runs: ${response.error.status} ${response.error.message}`);
+      logger.warn(`Failed to fetch active agent runs: ${response.error.status} ${response.error.message}`);
       return [];
     }
 
     return response.data?.active_runs || [];
   } catch (error) {
-    console.warn('Error fetching active agent runs:', error);
+    logger.warn('Error fetching active agent runs:', error);
     return [];
   }
 };
@@ -724,7 +725,7 @@ export const streamAgent = (
                 `[STREAM] Error checking agent status after stream error:`,
                 err,
               );
-              console.warn(`[STREAM] Cleaning up stream for ${agentRunId} due to persistent error`);
+              logger.warn(`[STREAM] Cleaning up stream for ${agentRunId} due to persistent error`);
               cleanupEventSource(agentRunId, 'persistent error');
               callbacks.onError(errMsg);
               callbacks.onClose();

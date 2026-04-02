@@ -12,11 +12,11 @@ from decimal import Decimal
 from unittest.mock import Mock, patch, MagicMock
 from datetime import datetime, timezone
 
-from suna.backend.boq.carbon_pipeline import CarbonCalculationPipeline
-from suna.backend.boq.audit_trail import CalculationAudit, MaterialCalculationAudit
-from suna.backend.boq.material_matching import BOQMaterialMatch
-from suna.backend.boq.models import BOQMaterial, BOQParseResult
-from suna.backend.lca.carbon_calculator import CarbonCalculator
+from boq.carbon_pipeline import CarbonCalculationPipeline
+from boq.audit_trail import CalculationAudit, MaterialCalculationAudit
+from boq.material_matching import BOQMaterialMatch
+from boq.models import BOQMaterial, BOQParseResult
+from lca.carbon_calculator import CarbonCalculator
 
 
 @pytest.fixture
@@ -72,7 +72,6 @@ def sample_boq_material_match(sample_boq_material):
         },
         confidence=Decimal("0.95"),
         classification="auto_match",
-        match_method="exact"
     )
 
 

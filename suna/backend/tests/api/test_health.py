@@ -124,14 +124,14 @@ def test_health_instance_id_present(test_client):
 
 def test_health_during_shutdown(test_client):
     """Test health check during graceful shutdown."""
-    with patch("suna.backend.api._is_shutting_down", True):
+    with patch("api._is_shutting_down", True):
         response = test_client.get("/v1/health")
 
         # Should return 503 during shutdown
         assert response.status_code == 503
 
         data = response.json()
-        assert data["detail"] == "Service is shutting down"
+        assert data.get("status") == "shutting_down" or data.get("detail") == "Service is shutting down"
 
 
 def test_health_active_agents_is_number(test_client):

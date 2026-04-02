@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useState, useMemo, useCallback, startTransition, useRef, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
@@ -322,7 +323,7 @@ export function SidebarThreadList({ mode }: SidebarThreadListProps) {
       const project = thread.project;
 
       if (!projectId) {
-        console.debug('Thread without project_id:', thread.thread_id);
+        logger.debug('Thread without project_id:', thread.thread_id);
         continue;
       }
 

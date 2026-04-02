@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   Bell,
   CheckCircle,
@@ -43,7 +44,7 @@ export function ListAppEventTriggersToolView({
 
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('ListAppEventTriggersToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('ListAppEventTriggersToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

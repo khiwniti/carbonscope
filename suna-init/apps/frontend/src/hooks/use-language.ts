@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { locales, defaultLocale, type Locale } from '@/i18n/config';
 import { useCallback, useState, useEffect } from 'react';
@@ -102,10 +103,10 @@ export function useLanguage() {
         });
         
         if (updateError) {
-          console.warn('Failed to save locale to user profile:', updateError);
+          logger.warn('Failed to save locale to user profile:', updateError);
         }
       } catch (error) {
-        console.warn('Error saving locale to user profile:', error);
+        logger.warn('Error saving locale to user profile:', error);
       }
     }
     

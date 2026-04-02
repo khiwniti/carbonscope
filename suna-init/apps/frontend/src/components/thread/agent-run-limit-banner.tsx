@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useEffect } from 'react';
 import { AlertTriangle, ExternalLink, Square, Zap, X } from 'lucide-react';
@@ -50,7 +51,7 @@ export const AgentRunLimitBanner: React.FC<AgentRunLimitBannerProps> = ({
   // Debug logging
   useEffect(() => {
     if (open) {
-      console.log('AgentRunLimitBanner: Dialog opened', { runningCount, runningThreadIds });
+      logger.log('AgentRunLimitBanner: Dialog opened', { runningCount, runningThreadIds });
     }
   }, [open, runningCount, runningThreadIds]);
 

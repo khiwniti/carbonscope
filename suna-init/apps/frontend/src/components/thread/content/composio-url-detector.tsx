@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import { ExternalLink, ShieldCheck, Server } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -199,7 +200,7 @@ function detectComposioUrls(content: string): ComposioUrl[] {
       const { toolkitName, toolkitSlug } = extractToolkitInfoFromContext(content, match.index);
       
       // Debug logging to help identify what's being detected
-      console.log('ComposioUrlDetector Debug:', {
+      logger.log('ComposioUrlDetector Debug:', {
         url: url.substring(0, 50) + '...',
         toolkitName,
         toolkitSlug,

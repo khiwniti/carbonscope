@@ -22,7 +22,6 @@ from .auto_continue import AutoContinueChecker
 from .initialization import ManagerInitializer
 
 
-from core.config import timeouts
 
 class StatelessCoordinator(BaseCoordinator):
     INIT_TIMEOUT = 10.0

@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -113,7 +114,7 @@ export function AgentConfigurationDialog({
   
   // Debug state changes
   useEffect(() => {
-    console.log('Icon editor open state changed:', isIconEditorOpen);
+    logger.log('Icon editor open state changed:', isIconEditorOpen);
   }, [isIconEditorOpen]);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
@@ -413,8 +414,8 @@ export function AgentConfigurationDialog({
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        console.log('🎯 Icon clicked in config dialog - opening editor');
-                        console.log('Current formData:', { 
+                        logger.log('🎯 Icon clicked in config dialog - opening editor');
+                        logger.log('Current formData:', { 
                           icon_name: formData.icon_name, 
                           icon_color: formData.icon_color, 
                           icon_background: formData.icon_background 
@@ -844,7 +845,7 @@ export function AgentConfigurationDialog({
       <AgentIconEditorDialog
         isOpen={isIconEditorOpen}
         onClose={() => {
-          console.log('Icon editor dialog closing');
+          logger.log('Icon editor dialog closing');
           setIsIconEditorOpen(false);
         }}
         currentIconName={formData.icon_name ?? undefined}

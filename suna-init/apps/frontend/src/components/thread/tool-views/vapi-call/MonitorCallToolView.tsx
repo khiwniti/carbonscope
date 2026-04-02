@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { logger } from '@/lib/logger';
 import { ToolResultData } from '../types';
 import { Phone, User, PhoneCall, PhoneMissed, CheckCircle2, CheckCircle, AlertTriangle } from 'lucide-react';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
@@ -87,7 +88,7 @@ export function MonitorCallToolView({
   const name = toolCall?.function_name?.replace(/_/g, '-').toLowerCase() || 'monitor-call';
   const toolTitle = getToolTitle(name);
   
-  console.log('[MonitorCallToolView] Component rendered with:', {
+  logger.log('[MonitorCallToolView] Component rendered with:', {
     toolResult,
     extractedData: initialData,
     callId: initialData?.call_id,
@@ -106,7 +107,7 @@ export function MonitorCallToolView({
   useEffect(() => {
     if (!initialData?.call_id) return;
 
-    console.log('[MonitorCallToolView] Setting up real-time subscription for:', initialData.call_id);
+    logger.log('[MonitorCallToolView] Setting up real-time subscription for:', initialData.call_id);
     const supabase = createClient();
     let channel: RealtimeChannel;
 
@@ -132,7 +133,7 @@ export function MonitorCallToolView({
           const currentData = await response.json();
 
           if (currentData) {
-            console.log('[MonitorCallToolView] Initial data from DB:', {
+            logger.log('[MonitorCallToolView] Initial data from DB:', {
               status: currentData.status,
               transcriptLength: Array.isArray(currentData.transcript) ? currentData.transcript.length : 0
             });
@@ -161,7 +162,7 @@ export function MonitorCallToolView({
             filter: `call_id=eq.${initialData.call_id}`
           },
           (payload) => {
-            console.log('[MonitorCallToolView] Real-time update received:', payload);
+            logger.log('[MonitorCallToolView] Real-time update received:', payload);
 
             if (payload.new) {
               const newData = payload.new as any;
@@ -172,21 +173,21 @@ export function MonitorCallToolView({
                   ? JSON.parse(newData.transcript)
                   : newData.transcript;
                 const transcriptArray = Array.isArray(transcript) ? transcript : [];
-                console.log('[MonitorCallToolView] Updating transcript via real-time:', transcriptArray.length, 'messages');
+                logger.log('[MonitorCallToolView] Updating transcript via real-time:', transcriptArray.length, 'messages');
                 setLiveTranscript(transcriptArray);
               }
             }
           }
         )
         .subscribe((status) => {
-          console.log('[MonitorCallToolView] Subscription status:', status);
+          logger.log('[MonitorCallToolView] Subscription status:', status);
         });
     };
 
     setupSubscription();
 
     return () => {
-      console.log('[MonitorCallToolView] Cleaning up subscription');
+      logger.log('[MonitorCallToolView] Cleaning up subscription');
       if (channel) {
         supabase.removeChannel(channel);
       }
@@ -229,7 +230,7 @@ export function MonitorCallToolView({
 
         // If no data found, return initial data to keep showing something
         if (!data) {
-          console.log('[MonitorCallToolView] No data found, using initial data');
+          logger.log('[MonitorCallToolView] No data found, using initial data');
           return {
             call_id: initialData.call_id,
             status: initialData.status || 'queued',
@@ -239,7 +240,7 @@ export function MonitorCallToolView({
           };
         }
 
-        console.log('[MonitorCallToolView] Fetched call data:', {
+        logger.log('[MonitorCallToolView] Fetched call data:', {
           status: data.status,
           transcriptLength: Array.isArray(data.transcript) ? data.transcript.length : 0
         });
@@ -254,7 +255,7 @@ export function MonitorCallToolView({
       // Use either the fetched status or initial status
       const status = query.state.data?.status || initialData?.status || liveStatus;
       const isLive = status && ['queued', 'ringing', 'in-progress'].includes(status);
-      console.log(`[MonitorCallToolView] Polling check - Status: ${status}, isLive: ${isLive}`);
+      logger.log(`[MonitorCallToolView] Polling check - Status: ${status}, isLive: ${isLive}`);
       // Poll more frequently for live calls
       return isLive ? 1000 : false;  // Poll every 1 second for live calls
     },
@@ -272,7 +273,7 @@ export function MonitorCallToolView({
   // Backup polling in case real-time subscription fails - hook must be unconditional
   useEffect(() => {
     if (liveStatus === 'in-progress' || liveStatus === 'ringing' || liveStatus === 'queued') {
-      console.log('[MonitorCallToolView] Setting up backup polling for active call');
+      logger.log('[MonitorCallToolView] Setting up backup polling for active call');
       const interval = setInterval(() => {
         // Only refetch if we haven't received updates in a while
         refetch();

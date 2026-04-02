@@ -1,4 +1,6 @@
 'use client';
+import { logger } from '@/lib/logger';
+import { getSafeHtml } from '@/lib/sanitize';
 
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { cn } from '@/lib/utils';
@@ -27,7 +29,7 @@ const cleanupMermaidErrors = () => {
   });
   
   if (cleaned > 0) {
-    console.log(`🧹 Cleaned up ${cleaned} Mermaid error elements`);
+    logger.log(`🧹 Cleaned up ${cleaned} Mermaid error elements`);
   }
 };
 
@@ -345,7 +347,7 @@ export const MermaidRendererClient: React.FC<MermaidRendererClientProps> = React
         style={{ minHeight: '200px', width: '100%' }}
         onClick={enableFullscreen ? handleFullscreenOpen : undefined}
       >
-        <div ref={containerRef} dangerouslySetInnerHTML={{ __html: renderedContent }} />
+        <div ref={containerRef} dangerouslySetInnerHTML={getSafeHtml(renderedContent)} />
         {enableFullscreen && (
           <div className="absolute inset-0 bg-black/0 hover:bg-black/5 transition-colors rounded-2xl flex items-center justify-center opacity-0 hover:opacity-100 pointer-events-none">
             <Button

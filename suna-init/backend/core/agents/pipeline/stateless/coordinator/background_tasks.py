@@ -4,7 +4,6 @@ from typing import Optional
 from core.utils.logger import logger
 
 
-from core.config import timeouts
 
 class BackgroundTaskManager:
     def __init__(self, state, ownership):

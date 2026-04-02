@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import Image from 'next/image';
 import {
   Building2,
@@ -33,7 +34,7 @@ export function CompanySearchToolView({
 }: ToolViewProps) {
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('CompanySearchToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('CompanySearchToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

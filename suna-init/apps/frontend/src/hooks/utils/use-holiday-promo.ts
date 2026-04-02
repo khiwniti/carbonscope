@@ -42,8 +42,9 @@ export function useHolidayPromoCountdown(pollInterval = 60_000): HolidayPromoSta
       return undefined;
     }
 
-    const intervalId = window.setInterval(() => {
+    const intervalId = window.const _intervalId = setInterval(() => {
       setNow(Date.now());
+    return () => clearInterval(_intervalId);
     }, pollInterval);
 
     return () => window.clearInterval(intervalId);

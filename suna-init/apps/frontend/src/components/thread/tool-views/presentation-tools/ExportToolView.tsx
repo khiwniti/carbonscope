@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useMemo } from 'react';
 import { Presentation, FileText, Download } from 'lucide-react';
@@ -39,13 +40,13 @@ export function ExportToolView({
   const isUnifiedExport = name === 'export-presentation' || name === 'export_presentation';
   
   const { presentationName, exports, totalSlides } = useMemo(() => {
-    console.log('[ExportToolView] Parsing:', { toolResult, name, isUnifiedExport });
+    logger.log('[ExportToolView] Parsing:', { toolResult, name, isUnifiedExport });
     
     if (toolResult?.output) {
       try {
         const output = toolResult.output;
         const parsed = typeof output === 'string' ? JSON.parse(output) : output;
-        console.log('[ExportToolView] Parsed output:', parsed);
+        logger.log('[ExportToolView] Parsed output:', parsed);
         
         if (isUnifiedExport && parsed.exports) {
           return {
@@ -78,7 +79,7 @@ export function ExportToolView({
   const hasPptx = !!exports?.pptx;
   const hasPdf = !!exports?.pdf;
   
-  console.log('[ExportToolView] Exports:', { exports, hasPptx, hasPdf });
+  logger.log('[ExportToolView] Exports:', { exports, hasPptx, hasPdf });
 
   if (!toolCall) return null;
 

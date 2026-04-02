@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { logger } from '@/lib/logger';
 import { motion } from 'framer-motion';
 import {
   Globe,
@@ -45,7 +46,7 @@ export function WebScrapeToolView({
   const isUrlAnimating = isStreaming && !toolResult && !!toolCall;
 
   if (!toolCall) {
-    console.warn('WebScrapeToolView: toolCall is undefined.');
+    logger.warn('WebScrapeToolView: toolCall is undefined.');
     return null;
   }
 

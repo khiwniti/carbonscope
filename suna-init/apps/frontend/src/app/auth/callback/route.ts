@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { logger } from '@/lib/logger';
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
@@ -51,7 +52,7 @@ export async function GET(request: NextRequest) {
       if (email) expiredUrl.searchParams.set('email', email)
       if (next) expiredUrl.searchParams.set('returnUrl', next)
 
-      console.log('🔄 Redirecting to auth page with expired state')
+      logger.log('🔄 Redirecting to auth page with expired state')
       return NextResponse.redirect(expiredUrl)
     }
 
@@ -97,7 +98,7 @@ export async function GET(request: NextRequest) {
           if (email) expiredUrl.searchParams.set('email', email)
           if (next) expiredUrl.searchParams.set('returnUrl', next)
 
-          console.log('🔄 Redirecting to auth page with expired state')
+          logger.log('🔄 Redirecting to auth page with expired state')
           return NextResponse.redirect(expiredUrl)
         }
         
@@ -125,7 +126,7 @@ export async function GET(request: NextRequest) {
                 referral_code: pendingReferralCode
               }
             })
-            console.log('✅ Added referral code to OAuth user:', pendingReferralCode)
+            logger.log('✅ Added referral code to OAuth user:', pendingReferralCode)
             shouldClearReferralCookie = true
           } catch (error) {
             console.error('Failed to add referral code to OAuth user:', error)
@@ -142,9 +143,9 @@ export async function GET(request: NextRequest) {
                   terms_accepted_at: new Date().toISOString(),
                 },
               });
-              console.log('✅ Terms acceptance date saved to user metadata');
+              logger.log('✅ Terms acceptance date saved to user metadata');
             } catch (updateError) {
-              console.warn('⚠️ Failed to save terms acceptance:', updateError);
+              logger.warn('⚠️ Failed to save terms acceptance:', updateError);
             }
           }
         }
@@ -166,10 +167,10 @@ export async function GET(request: NextRequest) {
 
           // Only redirect to setting-up if no subscription exists (webhook failed or old user)
           if (creditAccount && (creditAccount.tier === 'none' || !creditAccount.stripe_subscription_id)) {
-            console.log('⚠️ No subscription detected - redirecting to setting-up (fallback)');
+            logger.log('⚠️ No subscription detected - redirecting to setting-up (fallback)');
             finalDestination = '/setting-up'
           } else {
-            console.log('✅ Account already initialized via webhook');
+            logger.log('✅ Account already initialized via webhook');
           }
         }
       }

@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -115,7 +116,7 @@ export function useOptimisticAgentStart(
 
   // Special handler for AgentRunLimitError (needs banner, not just modal)
   const handleAgentRunLimitError = useCallback((error: AgentRunLimitError) => {
-    console.log('[OptimisticAgentStart] Caught AgentRunLimitError');
+    logger.log('[OptimisticAgentStart] Caught AgentRunLimitError');
     const { running_thread_ids, running_count } = error.detail;
     // Notify parent to reset loading states
     onBackgroundError?.();
@@ -159,7 +160,7 @@ export function useOptimisticAgentStart(
       localStorage.setItem('pending_thread_intent', JSON.stringify(pendingIntent));
 
       if (process.env.NODE_ENV !== 'production') {
-        console.log('[OptimisticAgentStart] Starting new thread:', {
+        logger.log('[OptimisticAgentStart] Starting new thread:', {
           projectId,
           threadId,
           agent_id: agentId || undefined,
@@ -185,7 +186,7 @@ export function useOptimisticAgentStart(
         mode: mode,
         files: files,
       }).then(async (response) => {
-        console.log('[OptimisticAgentStart] API succeeded, response:', response);
+        logger.log('[OptimisticAgentStart] API succeeded, response:', response);
         
         // Clear pending intent - thread was successfully created
         localStorage.removeItem('pending_thread_intent');
@@ -205,10 +206,10 @@ export function useOptimisticAgentStart(
             
             storePreconnectInfo(response.agent_run_id, threadId);
             await preconnectService.preconnect(response.agent_run_id, threadId, getAuthToken);
-            console.log('[OptimisticAgentStart] Stream pre-connected for', response.agent_run_id);
+            logger.log('[OptimisticAgentStart] Stream pre-connected for', response.agent_run_id);
           } catch (preconnectError) {
             // Non-fatal - ThreadComponent will create its own connection
-            console.warn('[OptimisticAgentStart] Stream pre-connect failed:', preconnectError);
+            logger.warn('[OptimisticAgentStart] Stream pre-connect failed:', preconnectError);
           }
 
           // Set session storage AFTER preconnect is established to avoid race condition

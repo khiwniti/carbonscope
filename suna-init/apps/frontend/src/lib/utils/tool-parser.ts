@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 // toolParser.ts
 // A robust, agnostic parser to extract success flag, tool name, and JSON output from a ToolResult-like string.
 
@@ -251,7 +252,7 @@ export function cleanAndParse(messy: string): string {
           throw new Error(`Unexpected ${tk.type}`);
       }
     } catch (e) {
-      console.warn(`Parse error at ${tk.line}:${tk.col}: ${e instanceof Error ? e.message : String(e)}`);
+      logger.warn(`Parse error at ${tk.line}:${tk.col}: ${e instanceof Error ? e.message : String(e)}`);
       // error recovery: skip to next comma or closing delimiter
       while (p < tokens.length &&
              !['COMMA','RBRACE','RBRACK','EOF'].includes(peek()!)) {
@@ -274,11 +275,11 @@ export function cleanAndParse(messy: string): string {
           ? JSON.parse(advance().value.replace(/^['"]|['"]$/g, '"'))
           : advance().value;
       } else {
-        console.warn(`Expected key at ${tk.line}:${tk.col}`);
+        logger.warn(`Expected key at ${tk.line}:${tk.col}`);
         advance(); continue;
       }
       if (peek() === 'COLON') advance();
-      else { console.warn(`Missing ':' after key at ${tk.line}:${tk.col}`); }
+      else { logger.warn(`Missing ':' after key at ${tk.line}:${tk.col}`); }
 
       const val = parseValue();
       if (key !== null) {

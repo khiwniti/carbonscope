@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import { ToolCallData, ToolResultData } from '../types';
 
 type ToolCall = ToolCallData | { name?: string; arguments?: Record<string, any>; metadata?: any };
@@ -73,7 +74,7 @@ export function extractSpreadsheetData(
         parsedResult = toolResult.output;
       }
     } catch (e) {
-      console.warn('Failed to parse spreadsheet tool result:', e);
+      logger.warn('Failed to parse spreadsheet tool result:', e);
     }
   }
 

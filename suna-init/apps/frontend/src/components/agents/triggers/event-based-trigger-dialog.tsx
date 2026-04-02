@@ -1,4 +1,5 @@
 "use client";
+import { logger } from '@/lib/logger';
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -332,10 +333,10 @@ export const EventBasedTriggerDialog: React.FC<EventBasedTriggerDialogProps> = (
     // Debug logging for trigger data
     useEffect(() => {
         if (isEditMode) {
-            console.log('Edit mode - selectedApp changed:', selectedApp);
-            console.log('Edit mode - loadingTriggers:', loadingTriggers);
-            console.log('Edit mode - triggersData:', triggersData);
-            console.log('Edit mode - triggersError:', triggersError);
+            logger.log('Edit mode - selectedApp changed:', selectedApp);
+            logger.log('Edit mode - loadingTriggers:', loadingTriggers);
+            logger.log('Edit mode - triggersData:', triggersData);
+            logger.log('Edit mode - triggersError:', triggersError);
         }
     }, [isEditMode, selectedApp, loadingTriggers, triggersData, triggersError]);
 
@@ -406,7 +407,7 @@ export const EventBasedTriggerDialog: React.FC<EventBasedTriggerDialogProps> = (
                 let toolkitSlug = '';
                 if (triggerConfig.qualified_name) {
                     toolkitSlug = triggerConfig.qualified_name.replace(/^composio\./, '').toLowerCase();
-                    console.log('Edit mode - extracted from qualified_name:', toolkitSlug);
+                    logger.log('Edit mode - extracted from qualified_name:', toolkitSlug);
                 }
                 
                 if (!toolkitSlug && triggerConfig.trigger_slug) {

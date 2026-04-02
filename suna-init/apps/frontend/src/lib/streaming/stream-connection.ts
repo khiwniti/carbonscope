@@ -1,4 +1,5 @@
 import type { ConnectionState } from './types';
+import { logger } from '@/lib/logger';
 import { STREAM_CONFIG } from './constants';
 import { calculateExponentialBackoff, formatStreamUrl } from './utils';
 
@@ -153,7 +154,7 @@ export class StreamConnection {
       const timeSinceLastMessage = Date.now() - this.lastMessageTime;
       
       if (timeSinceLastMessage > STREAM_CONFIG.HEARTBEAT_TIMEOUT_MS) {
-        console.warn(`[StreamConnection] No message received for ${timeSinceLastMessage}ms`);
+        logger.warn(`[StreamConnection] No message received for ${timeSinceLastMessage}ms`);
         this.handleConnectionError();
       }
     }, STREAM_CONFIG.HEARTBEAT_CHECK_INTERVAL_MS);

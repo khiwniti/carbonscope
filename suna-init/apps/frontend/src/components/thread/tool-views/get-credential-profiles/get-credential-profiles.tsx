@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   Users,
   CheckCircle,
@@ -31,7 +32,7 @@ export function GetCredentialProfilesToolView({
 }: ToolViewProps) {
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('GetCredentialProfilesToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('GetCredentialProfilesToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

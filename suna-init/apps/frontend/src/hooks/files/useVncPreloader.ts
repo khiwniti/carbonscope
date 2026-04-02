@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
+import { logger } from '@/lib/logger';
 import { Project } from '@/lib/api/threads';
 
 export type VncStatus = 'idle' | 'loading' | 'ready' | 'error';
@@ -61,14 +62,14 @@ export function useVncPreloader(
         
         // Exponential backoff: 2s, 3s, 4.5s, 6.75s, etc. (max 10s)
         const delay = Math.min(2000 * Math.pow(1.5, retryCount), 10000);
-        console.log(`🔄 VNC preload failed, retrying in ${delay}ms (attempt ${retryCount + 1}/${maxRetries})`);
+        logger.log(`🔄 VNC preload failed, retrying in ${delay}ms (attempt ${retryCount + 1}/${maxRetries})`);
         
         retryTimeoutRef.current = setTimeout(() => {
           setRetryCount(prev => prev + 1);
           startPreloading(vncUrl);
         }, delay);
       } else {
-        console.log(`❌ VNC preload failed after ${maxRetries} attempts`);
+        logger.log(`❌ VNC preload failed after ${maxRetries} attempts`);
         setStatus('error');
         isRetryingRef.current = false;
       }
@@ -77,7 +78,7 @@ export function useVncPreloader(
     // Handle successful iframe load
     iframe.onload = () => {
       clearTimeout(loadTimeout);
-      console.log('✅ VNC preloaded successfully');
+      logger.log('✅ VNC preloaded successfully');
       setStatus('ready');
       setRetryCount(0);
       isRetryingRef.current = false;

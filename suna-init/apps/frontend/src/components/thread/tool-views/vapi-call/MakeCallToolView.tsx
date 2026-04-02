@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { logger } from '@/lib/logger';
 import { Phone, CheckCircle, Clock, User, Mic, Brain, AlertTriangle } from 'lucide-react';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { ToolViewProps } from '../types';
@@ -62,7 +63,7 @@ export function MakeCallToolView({
 
         const data = await response.json();
 
-        console.log('[MakeCallToolView] Fetched call data:', {
+        logger.log('[MakeCallToolView] Fetched call data:', {
           status: data?.status,
           transcriptLength: Array.isArray(data?.transcript) ? data.transcript.length : 0
         });
@@ -84,7 +85,7 @@ export function MakeCallToolView({
 
   useEffect(() => {
     if (realtimeData) {
-      console.log('[MakeCallToolView] Updating from realtime data:', {
+      logger.log('[MakeCallToolView] Updating from realtime data:', {
         status: realtimeData.status,
         transcript: realtimeData.transcript
       });
@@ -98,14 +99,14 @@ export function MakeCallToolView({
             : realtimeData.transcript;
 
           const transcriptArray = Array.isArray(parsed) ? parsed : [];
-          console.log('[MakeCallToolView] Setting transcript:', transcriptArray.length, 'messages');
+          logger.log('[MakeCallToolView] Setting transcript:', transcriptArray.length, 'messages');
           setLiveTranscript(transcriptArray);
         } catch (e) {
           console.error('[MakeCallToolView] Failed to parse transcript:', e);
           setLiveTranscript([]);
         }
       } else {
-        console.log('[MakeCallToolView] No transcript in realtime data');
+        logger.log('[MakeCallToolView] No transcript in realtime data');
       }
     }
   }, [realtimeData]);
@@ -120,7 +121,7 @@ export function MakeCallToolView({
 
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('MakeCallToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('MakeCallToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

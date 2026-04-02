@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
@@ -2577,7 +2578,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
     const hasUnsaved = hasUnsavedChangesRef.current;
     const isEditing = isUserEditingRef.current;
     
-    console.log('[CANVAS_LIVE_DEBUG] forceFetch called:', { 
+    logger.log('[CANVAS_LIVE_DEBUG] forceFetch called:', { 
       sandboxId, 
       filePath, 
       hasAuth: !!authToken, 
@@ -2586,11 +2587,11 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
     });
 
     if (!sandboxId || !filePath || !authToken) {
-      console.log('[CANVAS_LIVE_DEBUG] forceFetch skipped - missing required params');
+      logger.log('[CANVAS_LIVE_DEBUG] forceFetch skipped - missing required params');
       return;
     }
     if (hasUnsaved || isEditing) {
-      console.log('[CANVAS_LIVE_DEBUG] forceFetch skipped - user editing or unsaved changes');
+      logger.log('[CANVAS_LIVE_DEBUG] forceFetch skipped - user editing or unsaved changes');
       return;
     }
 
@@ -2599,7 +2600,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
     try {
       const baseUrl = getSandboxFileUrl(sandboxId, filePath);
       const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}_t=${Date.now()}`;
-      console.log('[CANVAS_LIVE_DEBUG] forceFetch fetching:', url);
+      logger.log('[CANVAS_LIVE_DEBUG] forceFetch fetching:', url);
 
       const response = await fetch(url, {
         headers: authToken ? { 'Authorization': `Bearer ${authToken}` } : {},
@@ -2607,15 +2608,15 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
         cache: 'no-store',
       });
 
-      console.log('[CANVAS_LIVE_DEBUG] forceFetch response status:', response.status);
+      logger.log('[CANVAS_LIVE_DEBUG] forceFetch response status:', response.status);
 
       if (!response.ok) {
-        console.log('[CANVAS_LIVE_DEBUG] forceFetch failed - bad response');
+        logger.log('[CANVAS_LIVE_DEBUG] forceFetch failed - bad response');
         return;
       }
 
       const newContent = await response.text();
-      console.log('[CANVAS_LIVE_DEBUG] forceFetch content length:', newContent?.length);
+      logger.log('[CANVAS_LIVE_DEBUG] forceFetch content length:', newContent?.length);
 
       if (!newContent) return;
 
@@ -2626,7 +2627,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
         const newElementIds = (parsed.elements || []).map(e => e.id).sort().join(',');
         const currentElementIds = elementsRef.current.map(e => e.id).sort().join(',');
 
-        console.log('[CANVAS_LIVE_DEBUG] forceFetch comparing elements:', {
+        logger.log('[CANVAS_LIVE_DEBUG] forceFetch comparing elements:', {
           serverCount,
           localCount,
           changed: newElementIds !== currentElementIds,
@@ -2635,12 +2636,12 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
 
         // Don't overwrite local state if we have more elements locally (user added something)
         if (localCount > serverCount) {
-          console.log('[CANVAS_LIVE_DEBUG] forceFetch SKIPPED - local has MORE elements (user added content)');
+          logger.log('[CANVAS_LIVE_DEBUG] forceFetch SKIPPED - local has MORE elements (user added content)');
           return;
         }
 
         if (newElementIds !== currentElementIds) {
-          console.log('[CANVAS_LIVE_DEBUG] forceFetch updating elements - CHANGE DETECTED!');
+          logger.log('[CANVAS_LIVE_DEBUG] forceFetch updating elements - CHANGE DETECTED!');
           // Only re-center if server has MORE elements (AI added content)
           const shouldRecenter = serverCount > localCount;
           setCanvasData(parsed);
@@ -2649,23 +2650,23 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
             hasCenteredRef.current = false; // Re-center to show new AI-added content
           }
         } else {
-          console.log('[CANVAS_LIVE_DEBUG] forceFetch - no changes detected');
+          logger.log('[CANVAS_LIVE_DEBUG] forceFetch - no changes detected');
         }
       } catch (parseErr) {
-        console.log('[CANVAS_LIVE_DEBUG] forceFetch parse error:', parseErr);
+        logger.log('[CANVAS_LIVE_DEBUG] forceFetch parse error:', parseErr);
       }
     } catch (err) {
-      console.log('[CANVAS_LIVE_DEBUG] forceFetch network error:', err);
+      logger.log('[CANVAS_LIVE_DEBUG] forceFetch network error:', err);
     }
   }, [sandboxId, filePath, authToken]);
 
   // Listen for canvas-tool-updated events to trigger immediate refresh
   useEffect(() => {
-    console.log('[CANVAS_LIVE_DEBUG] Setting up canvas-tool-updated listener for filePath:', filePath);
+    logger.log('[CANVAS_LIVE_DEBUG] Setting up canvas-tool-updated listener for filePath:', filePath);
 
     const handleCanvasUpdate = (event: CustomEvent<{ canvasPath: string; timestamp: number }>) => {
       const eventPath = event.detail.canvasPath;
-      console.log('[CANVAS_LIVE_DEBUG] Received canvas-tool-updated event:', {
+      logger.log('[CANVAS_LIVE_DEBUG] Received canvas-tool-updated event:', {
         eventPath,
         filePath,
         timestamp: event.detail.timestamp,
@@ -2673,10 +2674,10 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
 
       // Check if this event is for our canvas
       if (filePath && (filePath.includes(eventPath) || eventPath.includes(filePath.replace('canvases/', '')))) {
-        console.log('[CANVAS_LIVE_DEBUG] Event matches our canvas, calling forceFetch');
+        logger.log('[CANVAS_LIVE_DEBUG] Event matches our canvas, calling forceFetch');
         forceFetch();
       } else {
-        console.log('[CANVAS_LIVE_DEBUG] Event does NOT match our canvas, ignoring');
+        logger.log('[CANVAS_LIVE_DEBUG] Event does NOT match our canvas, ignoring');
       }
     };
 
@@ -2690,7 +2691,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
         // Only process events from the last 10 seconds
         if (Date.now() - timestamp < 10000) {
           if (filePath.includes(eventPath) || eventPath.includes(filePath.replace('canvases/', '').replace('/workspace/', ''))) {
-            console.log('[CANVAS_LIVE_DEBUG] Found pending event for our canvas, forcing fetch:', eventPath);
+            logger.log('[CANVAS_LIVE_DEBUG] Found pending event for our canvas, forcing fetch:', eventPath);
             pendingEvents.delete(eventPath); // Clear after processing
             forceFetch();
             break;
@@ -2703,7 +2704,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
     }
 
     return () => {
-      console.log('[CANVAS_LIVE_DEBUG] Removing canvas-tool-updated listener');
+      logger.log('[CANVAS_LIVE_DEBUG] Removing canvas-tool-updated listener');
       window.removeEventListener('canvas-tool-updated', handleCanvasUpdate as EventListener);
     };
   }, [filePath, forceFetch]);
@@ -2720,7 +2721,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
       const isEditing = isUserEditingRef.current;
       
       if (hasUnsaved || isEditing) {
-        console.log('[CANVAS_LIVE_DEBUG] Polling skipped - user editing or unsaved changes', { hasUnsaved, isEditing });
+        logger.log('[CANVAS_LIVE_DEBUG] Polling skipped - user editing or unsaved changes', { hasUnsaved, isEditing });
         return;
       }
 
@@ -2729,7 +2730,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
       if (now - lastFetchTimeRef.current < POLL_INTERVAL - 200) return;
       lastFetchTimeRef.current = now;
 
-      console.log('[CANVAS_LIVE_DEBUG] Polling: fetching canvas content');
+      logger.log('[CANVAS_LIVE_DEBUG] Polling: fetching canvas content');
 
       try {
         // Add cache-busting to ensure fresh content from server
@@ -2742,7 +2743,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
         });
 
         if (!response.ok) {
-          console.log('[CANVAS_LIVE_DEBUG] Polling: fetch failed with status', response.status);
+          logger.log('[CANVAS_LIVE_DEBUG] Polling: fetch failed with status', response.status);
           return;
         }
 
@@ -2757,7 +2758,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
           const newElementIds = (parsed.elements || []).map(e => e.id).sort().join(',');
           const currentElementIds = elementsRef.current.map(e => e.id).sort().join(',');
 
-          console.log('[CANVAS_LIVE_DEBUG] Polling: comparing elements', {
+          logger.log('[CANVAS_LIVE_DEBUG] Polling: comparing elements', {
             serverCount,
             localCount,
             changed: newElementIds !== currentElementIds,
@@ -2766,13 +2767,13 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
 
           // Don't overwrite local state if we have more elements locally (user added something)
           if (localCount > serverCount) {
-            console.log('[CANVAS_LIVE_DEBUG] Polling SKIPPED - local has MORE elements (user added content)');
+            logger.log('[CANVAS_LIVE_DEBUG] Polling SKIPPED - local has MORE elements (user added content)');
             return;
           }
 
           // Only update if structure actually changed (new/removed elements)
           if (newElementIds !== currentElementIds) {
-            console.log('[CANVAS_LIVE_DEBUG] Polling: UPDATING - new elements detected!');
+            logger.log('[CANVAS_LIVE_DEBUG] Polling: UPDATING - new elements detected!');
             // Only re-center if server has MORE elements (AI added content)
             const shouldRecenter = serverCount > localCount;
             setCanvasData(parsed);
@@ -2782,10 +2783,10 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
             }
           }
         } catch (parseErr) {
-          console.log('[CANVAS_LIVE_DEBUG] Polling: parse error', parseErr);
+          logger.log('[CANVAS_LIVE_DEBUG] Polling: parse error', parseErr);
         }
       } catch (err) {
-        console.log('[CANVAS_LIVE_DEBUG] Polling: network error', err);
+        logger.log('[CANVAS_LIVE_DEBUG] Polling: network error', err);
       }
     };
 
@@ -2850,7 +2851,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
     const rafId = requestAnimationFrame(() => {
       const container = containerRef.current;
       if (!container) {
-        console.warn('Canvas container not found for wheel handler');
+        logger.warn('Canvas container not found for wheel handler');
         return;
       }
 
@@ -3022,7 +3023,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
 
       // Only log when there's a change to avoid spam
       if (hasChanges !== hasUnsavedChanges) {
-        console.log('[CANVAS_LIVE_DEBUG] hasUnsavedChanges changed to:', hasChanges, {
+        logger.log('[CANVAS_LIVE_DEBUG] hasUnsavedChanges changed to:', hasChanges, {
           localCount: elements.length,
           serverCount: canvasData.elements?.length || 0,
         });
@@ -3715,7 +3716,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
           const width = targetEl.width * scale;
           const height = targetEl.height * scale;
 
-          console.log('[SHIMMER_DEBUG] Showing shimmer on:', { 
+          logger.log('[SHIMMER_DEBUG] Showing shimmer on:', { 
             processingId: processingElementId,
             showingOn: containingFrame ? 'FRAME' : 'IMAGE',
             frameId: containingFrame?.id,
@@ -4154,7 +4155,7 @@ export function CanvasRenderer({ content, filePath, fileName, sandboxId, classNa
 
                     ctx.drawImage(img, drawX, drawY, imgEl.width, imgEl.height);
                   } catch (err) {
-                    console.warn('Failed to draw image:', imgEl.name, err);
+                    logger.warn('Failed to draw image:', imgEl.name, err);
                   }
                 }
 

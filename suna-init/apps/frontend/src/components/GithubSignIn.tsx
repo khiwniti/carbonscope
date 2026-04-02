@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from 'next-themes';
@@ -57,7 +58,7 @@ export default function GitHubSignIn({ returnUrl, referralCode }: GitHubSignInPr
   useEffect(() => {
     const handleMessage = (event: MessageEvent<AuthMessage>) => {
       if (event.origin !== window.location.origin) {
-        console.warn(
+        logger.warn(
           'Rejected message from unauthorized origin:',
           event.origin,
         );

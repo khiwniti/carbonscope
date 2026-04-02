@@ -3,6 +3,7 @@
  */
 
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
@@ -42,7 +43,7 @@ export function DocxPreview({
 
     // Debug logging
     useEffect(() => {
-        console.log('[DocxPreview] State:', {
+        logger.log('[DocxPreview] State:', {
             filepath,
             sandboxId,
             localPreviewUrl,
@@ -61,13 +62,13 @@ export function DocxPreview({
     const renderDocx = useCallback(async () => {
         // Skip if already rendered or currently rendering
         if (isRendered || isRendering) {
-            console.log('[DocxPreview] Skipping render - already rendering or rendered');
+            logger.log('[DocxPreview] Skipping render - already rendering or rendered');
             return;
         }
 
         const container = containerRef.current;
         if (!container) {
-            console.log('[DocxPreview] Container ref not ready');
+            logger.log('[DocxPreview] Container ref not ready');
             return;
         }
 
@@ -80,11 +81,11 @@ export function DocxPreview({
             } else {
                 setIsRendering(true);
                 try {
-                    console.log('[DocxPreview] Fetching from localPreviewUrl:', localPreviewUrl);
+                    logger.log('[DocxPreview] Fetching from localPreviewUrl:', localPreviewUrl);
                     const response = await fetch(localPreviewUrl);
                     docxBlob = await response.blob();
                     blobRef.current = docxBlob;
-                    console.log('[DocxPreview] Got blob from localPreviewUrl, size:', docxBlob.size);
+                    logger.log('[DocxPreview] Got blob from localPreviewUrl, size:', docxBlob.size);
                 } catch (err) {
                     console.error('[DocxPreview] Failed to fetch local preview:', err);
                     setRenderError('Failed to load document');
@@ -93,12 +94,12 @@ export function DocxPreview({
                 }
             }
         } else if (blobData instanceof Blob) {
-            console.log('[DocxPreview] Using blobData, size:', blobData.size);
+            logger.log('[DocxPreview] Using blobData, size:', blobData.size);
             docxBlob = blobData;
         }
 
         if (!docxBlob) {
-            console.log('[DocxPreview] No blob available yet');
+            logger.log('[DocxPreview] No blob available yet');
             return;
         }
 
@@ -106,14 +107,14 @@ export function DocxPreview({
         setRenderError(null);
 
         try {
-            console.log('[DocxPreview] Importing docx-preview library...');
+            logger.log('[DocxPreview] Importing docx-preview library...');
             // Dynamically import docx-preview to avoid SSR issues
             const { renderAsync } = await import('docx-preview');
-            console.log('[DocxPreview] Library imported, rendering...');
+            logger.log('[DocxPreview] Library imported, rendering...');
 
             // Check container is still mounted
             if (!containerRef.current) {
-                console.log('[DocxPreview] Container unmounted during fetch, aborting');
+                logger.log('[DocxPreview] Container unmounted during fetch, aborting');
                 setIsRendering(false);
                 return;
             }
@@ -143,7 +144,7 @@ export function DocxPreview({
                 renderEndnotes: true,
             });
 
-            console.log('[DocxPreview] Rendered successfully');
+            logger.log('[DocxPreview] Rendered successfully');
             setIsRendered(true);
         } catch (err) {
             console.error('[DocxPreview] Render error:', err);

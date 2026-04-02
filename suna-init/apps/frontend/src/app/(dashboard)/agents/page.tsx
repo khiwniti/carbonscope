@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { toast } from '@/lib/toast';
@@ -372,7 +373,7 @@ export default function AgentsPage() {
         return;
       }
 
-      console.log('Installing template with:', {
+      logger.log('Installing template with:', {
         template_id: item.template_id,
         instance_name: instanceName,
         profile_mappings: profileMappings,
@@ -390,7 +391,7 @@ export default function AgentsPage() {
         trigger_variables: triggerVariables
       });
       
-      console.log('Installation result:', result);
+      logger.log('Installation result:', result);
 
       if (result.status === 'installed') {
         toast.success(`Worker "${instanceName}" installed successfully!`);

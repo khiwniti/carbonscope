@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { logger } from '@/lib/logger';
 import {
   Card,
   CardContent,
@@ -218,7 +219,7 @@ export function PresentationViewer({
         currentSlideNumber = output.slide_number;
         presentationTitle = output.presentation_title || output.title;
         
-        console.log('[PresentationViewer] Extracted presentation data:', {
+        logger.log('[PresentationViewer] Extracted presentation data:', {
           presentationName: extractedPresentationName,
           presentationPath: extractedPresentationPath,
           slideNumber: currentSlideNumber,
@@ -254,7 +255,7 @@ export function PresentationViewer({
       );
 
       if (response.error) {
-        console.warn('Failed to ensure sandbox is active:', response.error);
+        logger.warn('Failed to ensure sandbox is active:', response.error);
         isEnsuringSandboxRef.current = false;
         return;
       }
@@ -328,7 +329,7 @@ export function PresentationViewer({
       if (response.ok) {
         const data = await response.json();
         
-        console.log('[PresentationViewer] Metadata loaded successfully:', {
+        logger.log('[PresentationViewer] Metadata loaded successfully:', {
           presentationName: sanitizedPresentationName,
           slideCount: Object.keys(data.slides || {}).length,
           metadata: data
@@ -442,7 +443,7 @@ export function PresentationViewer({
       const cachedMetadata = metadataCacheRef.current.get(sanitizedName);
       if (cachedMetadata && !metadata) {
         // Set cached metadata immediately so slides can render right away
-        console.log('[PresentationViewer] Using cached metadata immediately:', {
+        logger.log('[PresentationViewer] Using cached metadata immediately:', {
           presentationName: sanitizedName,
           slideCount: Object.keys(cachedMetadata.slides || {}).length,
           cachedMetadata
@@ -455,7 +456,7 @@ export function PresentationViewer({
     
     // THEN: Start loading fresh data if we have the required data
     if (extractedPresentationName && project?.sandbox?.sandbox_url) {
-      console.log('[PresentationViewer] Starting metadata load:', {
+      logger.log('[PresentationViewer] Starting metadata load:', {
         presentationName: sanitizedName,
         sandboxUrl: project.sandbox.sandbox_url,
         hasCachedMetadata: !!metadataCacheRef.current.get(sanitizedName || ''),

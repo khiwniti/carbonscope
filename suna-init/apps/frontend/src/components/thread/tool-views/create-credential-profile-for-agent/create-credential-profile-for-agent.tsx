@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { logger } from '@/lib/logger';
 import {
   UserPlus,
   CheckCircle,
@@ -54,7 +55,7 @@ export function CreateCredentialProfileForAgentToolView({
 
   // Defensive check - ensure toolCall is defined
   if (!toolCall || !extractedData) {
-    console.warn('CreateCredentialProfileForAgentToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('CreateCredentialProfileForAgentToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

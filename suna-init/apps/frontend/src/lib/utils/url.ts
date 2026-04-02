@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 /**
  * Constructs a preview URL for HTML files in the sandbox environment.
  * Properly handles URL encoding of file paths by encoding each path segment individually.
@@ -54,7 +55,7 @@ export function constructHtmlPreviewUrl(
       }
     } catch (e) {
       // If URL parsing fails, treat as regular path
-      console.warn('Failed to parse filePath as URL, treating as regular path:', filePath);
+      logger.warn('Failed to parse filePath as URL, treating as regular path:', filePath);
     }
   }
 

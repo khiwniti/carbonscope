@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useRef } from 'react';
 import { toast } from '@/lib/toast';
@@ -189,12 +190,12 @@ export function KnowledgeBaseManager({
     // Load assignments and auto-fetch all folder entries for assignment mode
     React.useEffect(() => {
         if (enableAssignments && agentId) {
-            console.log('Loading assignments immediately for agent:', agentId);
+            logger.log('Loading assignments immediately for agent:', agentId);
             loadAssignments();
 
             // Auto-fetch all folder entries in assignment mode
             if (!foldersLoading && folders.length > 0) {
-                console.log('Auto-fetching all folder entries for assignment mode');
+                logger.log('Auto-fetching all folder entries for assignment mode');
                 folders.forEach(folder => {
                     if (!folderEntries[folder.folder_id]) {
                         fetchFolderEntries(folder.folder_id);
@@ -207,18 +208,18 @@ export function KnowledgeBaseManager({
     const loadAssignments = async () => {
         if (!agentId) return;
 
-        console.log('🔄 Starting to load assignments for agent:', agentId);
+        logger.log('🔄 Starting to load assignments for agent:', agentId);
         setAssignmentsLoading(true);
         try {
             const supabase = createClient();
             const { data: { session } } = await supabase.auth.getSession();
 
             if (!session?.access_token) {
-                console.warn('❌ No access token available for assignments');
+                logger.warn('❌ No access token available for assignments');
                 return;
             }
 
-            console.log('📡 Fetching assignments from API...');
+            logger.log('📡 Fetching assignments from API...');
             const response = await fetch(`${API_URL}/knowledge-base/agents/${agentId}/assignments`, {
                 headers: {
                     'Authorization': `Bearer ${session.access_token}`,
@@ -226,22 +227,22 @@ export function KnowledgeBaseManager({
                 }
             });
 
-            console.log('📡 Assignments response status:', response.status);
+            logger.log('📡 Assignments response status:', response.status);
 
             if (response.ok) {
                 const assignments = await response.json();
-                console.log('📊 Raw assignments data:', assignments);
+                logger.log('📊 Raw assignments data:', assignments);
 
                 const selectedSet = new Set<string>();
                 Object.entries(assignments).forEach(([entryId, enabled]) => {
                     if (enabled) {
                         selectedSet.add(entryId);
-                        console.log('✅ Added to selection:', entryId);
+                        logger.log('✅ Added to selection:', entryId);
                     } else {
-                        console.log('❌ Not selected:', entryId);
+                        logger.log('❌ Not selected:', entryId);
                     }
                 });
-                console.log('🎯 Final selected entries:', Array.from(selectedSet));
+                logger.log('🎯 Final selected entries:', Array.from(selectedSet));
                 setSelectedEntries(selectedSet);
             } else {
                 const errorText = await response.text();
@@ -251,7 +252,7 @@ export function KnowledgeBaseManager({
             console.error('❌ Error loading assignments:', error);
         } finally {
             setAssignmentsLoading(false);
-            console.log('✅ Assignment loading complete');
+            logger.log('✅ Assignment loading complete');
         }
     };
 

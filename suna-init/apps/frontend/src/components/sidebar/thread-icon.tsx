@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React from 'react';
 import { DynamicIcon } from 'lucide-react/dynamic';
@@ -51,7 +52,7 @@ export function ThreadIcon({
     );
   } catch (error) {
     // Fallback to default icon if DynamicIcon fails
-    console.warn(`Invalid icon name: ${iconName}`, error);
+    logger.warn(`Invalid icon name: ${iconName}`, error);
     return (
       <MessageSquareMore 
         className={cn("shrink-0", className)} 

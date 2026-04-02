@@ -8,7 +8,6 @@ from core.agentpress.thread_manager import ThreadManager
 from core.utils.tool_output_streaming import stream_tool_output, get_tool_output_streaming_context, get_current_tool_call_id
 from core.utils.logger import logger
 
-from core.config import timeouts
 
 @tool_metadata(
     display_name="Bash",

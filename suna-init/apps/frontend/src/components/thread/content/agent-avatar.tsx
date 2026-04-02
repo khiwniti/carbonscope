@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React from 'react';
 import { useAgentFromCache } from '@/hooks/agents/use-agents';
@@ -128,7 +129,7 @@ export const AgentAvatar: React.FC<AgentAvatarProps> = ({
         );
       } catch (error) {
         // Fallback to default icon if DynamicIcon fails
-        console.warn(`Invalid icon name: ${iconName}`, error);
+        logger.warn(`Invalid icon name: ${iconName}`, error);
       }
     }
   }

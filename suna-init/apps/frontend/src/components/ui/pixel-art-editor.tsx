@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { logger } from '@/lib/logger';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -55,7 +56,7 @@ export const PixelArtEditor: React.FC<PixelArtEditorProps> = ({
           }
         });
       } catch (error) {
-        console.warn('Failed to parse initial pixel art:', error);
+        logger.warn('Failed to parse initial pixel art:', error);
       }
     }
 

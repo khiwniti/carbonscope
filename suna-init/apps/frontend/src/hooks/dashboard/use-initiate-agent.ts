@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { unifiedAgentStart, UnifiedAgentStartResponse } from "@/lib/api/agents";
 import { 
@@ -40,7 +41,7 @@ export const useInitiateAgentMutation = () => {
       const agent_id = formData.get('agent_id') as string | undefined;
       
       // Debug logging
-      console.log('[useInitiateAgent] Extracted from FormData:', {
+      logger.log('[useInitiateAgent] Extracted from FormData:', {
         prompt: prompt ? prompt.substring(0, 100) : prompt === '' ? '(empty string)' : undefined,
         promptLength: prompt?.length ?? (prompt === '' ? 0 : undefined),
         promptIsEmptyString: prompt === '',

@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useModelStore } from '@/stores/model-store';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
@@ -96,7 +97,7 @@ export const useModelSelection = () => {
       const defaultModelId = getDefaultModel(accessibleModels);
 
       if (defaultModelId && defaultModelId !== selectedModel) {
-        console.log('🔧 useModelSelection: Setting default model:', defaultModelId, '(tier:', accountState?.subscription?.tier_key, ')');
+        logger.log('🔧 useModelSelection: Setting default model:', defaultModelId, '(tier:', accountState?.subscription?.tier_key, ')');
         setSelectedModel(defaultModelId);
       }
     }
@@ -112,7 +113,7 @@ export const useModelSelection = () => {
     if (wasFree && isNowPaid && prevTierKey.current !== null) {
       const powerModel = availableModels.find(m => m.id === 'CarbonScope/power' && !m.requiresSubscription);
       if (powerModel) {
-        console.log('🚀 useModelSelection: Upgraded to paid tier! Switching to CarbonScope/power');
+        logger.log('🚀 useModelSelection: Upgraded to paid tier! Switching to CarbonScope/power');
         setSelectedModel('CarbonScope/power');
       }
     }
@@ -123,7 +124,7 @@ export const useModelSelection = () => {
   const handleModelChange = useCallback((modelId: string) => {
     const model = accessibleModels.find(m => m.id === modelId);
     if (model) {
-      console.log('🔧 useModelSelection: Changing model to:', modelId);
+      logger.log('🔧 useModelSelection: Changing model to:', modelId);
       setSelectedModel(modelId);
     }
   }, [accessibleModels, setSelectedModel]);

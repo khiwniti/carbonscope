@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -77,7 +78,7 @@ async function parseXlsxFormatWithXlsxLib(arrayBuffer: ArrayBuffer): Promise<Par
   const sheetNames: string[] = workbook.SheetNames || [];
   
   if (!sheetNames || sheetNames.length === 0) {
-    console.warn('[XlsxRenderer] No sheets found in XLSX file (xlsx lib)');
+    logger.warn('[XlsxRenderer] No sheets found in XLSX file (xlsx lib)');
     return { sheets: [], sheetNames: [] };
   }
   
@@ -86,10 +87,10 @@ async function parseXlsxFormatWithXlsxLib(arrayBuffer: ArrayBuffer): Promise<Par
       const ws = workbook.Sheets[name];
       const rows: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: false });
       
-      console.log(`[XlsxRenderer] Parsing XLSX sheet "${name}" (xlsx lib): ${rows?.length || 0} rows`);
+      logger.log(`[XlsxRenderer] Parsing XLSX sheet "${name}" (xlsx lib): ${rows?.length || 0} rows`);
       
       if (!rows || rows.length === 0) {
-        console.warn(`[XlsxRenderer] XLSX sheet "${name}" has no rows`);
+        logger.warn(`[XlsxRenderer] XLSX sheet "${name}" has no rows`);
         return { headers: [], data: [] };
       }
       
@@ -105,7 +106,7 @@ async function parseXlsxFormatWithXlsxLib(arrayBuffer: ArrayBuffer): Promise<Par
         return row && Array.isArray(row) && row.some((cell) => cell != null && cell !== '');
       });
       
-      console.log(`[XlsxRenderer] XLSX sheet "${name}" (xlsx lib): ${headers.length} headers, ${dataRows.length} data rows`);
+      logger.log(`[XlsxRenderer] XLSX sheet "${name}" (xlsx lib): ${headers.length} headers, ${dataRows.length} data rows`);
       
       const data = dataRows.map((row) => {
         const obj: Record<string, any> = {};
@@ -126,7 +127,7 @@ async function parseXlsxFormatWithXlsxLib(arrayBuffer: ArrayBuffer): Promise<Par
     }
   });
   
-  console.log('[XlsxRenderer] Parsed XLSX workbook (xlsx lib):', {
+  logger.log('[XlsxRenderer] Parsed XLSX workbook (xlsx lib):', {
     sheetCount: sheets.length,
     sheetsWithData: sheets.filter(s => s.headers.length > 0 || s.data.length > 0).length
   });
@@ -146,7 +147,7 @@ async function parseXlsxFormat(file: File, arrayBuffer: ArrayBuffer): Promise<Pa
     const sheetNames = await readSheetNames(file);
     
     if (!sheetNames || sheetNames.length === 0) {
-      console.warn('[XlsxRenderer] No sheets found in file');
+      logger.warn('[XlsxRenderer] No sheets found in file');
       return { sheets: [], sheetNames: [] };
     }
     
@@ -155,10 +156,10 @@ async function parseXlsxFormat(file: File, arrayBuffer: ArrayBuffer): Promise<Pa
         try {
           const rows = await readXlsxFile(file, { sheet: sheetName });
           
-          console.log(`[XlsxRenderer] Parsing sheet "${sheetName}": ${rows?.length || 0} rows`);
+          logger.log(`[XlsxRenderer] Parsing sheet "${sheetName}": ${rows?.length || 0} rows`);
           
           if (!rows || rows.length === 0) {
-            console.warn(`[XlsxRenderer] Sheet "${sheetName}" has no rows`);
+            logger.warn(`[XlsxRenderer] Sheet "${sheetName}" has no rows`);
             return { headers: [], data: [] };
           }
           
@@ -174,7 +175,7 @@ async function parseXlsxFormat(file: File, arrayBuffer: ArrayBuffer): Promise<Pa
             return row && row.some((cell) => cell != null && cell !== '');
           });
           
-          console.log(`[XlsxRenderer] Sheet "${sheetName}": ${headers.length} headers, ${dataRows.length} data rows`);
+          logger.log(`[XlsxRenderer] Sheet "${sheetName}": ${headers.length} headers, ${dataRows.length} data rows`);
           
           const data = dataRows.map((row) => {
             const obj: Record<string, any> = {};
@@ -194,7 +195,7 @@ async function parseXlsxFormat(file: File, arrayBuffer: ArrayBuffer): Promise<Pa
           // Check if it's an inline string error
           const errorMessage = err?.message || String(err);
           if (errorMessage.includes('inline string') || errorMessage.includes('inlineStr') || errorMessage.includes('inline string')) {
-            console.warn(`[XlsxRenderer] Inline string detected in sheet "${sheetName}", will fallback to xlsx library`);
+            logger.warn(`[XlsxRenderer] Inline string detected in sheet "${sheetName}", will fallback to xlsx library`);
             // Throw a special error to trigger fallback
             throw new Error('INLINE_STRING_ERROR');
           }
@@ -204,7 +205,7 @@ async function parseXlsxFormat(file: File, arrayBuffer: ArrayBuffer): Promise<Pa
       })
     );
     
-    console.log('[XlsxRenderer] Parsed workbook:', {
+    logger.log('[XlsxRenderer] Parsed workbook:', {
       sheetCount: sheets.length,
       sheetsWithData: sheets.filter(s => s.headers.length > 0 || s.data.length > 0).length
     });
@@ -214,7 +215,7 @@ async function parseXlsxFormat(file: File, arrayBuffer: ArrayBuffer): Promise<Pa
     // Check if it's an inline string error - fallback to xlsx library
     const errorMessage = err?.message || String(err);
     if (errorMessage.includes('inline string') || errorMessage.includes('inlineStr') || errorMessage === 'INLINE_STRING_ERROR') {
-      console.warn('[XlsxRenderer] File contains inline strings, falling back to xlsx library');
+      logger.warn('[XlsxRenderer] File contains inline strings, falling back to xlsx library');
       return await parseXlsxFormatWithXlsxLib(arrayBuffer);
     }
     // Re-throw other errors
@@ -233,7 +234,7 @@ async function parseXlsFormat(arrayBuffer: ArrayBuffer): Promise<ParsedWorkbook>
   const sheetNames: string[] = workbook.SheetNames || [];
   
   if (!sheetNames || sheetNames.length === 0) {
-    console.warn('[XlsxRenderer] No sheets found in XLS file');
+    logger.warn('[XlsxRenderer] No sheets found in XLS file');
     return { sheets: [], sheetNames: [] };
   }
   
@@ -242,10 +243,10 @@ async function parseXlsFormat(arrayBuffer: ArrayBuffer): Promise<ParsedWorkbook>
       const ws = workbook.Sheets[name];
       const rows: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null });
       
-      console.log(`[XlsxRenderer] Parsing XLS sheet "${name}": ${rows?.length || 0} rows`);
+      logger.log(`[XlsxRenderer] Parsing XLS sheet "${name}": ${rows?.length || 0} rows`);
       
       if (!rows || rows.length === 0) {
-        console.warn(`[XlsxRenderer] XLS sheet "${name}" has no rows`);
+        logger.warn(`[XlsxRenderer] XLS sheet "${name}" has no rows`);
         return { headers: [], data: [] };
       }
       
@@ -261,7 +262,7 @@ async function parseXlsFormat(arrayBuffer: ArrayBuffer): Promise<ParsedWorkbook>
         return row && Array.isArray(row) && row.some((cell) => cell != null && cell !== '');
       });
       
-      console.log(`[XlsxRenderer] XLS sheet "${name}": ${headers.length} headers, ${dataRows.length} data rows`);
+      logger.log(`[XlsxRenderer] XLS sheet "${name}": ${headers.length} headers, ${dataRows.length} data rows`);
       
       const data = dataRows.map((row) => {
         const obj: Record<string, any> = {};
@@ -279,7 +280,7 @@ async function parseXlsFormat(arrayBuffer: ArrayBuffer): Promise<ParsedWorkbook>
     }
   });
   
-  console.log('[XlsxRenderer] Parsed XLS workbook:', {
+  logger.log('[XlsxRenderer] Parsed XLS workbook:', {
     sheetCount: sheets.length,
     sheetsWithData: sheets.filter(s => s.headers.length > 0 || s.data.length > 0).length
   });
@@ -361,7 +362,7 @@ export function XlsxRenderer({
 
         // Detect file format
         const format = detectExcelFormat(arrayBuffer);
-        console.log('[XlsxRenderer] Detected format:', format, 'size:', arrayBuffer.byteLength);
+        logger.log('[XlsxRenderer] Detected format:', format, 'size:', arrayBuffer.byteLength);
 
         let result: ParsedWorkbook;
         
@@ -380,7 +381,7 @@ export function XlsxRenderer({
         }
 
         if (!cancelled) {
-          console.log('[XlsxRenderer] Parse result:', {
+          logger.log('[XlsxRenderer] Parse result:', {
             sheetCount: result.sheets.length,
             sheetNames: result.sheetNames,
             sheetsWithHeaders: result.sheets.filter(s => s.headers.length > 0).length,
@@ -389,7 +390,7 @@ export function XlsxRenderer({
           
           // Validate parsed result
           if (!result.sheets || result.sheets.length === 0) {
-            console.warn('[XlsxRenderer] No sheets parsed from file');
+            logger.warn('[XlsxRenderer] No sheets parsed from file');
             setError('No sheets found in spreadsheet');
             setParsed({ sheets: [], sheetNames: [] });
           } else {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { logger } from '@/lib/logger';
 import {
   AlertTriangle,
   Upload,
@@ -48,7 +49,7 @@ export function UploadFileToolView({
   const [copied, setCopied] = useState(false);
 
   if (!toolCall) {
-    console.warn('UploadFileToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('UploadFileToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

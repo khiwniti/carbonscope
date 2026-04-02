@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 export const clearUserLocalStorage = () => {
   if (typeof window === 'undefined') return;
 
@@ -16,7 +17,7 @@ export const clearUserLocalStorage = () => {
       }
     });
     
-    console.log('✅ Local storage cleared on logout');
+    logger.log('✅ Local storage cleared on logout');
   } catch (error) {
     console.error('❌ Error clearing local storage:', error);
   }

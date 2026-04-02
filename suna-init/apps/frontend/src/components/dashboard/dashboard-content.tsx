@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, Suspense, lazy } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -88,7 +89,7 @@ export function DashboardContent() {
     
     // If we have checkout/subscription success indicators
     if (subscriptionSuccess === 'success' || checkoutSuccess === 'success' || sessionId || clientSecret) {
-      console.log('🎉 Subscription success detected! Showing celebration...');
+      logger.log('🎉 Subscription success detected! Showing celebration...');
       celebrationTriggeredRef.current = true;
       
       // Track purchase event for GTM/GA4
@@ -116,7 +117,7 @@ export function DashboardContent() {
               // IMPORTANT: Only track purchase if payment was actually successful
               // This prevents false positives from failed payments or manual URL navigation
               if (stripeSession.payment_status !== 'paid' && stripeSession.status !== 'complete') {
-                console.warn('[GTM] Purchase NOT tracked - payment not confirmed:', {
+                logger.warn('[GTM] Purchase NOT tracked - payment not confirmed:', {
                   payment_status: stripeSession.payment_status,
                   status: stripeSession.status
                 });
@@ -136,7 +137,7 @@ export function DashboardContent() {
               // Prefer promotion_code (customer-facing like "HEHE2020") over coupon_id
               couponId = stripeSession.promotion_code || stripeSession.coupon_name || stripeSession.coupon_id || '';
               currency = stripeSession.currency.toUpperCase();
-              console.log('[GTM] Using Stripe session data:', {
+              logger.log('[GTM] Using Stripe session data:', {
                 amount_total: stripeSession.amount_total,
                 amount_discount: stripeSession.amount_discount,
                 amount_tax: stripeSession.amount_tax,
@@ -146,15 +147,15 @@ export function DashboardContent() {
                 payment_status: stripeSession.payment_status
               });
             } else {
-              console.warn('[GTM] Stripe session returned null - purchase NOT tracked to avoid false positives');
+              logger.warn('[GTM] Stripe session returned null - purchase NOT tracked to avoid false positives');
               return; // Don't track without verified session
             }
           } catch (error) {
-            console.warn('[GTM] Could not fetch Stripe session - purchase NOT tracked:', error);
+            logger.warn('[GTM] Could not fetch Stripe session - purchase NOT tracked:', error);
             return; // Don't track without verified session
           }
         } else {
-          console.warn('[GTM] No session_id available - purchase NOT tracked to avoid false positives');
+          logger.warn('[GTM] No session_id available - purchase NOT tracked to avoid false positives');
           return; // Don't track without session_id
         }
         

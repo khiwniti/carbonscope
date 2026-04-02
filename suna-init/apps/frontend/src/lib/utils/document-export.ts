@@ -1,4 +1,5 @@
 import { toast } from '@/lib/toast';
+import { logger } from '@/lib/logger';
 import { saveAs } from 'file-saver';
 import TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
@@ -410,15 +411,15 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
   const safeFileName = sanitizeFileName(fileName);
 
   // Debug logging
-  console.log(`[Document Export] Format: ${format}`);
-  console.log(`[Document Export] File name: ${safeFileName}`);
-  console.log(`[Document Export] Content length: ${content?.length || 0}`);
-  console.log(`[Document Export] HTML content preview:`, htmlContent.substring(0, 300));
+  logger.log(`[Document Export] Format: ${format}`);
+  logger.log(`[Document Export] File name: ${safeFileName}`);
+  logger.log(`[Document Export] Content length: ${content?.length || 0}`);
+  logger.log(`[Document Export] HTML content preview:`, htmlContent.substring(0, 300));
 
   try {
     switch (format) {
       case 'pdf': {
-        console.log('[Document Export] Sending to backend PDF API...');
+        logger.log('[Document Export] Sending to backend PDF API...');
         
         const toastId = toast.loading('Exporting to PDF...');
         
@@ -444,7 +445,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
             body: JSON.stringify({ content: htmlContent, fileName: safeFileName }),
           });
 
-          console.log('[Document Export] Backend PDF API response status:', response.status);
+          logger.log('[Document Export] Backend PDF API response status:', response.status);
 
           if (!response.ok) {
             const errorText = await response.text();
@@ -461,7 +462,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
           }
 
           const blob = await response.blob();
-          console.log('[Document Export] PDF blob size:', blob.size, 'bytes');
+          logger.log('[Document Export] PDF blob size:', blob.size, 'bytes');
           
           saveAs(blob, `${safeFileName}.pdf`);
           toast.success('PDF exported', { id: toastId });
@@ -473,7 +474,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
       }
 
       case 'docx': {
-        console.log('[Document Export] Sending to backend DOCX API...');
+        logger.log('[Document Export] Sending to backend DOCX API...');
         
         const toastId = toast.loading('Exporting to Word...');
         
@@ -499,7 +500,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
             body: JSON.stringify({ content: htmlContent, fileName: safeFileName }),
           });
 
-          console.log('[Document Export] Backend DOCX API response status:', response.status);
+          logger.log('[Document Export] Backend DOCX API response status:', response.status);
 
           if (!response.ok) {
             const errorText = await response.text();
@@ -516,7 +517,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
           }
 
           const blob = await response.blob();
-          console.log('[Document Export] DOCX blob size:', blob.size, 'bytes');
+          logger.log('[Document Export] DOCX blob size:', blob.size, 'bytes');
           
           saveAs(blob, `${safeFileName}.docx`);
           toast.success('Word document exported', { id: toastId });
@@ -528,12 +529,12 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
       }
 
       case 'html': {
-        console.log('[Document Export] Creating HTML file...');
+        logger.log('[Document Export] Creating HTML file...');
         
         const fullHtml = createHtmlDocument(htmlContent, safeFileName);
         const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
         
-        console.log('[Document Export] HTML blob size:', blob.size, 'bytes');
+        logger.log('[Document Export] HTML blob size:', blob.size, 'bytes');
         
         saveAs(blob, `${safeFileName}.html`);
         toast.success('HTML exported');
@@ -541,7 +542,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
       }
 
       case 'markdown': {
-        console.log('[Document Export] Converting to Markdown...');
+        logger.log('[Document Export] Converting to Markdown...');
         
         const turndown = new TurndownService({
           headingStyle: 'atx',
@@ -573,7 +574,7 @@ export async function exportDocument({ content, fileName, format }: DocumentExpo
         let md = turndown.turndown(htmlContent);
         md = md.replace(/\n{3,}/g, '\n\n').trim();
         
-        console.log('[Document Export] Markdown length:', md.length);
+        logger.log('[Document Export] Markdown length:', md.length);
         
         const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
         saveAs(blob, `${safeFileName}.md`);

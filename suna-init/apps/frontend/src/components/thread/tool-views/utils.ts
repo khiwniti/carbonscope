@@ -1,5 +1,6 @@
 // Import at the top
 // import { formatDistanceToNow } from 'date-fns';
+import { logger } from '@/lib/logger';
 import {
   FileText,
   FileCode,
@@ -774,7 +775,7 @@ export function extractUrlsAndTitles(
           // Try decoding once if double decoding failed
           url = decodeURIComponent(url);
         } catch (e2) {
-          console.warn('Failed to decode URL component:', url, e2);
+          logger.warn('Failed to decode URL component:', url, e2);
         }
       }
 
@@ -1012,7 +1013,7 @@ export function extractSearchResults(
           }));
         }
       } catch (e) {
-        console.warn('Failed to parse results array:', e);
+        logger.warn('Failed to parse results array:', e);
       }
     }
     

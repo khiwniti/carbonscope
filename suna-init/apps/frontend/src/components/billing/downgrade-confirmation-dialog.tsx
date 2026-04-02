@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -89,7 +90,7 @@ export function DowngradeConfirmationDialog({
         },
       });
 
-      console.log('[Downgrade Feedback] Submitted');
+      logger.log('[Downgrade Feedback] Submitted');
     } catch (error) {
       console.error('[Downgrade Feedback] Error:', error);
     } finally {

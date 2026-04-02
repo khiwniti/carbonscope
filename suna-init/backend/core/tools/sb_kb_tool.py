@@ -7,7 +7,6 @@ from core.utils.config import config
 from core.knowledge_base.validation import FileNameValidator, ValidationError
 from core.utils.logger import logger
 
-from core.config import timeouts
 
 @tool_metadata(
     display_name="Knowledge Base",

@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { logger } from '@/lib/logger';
 import { devtools } from 'zustand/middleware';
 import { HIDE_BROWSER_TAB } from '@/components/thread/utils';
 
@@ -145,7 +146,7 @@ export const useCarbonScopeComputerStore = create<CarbonScopeComputerState>()(
         
         // If sandbox changed, clear all file-related state
         if (currentSandboxId !== sandboxId) {
-          console.log('[CarbonScopeComputerStore] Sandbox context changed:', currentSandboxId, '->', sandboxId);
+          logger.log('[CarbonScopeComputerStore] Sandbox context changed:', currentSandboxId, '->', sandboxId);
           set({
             currentSandboxId: sandboxId,
             // Reset all file state when sandbox changes
@@ -156,7 +157,7 @@ export const useCarbonScopeComputerStore = create<CarbonScopeComputerState>()(
       },
       
       clearFileState: () => {
-        console.log('[CarbonScopeComputerStore] Clearing file state');
+        logger.log('[CarbonScopeComputerStore] Clearing file state');
         set({
           ...initialFileState,
         });
@@ -389,7 +390,7 @@ export const useCarbonScopeComputerStore = create<CarbonScopeComputerState>()(
       },
       
       reset: () => {
-        console.log('[CarbonScopeComputerStore] Full reset');
+        logger.log('[CarbonScopeComputerStore] Full reset');
         set(initialState);
       },
     }),

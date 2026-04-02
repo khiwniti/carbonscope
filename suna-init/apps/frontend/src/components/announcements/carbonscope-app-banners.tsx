@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import * as React from 'react';
 import { useState, useEffect } from 'react';
@@ -100,7 +101,7 @@ export function CarbonScopeAppBanners(props: CarbonScopeAppBannersProps) {
     setDesktopPlatform(detectDesktopPlatform());
     
     if (process.env.NODE_ENV !== 'production') {
-      console.log('[CarbonScopeAppBanners] flags', { disableMobileAdvertising });
+      logger.log('[CarbonScopeAppBanners] flags', { disableMobileAdvertising });
     }
 
     const desktopDismissed = localStorage.getItem(DESKTOP_STORAGE_KEY);

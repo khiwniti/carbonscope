@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   Users,
   CheckCircle,
@@ -34,7 +35,7 @@ export function PeopleSearchToolView({
 }: ToolViewProps) {
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('PeopleSearchToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('PeopleSearchToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

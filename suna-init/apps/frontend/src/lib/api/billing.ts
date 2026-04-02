@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import { backendApi } from "../api-client";
 
 // =============================================================================
@@ -586,12 +587,12 @@ export const billingApi = {
         { showErrors: false }
       );
       if (response.error) {
-        console.warn('[Billing] Could not fetch checkout session:', response.error);
+        logger.warn('[Billing] Could not fetch checkout session:', response.error);
         return null;
       }
       return response.data!;
     } catch (error) {
-      console.warn('[Billing] Error fetching checkout session:', error);
+      logger.warn('[Billing] Error fetching checkout session:', error);
       return null;
     }
   }

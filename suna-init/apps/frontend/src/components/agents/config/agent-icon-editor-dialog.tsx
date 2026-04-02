@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { useState, useCallback, useEffect } from 'react';
 import { Sparkles, Wand2 } from 'lucide-react';
@@ -52,7 +53,7 @@ export function AgentIconEditorDialog({
   // Debug props when dialog opens
   useEffect(() => {
     if (isOpen) {
-      console.log('🔧 AgentIconEditorDialog opened with props:', {
+      logger.log('🔧 AgentIconEditorDialog opened with props:', {
         agentName,
         currentIconName,
         currentIconColor,

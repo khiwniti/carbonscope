@@ -5,7 +5,6 @@ from core.utils.config import config
 from core.utils.config import Configuration
 import asyncio
 
-from core.config import timeouts
 
 load_dotenv()
 

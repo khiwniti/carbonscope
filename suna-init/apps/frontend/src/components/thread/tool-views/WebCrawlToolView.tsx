@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import {
   Globe,
   CheckCircle,
@@ -90,7 +91,7 @@ export function WebCrawlToolView({
 
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('WebCrawlToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('WebCrawlToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

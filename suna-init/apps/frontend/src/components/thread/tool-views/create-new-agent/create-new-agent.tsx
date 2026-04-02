@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   Bot,
   CheckCircle,
@@ -29,7 +30,7 @@ export function CreateNewAgentToolView({
 }: ToolViewProps) {
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('CreateNewAgentToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('CreateNewAgentToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

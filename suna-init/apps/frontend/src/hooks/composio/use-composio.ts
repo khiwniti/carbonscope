@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useMutation, useQueryClient, useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import { 
@@ -112,7 +113,7 @@ export const usePrefetchComposioIcons = () => {
         });
       }
     } catch (error) {
-      console.debug('Failed to prefetch Composio icons:', error);
+      logger.debug('Failed to prefetch Composio icons:', error);
     }
   }, [queryClient]);
 

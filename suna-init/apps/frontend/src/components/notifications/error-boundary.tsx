@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 
@@ -27,7 +28,7 @@ export class NotificationErrorBoundary extends Component<Props, State> {
     
     // Check if it's the Novu openSettings error
     if (error.message && error.message.includes('openSettings')) {
-      console.warn('[NotificationErrorBoundary] Novu Inbox initialization error - this is usually safe to ignore');
+      logger.warn('[NotificationErrorBoundary] Novu Inbox initialization error - this is usually safe to ignore');
     }
   }
 

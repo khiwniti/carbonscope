@@ -6,7 +6,6 @@ from contextlib import asynccontextmanager
 from core.utils.logger import logger
 from core.services.supabase import DBConnection
 
-from core.config import timeouts
 
 class DistributedLock:
     def __init__(self, lock_key: str, timeout_seconds: int = 300, holder_id: Optional[str] = None):

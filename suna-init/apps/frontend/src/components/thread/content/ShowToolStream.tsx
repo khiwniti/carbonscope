@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
+import { logger } from '@/lib/logger';
 import { CarbonScopeLoader } from '@/components/ui/carbonscope-loader';
 import { getToolIcon, getUserFriendlyToolName, extractPrimaryParam } from '@/components/thread/utils';
 import { AppIcon } from '../tool-views/shared/AppIcon';
@@ -169,7 +170,7 @@ const SlideStreamPreview: React.FC<{
             );
 
             if (response.error) {
-                console.warn('[SlideStreamPreview] Failed to ensure sandbox is active:', response.error);
+                logger.warn('[SlideStreamPreview] Failed to ensure sandbox is active:', response.error);
             } else {
                 // Invalidate project query to get fresh sandbox_url
                 queryClient.invalidateQueries({

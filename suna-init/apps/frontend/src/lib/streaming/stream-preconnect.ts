@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import { StreamConnection, StreamConnectionOptions, createStreamConnection } from './stream-connection';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
@@ -56,7 +57,7 @@ class StreamPreconnectService {
     });
 
     staleIds.forEach(id => {
-      console.log(`[StreamPreconnect] Cleaning up stale stream: ${id}`);
+      logger.log(`[StreamPreconnect] Cleaning up stale stream: ${id}`);
       this.destroyStream(id);
     });
   }
@@ -68,11 +69,11 @@ class StreamPreconnectService {
   ): Promise<PreconnectedStream> {
     const existing = this.streams.get(agentRunId);
     if (existing) {
-      console.log(`[StreamPreconnect] Reusing existing stream for ${agentRunId}`);
+      logger.log(`[StreamPreconnect] Reusing existing stream for ${agentRunId}`);
       return existing;
     }
 
-    console.log(`[StreamPreconnect] Pre-connecting stream for ${agentRunId}`);
+    logger.log(`[StreamPreconnect] Pre-connecting stream for ${agentRunId}`);
 
     const messageBuffer: string[] = [];
     const preconnectedStream: PreconnectedStream = {
@@ -101,13 +102,13 @@ class StreamPreconnectService {
         }
       },
       onOpen: () => {
-        console.log(`[StreamPreconnect] Stream connected for ${agentRunId}`);
+        logger.log(`[StreamPreconnect] Stream connected for ${agentRunId}`);
       },
       onError: (error) => {
-        console.warn(`[StreamPreconnect] Stream error for ${agentRunId}:`, error);
+        logger.warn(`[StreamPreconnect] Stream error for ${agentRunId}:`, error);
       },
       onClose: () => {
-        console.log(`[StreamPreconnect] Stream closed for ${agentRunId}`);
+        logger.log(`[StreamPreconnect] Stream closed for ${agentRunId}`);
       },
     });
 
@@ -123,16 +124,16 @@ class StreamPreconnectService {
   adopt(agentRunId: string): { stream: PreconnectedStream; bufferedMessages: string[] } | null {
     const stream = this.streams.get(agentRunId);
     if (!stream) {
-      console.log(`[StreamPreconnect] No pre-connected stream found for ${agentRunId}`);
+      logger.log(`[StreamPreconnect] No pre-connected stream found for ${agentRunId}`);
       return null;
     }
 
     if (stream.adopted) {
-      console.log(`[StreamPreconnect] Stream ${agentRunId} already adopted`);
+      logger.log(`[StreamPreconnect] Stream ${agentRunId} already adopted`);
       return null;
     }
 
-    console.log(`[StreamPreconnect] Adopting stream ${agentRunId} with ${stream.messageBuffer.length} buffered messages`);
+    logger.log(`[StreamPreconnect] Adopting stream ${agentRunId} with ${stream.messageBuffer.length} buffered messages`);
     
     stream.adopted = true;
     const bufferedMessages = [...stream.messageBuffer];

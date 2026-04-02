@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { useState, useRef, useEffect, Suspense, lazy } from 'react';
 import { MapPin } from 'lucide-react';
@@ -86,7 +87,7 @@ export default function MilanoPage() {
 
     setIsSubmitting(true);
 
-    console.log('[Milano] Starting agent with:', {
+    logger.log('[Milano] Starting agent with:', {
       prompt: message.substring(0, 100),
       promptLength: message.length,
       model_name: options?.model_name,

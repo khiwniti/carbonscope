@@ -10,7 +10,6 @@ from typing import Optional, Dict, List, Any
 from dotenv import load_dotenv
 from core.utils.logger import logger
 
-from core.config import timeouts
 
 REDIS_KEY_TTL = 3600 * 2
 

@@ -15,13 +15,13 @@ from typing import List, Dict, Any, Optional
 from decimal import Decimal
 
 from rapidfuzz import fuzz, process
-from ..boq.thai_text_utils import (
+from boq.thai_text_utils import (
     normalize_thai_text,
     extract_material_category_hint,
     expand_thai_abbreviations
 )
-from ..core.knowledge_graph.graphdb_client import GraphDBClient, GraphDBError
-from ..core.knowledge_graph.sparql_queries import search_materials, get_emission_factor
+from core.knowledge_graph.graphdb_client import GraphDBClient, GraphDBError
+from core.knowledge_graph.sparql_queries import search_materials, get_emission_factor
 
 logger = logging.getLogger(__name__)
 

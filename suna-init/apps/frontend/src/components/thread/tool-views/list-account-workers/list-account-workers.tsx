@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   Users,
   CheckCircle,
@@ -26,7 +27,7 @@ export function ListAccountWorkersToolView({
   isStreaming = false,
 }: ToolViewProps) {
   if (!toolCall) {
-    console.warn('ListAccountWorkersToolView: toolCall is undefined.');
+    logger.warn('ListAccountWorkersToolView: toolCall is undefined.');
     return null;
   }
 

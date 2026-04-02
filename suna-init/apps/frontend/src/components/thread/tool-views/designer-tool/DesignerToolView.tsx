@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import {
   Palette,
   CheckCircle,
@@ -197,7 +198,7 @@ export function DesignerToolView({
       const sandboxId = sandbox_id || project?.sandbox?.id || project?.id;
       
       if (!sandboxId) {
-        console.warn('Designer Tool: No sandbox ID available');
+        logger.warn('Designer Tool: No sandbox ID available');
         return;
       }
       
@@ -213,14 +214,14 @@ export function DesignerToolView({
       
       // Skip if this is the exact same content we just processed
       if (lastProcessedPath.current === contentKey) {
-        console.log('Designer Tool: Skipping duplicate content');
+        logger.log('Designer Tool: Skipping duplicate content');
         return;
       }
       
       lastProcessedPath.current = contentKey;
       const elementId = `design-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       
-      console.log('Designer Tool: Adding new element', {
+      logger.log('Designer Tool: Adding new element', {
         relativePath,
         designUrl,
         elementId,
@@ -259,7 +260,7 @@ export function DesignerToolView({
           locked: false,
         };
         
-        console.log('Designer Tool: New elements array', [...prevElements, newElement]);
+        logger.log('Designer Tool: New elements array', [...prevElements, newElement]);
         return [...prevElements, newElement];
       });
       
@@ -269,7 +270,7 @@ export function DesignerToolView({
 
   // Defensive check - ensure toolCall is defined (after all hooks)
   if (!toolCall) {
-    console.warn('DesignerToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('DesignerToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

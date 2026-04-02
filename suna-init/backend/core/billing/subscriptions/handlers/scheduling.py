@@ -5,7 +5,6 @@ import stripe # type: ignore
 
 from core.utils.logger import logger
 from core.billing.shared.config import (
-from core.config import timeouts
 
     get_tier_by_name,
     get_tier_by_price_id,

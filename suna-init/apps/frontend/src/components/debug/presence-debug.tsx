@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { usePresenceContext } from '@/components/presence-provider';
 import { Card } from '@/components/ui/card';
@@ -11,7 +12,7 @@ export function PresenceDebug() {
   const { connectionState, presences, activeThreadId, sessionId } = usePresenceContext();
   const [isCleaningUp, setIsCleaningUp] = useState(false);
   
-  console.log('[PresenceDebug] Presences:', presences, 'Keys:', Object.keys(presences));
+  logger.log('[PresenceDebug] Presences:', presences, 'Keys:', Object.keys(presences));
   
   const clearSessionStorage = () => {
     if (typeof window !== 'undefined') {
@@ -25,7 +26,7 @@ export function PresenceDebug() {
     try {
       const response = await backendApi.post('/presence/cleanup', {}, { showErrors: false });
       if (response.data?.cleaned > 0) {
-        console.log(`Cleaned up ${response.data.cleaned} stale sessions`);
+        logger.log(`Cleaned up ${response.data.cleaned} stale sessions`);
       }
     } catch (err) {
       console.error('Failed to cleanup sessions:', err);

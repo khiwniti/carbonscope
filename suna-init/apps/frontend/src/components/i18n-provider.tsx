@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { ReactNode, useEffect, useState, useCallback, useRef, useMemo } from 'react';
@@ -89,7 +90,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         throw new Error(`Invalid translations object for locale ${targetLocale}`);
       }
       if (!translations.common || !translations.suna) {
-        console.warn(`Missing sections in ${targetLocale}:`, {
+        logger.warn(`Missing sections in ${targetLocale}:`, {
           hasCommon: !!translations.common,
           hasSuna: !!translations.suna,
           keys: Object.keys(translations).slice(0, 10)

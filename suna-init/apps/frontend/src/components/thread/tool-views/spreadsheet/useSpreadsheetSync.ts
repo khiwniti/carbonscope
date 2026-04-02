@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { logger } from '@/lib/logger';
 import { SpreadsheetComponent } from '@syncfusion/ej2-react-spreadsheet';
 import { backendApi } from '@/lib/api-client';
 import { getSandboxFileContent } from '@/lib/api/sandbox';
@@ -586,7 +587,7 @@ export function useSpreadsheetSync({
               errorMessage: 'File was modified externally',
             }));
           } else {
-            console.log('[SpreadsheetSync] External changes detected, auto-refreshing...');
+            logger.log('[SpreadsheetSync] External changes detected, auto-refreshing...');
             lastKnownHashRef.current = hash;
             currentVersionRef.current = hash;
             

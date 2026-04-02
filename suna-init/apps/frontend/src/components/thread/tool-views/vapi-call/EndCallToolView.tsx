@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import { PhoneOff, CheckCircle, AlertTriangle } from 'lucide-react';
 import { ToolViewProps } from '../types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,7 +19,7 @@ export function EndCallToolView({
 }: ToolViewProps) {
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('EndCallToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('EndCallToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

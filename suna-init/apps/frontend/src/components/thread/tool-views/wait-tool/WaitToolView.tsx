@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React from 'react';
 import { Clock, CheckCircle, AlertTriangle, Timer } from 'lucide-react';
@@ -77,7 +78,7 @@ export function WaitToolView({
 }: WaitToolViewProps) {
   // Defensive check - ensure toolCall is defined
   if (!toolCall) {
-    console.warn('WaitToolView: toolCall is undefined.');
+    logger.warn('WaitToolView: toolCall is undefined.');
     return (
       <Card className="gap-0 flex border-0 shadow-none p-0 py-0 rounded-none flex-col h-full overflow-hidden bg-card">
         <CardHeader className="h-14 bg-zinc-50/80 dark:bg-zinc-900/80 backdrop-blur-sm border-b p-2 px-4">

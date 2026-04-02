@@ -6,8 +6,6 @@ import asyncio
 from core.utils.logger import logger
 from core.billing.shared.config import get_tier_by_price_id, get_price_type
 from core.billing.external.stripe import (
-from core.config import timeouts
-
     StripeAPIWrapper,
     generate_subscription_modify_idempotency_key
 )

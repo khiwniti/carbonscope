@@ -1,4 +1,5 @@
 import React from 'react';
+import { logger } from '@/lib/logger';
 import {
   FileText,
   CheckCircle,
@@ -35,7 +36,7 @@ export function DocumentParserToolView({
 }: ToolViewProps) {
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('DocumentParserToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('DocumentParserToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

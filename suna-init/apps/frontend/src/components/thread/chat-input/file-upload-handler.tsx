@@ -1,4 +1,5 @@
 'use client';
+import { logger } from '@/lib/logger';
 
 import React, { forwardRef, useEffect, memo } from 'react';
 import { Button } from '@/components/ui/button';
@@ -595,7 +596,7 @@ export const uploadPendingFilesToProject = async (
       body: JSON.stringify({ file_count: files.length }),
     });
   } catch (e) {
-    console.warn('Failed to signal upload start:', e);
+    logger.warn('Failed to signal upload start:', e);
   }
 
   try {
@@ -650,7 +651,7 @@ export const uploadPendingFilesToProject = async (
         },
       });
     } catch (e) {
-      console.warn('Failed to signal upload complete:', e);
+      logger.warn('Failed to signal upload complete:', e);
     }
   }
 

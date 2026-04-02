@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { logger } from '@/lib/logger';
 import { useAuth } from '@/components/AuthProvider';
 
 // Global cache to persist between component mounts
@@ -165,7 +166,7 @@ export function useCachedFile<T = string>(
             
             // Verify the blob is the correct type for PDFs
             if (isPdfFile && !blob.type.includes('pdf') && blob.size > 0) {
-              console.warn(`[FILE CACHE] PDF blob has generic MIME type: ${blob.type} - will correct it automatically`);
+              logger.warn(`[FILE CACHE] PDF blob has generic MIME type: ${blob.type} - will correct it automatically`);
               
               const firstBytes = await blob.slice(0, 10).text();
               if (firstBytes.startsWith('%PDF')) {
@@ -410,7 +411,7 @@ export const FileCache = {
     
     // Skip preloading if no authentication token available
     if (!token) {
-      console.warn('Cannot preload files: No authentication token available');
+      logger.warn('Cannot preload files: No authentication token available');
       return [];
     }
     

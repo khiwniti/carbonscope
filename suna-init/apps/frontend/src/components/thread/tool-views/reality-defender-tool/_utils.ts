@@ -1,3 +1,4 @@
+import { logger } from '@/lib/logger';
 import { ToolCallData, ToolResultData } from '../types';
 
 export interface RealityDefenderIndicator {
@@ -112,7 +113,7 @@ export function extractRealityDefenderData(
         }
       } catch (e) {
         // Not JSON, can't extract structured data
-        console.warn('Failed to parse Reality Defender output as JSON:', e);
+        logger.warn('Failed to parse Reality Defender output as JSON:', e);
       }
     }
 

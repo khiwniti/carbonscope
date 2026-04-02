@@ -1,4 +1,5 @@
 'use client'
+import { logger } from '@/lib/logger';
 
 import React from 'react';
 import {
@@ -575,7 +576,7 @@ export function KbToolView({
 
   // Defensive check - handle cases where toolCall might be undefined
   if (!toolCall) {
-    console.warn('KbToolView: toolCall is undefined. Tool views should use structured props.');
+    logger.warn('KbToolView: toolCall is undefined. Tool views should use structured props.');
     return null;
   }
 

@@ -25,8 +25,8 @@ from typing import Dict, Any, List, Optional
 from decimal import Decimal
 from datetime import datetime
 
-from ..core.knowledge_graph.graphdb_client import GraphDBClient
-from ..core.knowledge_graph.sparql_queries import get_emission_factor, MaterialNotFoundError
+from core.knowledge_graph.graphdb_client import GraphDBClient
+from core.knowledge_graph.sparql_queries import get_emission_factor, MaterialNotFoundError
 
 from .unit_converter import UnitConverter, UnitConversionError
 from .material_matcher import MaterialMatcher, MaterialMatchError
