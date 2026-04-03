@@ -18,6 +18,7 @@ import { UploadedFile } from './chat-input';
 import { normalizeFilenameToNFC, normalizeMimeType } from '@agentpress/shared';
 import { backendApi } from '@/lib/api-client';
 import JSZip from 'jszip';
+import { BACKEND_URL } from '@/lib/api-client';
 import {
   UPLOAD_LIMITS,
   ALLOWED_EXTENSIONS,
@@ -26,10 +27,7 @@ import {
   formatFileSize,
 } from '@/lib/constants/upload-limits';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
-
 const ALLOWED_EXTENSIONS_STRING = ALLOWED_EXTENSIONS.join(',');
-
 
 const handleLocalFilesOptimistic = async (
   files: File[],
@@ -208,7 +206,7 @@ const uploadFiles = async (
         throw new Error('No access token available');
       }
 
-      const response = await fetch(`${API_URL}/sandboxes/${sandboxId}/files`, {
+      const response = await fetch(`${BACKEND_URL}/sandboxes/${sandboxId}/files`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${session.access_token}`,
@@ -332,7 +330,7 @@ const uploadFilesToProject = async (
         throw new Error('No access token available');
       }
 
-      const response = await fetch(`${API_URL}/project/${projectId}/files`, {
+      const response = await fetch(`${BACKEND_URL}/project/${projectId}/files`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${session.access_token}`,
@@ -587,7 +585,7 @@ export const uploadPendingFilesToProject = async (
   }
 
   try {
-    await fetch(`${API_URL}/project/${projectId}/files/upload-started`, {
+    await fetch(`${BACKEND_URL}/project/${projectId}/files/upload-started`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${session.access_token}`,
@@ -616,7 +614,7 @@ export const uploadPendingFilesToProject = async (
         formData.append('file', file, normalizedName);
         formData.append('path', uploadPath);
 
-        const response = await fetch(`${API_URL}/project/${projectId}/files`, {
+        const response = await fetch(`${BACKEND_URL}/project/${projectId}/files`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${session.access_token}`,
@@ -644,7 +642,7 @@ export const uploadPendingFilesToProject = async (
     }
   } finally {
     try {
-      await fetch(`${API_URL}/project/${projectId}/files/upload-completed`, {
+      await fetch(`${BACKEND_URL}/project/${projectId}/files/upload-completed`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${session.access_token}`,

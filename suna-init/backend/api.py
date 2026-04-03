@@ -567,8 +567,8 @@ async def health_check():
     active_agents = 0
 
     try:
-        from suna.backend.core.agents.supervisor import create_supervisor_graph
-        from suna.backend.core.agents.checkpointer import get_checkpointer
+        from core.agents.supervisor import create_supervisor_graph
+        from core.agents.checkpointer import get_checkpointer
 
         # Test checkpointer connection
         checkpointer = get_checkpointer()

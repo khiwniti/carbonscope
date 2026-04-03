@@ -1,6 +1,7 @@
 # Exclude node_modules from build context to avoid overlay conflicts
 **/node_modules
-**/.next
+**/.next/cache
+**/.next/diagnostics
 **/.git
 **/npm-debug.log
 **/*.env

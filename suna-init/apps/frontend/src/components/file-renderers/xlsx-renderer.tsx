@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/components/AuthProvider';
 import { fetchFileContent } from '@/hooks/files/use-file-queries';
+import { BACKEND_URL } from '@/lib/api-client';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -336,7 +337,7 @@ export function XlsxRenderer({
             normalizedPath = `/workspace/${xlsxPath.startsWith('/') ? xlsxPath.substring(1) : xlsxPath}`;
           }
           
-          const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${resolvedSandboxId}/files/content`);
+          const url = new URL(`${BACKEND_URL}/sandboxes/${resolvedSandboxId}/files/content`);
           url.searchParams.append('path', normalizedPath);
           
           const response = await fetch(url.toString(), {

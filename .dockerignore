@@ -2,11 +2,13 @@
 .git
 .gitignore
 
-# Node
-**/node_modules
-**/.next
-**/dist
-**/build
+# Node - exclude top-level node_modules but NOT those inside .next/standalone (needed for runtime)
+node_modules
+suna-init/node_modules
+suna-init/apps/frontend/node_modules
+suna-init/apps/mobile
+**/.next/cache
+**/.next/diagnostics
 **/.turbo
 
 # Python

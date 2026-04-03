@@ -142,7 +142,7 @@ describe('OpenAPI spec — frontend endpoints covered', () => {
 describe('URL construction — no mismatches', () => {
   test('/v1 prefix is correct', () => {
     // Backend registers routes under /v1 — verify the frontend BACKEND_URL includes it
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000/v1';
+    const backendUrl = BACKEND_URL ?? 'http://localhost:8000/v1';
     expect(backendUrl).toMatch(/\/v1$/);
   });
 

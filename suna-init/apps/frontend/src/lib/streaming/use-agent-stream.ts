@@ -33,12 +33,11 @@ import {
   reconstructToolCalls,
 } from './tool-accumulator';
 import { StreamConnection } from './stream-connection';
+import { BACKEND_URL } from '@/lib/api-client';
 import { 
   getStreamPreconnectService, 
   consumePreconnectInfo,
 } from './stream-preconnect';
-
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
 
 export interface AgentStreamCallbacks {
   onMessage: (message: UnifiedMessage) => void;
@@ -288,7 +287,7 @@ export function useAgentStream(
   }, []);
   
   const checkAgentStatus = useCallback(async (runId: string): Promise<{ status: string; error?: string }> => {
-    const response = await fetch(`${API_URL}/agent-runs/${runId}/status`, {
+    const response = await fetch(`${BACKEND_URL}/agent-runs/${runId}/status`, {
       headers: {
         'Authorization': `Bearer ${await getAuthToken()}`,
       },
@@ -649,7 +648,7 @@ export function useAgentStream(
     logger.log(`[useAgentStream] Creating new stream connection for ${runId}`);
     
     const connection = new StreamConnection({
-      apiUrl: API_URL,
+      apiUrl: BACKEND_URL,
       runId,
       getAuthToken,
       onMessage: stableMessageHandler,
@@ -685,7 +684,7 @@ export function useAgentStream(
     if (runId) {
       try {
         const token = await getAuthToken();
-        await fetch(`${API_URL}/agent-runs/${runId}/stop`, {
+        await fetch(`${BACKEND_URL}/agent-runs/${runId}/stop`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
