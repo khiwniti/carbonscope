@@ -1,0 +1,59 @@
+# Git
+.git
+.gitignore
+
+# Node
+**/node_modules
+**/.next
+**/dist
+**/build
+**/.turbo
+
+# Python
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.venv
+**/venv
+
+# Logs
+**/logs
+*.log
+npm-debug.log*
+
+# Environment
+.env.local
+.env*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+**/claudedocs
+**/ROOT_CAUSE_*
+README.md
+
+# Tests
+**/*.test.js
+**/*.test.ts
+**/*.spec.js
+**/*.spec.ts
+**/tests
+**/test
+**/__tests__
+
+# Mobile app (not needed for frontend build)
+suna-init/apps/mobile/**
+
+# Backend (not needed for frontend build)
+suna-init/apps/backend/**
+
+# Other packages (only need frontend)
+suna-init/packages/**
