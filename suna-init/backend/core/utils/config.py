@@ -51,7 +51,7 @@ class Configuration:
     AGENT_TOOL_EXECUTION_STRATEGY: str = "parallel"  # "parallel" or "sequential"
     
     # Model selection
-    # Options: "bedrock", "anthropic", "minimax", "grok", "openai"
+    # Options: "bedrock", "anthropic", "minimax", "grok", "openai", "azure"
     MAIN_LLM: str = "bedrock"
     # Optional: Override the default model for the selected provider
     # If not set, uses the default model for the provider:
@@ -290,6 +290,12 @@ class Configuration:
     # LLM API keys
     ANTHROPIC_API_KEY: Optional[str] = None
     OPENAI_API_KEY: Optional[str] = None
+    # Azure AI Foundry (Claude via Azure)
+    AZURE_OPENAI_ENDPOINT: Optional[str] = None
+    AZURE_OPENAI_KEY: Optional[str] = None
+    AZURE_OPENAI_DEPLOYMENT: Optional[str] = None
+    AZURE_OPENAI_API_VERSION: Optional[str] = "2024-10-21"
+    AZURE_API_KEY: Optional[str] = None
     
     ENABLE_MEMORY: bool = False
     ENABLE_KNOWLEDGE_BASE: bool = True

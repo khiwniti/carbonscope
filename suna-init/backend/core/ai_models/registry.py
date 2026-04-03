@@ -98,6 +98,14 @@ def _create_anthropic_model_config() -> ModelConfig:
     return ModelConfig()
 
 
+def _create_azure_model_config() -> ModelConfig:
+    return ModelConfig(
+        api_base=getattr(config, 'AZURE_OPENAI_ENDPOINT', None),
+        api_key=getattr(config, 'AZURE_OPENAI_KEY', None) or getattr(config, 'AZURE_API_KEY', None),
+        api_version=getattr(config, 'AZURE_OPENAI_API_VERSION', '2024-10-21'),
+    )
+
+
 def _create_minimax_model_config() -> ModelConfig:
     return ModelConfig(
         reasoning=ReasoningSettings(enabled=True, split_output=True),
@@ -304,6 +312,28 @@ class ModelFactory:
                 recommended=True,
                 enabled=True,
             )
+        elif main_llm == "azure":
+            deployment = getattr(config, 'AZURE_OPENAI_DEPLOYMENT', None) or custom_model or "claude-sonnet-4-5"
+            return Model(
+                id="CarbonScope/basic",
+                name="CarbonScope Basic (Azure)",
+                litellm_model_id=f"azure_ai/{deployment}",
+                provider=ModelProvider.AZURE,
+                aliases=["CarbonScope-basic", "CarbonScope Basic"],
+                context_window=200_000,
+                capabilities=[
+                    ModelCapability.CHAT,
+                    ModelCapability.FUNCTION_CALLING,
+                    ModelCapability.VISION,
+                    ModelCapability.PROMPT_CACHING,
+                ],
+                pricing=PricingPresets.HAIKU_4_5,
+                tier_availability=["free", "paid"],
+                priority=102,
+                recommended=True,
+                enabled=True,
+                config=_create_azure_model_config(),
+            )
         elif main_llm == "openrouter":
             # Generic OpenRouter - use custom model or fallback to minimax
             return Model(
@@ -462,6 +492,28 @@ class ModelFactory:
                 priority=101,
                 recommended=True,
                 enabled=True,
+            )
+        elif main_llm == "azure":
+            deployment = getattr(config, 'AZURE_OPENAI_DEPLOYMENT', None) or custom_model or "claude-sonnet-4-5"
+            return Model(
+                id="CarbonScope/power",
+                name="CarbonScope Advanced Mode (Azure)",
+                litellm_model_id=f"azure_ai/{deployment}",
+                provider=ModelProvider.AZURE,
+                aliases=["CarbonScope-power", "CarbonScope POWER Mode", "CarbonScope Power", "CarbonScope Advanced Mode"],
+                context_window=200_000,
+                capabilities=[
+                    ModelCapability.CHAT,
+                    ModelCapability.FUNCTION_CALLING,
+                    ModelCapability.VISION,
+                    ModelCapability.PROMPT_CACHING,
+                ],
+                pricing=PricingPresets.HAIKU_4_5,
+                tier_availability=["paid"],
+                priority=101,
+                recommended=True,
+                enabled=True,
+                config=_create_azure_model_config(),
             )
         elif main_llm == "openrouter":
             # Generic OpenRouter - use custom model or fallback to minimax
