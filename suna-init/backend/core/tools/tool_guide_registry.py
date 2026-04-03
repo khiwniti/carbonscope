@@ -1,9 +1,8 @@
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import threading
+from core.utils.logger import logger
 
-
-        from core.utils.logger import logger
 @dataclass
 class ToolGuideEntry:
     tool_name: str

@@ -1,7 +1,7 @@
 from typing import Dict, List, Tuple, Type, Optional
 from core.agentpress.tool import Tool
+from core.utils.logger import logger
 
-            from core.utils.logger import logger
 CORE_TOOLS = [
     ('expand_msg_tool', 'core.tools.expand_msg_tool', 'ExpandMessageTool'),
     ('message_tool', 'core.tools.message_tool', 'MessageTool'),

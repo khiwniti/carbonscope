@@ -9,8 +9,8 @@ import json
 import logging
 import time
 from typing import Union, List
+from core.utils.logger import logger
 
-            from core.utils.logger import logger
 @tool_metadata(
     display_name="Image Search",
     description="Find images on the internet for any topic or subject",

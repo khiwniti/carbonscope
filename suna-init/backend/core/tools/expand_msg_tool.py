@@ -3,9 +3,8 @@ from core.agentpress.thread_manager import ThreadManager
 from typing import List, Optional
 import asyncio
 import json
+from core.utils.logger import logger
 
-
-        from core.utils.logger import logger
 _mcp_registry_lock: Optional[asyncio.Lock] = None
 
 

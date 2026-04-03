@@ -114,6 +114,7 @@ dependencies = [
   "graphrag-sdk>=0.4.0",
   "rdflib>=7.0.0",
   "langgraph>=0.2.0",
+  "langgraph-checkpoint-postgres>=2.0.0",
   "brightway2<2.5.0",  # Python 3.12 compatibility
   "rapidfuzz>=3.0.0",
   "SPARQLWrapper>=2.0.0",

@@ -8,34 +8,26 @@ from core.utils.pagination import PaginationParams
 from core.utils.core_tools_helper import ensure_core_tools_enabled
 
 from core.api_models import (
+    AgentUpdateRequest, AgentResponse, AgentVersionResponse, AgentsResponse,
+    PaginationInfo, AgentCreateRequest, AgentIconGenerationRequest, AgentIconGenerationResponse,
+)
 from core.services.supabase import DBConnection
 from core.utils.mcp_helpers import merge_custom_mcps
-    from core.versioning.version_service import get_version_service
-from core.config.config_helper import build_unified_config
-        from core.agents import repo as agents_repo
-                from core.versioning import repo as versioning_repo
-                    import json
-                from core.versioning import repo as versioning_repo
-                import uuid
-            import json
-        from .agent_loader import get_agent_loader
-    from core.agents import repo as agents_repo
-            from core.triggers.trigger_service import get_trigger_service
-            from core.cache.runtime_cache import invalidate_agent_config_cache
-            from core.utils.cache import Cache
-        from .agent_service import AgentService, AgentFilters
-        from .agent_loader import get_agent_loader
-    from core.agents import repo as agents_repo
-    from core.utils.limits_checker import check_agent_count_limit
-            from core.config.suna_config import SUNA_CONFIG
-            from core.config.config_helper import _get_default_agentpress_tools
-            from core.ai_models import model_manager
-        from core.utils.cache import Cache
-        from .agent_loader import get_agent_loader
-        from core.utils.icon_generator import generate_icon_and_colors as generate_agent_icon_and_colors
-    AgentUpdateRequest, AgentResponse, AgentVersionResponse, AgentsResponse, 
-    PaginationInfo, AgentCreateRequest, AgentIconGenerationRequest, AgentIconGenerationResponse
-)
+from core.versioning.version_service import get_version_service
+from core.config.config_helper import build_unified_config, _get_default_agentpress_tools
+from core.agents import repo as agents_repo
+from core.versioning import repo as versioning_repo
+from core.triggers.trigger_service import get_trigger_service
+from core.cache.runtime_cache import invalidate_agent_config_cache
+from core.utils.cache import Cache
+from .agent_service import AgentService, AgentFilters
+from .agent_loader import get_agent_loader
+from core.utils.limits_checker import check_agent_count_limit
+from core.config.suna_config import SUNA_CONFIG
+from core.ai_models import model_manager
+from core.utils.icon_generator import generate_icon_and_colors as generate_agent_icon_and_colors
+import json
+import uuid
 
 db = DBConnection()
 
