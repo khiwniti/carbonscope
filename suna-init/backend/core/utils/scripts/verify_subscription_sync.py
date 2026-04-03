@@ -1,5 +1,6 @@
 
 #!/usr/bin/env python3
+from core.config import timeouts
 import asyncio
 import sys
 from pathlib import Path

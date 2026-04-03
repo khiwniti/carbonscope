@@ -1,6 +1,7 @@
 from fastapi import HTTPException # type: ignore
 from typing import Dict, Optional
 from datetime import datetime, timezone
+from core.config import timeouts
 import stripe # type: ignore
 
 from core.utils.logger import logger

@@ -2,6 +2,7 @@ import asyncio
 from typing import Optional
 
 from core.utils.logger import logger
+from core.config import timeouts
 from core.sandbox.pool_config import get_pool_config
 from core.sandbox.pool_service import get_pool_service, SandboxPoolService
 

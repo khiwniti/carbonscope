@@ -1,5 +1,6 @@
 from typing import Dict
 from datetime import datetime
+from core.config import timeouts
 import asyncio
 
 from core.utils.logger import logger

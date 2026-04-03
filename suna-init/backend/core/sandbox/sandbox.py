@@ -1,5 +1,6 @@
 from daytona_sdk import AsyncDaytona, DaytonaConfig, CreateSandboxFromSnapshotParams, AsyncSandbox, SessionExecuteRequest, SandboxState
 from dotenv import load_dotenv
+from core.config import timeouts
 from core.utils.logger import logger
 from core.utils.config import config
 from core.utils.config import Configuration

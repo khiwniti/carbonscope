@@ -1,3 +1,4 @@
+from core.config import timeouts
 import asyncio
 import time
 from typing import Any, Callable, Dict, Optional

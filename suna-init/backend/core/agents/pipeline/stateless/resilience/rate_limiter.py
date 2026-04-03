@@ -1,3 +1,4 @@
+from core.config import timeouts
 import asyncio
 import time
 from abc import ABC, abstractmethod

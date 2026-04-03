@@ -1,6 +1,7 @@
 from typing import Dict, Optional, Tuple
 from datetime import datetime, timezone
 
+from core.config import timeouts
 from core.utils.logger import logger
 from core.billing.external.stripe import StripeAPIWrapper
 from ..repositories.credit_account import CreditAccountRepository

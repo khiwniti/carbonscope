@@ -23,6 +23,7 @@ Performance Targets:
     - Full-text search: <500ms
 """
 
+from core.config import timeouts
 import argparse
 import logging
 import sys

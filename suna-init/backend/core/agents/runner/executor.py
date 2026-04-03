@@ -1,3 +1,4 @@
+from core.config import timeouts
 import json
 import asyncio
 import time

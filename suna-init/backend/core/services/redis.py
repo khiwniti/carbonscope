@@ -2,6 +2,7 @@ from redis.asyncio import Redis, ConnectionPool
 from redis.exceptions import BusyLoadingError, ConnectionError as RedisConnectionError
 from redis.backoff import ExponentialBackoff
 from redis.retry import Retry
+from core.config import timeouts
 import os
 import asyncio
 import time

@@ -7,6 +7,7 @@ Thin API layer - delegates to core modules:
 - Execution: core/run/agent_runner.py
 """
 
+from core.config import timeouts
 import asyncio
 import json
 import os

@@ -7,6 +7,7 @@ Handles text chunking for the 500 character limit. Returns multiple audio URLs
 that should be played sequentially on the client.
 """
 
+from core.config import timeouts
 import asyncio
 from typing import Optional, List
 from pydantic import BaseModel

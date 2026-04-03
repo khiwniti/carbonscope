@@ -2,6 +2,7 @@ import asyncio
 from typing import Optional
 
 from core.utils.logger import logger
+from core.config import timeouts
 
 
 

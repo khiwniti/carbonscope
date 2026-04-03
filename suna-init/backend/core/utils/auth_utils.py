@@ -578,10 +578,21 @@ async def get_user_id_from_stream_auth(
 
 async def get_optional_user_id(request: Request) -> Optional[str]:
     auth_header = request.headers.get('Authorization')
-    
+
     if not auth_header or not auth_header.startswith('Bearer '):
         return None
-    
+
+    # Support dev bypass for local testing
+    if os.getenv("DEV_AUTH_BYPASS") == "true":
+        dev_test_header = request.headers.get('x-dev-test-user')
+        if dev_test_header == "true":
+            return os.getenv("DEV_TEST_USER_ID", "00000000-0000-0000-0000-000000000001")
+        token = auth_header.split(' ')[1]
+        if token.startswith('dev:'):
+            test_email = token.replace('dev:', '')
+            if test_email == os.getenv("DEV_TEST_EMAIL", "test@dev.local"):
+                return os.getenv("DEV_TEST_USER_ID", "00000000-0000-0000-0000-000000000001")
+
     token = auth_header.split(' ')[1]
     
     try:
