@@ -360,6 +360,13 @@ class Configuration:
     # Freestyle deployment configuration
     FREESTYLE_API_KEY: Optional[str] = None
     
+    # Development bypass configuration (for local testing only)
+    # SECURITY: MUST be false in production
+    DEV_AUTH_BYPASS: Optional[bool] = False
+    DEV_BILLING_BYPASS: Optional[bool] = False
+    DEV_TEST_USER_ID: Optional[str] = None
+    DEV_TEST_EMAIL: Optional[str] = None
+
     # Stripe configuration
     STRIPE_SECRET_KEY: Optional[str] = None
     STRIPE_WEBHOOK_SECRET: Optional[str] = None

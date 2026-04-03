@@ -330,22 +330,27 @@ async def start_agent_run(
     
     total_start = time.time()
     is_new_thread = thread_id is None or is_optimistic
-    
-    logger.info(f"🚀 start_agent_run: is_optimistic={is_optimistic}, is_new_thread={is_new_thread}")
-    
+
+    # Check for development billing bypass
+    if config.DEV_BILLING_BYPASS and config.ENV_MODE != EnvMode.PRODUCTION:
+        logger.warning("⚠️ DEV_BILLING_BYPASS is enabled - skipping all billing and limit checks")
+        skip_limits_check = True
+
+    logger.info(f"🚀 start_agent_run: is_optimistic={is_optimistic}, is_new_thread={is_new_thread}, skip_limits_check={skip_limits_check}")
+
     agent_config = await load_agent_config_fast(agent_id, account_id, user_id=account_id)
-    
+
     if model_name:
         effective_model = model_name
     elif agent_config and agent_config.get('model'):
         effective_model = agent_config['model']
     else:
         effective_model = "CarbonScope/basic"
-    
+
     if not is_new_thread and not project_id:
         from core.threads import repo as threads_repo
         project_id = await threads_repo.get_thread_project_id(thread_id)
-    
+
     if is_new_thread and not skip_limits_check:
         thread_check, project_check = await asyncio.gather(
             check_thread_limit(account_id, skip=skip_limits_check),

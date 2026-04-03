@@ -10,15 +10,12 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only requirements first for caching
-COPY pyproject.toml ./
+# Copy application code first
+COPY . .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir fastapi uvicorn python-dotenv pydantic sqlalchemy psycopg2-binary redis
-
-# Copy application code
-COPY . .
+    pip install --no-cache-dir .
 
 # Create non-root user
 RUN useradd -m -u 1001 appuser && chown -R appuser:appuser /app

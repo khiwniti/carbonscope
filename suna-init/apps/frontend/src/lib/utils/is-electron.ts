@@ -16,7 +16,8 @@ export function isElectron(): boolean {
 
   // Check for Electron-specific globals
   if (typeof window !== 'undefined') {
-    return !!(window.process && window.process.type === 'renderer');
+    const windowWithElectron = window as any;
+    return !!(windowWithElectron.process && windowWithElectron.process.type === 'renderer');
   }
 
   return false;
