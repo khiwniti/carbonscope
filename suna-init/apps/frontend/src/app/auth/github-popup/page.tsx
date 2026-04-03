@@ -122,10 +122,14 @@ export default function GitHubOAuthPopup() {
           // Start the OAuth flow
           setStatus('loading');
 
+          // Use NEXT_PUBLIC_URL env var to ensure correct callback URL in Docker/production
+          // Fallback to window.location.origin for local dev without env var
+          const baseUrl = process.env.NEXT_PUBLIC_URL || window.location.origin;
+
           const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
             options: {
-              redirectTo: `${window.location.origin}/auth/github-popup`,
+              redirectTo: `${baseUrl}/auth/github-popup`,
               queryParams: {
                 access_type: 'online',
                 prompt: 'select_account',

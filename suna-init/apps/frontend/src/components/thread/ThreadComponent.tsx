@@ -278,51 +278,35 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
   
   // Auto-open mode-specific viewers when coming from /thread/new
   useModeViewerInit(threadId, projectId, sandboxId, user?.user_metadata?.access_token);
-  
-  if (isNewThread && !optimisticPrompt) {
-    try {
-      const stored = sessionStorage.getItem('optimistic_prompt');
-      const storedThread = sessionStorage.getItem('optimistic_thread');
-      if (stored && storedThread === threadId) {
-        setOptimisticPrompt(stored);
-        setShowOptimisticUI(true);
-        // Don't open panel during optimistic UI - it will open when tool calls arrive
-        const storedPreviews = sessionStorage.getItem('optimistic_file_previews');
-        if (storedPreviews) {
-          try {
-            setStoredFilePreviewUrls(JSON.parse(storedPreviews));
-          } catch (e) {
+
+  // Check sessionStorage for optimistic prompt once on mount - wrapped in useEffect to prevent infinite loop
+  useEffect(() => {
+    if ((isNewThread && !optimisticPrompt) || (!optimisticPrompt && !showOptimisticUI && !initialLoadCompleted)) {
+      try {
+        const stored = sessionStorage.getItem('optimistic_prompt');
+        const storedThread = sessionStorage.getItem('optimistic_thread');
+        if (stored && storedThread === threadId) {
+          logger.log('[optimisticPrompt init] Found in sessionStorage:', stored?.slice(0, 50));
+          setOptimisticPrompt(stored);
+          setShowOptimisticUI(true);
+          // Don't open panel during optimistic UI - it will open when tool calls arrive
+          const storedPreviews = sessionStorage.getItem('optimistic_file_previews');
+          if (storedPreviews) {
+            try {
+              setStoredFilePreviewUrls(JSON.parse(storedPreviews));
+            } catch (e) {
+              // Ignore parse errors
+            }
+            sessionStorage.removeItem('optimistic_file_previews');
           }
-          sessionStorage.removeItem('optimistic_file_previews');
+          sessionStorage.removeItem('optimistic_prompt');
+          sessionStorage.removeItem('optimistic_thread');
         }
-        sessionStorage.removeItem('optimistic_prompt');
-        sessionStorage.removeItem('optimistic_thread');
+      } catch (e) {
+        // Ignore errors
       }
-    } catch (e) {
     }
-  }
-  
-  if (!optimisticPrompt && !showOptimisticUI && !initialLoadCompleted) {
-    try {
-      const stored = sessionStorage.getItem('optimistic_prompt');
-      const storedThread = sessionStorage.getItem('optimistic_thread');
-      if (stored && storedThread === threadId) {
-        setOptimisticPrompt(stored);
-        setShowOptimisticUI(true);
-        const storedPreviews = sessionStorage.getItem('optimistic_file_previews');
-        if (storedPreviews) {
-          try {
-            setStoredFilePreviewUrls(JSON.parse(storedPreviews));
-          } catch (e) {
-          }
-          sessionStorage.removeItem('optimistic_file_previews');
-        }
-        sessionStorage.removeItem('optimistic_prompt');
-        sessionStorage.removeItem('optimistic_thread');
-      }
-    } catch (e) {
-    }
-  }
+  }, [threadId]); // Only re-run if threadId changes
   
   useEffect(() => {
     if (isNewThread && !hasDataLoaded.current && agentRunId) {

@@ -54,6 +54,3 @@ suna-init/apps/mobile/**
 
 # Backend (not needed for frontend build)
 suna-init/apps/backend/**
-
-# Other packages (only need frontend)
-suna-init/packages/**

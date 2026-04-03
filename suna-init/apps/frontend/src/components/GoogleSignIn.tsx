@@ -21,15 +21,19 @@ export default function GoogleSignIn({ returnUrl, referralCode }: GoogleSignInPr
   const handleGoogleSignIn = async () => {
     try {
       setIsLoading(true);
-      
+
       if (referralCode) {
         document.cookie = `pending-referral-code=${referralCode.trim().toUpperCase()}; path=/; max-age=600; SameSite=Lax`;
       }
-      
+
+      // Use NEXT_PUBLIC_URL env var to ensure correct callback URL in Docker/production
+      // Fallback to window.location.origin for local dev without env var
+      const baseUrl = process.env.NEXT_PUBLIC_URL || window.location.origin;
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback${returnUrl ? `?returnUrl=${encodeURIComponent(returnUrl)}` : ''
+          redirectTo: `${baseUrl}/auth/callback${returnUrl ? `?returnUrl=${encodeURIComponent(returnUrl)}` : ''
             }`,
         },
       });

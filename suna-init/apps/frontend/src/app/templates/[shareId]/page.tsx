@@ -37,7 +37,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import ColorThief from 'colorthief';
+// import ColorThief from 'colorthief'; // Disabled - constructor issue in production build
 import { AgentAvatar } from '@/components/thread/content/agent-avatar';
 import { CarbonScopeLogoSimple } from '@/components/brand/carbonscope-logo-simple';
 
@@ -277,21 +277,23 @@ export default function TemplateSharePage() {
         '#ec4899',
         '#f43f5e'
       ]);
-      if (imageRef.current && imageLoaded) {
-        const colorThief = new ColorThief();
-        try {
-          const palette = colorThief.getPalette(imageRef.current, 6);
-          const colors = palette.map((rgb: number[]) => rgbToHex(rgb[0], rgb[1], rgb[2]));
-          logger.log('Extracted colors (hex):', colors);
-          setColorPalette(colors);
-        } catch (error) {
-          console.error('Error extracting colors:', error);
-          setColorPalette([
-            '#6366f1', '#8b5cf6', '#ec4899',
-            '#f43f5e', '#f97316', '#facc15'
-          ]);
-        }
-      }
+      // Color extraction disabled during build - fallback to default colors
+      // TODO: Fix ColorThief constructor issue in production build
+      // if (imageRef.current && imageLoaded) {
+      //   const colorThief = new ColorThief();
+      //   try {
+      //     const palette = colorThief.getPalette(imageRef.current, 6);
+      //     const colors = palette.map((rgb: number[]) => rgbToHex(rgb[0], rgb[1], rgb[2]));
+      //     logger.log('Extracted colors (hex):', colors);
+      //     setColorPalette(colors);
+      //   } catch (error) {
+      //     console.error('Error extracting colors:', error);
+      //     setColorPalette([
+      //       '#6366f1', '#8b5cf6', '#ec4899',
+      //       '#f43f5e', '#f97316', '#facc15'
+      //     ]);
+      //   }
+      // }
     } else {
       setColorPalette([
         '#6366f1', '#8b5cf6', '#ec4899',

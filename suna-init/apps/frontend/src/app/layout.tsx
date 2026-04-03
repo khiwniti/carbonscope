@@ -11,8 +11,9 @@ import { Suspense, lazy } from 'react';
 import { featureFlags } from '@/lib/feature-flags';
 
 // Lazy load non-critical analytics and global components
-const Analytics = lazy(() => import('@vercel/analytics/react').then(mod => ({ default: mod.Analytics })));
-const SpeedInsights = lazy(() => import('@vercel/speed-insights/next').then(mod => ({ default: mod.SpeedInsights })));
+// Note: Vercel Analytics & Speed Insights disabled for Azure deployment
+// const Analytics = lazy(() => import('@vercel/analytics/react').then(mod => ({ default: mod.Analytics })));
+// const SpeedInsights = lazy(() => import('@vercel/speed-insights/next').then(mod => ({ default: mod.SpeedInsights })));
 const GoogleTagManager = lazy(() => import('@next/third-parties/google').then(mod => ({ default: mod.GoogleTagManager })));
 const PostHogIdentify = lazy(() => import('@/components/posthog-identify').then(mod => ({ default: mod.PostHogIdentify })));
 const PlanSelectionModal = lazy(() => import('@/components/billing/pricing/plan-selection-modal').then(mod => ({ default: mod.PlanSelectionModal })));
@@ -242,6 +243,9 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <PlanSelectionModal />
           </Suspense>
+          <Suspense fallback={null}>
+            <AnnouncementDialog />
+          </Suspense>
           {/* Analytics components need auth context - must be inside providers */}
           <Suspense fallback={null}>
             <PostHogIdentify />
@@ -257,17 +261,18 @@ export default function RootLayout({
           </Suspense>
         </ClientProvidersWrapper>
         {/* Third-party analytics - independent of auth context */}
-        <Suspense fallback={null}>
+        {/* Vercel Analytics & Speed Insights disabled for Azure deployment */}
+        {/* <Suspense fallback={null}>
           <Analytics />
-        </Suspense>
+        </Suspense> */}
         {process.env.NEXT_PUBLIC_GTM_ID && (
         <Suspense fallback={null}>
             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
         </Suspense>
         )}
-        <Suspense fallback={null}>
+        {/* <Suspense fallback={null}>
           <SpeedInsights />
-        </Suspense>
+        </Suspense> */}
       </body>
     </html>
   );

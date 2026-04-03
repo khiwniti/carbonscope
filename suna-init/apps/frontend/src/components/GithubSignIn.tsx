@@ -110,8 +110,12 @@ export default function GitHubSignIn({ returnUrl, referralCode }: GitHubSignInPr
         document.cookie = `pending-referral-code=${referralCode.trim().toUpperCase()}; path=/; max-age=600; SameSite=Lax`;
       }
 
+      // Use NEXT_PUBLIC_URL env var to ensure correct popup URL in Docker/production
+      // Fallback to window.location.origin for local dev without env var
+      const baseUrl = process.env.NEXT_PUBLIC_URL || window.location.origin;
+
       const popup = window.open(
-        `${window.location.origin}/auth/github-popup`,
+        `${baseUrl}/auth/github-popup`,
         'GitHubOAuth',
         'width=500,height=600,scrollbars=yes,resizable=yes,status=yes,location=yes',
       );
