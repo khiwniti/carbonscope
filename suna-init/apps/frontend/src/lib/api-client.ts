@@ -2,7 +2,14 @@ import { createClient } from '@/lib/supabase/client';
 import { handleApiError, handleNetworkError, ErrorContext, ApiError } from './error-handler';
 import { parseTierRestrictionError, RequestTooLargeError } from './api/errors';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+function normalizeBackendUrl(raw: string): string {
+  if (!raw) return '';
+  const trimmed = raw.replace(/\/$/, '');
+  return trimmed.endsWith('/v1') ? trimmed : `${trimmed}/v1`;
+}
+
+export const BACKEND_URL = normalizeBackendUrl(process.env.NEXT_PUBLIC_BACKEND_URL || '');
+const API_URL = BACKEND_URL;
 
 export interface ApiClientOptions {
   showErrors?: boolean;
