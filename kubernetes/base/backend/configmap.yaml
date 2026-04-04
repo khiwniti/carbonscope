@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: carbonscope
+data:
+  SUPABASE_URL: "https://vplbjxijbrgwskgxiukd.supabase.co"

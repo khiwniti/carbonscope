@@ -1,0 +1,53 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: carbonscope
+
+bases:
+  - ../../base
+
+namePrefix: prod-
+
+commonLabels:
+  environment: production
+
+patches:
+  # Production uses full 3 replicas (from base)
+  # Add pod disruption budgets for HA
+  - target:
+      kind: Deployment
+      name: frontend
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations
+        value:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "3000"
+          prometheus.io/path: "/metrics"
+
+  - target:
+      kind: Deployment
+      name: backend
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations
+        value:
+          prometheus.io/scrape: "true"
+          prometheus.io/port: "8000"
+          prometheus.io/path: "/metrics"
+
+configMapGenerator:
+  - name: frontend-config
+    behavior: merge
+    literals:
+      - NEXT_PUBLIC_BACKEND_URL=https://api.carbonscope.com/v1
+
+images:
+  - name: carbonscopeacr.azurecr.io/suna-frontend
+    newTag: v1.0.8
+  - name: carbonscopeacr.azurecr.io/suna-backend
+    newTag: v2.0.6
+
+# Pod Disruption Budgets for production HA
+patchesStrategicMerge:
+  - pdb.yaml

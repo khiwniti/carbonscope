@@ -1,0 +1,9 @@
+# Kubernetes secrets
+configs/secrets.yaml
+
+# Temporary files
+*.tmp
+*.bak
+
+# Local overlays
+overlays/local-custom/

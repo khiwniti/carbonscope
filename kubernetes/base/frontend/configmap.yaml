@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: carbonscope
+data:
+  NEXT_PUBLIC_SUPABASE_URL: "https://vplbjxijbrgwskgxiukd.supabase.co"
+  NEXT_PUBLIC_BACKEND_URL: "http://backend/v1"

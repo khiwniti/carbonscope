@@ -1,0 +1,33 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: carbonscope
+
+resources:
+  - namespace.yaml
+  - frontend/deployment.yaml
+  - frontend/service.yaml
+  - frontend/hpa.yaml
+  - backend/deployment.yaml
+  - backend/service.yaml
+  - backend/hpa.yaml
+  - database/statefulset.yaml
+  - database/service.yaml
+  - redis/statefulset.yaml
+  - redis/service.yaml
+  - ingress/ingress.yaml
+
+configMapGenerator:
+  - name: frontend-config
+    literals:
+      - NEXT_PUBLIC_SUPABASE_URL=https://vplbjxijbrgwskgxiukd.supabase.co
+      - NEXT_PUBLIC_BACKEND_URL=http://backend/v1
+
+  - name: backend-config
+    literals:
+      - SUPABASE_URL=https://vplbjxijbrgwskgxiukd.supabase.co
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: carbonscope
+      app.kubernetes.io/managed-by: kustomize
