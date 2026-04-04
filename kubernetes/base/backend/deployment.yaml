@@ -42,23 +42,119 @@ spec:
           name: http
           protocol: TCP
         env:
+        - name: ENV_MODE
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: ENV_MODE
+        - name: DISABLE_BILLING
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: DISABLE_BILLING
+        - name: CLOUDWATCH_LOGGING_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: CLOUDWATCH_LOGGING_ENABLED
+        - name: MAIN_LLM
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: MAIN_LLM
+        - name: MAIN_LLM_MODEL
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: MAIN_LLM_MODEL
+        - name: AZURE_OPENAI_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: AZURE_OPENAI_ENDPOINT
+        - name: AZURE_OPENAI_DEPLOYMENT
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: AZURE_OPENAI_DEPLOYMENT
+        - name: AZURE_OPENAI_API_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: AZURE_OPENAI_API_VERSION
+        - name: AZURE_OPENAI_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: AZURE_OPENAI_KEY
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: OPENAI_API_KEY
+        - name: OPENAI_API_BASE
+          value: "https://khiwn-9359-resource.cognitiveservices.azure.com/openai/deployments/claude-sonnet-4-5"
+        - name: OPENAI_API_TYPE
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: OPENAI_API_TYPE
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
               name: backend-secrets
               key: DATABASE_URL
+        - name: CHECKPOINT_DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: CHECKPOINT_DATABASE_URL
         - name: REDIS_URL
-          value: "redis://redis:6379"
+          value: "redis://local-redis:6379"
+        - name: REDIS_HOST
+          value: "local-redis"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_SSL
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: REDIS_SSL
         - name: SUPABASE_URL
           valueFrom:
             configMapKeyRef:
               name: backend-config
               key: SUPABASE_URL
+        - name: SUPABASE_ANON_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: SUPABASE_ANON_KEY
+        - name: SUPABASE_SERVICE_ROLE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: SUPABASE_SERVICE_ROLE_KEY
+        - name: SUPABASE_JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: SUPABASE_JWT_SECRET
         - name: SUPABASE_KEY
           valueFrom:
             secretKeyRef:
               name: backend-secrets
               key: SUPABASE_KEY
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: ENCRYPTION_KEY
+        - name: MCP_CREDENTIAL_ENCRYPTION_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: MCP_CREDENTIAL_ENCRYPTION_KEY
         - name: DAYTONA_API_KEY
           valueFrom:
             secretKeyRef:
@@ -82,10 +178,30 @@ spec:
             secretKeyRef:
               name: backend-secrets
               key: ANTHROPIC_API_KEY
+              optional: true
+        - name: LANGFUSE_PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: LANGFUSE_PUBLIC_KEY
+              optional: true
+        - name: LANGFUSE_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: LANGFUSE_SECRET_KEY
+              optional: true
+        - name: LANGFUSE_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: LANGFUSE_BASE_URL
+              optional: true
         - name: WORKERS
-          value: "4"
-        - name: LOG_LEVEL
-          value: "info"
+          valueFrom:
+            configMapKeyRef:
+              name: backend-config
+              key: WORKERS
         resources:
           requests:
             memory: "1Gi"
