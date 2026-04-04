@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/components/AuthProvider';
 import { fileQueryKeys } from './use-file-queries';
@@ -48,7 +49,7 @@ function normalizeWorkspacePath(path: string): string {
   return `/workspace/${path.replace(/^\//, '')}`;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 /**
  * Hook for uploading files

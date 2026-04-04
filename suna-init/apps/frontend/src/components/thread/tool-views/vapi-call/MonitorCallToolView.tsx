@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import React, { useState, useEffect, useRef } from 'react';
 import { logger } from '@/lib/logger';
 import { ToolResultData } from '../types';
@@ -114,7 +115,7 @@ export function MonitorCallToolView({
     const setupSubscription = async () => {
       // First, do an initial fetch to get current data via backend API
       try {
-        const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const API_URL = BACKEND_URL;
         const { data: { session } } = await supabase.auth.getSession();
         
         const headers: Record<string, string> = {
@@ -201,7 +202,7 @@ export function MonitorCallToolView({
       if (!initialData?.call_id) return null;
       
       try {
-        const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const API_URL = BACKEND_URL;
         const supabase = createClient();
         const { data: { session } } = await supabase.auth.getSession();
         

@@ -1,8 +1,9 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "@/lib/toast";
 import { createClient } from "@/lib/supabase/client";
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 export interface AgentExportData {
   name: string;

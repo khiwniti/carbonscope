@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { toast } from '@/lib/toast';
 import { logger } from '@/lib/logger';
 import { saveAs } from 'file-saver';
@@ -5,7 +6,7 @@ import TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
 import { createClient } from '@/lib/supabase/client';
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const BACKEND_URL = BACKEND_URL || '';
 
 export type ExportFormat = 'pdf' | 'docx' | 'html' | 'markdown';
 

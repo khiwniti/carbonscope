@@ -1,9 +1,10 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import { useQuery } from '@tanstack/react-query';
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const BACKEND_URL = BACKEND_URL || '';
 
 export interface IMaintenanceNotice {
   enabled: boolean;

@@ -1,8 +1,9 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { createClient } from '@/lib/supabase/client';
 import { toast } from '@/lib/toast';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const API_URL = BACKEND_URL;
 
 interface OAuthIntegration {
   trigger_id: string;

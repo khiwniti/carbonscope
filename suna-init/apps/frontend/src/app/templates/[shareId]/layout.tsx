@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { backendApi } from '@/lib/api-client';
 import { Metadata } from 'next';
 
@@ -5,7 +6,7 @@ export async function generateMetadata({ params }: { params: Promise<{ shareId: 
   const { shareId: templateId } = await params;
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/v1'}/templates/public/${templateId}`);
+    const response = await fetch(`${BACKEND_URL || 'http://localhost:8000/v1'}/templates/public/${templateId}`);
 
     if (!response.ok) {
       throw new Error('Template not found');

@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import { backendApi } from '@/lib/api-client';
@@ -265,7 +266,7 @@ export function PresenceProvider({ children }: { children: ReactNode }) {
     if (DISABLE_PRESENCE || typeof navigator === 'undefined' || !sessionId) {
       return;
     }
-    const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    const apiUrl = BACKEND_URL;
     if (!apiUrl || !session?.access_token) {
       return;
     }

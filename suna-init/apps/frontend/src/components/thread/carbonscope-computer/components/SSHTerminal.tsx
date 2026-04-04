@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import { memo, useRef, useEffect, useCallback, useState } from 'react';
@@ -72,7 +73,7 @@ const lightTheme: ITheme = {
 };
 
 const getWebSocketUrl = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+  const baseUrl = BACKEND_URL || 'http://localhost:8000';
   return baseUrl.replace('https://', 'wss://').replace('http://', 'ws://');
 };
 

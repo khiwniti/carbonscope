@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { createClient } from '@/lib/supabase/client';
 import { logger } from '@/lib/logger';
 import { handleApiError } from '../error-handler';
@@ -18,7 +19,7 @@ import {
 import { nonRunningAgentRuns, activeStreams, cleanupEventSource } from './streaming';
 import { Message } from './threads';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 export type AgentRun = {
   id: string;

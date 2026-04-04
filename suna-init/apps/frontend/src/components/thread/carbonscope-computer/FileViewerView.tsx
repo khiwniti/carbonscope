@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
@@ -70,7 +71,7 @@ import { useSandboxStatusWithAutoStart, isSandboxUsable } from '@/hooks/files/us
 
 
 // Define API_URL
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 /**
  * Normalize a file path to ensure it starts with /workspace
@@ -706,7 +707,7 @@ export function FileViewerView({
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files`,
+        `${BACKEND_URL}/sandboxes/${sandboxId}/files`,
         {
           method: 'PUT',
           headers: {
@@ -781,7 +782,7 @@ export function FileViewerView({
               return;
             }
             const response = await fetch(
-              `${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content?path=${encodeURIComponent(filePath)}`,
+              `${BACKEND_URL}/sandboxes/${sandboxId}/files/content?path=${encodeURIComponent(filePath)}`,
               { headers: { 'Authorization': `Bearer ${session?.access_token}` } }
             );
 
@@ -809,7 +810,7 @@ export function FileViewerView({
         return;
       }
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content?path=${encodeURIComponent(filePath)}`,
+        `${BACKEND_URL}/sandboxes/${sandboxId}/files/content?path=${encodeURIComponent(filePath)}`,
         { headers: { 'Authorization': `Bearer ${session?.access_token}` } }
       );
 

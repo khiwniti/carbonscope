@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import { useCallback, useState, useRef } from 'react';
@@ -344,7 +345,7 @@ export function MarkdownToolbar({
       return null;
     }
 
-    const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+    const API_URL = BACKEND_URL || '';
     
     try {
       const supabase = createClient();

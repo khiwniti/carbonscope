@@ -1,6 +1,7 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { createClient } from "@/lib/supabase/client";
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 export type Agent = {
   agent_id: string;

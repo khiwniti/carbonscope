@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
@@ -197,7 +198,7 @@ export function SpreadsheetViewer({
 
     setIsDownloading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${resolvedSandboxId}/files/content?path=${encodeURIComponent(resolvedFilePath)}`, {
+      const response = await fetch(`${BACKEND_URL}/sandboxes/${resolvedSandboxId}/files/content?path=${encodeURIComponent(resolvedFilePath)}`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`
         }

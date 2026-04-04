@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 
 import React, { useState, useRef } from 'react';
@@ -47,7 +48,7 @@ import { FileNameValidator } from '@/lib/validation';
 import { backendApi } from '@/lib/api-client';
 import { createClient } from '@/lib/supabase/client';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 interface TreeItem {
     id: string;

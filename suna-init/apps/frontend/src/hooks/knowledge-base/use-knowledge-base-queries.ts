@@ -1,9 +1,10 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/lib/toast';
 import { createClient } from '@/lib/supabase/client';
 import { knowledgeBaseKeys } from './keys';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
+const API_URL = BACKEND_URL || '';
 
 // Only keep the types that are actually used
 export interface KnowledgeBaseEntry {

@@ -1,9 +1,10 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { TriggerConfiguration } from '@/components/agents/triggers/types';
 import { createClient } from '@/lib/supabase/client';
 import { TriggerLimitError } from '@/lib/api/errors';
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const API_URL = BACKEND_URL;
 
 const fetchAgentTriggers = async (agentId: string): Promise<TriggerConfiguration[]> => {
     const supabase = createClient();

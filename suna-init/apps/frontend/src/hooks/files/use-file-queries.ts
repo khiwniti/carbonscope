@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import React, { useEffect } from 'react';
 import { logger } from '@/lib/logger';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -116,7 +117,7 @@ export async function fetchFileContent(
 ): Promise<string | Blob | any> {
   const normalizedPath = normalizePath(filePath);
   
-  const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
+  const url = new URL(`${BACKEND_URL}/sandboxes/${sandboxId}/files/content`);
   url.searchParams.append('path', normalizedPath);
   
   const headers: Record<string, string> = {};

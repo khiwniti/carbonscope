@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import React, { useState, useEffect, useRef } from 'react';
 import { logger } from '@/lib/logger';
 import { Phone, CheckCircle, Clock, User, Mic, Brain, AlertTriangle } from 'lucide-react';
@@ -40,7 +41,7 @@ export function MakeCallToolView({
       if (!callData?.call_id) return null;
       
       try {
-        const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const API_URL = BACKEND_URL;
         const supabase = createClient();
         const { data: { session } } = await supabase.auth.getSession();
         

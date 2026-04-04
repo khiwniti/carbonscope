@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { logger } from '@/lib/logger';
 import { create } from 'zustand';
 
@@ -111,7 +112,7 @@ export const useVoicePlayerStore = create<VoicePlayerState>((set, get) => ({
         throw new Error('Not authenticated');
       }
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/voice/generate`, {
+      const response = await fetch(`${BACKEND_URL}/voice/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { ImageResponse } from 'next/og';
 import { NextRequest } from 'next/server';
 
@@ -13,7 +14,7 @@ export async function GET(request: NextRequest) {
     }
 
     const templateResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000/v1'}/templates/public/${shareId}`
+      `${BACKEND_URL || 'http://localhost:8000/v1'}/templates/public/${shareId}`
     );
 
     if (!templateResponse.ok) {

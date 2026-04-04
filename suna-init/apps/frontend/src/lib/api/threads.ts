@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { createClient } from '@/lib/supabase/client';
 import { handleApiError } from '../error-handler';
 import { backendApi } from '../api-client';
@@ -203,7 +204,7 @@ export const createThreadInProject = async (projectId: string): Promise<{ thread
     throw new Error('You must be logged in to create a thread');
   }
 
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const API_URL = BACKEND_URL;
 
   const response = await fetch(`${API_URL}/projects/${projectId}/threads`, {
     method: 'POST',
@@ -447,7 +448,7 @@ export const createThread = async (projectId?: string): Promise<Thread> => {
     throw new Error('You must be logged in to create a thread');
   }
 
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const API_URL = BACKEND_URL;
 
   // Use backend API endpoint - it handles project creation as well
   // If projectId is provided, use the new endpoint to create thread in existing project
@@ -499,7 +500,7 @@ export const addUserMessage = async (
       throw new NoAccessTokenAvailableError();
     }
 
-    const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+    const API_URL = BACKEND_URL;
 
     // Use backend API endpoint with auth handling
     const response = await fetch(`${API_URL}/threads/${threadId}/messages/add`, {
@@ -544,7 +545,7 @@ export const getMessages = async (threadId: string): Promise<Message[]> => {
     const supabase = createClient();
     const { data: { session } } = await supabase.auth.getSession();
 
-    const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+    const API_URL = BACKEND_URL;
 
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',

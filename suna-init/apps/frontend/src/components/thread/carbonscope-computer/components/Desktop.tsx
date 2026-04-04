@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 
 import { memo, useState, useCallback, useEffect, useRef, ReactNode } from 'react';
 import { AnimatePresence } from 'framer-motion';
@@ -612,7 +613,7 @@ export const SandboxDesktop = memo(function SandboxDesktop({
     }
     
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/terminal/execute`, {
+      const response = await fetch(`${BACKEND_URL}/sandboxes/${sandboxId}/terminal/execute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
