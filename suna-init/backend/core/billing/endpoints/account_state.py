@@ -3,6 +3,7 @@ from typing import Dict, Optional
 from datetime import datetime, timezone, timedelta
 import asyncio
 import httpx
+import os
 from core.utils.auth_utils import verify_and_get_user_id_from_jwt
 from core.utils.config import config, EnvMode
 from core.utils.logger import logger
@@ -580,7 +581,8 @@ async def get_minimal_account_state(
 
     Use /account-state for full data including limits, models, scheduled changes.
     """
-    if config.ENV_MODE == EnvMode.LOCAL:
+    _billing_disabled = os.getenv("DISABLE_BILLING", "").lower() in ("1", "true", "yes")
+    if config.ENV_MODE == EnvMode.LOCAL or _billing_disabled:
         return {
             'credits': {
                 'total': 999999,
@@ -645,8 +647,9 @@ async def get_account_state(
     This is the complete data for settings/billing pages.
     For dashboard, use /account-state/minimal for faster response.
     """
-    # Local development mode - return mock data
-    if config.ENV_MODE == EnvMode.LOCAL:
+    _billing_disabled = os.getenv("DISABLE_BILLING", "").lower() in ("1", "true", "yes")
+    # Local development mode or billing disabled - return mock data
+    if config.ENV_MODE == EnvMode.LOCAL or _billing_disabled:
         all_models = model_manager.list_available_models(include_disabled=True)
         return {
             'credits': {

@@ -11,6 +11,21 @@ router = APIRouter(tags=["transcription"])
 class TranscriptionResponse(BaseModel):
     text: str
 
+def _get_openai_client():
+    """Return AzureOpenAI client when Azure is configured, otherwise standard OpenAI."""
+    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    azure_key = os.getenv("AZURE_OPENAI_KEY")
+    azure_version = os.getenv("AZURE_OPENAI_API_VERSION", "2024-10-21")
+
+    if azure_endpoint and azure_key:
+        return openai.AzureOpenAI(
+            api_key=azure_key,
+            api_version=azure_version,
+            azure_endpoint=azure_endpoint,
+        ), "whisper"  # Azure Whisper deployment name
+
+    return openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY")), "whisper-1"
+
 @router.post("/transcription", response_model=TranscriptionResponse)
 async def transcribe_audio(
     audio_file: UploadFile = File(...),
@@ -41,8 +56,8 @@ async def transcribe_audio(
         # Reset file pointer
         await audio_file.seek(0)
         
-        # Initialize OpenAI client
-        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        # Initialize OpenAI client (Azure or standard)
+        client, whisper_model = _get_openai_client()
         
         # Create a temporary file with the correct extension
         file_extension = audio_file.filename.split('.')[-1] if audio_file.filename and '.' in audio_file.filename else 'webm'
@@ -53,10 +68,9 @@ async def transcribe_audio(
         
         try:
             # Transcribe audio using the temporary file
-            # OpenAI Whisper API has built-in limits: 25MB file size and handles duration limits internally
             with open(temp_file_path, 'rb') as f:
                 transcription = client.audio.transcriptions.create(
-                    model="gpt-4o-mini-transcribe",
+                    model=whisper_model,
                     file=f,
                     response_format="text"
                 )
