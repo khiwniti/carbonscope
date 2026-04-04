@@ -61,6 +61,15 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  async redirects() {
+    return [
+      { source: '/login', destination: '/auth', permanent: false },
+      { source: '/signup', destination: '/auth', permanent: false },
+      { source: '/projects', destination: '/dashboard', permanent: false },
+      { source: '/settings', destination: '/settings/api-keys', permanent: false },
+      { source: '/home', destination: '/', permanent: false },
+    ];
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
