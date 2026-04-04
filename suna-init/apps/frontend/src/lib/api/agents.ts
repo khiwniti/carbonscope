@@ -351,7 +351,7 @@ export const setupAgentFromChat = async (request: AgentSetupFromChatRequest): Pr
 export const getAgentRuns = async (threadId: string): Promise<AgentRun[]> => {
   try {
     const response = await backendApi.get<{ agent_runs: AgentRun[] }>(
-      `/thread/${threadId}/agent-runs`,
+      `/threads/${threadId}/agent-runs`,
       { showErrors: false, cache: 'no-store' }
     );
 

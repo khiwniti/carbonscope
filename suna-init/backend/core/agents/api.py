@@ -81,8 +81,8 @@ async def _check_billing_and_limits(
     
     t_start = time.time()
     
-    # Skip all checks in local mode
-    if config.ENV_MODE == EnvMode.LOCAL:
+    # Skip all checks in local mode or when billing is disabled
+    if config.ENV_MODE == EnvMode.LOCAL or os.getenv("DISABLE_BILLING", "").lower() in ("1", "true", "yes"):
         return
     
     # Step 1: Get tier info ONCE (with caching)
@@ -211,6 +211,10 @@ async def _check_billing_and_limits(
 
 
 async def _check_concurrent_runs_limit(account_id: str):
+    # Skip when billing is disabled
+    if os.getenv("DISABLE_BILLING", "").lower() in ("1", "true", "yes"):
+        return
+
     from core.cache.runtime_cache import get_cached_running_runs, get_cached_tier_info
     
     tier_info = await get_cached_tier_info(account_id)
