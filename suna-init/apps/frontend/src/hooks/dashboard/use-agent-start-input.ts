@@ -97,6 +97,10 @@ export function useAgentStartInput(options: UseAgentStartInputOptions = {}): Use
   const router = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
   
+  // Anonymous users are treated as authenticated — they have a valid Supabase session
+  const isAnonymous = user?.is_anonymous === true;
+  const isEffectivelyAuthenticated = !!user; // anonymous users count as authenticated
+  
   // Input state
   const [inputValue, setInputValue] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -245,8 +249,8 @@ export function useAgentStartInput(options: UseAgentStartInputOptions = {}): Use
       return;
     }
     
-    // Check auth if required
-    if (requireAuth && !user && !isAuthLoading) {
+    // Check auth if required — anonymous users pass through (they have a real Supabase session)
+    if (requireAuth && !isEffectivelyAuthenticated && !isAuthLoading) {
       localStorage.setItem(PENDING_PROMPT_KEY, message.trim());
       onAuthRequired?.(message.trim());
       return;

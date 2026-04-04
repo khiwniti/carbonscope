@@ -4,6 +4,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
+import { createClient } from '@/lib/supabase/client';
 import { useIsMobile } from '@/hooks/utils';
 import {
   Dialog,
@@ -46,9 +47,20 @@ export function HeroSection() {
     }
   }, [user, isLoading, authDialogOpen, router]);
   
-  const handleAuthRequired = (pendingMessage: string) => {
+  // Sign in anonymously then retry — no email/password needed
+  const handleAuthRequired = async (pendingMessage: string) => {
     trackCtaSignup();
-    setAuthDialogOpen(true);
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInAnonymously();
+      if (error) {
+        // Fall back to auth dialog if anonymous sign-in fails
+        setAuthDialogOpen(true);
+      }
+      // Auth state change will re-trigger submission via autoSubmit
+    } catch {
+      setAuthDialogOpen(true);
+    }
   };
 
   // Use the agent start input hook for state management (same as dashboard)

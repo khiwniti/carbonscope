@@ -740,6 +740,24 @@ function LoginContent() {
                 {t('magicLinkExplanation')}
               </p>
 
+              {/* Anonymous Sign-In — no email needed */}
+              <div className="relative flex items-center gap-2 my-1">
+                <div className="flex-1 border-t border-border/40" />
+                <span className="text-[10px] text-muted-foreground/60 whitespace-nowrap">or</span>
+                <div className="flex-1 border-t border-border/40" />
+              </div>
+              <button
+                type="button"
+                onClick={async () => {
+                  const supabase = (await import('@/lib/supabase/client')).createClient();
+                  const { error } = await supabase.auth.signInAnonymously();
+                  if (!error) router.replace(returnUrl || '/agents');
+                }}
+                className="w-full h-9 text-xs sm:text-sm text-muted-foreground hover:text-foreground border border-border/40 hover:border-border rounded-lg transition-all touch-manipulation"
+              >
+                Continue as Guest
+              </button>
+
               {/* Minimal Referral Link */}
               {!referralCodeParam && (
                 <button

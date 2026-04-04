@@ -19,6 +19,7 @@ type AuthContextType = {
   user: User | null;
   isLoading: boolean;
   signOut: () => Promise<void>;
+  signInAnonymously: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -82,12 +83,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const signInAnonymously = async () => {
+    try {
+      const { error } = await supabase.auth.signInAnonymously();
+      if (error) console.error('Anonymous sign-in error:', error.message);
+    } catch (error) {
+      console.error('❌ Error signing in anonymously:', error);
+    }
+  };
+
   const value = {
     supabase,
     session,
     user,
     isLoading,
     signOut,
+    signInAnonymously,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

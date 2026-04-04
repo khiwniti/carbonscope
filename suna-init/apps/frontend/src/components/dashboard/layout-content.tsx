@@ -159,6 +159,7 @@ export default function DashboardLayoutContent({
     if (!isLoading && !user) {
       router.push('/auth');
     }
+    // Anonymous users (is_anonymous: true) are allowed — they have a valid session
   }, [user, isLoading, router]);
 
   const isMaintenanceActive = (() => {
@@ -185,6 +186,7 @@ export default function DashboardLayoutContent({
     return <DashboardSkeleton />;
   }
 
+  // Allow anonymous users — they have a valid Supabase session (is_anonymous: true)
   if (!user) {
     return <DashboardSkeleton />;
   }
