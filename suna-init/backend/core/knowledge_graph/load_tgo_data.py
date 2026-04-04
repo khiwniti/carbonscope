@@ -47,8 +47,8 @@ from rdflib.namespace import RDF, RDFS, XSD
 project_root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(project_root))
 
-from suna.backend.core.knowledge_graph.graphdb_client import GraphDBClient, GraphDBError
-from suna.backend.core.knowledge_graph.versioning.version_manager import VersionManager, VersionManagerError
+from core.knowledge_graph.graphdb_client import GraphDBClient, GraphDBError
+from core.knowledge_graph.versioning.version_manager import VersionManager, VersionManagerError
 
 # Configure logging
 logging.basicConfig(
