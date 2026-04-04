@@ -1,4 +1,5 @@
 'use client';
+import { BACKEND_URL } from '@/lib/api-client';
 
 import React, { useState, useMemo } from 'react';
 import { FileText, Download, CheckCircle2, AlertCircle } from 'lucide-react';
@@ -80,7 +81,7 @@ export function PdfExportToolView({
         : `/workspace/${outputFile}`;
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${project.sandbox.id}/files/content?path=${encodeURIComponent(downloadPath)}`,
+        `${BACKEND_URL}/sandboxes/${project.sandbox.id}/files/content?path=${encodeURIComponent(downloadPath)}`,
         { headers }
       );
 

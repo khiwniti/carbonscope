@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { backendApi } from "@/lib/api-client";
 import { logger } from '@/lib/logger';
 import { createClient } from "@/lib/supabase/client";
@@ -19,7 +20,7 @@ export enum DownloadFormat {
  * @returns The full PDF URL with parameters
  */
 export const getPdfUrl = (templateId: string): string => {
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "";
+  const API_URL = BACKEND_URL || "";
   return `${API_URL}/presentation-templates/${templateId}/pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
 };
 
@@ -30,7 +31,7 @@ export const getPdfUrl = (templateId: string): string => {
  * @returns The full image URL
  */
 export const getImageUrl = (templateId: string, hasImage: boolean): string => {
-  const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "";
+  const API_URL = BACKEND_URL || "";
   return `${API_URL}/presentation-templates/${templateId}/image.png`;
 };
 

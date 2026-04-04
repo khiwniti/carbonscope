@@ -1,3 +1,4 @@
+import { BACKEND_URL } from '@/lib/api-client';
 import { ToolCallData, ToolResultData } from '../types';
 import { normalizeContentToString } from '../utils';
 
@@ -235,7 +236,7 @@ export function constructImageUrl(filePath: string, project?: { sandbox?: { sand
       normalizedPath = `/workspace/${normalizedPath.startsWith('/') ? normalizedPath.substring(1) : normalizedPath}`;
     }
     
-    const apiEndpoint = `${process.env.NEXT_PUBLIC_BACKEND_URL}/sandboxes/${sandboxId}/files/content?path=${encodeURIComponent(normalizedPath)}`;
+    const apiEndpoint = `${BACKEND_URL}/sandboxes/${sandboxId}/files/content?path=${encodeURIComponent(normalizedPath)}`;
     return apiEndpoint;
   }
   
