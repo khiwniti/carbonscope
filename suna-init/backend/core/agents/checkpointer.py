@@ -45,8 +45,13 @@ def initialize_checkpointer() -> PostgresSaver:
         logger.debug("Checkpointer already initialized, returning existing instance")
         return _checkpointer
 
-    # Try DATABASE_URL first, then fall back to SUPABASE_DATABASE_URL
-    db_url = os.getenv("DATABASE_URL") or os.getenv("SUPABASE_DATABASE_URL")
+    # Try CHECKPOINT_DATABASE_URL first (dedicated checkpoint store),
+    # then DATABASE_URL, then SUPABASE_DATABASE_URL
+    db_url = (
+        os.getenv("CHECKPOINT_DATABASE_URL")
+        or os.getenv("DATABASE_URL")
+        or os.getenv("SUPABASE_DATABASE_URL")
+    )
 
     if not db_url:
         raise ValueError(

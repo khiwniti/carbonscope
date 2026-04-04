@@ -17,7 +17,8 @@ PROCESSING_INTERVAL_SECONDS = 15  # Check queue every 15 seconds
 BATCH_SIZE = 15  # Process up to 15 items per batch
 MAX_CONCURRENT = 5  # Max concurrent LLM calls (avoid rate limits)
 MAX_ATTEMPTS = 3  # Max retries for failed analysis
-INITIAL_DELAY_SECONDS = 15  # Wait before starting (let API settle)
+INITIAL_DELAY_SECONDS = 30  # Wait before starting (let API settle)
+ERROR_BACKOFF_SECONDS = 60  # Backoff when table/schema errors occur
 
 # Semaphore for limiting concurrent LLM calls
 _concurrency_semaphore: asyncio.Semaphore = None
@@ -57,7 +58,12 @@ async def claim_pending_queue_items(limit: int = BATCH_SIZE) -> List[Dict[str, A
         return serialize_rows(result) if result else []
 
     except Exception as e:
-        logger.error(f"[ANALYTICS] Failed to claim queue items: {e}")
+        err_str = str(e)
+        if "UndefinedTable" in err_str or "does not exist" in err_str:
+            logger.warning(f"[ANALYTICS] Queue table not ready, backing off {ERROR_BACKOFF_SECONDS}s: {e}")
+            await asyncio.sleep(ERROR_BACKOFF_SECONDS)
+        else:
+            logger.error(f"[ANALYTICS] Failed to claim queue items: {e}")
         return []
 
 

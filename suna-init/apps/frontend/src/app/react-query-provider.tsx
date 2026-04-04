@@ -28,9 +28,13 @@ export function ReactQueryProvider({ children }: { children: React.ReactNode }) 
             structuralSharing: true,
             // Deduplicate requests within 1000ms window (default)
             retry: (failureCount, error: any) => {
-              if (error?.status >= 400 && error?.status < 500) return false;
-              if (error?.status === 404) return false;
-              return failureCount < 3;
+              // Never retry timeouts — they cause infinite loops of slow requests
+              if (error?.code === 'TIMEOUT' || error?.name === 'ApiError' && error?.message === 'Request timeout') return false;
+              // Never retry 4xx errors (client errors – wrong URL, auth, not found, etc.)
+              const status = error?.status ?? error?.response?.status;
+              if (status && status >= 400 && status < 500) return false;
+              if (error?.message?.includes('404')) return false;
+              return failureCount < 1;
             },
             refetchOnMount: true,
             refetchOnWindowFocus: false,

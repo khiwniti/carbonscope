@@ -142,7 +142,8 @@ async def publish_to_cloudwatch(metrics: dict) -> bool:
         logger.debug(f"Published metrics to CloudWatch: {metrics.get('active_agent_runs')} active runs, {metrics.get('orphaned_streams')} orphaned streams")
         return True
     except Exception as e:
-        logger.error(f"Failed to publish API instance metrics to CloudWatch: {e}")
+        # Downgrade to debug — no AWS credentials in Azure deployment is expected
+        logger.debug(f"Failed to publish API instance metrics to CloudWatch: {e}")
         return False
 
 

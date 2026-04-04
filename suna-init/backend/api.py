@@ -779,7 +779,7 @@ async def _metrics_logger_loop():
 async def _memory_watchdog():
     import time as time_module
 
-    workers = int(os.getenv("WORKERS", "16"))
+    workers = int(os.getenv("WORKERS", "2"))
     total_ram_mb = psutil.virtual_memory().total / 1024 / 1024
     per_worker_limit_mb = (total_ram_mb * 0.8) / workers
 
