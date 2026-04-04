@@ -5,3 +5,15 @@ metadata:
   namespace: carbonscope
 data:
   SUPABASE_URL: "https://vplbjxijbrgwskgxiukd.supabase.co"
+  ENV_MODE: "local"
+  MAIN_LLM: "azure"
+  MAIN_LLM_MODEL: "claude-sonnet-4-5"
+  AZURE_OPENAI_ENDPOINT: "https://khiwn-9359-resource.cognitiveservices.azure.com/"
+  AZURE_OPENAI_DEPLOYMENT: "claude-sonnet-4-5"
+  AZURE_OPENAI_API_VERSION: "2024-10-21"
+  OPENAI_API_TYPE: "azure"
+  REDIS_SSL: "false"
+  DISABLE_BILLING: "true"
+  CLOUDWATCH_LOGGING_ENABLED: "false"
+  DEV_AUTH_BYPASS: "false"
+  WORKERS: "2"
