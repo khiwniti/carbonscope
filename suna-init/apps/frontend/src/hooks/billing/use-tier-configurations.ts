@@ -35,7 +35,7 @@ export function useTierConfigurations() {
     queryFn: fetchTierConfigurations,
     staleTime: 1000 * 60 * 60, // 1 hour - tier configs don't change often
     gcTime: 1000 * 60 * 60 * 24, // 24 hours (formerly cacheTime)
-    retry: 3,
+    retry: 0,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 }

@@ -61,7 +61,7 @@ export const useSystemStatusQuery = (options?: { enabled?: boolean }) => {
     refetchInterval: 60 * 1000,
     refetchOnWindowFocus: true,
     refetchOnMount: 'always',
-    retry: 2,
+    retry: 0,
     placeholderData: {
       maintenanceNotice: { enabled: false },
       technicalIssue: { enabled: false },

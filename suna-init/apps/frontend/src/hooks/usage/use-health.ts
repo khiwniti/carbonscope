@@ -11,7 +11,7 @@ export const useApiHealth = (options?) => {
     staleTime: 30 * 1000,
     refetchInterval: 60 * 1000,
     refetchOnWindowFocus: true,
-    retry: 3,
+    retry: 0,
     placeholderData: { status: 'ok', timestamp: '', instance_id: '' },
     ...options,
   });

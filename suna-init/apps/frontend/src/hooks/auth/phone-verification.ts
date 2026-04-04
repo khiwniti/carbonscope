@@ -55,7 +55,7 @@ export const useListFactors = () => {
     queryFn: phoneVerificationService.listFactors,
     enabled: !!user, // Only run when user is authenticated
     staleTime: Infinity, // 2 minutes
-    retry: 2,
+    retry: 1,
   });
 };
 
@@ -97,6 +97,6 @@ export const useGetAAL = () => {
     queryFn: phoneVerificationService.getAAL,
     enabled: !!user, // Only run when user is authenticated
     staleTime: Infinity, // 1 minute
-    retry: 2,
+    retry: 1,
   });
 };
