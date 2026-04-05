@@ -741,21 +741,36 @@ function LoginContent() {
               </p>
 
               {/* Anonymous Sign-In — no email needed */}
-              <div className="relative flex items-center gap-2 my-1">
+              <div className="relative flex items-center gap-2 my-2">
                 <div className="flex-1 border-t border-border/40" />
-                <span className="text-[10px] text-muted-foreground/60 whitespace-nowrap">or</span>
+                <span className="text-[10px] text-muted-foreground/60 whitespace-nowrap">or try without account</span>
                 <div className="flex-1 border-t border-border/40" />
               </div>
               <button
                 type="button"
-                onClick={async () => {
-                  const supabase = (await import('@/lib/supabase/client')).createClient();
-                  const { error } = await supabase.auth.signInAnonymously();
-                  if (!error) router.replace(returnUrl || '/agents');
+                onClick={async (e) => {
+                  const btn = e.currentTarget;
+                  btn.disabled = true;
+                  btn.textContent = 'Signing in...';
+                  try {
+                    const supabase = (await import('@/lib/supabase/client')).createClient();
+                    const { error } = await supabase.auth.signInAnonymously();
+                    if (error) {
+                      console.error('Anonymous sign-in error:', error);
+                      btn.textContent = 'Failed - try again';
+                      btn.disabled = false;
+                      return;
+                    }
+                    router.replace(returnUrl || '/agents');
+                  } catch (err) {
+                    console.error('Anonymous sign-in exception:', err);
+                    btn.textContent = 'Error - try again';
+                    btn.disabled = false;
+                  }
                 }}
-                className="w-full h-9 text-xs sm:text-sm text-muted-foreground hover:text-foreground border border-border/40 hover:border-border rounded-lg transition-all touch-manipulation"
+                className="w-full h-10 text-sm font-medium bg-emerald-600/10 text-emerald-400 hover:bg-emerald-600/20 hover:text-emerald-300 border border-emerald-600/30 hover:border-emerald-500/50 rounded-lg transition-all touch-manipulation"
               >
-                Continue as Guest
+                🚀 Continue as Guest
               </button>
 
               {/* Minimal Referral Link */}
